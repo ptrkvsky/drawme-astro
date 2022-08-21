@@ -1,0 +1,16 @@
+.none {
+  display: none;
+}
+.opacity-0 {
+  opacity: 0;
+}
+.primary-color {
+  color: var(--color-ice-ice-baby);
+}
+.split-text div {
+  overflow: hidden;
+}
+
+.overflow-visible .split-text div {
+  overflow: visible;
+}

@@ -1,0 +1,195 @@
+---
+import Burger from './Burger.astro';
+---
+
+<script>
+  import getRandomInt from '../helpers/getRandomInt';
+  import gsap from '../libs/gsap';
+
+  import { SplitText } from '../libs/gsap/all';
+
+  const getLetter = (positions: number[]) => {
+    // Choose one random letter to swap
+    const position = getRandomInt(0, 4);
+
+    // If the position is already present
+    if (positions.includes(position)) {
+      getLetter(positions);
+    }
+
+    if (position === 0) {
+      return {
+        position,
+        letter: `S`,
+      };
+    }
+    if (position === 1) {
+      return {
+        position,
+        letter: `H`,
+      };
+    }
+    if (position === 2 || position === 3) {
+      return {
+        position,
+        letter: `E`,
+      };
+    }
+
+    if (position === 4) {
+      return {
+        position,
+        letter: `P`,
+      };
+    }
+  };
+
+  const letter1 = getLetter([]);
+  const letter2 = getLetter([letter1?.position]);
+  const letter3 = getLetter([letter1?.position, letter2?.position]);
+  const letter4 = getLetter([
+    letter1?.position,
+    letter2?.position,
+    letter3?.position,
+  ]);
+  const letter5 = getLetter([
+    letter1?.position,
+    letter2?.position,
+    letter3?.position,
+    letter4?.position,
+  ]);
+
+  const splitSheep = new SplitText('#header-sheep', {
+    type: `chars`,
+  });
+
+  const charsRandom = "!@#$%^&*+:'/|";
+
+  if (letter1 && letter2 && letter3 && letter4 && letter5) {
+    const tl = gsap
+      .timeline({
+        repeat: -1,
+        // scrollTrigger: {
+        //   trigger: 'header',
+        //   start: 'top top',
+        //   endTrigger: 'footer',
+        //   end: 'bottom+=100vh bottom',
+        //   pin: true,
+        //   pinType: 'fixed',
+        //   markers: false,
+        //   pinReparent: true,
+        //   pinSpacing: false,
+        // },
+      })
+      .to(splitSheep.chars[letter1?.position], {
+        duration: getRandomInt(1, 4),
+        delay: getRandomInt(0, 3),
+        scrambleText: { text: letter1?.letter, chars: charsRandom },
+      })
+      .to(splitSheep.chars[letter2?.position], {
+        duration: getRandomInt(1, 4),
+        delay: getRandomInt(0, 3),
+        scrambleText: { text: letter2.letter, chars: charsRandom },
+      })
+      .to(splitSheep.chars[letter3?.position], {
+        duration: getRandomInt(1, 4),
+        delay: getRandomInt(0, 3),
+        scrambleText: { text: letter3.letter, chars: charsRandom },
+      })
+      .to(splitSheep.chars[letter4?.position], {
+        duration: getRandomInt(1, 4),
+        delay: getRandomInt(0, 3),
+        scrambleText: { text: letter4.letter, chars: charsRandom },
+      })
+      .to(splitSheep.chars[letter5?.position], {
+        duration: getRandomInt(1, 4),
+        delay: getRandomInt(0, 3),
+        scrambleText: { text: letter5.letter, chars: charsRandom },
+      })
+      .to(splitSheep.chars[0], { duration: 0.5, scrambleText: 'S' })
+      .to(splitSheep.chars[1], { duration: 0.5, scrambleText: 'H' })
+      .to(splitSheep.chars[2], { duration: 0.5, scrambleText: 'E' })
+      .to(splitSheep.chars[3], { duration: 0.5, scrambleText: 'E' })
+      .to(splitSheep.chars[4], { duration: 0.5, scrambleText: 'P' })
+      // // DESIGN
+      .to(splitSheep.chars[0], {
+        duration: 0.5,
+        delay: getRandomInt(1, 4),
+        scrambleText: 'D',
+      })
+      .to(splitSheep.chars[1], { duration: 0.5, scrambleText: 'E' })
+      .to(splitSheep.chars[2], { duration: 0.5, scrambleText: 'S' })
+      .to(splitSheep.chars[3], { duration: 0.5, scrambleText: 'I' })
+      .to(splitSheep.chars[4], { duration: 0.5, scrambleText: 'G' })
+      // Display the last letter
+      .set('.dash', { opacity: 1 })
+      .to(splitSheep.chars[5], { duration: 0.5, scrambleText: 'N' })
+      .set('.dash', { opacity: 0 });
+  }
+</script>
+
+<header id="header" style={{ opacity: 0 }}>
+  <Burger />
+  <p id="header-logo" class="logo">
+    <span id="header-draw">DRAW</span> ME A{' '}
+    <span id="header-sheep" class="highlight">
+      SHEEP<span class="dash">-</span>
+    </span>
+  </p>
+</header>
+
+<style lang="scss" is:global>
+  #header {
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    padding-left: 5.8rem;
+    height: 58px;
+    width: 100vw;
+    z-index: 10000;
+    background: #000;
+    mix-blend-mode: difference;
+
+    /* ${({ theme }) => theme.breakpoints.mobile} {
+    padding: 0 24px !important; // overides gsap config
+  } */
+
+    &.black {
+      backdrop-filter: blur(7px);
+      background-color: #161618 !important; //gsap overtakes
+      background: #161618 !important; //gsap overtakes
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background-color: #161618 !important; //gsap overtakes
+        background: #161618 !important; //gsap overtakes
+      }
+    }
+
+    &.visible {
+      opacity: 1 !important; // overides gsap config
+    }
+
+    .logo {
+      margin-left: 16px;
+      color: #fff;
+      font-size: clamp(16px, 1.6rem, 1.6rem);
+      letter-spacing: 5.6px;
+      text-transform: uppercase;
+
+      .dash {
+        opacity: 0;
+      }
+
+      .highlight {
+        color: var(--color-ice-ice-baby);
+      }
+    }
+  }
+</style>

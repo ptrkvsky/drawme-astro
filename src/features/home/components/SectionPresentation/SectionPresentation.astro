@@ -1,0 +1,159 @@
+---
+import { Image } from '@astrojs/image/components';
+import illustrationBook from '@assets/images/illustration_book.png';
+import illustrationCrayon from '@assets/images/illustration_crayon.png';
+import illustrationFingers from '@assets/images/illustration_fingers.png';
+import illustrationLetters from '@assets/images/illustration_letters.png';
+---
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  import { switchCanva } from './SectionPresentation.animation';
+
+  const handleOnComplete = () => {
+    document
+      .querySelector('#section-presentation')
+      .classList.add('overflow-visible');
+  };
+  // Switch Canva from black to white
+  const handleToggleCanva = () => {
+    document.getElementById('canvas-black').classList.toggle('visible');
+  };
+  setTimeout(() => {
+    // ScrollTrigger.create({
+    //   trigger: '#section-presentation',
+    //   start: 'top bottom',
+    //   endTrigger: 'footer',
+    //   markers: true,
+    //   // onEnter: () => {
+    //   //   handleOnComplete();
+    //   // },
+    //   onToggle: (self) => {
+    //     handleToggleCanva();
+    //     console.log('toggled, isActive:', self.isActive);
+    //   },
+    // });
+    gsap.to('#canvas-black', {
+      autoAlpha: 0,
+      scrollTrigger: {
+        trigger: '#section-presentation',
+        start: 'top 50%',
+        endTrigger: 'footer',
+        markers: true,
+      },
+    });
+  }, 3000);
+</script>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<section id="section-presentation" class="section-presentation">
+  <div class="illustration book" data-speed="1.05" data-lag="0.25">
+    <Image
+      width={372}
+      height={404}
+      format="avif"
+      src={illustrationBook}
+      alt="Illustration book"
+    />
+  </div>
+  <div class="illustration crayon" data-speed="0.98" data-lag="0.3">
+    <Image format="avif" src={illustrationCrayon} alt="Illustration crayon" />
+  </div>
+  <div class="illustration fingers">
+    <div class="relative">
+      <div class="wrapper-overflow" data-speed="0.9" data-lag="0.025">
+        <Image src={illustrationFingers} alt="Illustration fingers" />
+        {/* <div class="reveal" /> */}
+      </div>
+      <div class="illustration letters" data-speed="1.15" data-lag="0.03">
+        <Image src={illustrationLetters} alt="Illustration letters" />
+        {/* <div className="reveal" /> */}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .section-presentation {
+    position: relative;
+    margin: 12.3rem auto;
+    padding: 12.3rem 0;
+    max-width: 164rem;
+    z-index: 10;
+    font-size: 2.4rem;
+    min-height: 90rem;
+    /* overflow: hidden; */
+
+    .illustration {
+      position: absolute;
+
+      // ${({ theme }) => theme.breakpoints.mobile} {
+      //   display: none;
+      // } // ! TODO
+
+      &.fingers {
+        top: 6.8rem;
+        left: 0;
+        img {
+          max-width: 33.9rem;
+        }
+      }
+
+      &.book {
+        top: 0;
+        left: 55rem;
+        img {
+          max-width: 18.6rem;
+        }
+      }
+
+      &.letters {
+        bottom: 0;
+        right: 0;
+        transform: translate(50%, 50%);
+        img {
+          max-width: 20.4rem;
+        }
+      }
+
+      &.crayon {
+        bottom: 0;
+        left: 55rem;
+        img {
+          max-width: 25.8rem;
+        }
+      }
+    }
+
+    .intro-presentation {
+      margin-left: 69rem;
+      margin-top: 12rem;
+      font-size: 3rem;
+      max-width: 57.1rem;
+      line-height: 1.2;
+      letter-spacing: 0.2rem;
+      font-family: var(--text-body-bold);
+    }
+
+    .intro-detail {
+      position: absolute;
+      right: 0;
+      margin-top: 7.2rem;
+      max-width: 67.6rem;
+      line-height: 1.4;
+      letter-spacing: 0.2rem;
+      font-weight: 800;
+      font-size: 2.1rem;
+      font-family: var(--text-body-thin);
+    }
+
+    .wrapper-svg {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      margin-top: 8rem;
+      width: 67.6rem;
+    }
+  }
+</style>

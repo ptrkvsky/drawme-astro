@@ -1,0 +1,32 @@
+<button class="burger-button" aria-label="button-menu">
+  <span class="line"></span>
+  <span class="line"></span>
+  <span class="line"></span>
+</button>
+
+<style lang="scss">
+  .burger-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    // ${({ theme }) => theme.breakpoints.mobile} {
+    //   gap: 5px;
+    // } ; // ! TODO
+  }
+
+  .line {
+    display: block;
+    width: 19px;
+    height: 3px;
+    background-color: #fff;
+  }
+  // ${({ theme }) => theme.breakpoints.mobile} {
+  //   width: 36px;
+  //   height: 6px;
+  // } ; // ! TODO
+</style>

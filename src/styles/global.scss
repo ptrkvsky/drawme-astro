@@ -1,0 +1,100 @@
+:root {
+  font-size: calc(100vw / 1920 * 10);
+}
+
+:selection {
+  background: var(--color-ice-ice-baby);
+  transition: all 0.1s linear;
+}
+
+::selection {
+  background: var(--color-ice-ice-baby);
+  transition: all 0.1s linear;
+}
+
+body {
+  min-height: 800vh;
+  background: #fff;
+  color: 000;
+  min-height: 100vh;
+  font-family: 'MontrealMedium';
+  margin: 0;
+  padding: 0;
+  transition: all 0.5s linear;
+  opacity: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--text-heading);
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:visited {
+  color: inherit;
+}
+
+button {
+  color: var(--color-text);
+}
+
+main {
+  min-height: calc(100vh - 176px - 320px);
+}
+
+img {
+  height: auto;
+}
+
+.bold,
+b,
+strong {
+  font-weight: 600;
+}
+
+.container {
+  width: 100%;
+  max-width: 1150px;
+  margin-left: auto;
+  margin-right: auto;
+  // ${breakpoints.tabletLandscape} {
+  //   padding: 0 2rem;
+  // }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #292929;
+  transition: all 0.3s linear;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Animations */
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

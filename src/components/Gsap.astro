@@ -1,0 +1,35 @@
+---
+---
+
+<script>
+  import gsap from '../libs/gsap';
+  import {
+    ScrollSmoother,
+    DrawSVGPlugin,
+    ScrambleTextPlugin,
+    SplitText,
+    MorphSVGPlugin,
+    ScrollTrigger,
+  } from '../libs/gsap/all';
+
+  gsap.registerPlugin(
+    ScrollTrigger,
+    ScrollSmoother,
+    MorphSVGPlugin,
+    SplitText,
+    ScrambleTextPlugin,
+    DrawSVGPlugin
+  );
+  // @ts-ignore
+  ScrollSmoother.create({
+    smooth: 1.5, // how long (in seconds) it takes to "catch up" to the native scroll position
+    effects: true, // looks for data-speed and data-lag attributes on elements
+    smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+  });
+</script>
+
+<div id="smooth-wrapper">
+  <div id="smooth-content">
+    <slot />
+  </div>
+</div>

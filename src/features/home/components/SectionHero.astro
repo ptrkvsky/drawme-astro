@@ -1,0 +1,166 @@
+<script>
+  import config from '../../../config';
+  import { gsap, ScrollSmoother, SplitText } from '../../../libs/gsap/all';
+  // @ts-ignore
+  // ScrollSmoother.create({
+  //   smooth: 1.5, // how long (in seconds) it takes to "catch up" to the native scroll position
+  //   effects: true, // looks for data-speed and data-lag attributes on elements
+  //   smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+  // });
+
+  let selector = gsap.utils.selector(
+    document.querySelector('#section-hero-title')
+  );
+
+  // Duration of preloader
+  const timeout = config.mode === 'development' ? 1 : 8500;
+
+  setTimeout(() => {
+    gsap.set(selector('.letters div'), { yPercent: -103 });
+    gsap.set('#section-hero-title', { autoAlpha: 1 });
+
+    gsap
+      .timeline()
+      .to(selector('.letters div'), {
+        duration: 1,
+        yPercent: 0,
+        stagger: 0.05,
+        ease: 'expo.inOut',
+      })
+      .to(selector(".letters div:not([data-char='.'])"), {
+        duration: 1,
+        yPercent: 103,
+        stagger: 0.1,
+        ease: 'expo.inOut',
+      });
+  }, 1500);
+</script>
+
+<div class="hero-wrapper">
+  <h1 id="section-hero-title" class="heading" data-speed="0.98" data-lag="0.04">
+    <div class="letters graphic">
+      <p class="shadow">Graphic</p>
+      <div data-lag="0.0055" data-char=".">G</div>
+      <div data-lag="0.0165" data-char=".">r</div>
+      <div data-lag="0.022" data-char="a">a</div>
+      <div data-lag="0.07" data-char="p">p</div>
+      <div data-lag="0.08" data-char="h">h</div>
+      <div data-lag="0.09" data-char=".">i</div>
+      <div data-lag="0.1" data-char=".">c</div>
+    </div>
+    <div class="highlight">
+      <div class="letters">
+        <div data-char=".">s</div>
+        <div data-char=".">t</div>
+        <div data-char=".">u</div>
+        <div data-char=".">d</div>
+        <div data-char=".">i</div>
+        <div data-char="o">o</div>
+      </div>
+    </div>
+  </h1>
+</div>
+
+<style lang="scss" is:global>
+  .hero-wrapper {
+    position: relative;
+    min-height: calc(100vh - 58px);
+    display: flex;
+    align-items: center;
+
+    // ${({ theme }) => theme.breakpoints.mobile} {
+    //   padding: 0 24px;
+    // } //! TODO;
+  }
+  .heading {
+    visibility: hidden;
+    position: relative;
+    margin-left: -1.1rem;
+    font-size: 0;
+    z-index: 10;
+    mix-blend-mode: difference;
+
+    .canva-black & {
+      color: #fff;
+    }
+    .canva-white & {
+      color: var(--color-black-beauty);
+    }
+
+    .letters {
+      position: relative;
+      font-size: 0;
+      overflow: hidden;
+      display: flex;
+      div {
+        font-size: clamp(80px, 27.7rem, 27.7rem);
+        // ${({ theme }) => theme.breakpoints.tabletPortrait} {
+        //   font-size: 35rem;
+        // } // TODO
+
+        display: inline-block;
+      }
+
+      &.graphic {
+        letter-spacing: 1px;
+      }
+
+      .shadow {
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: hotpink;
+      }
+    }
+
+    .highlight {
+      display: block;
+      font-size: 0;
+      position: relative;
+      bottom: 5.4rem;
+      margin-left: -1.4rem;
+      color: transparent;
+      -webkit-text-stroke: 2px #fff;
+      letter-spacing: 1px;
+
+      .canva-black & {
+        -webkit-text-stroke: 2px #fff;
+      }
+      .canva-white & {
+        -webkit-text-stroke: 2px var(--color-black-beauty);
+      }
+
+      // ${({ theme }) => theme.breakpoints.tabletPortrait} {
+      //   .canva-black & {
+      //     -webkit-text-stroke: 1px #fff;
+      //   }
+      //   .canva-white & {
+      //     -webkit-text-stroke: 1px ${({ theme }) => theme.colors.blackBeauty};
+      //   }
+      // } //! TODO;
+
+      // ${({ theme }) => theme.breakpoints.tabletPortrait} {
+      //   bottom: 0;
+      // } //! TODO;
+
+      div {
+        font-size: 31.6rem;
+        letter-spacing: 1px;
+      }
+    }
+
+    .letters {
+      letter-spacing: 1px;
+    }
+
+    div {
+      &:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: attr(data-char);
+        transform: translateY(-103%);
+      }
+    }
+  }
+</style>
