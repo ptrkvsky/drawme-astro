@@ -66,9 +66,9 @@ strong {
   max-width: 1150px;
   margin-left: auto;
   margin-right: auto;
-  // ${breakpoints.tabletLandscape} {
-  //   padding: 0 2rem;
-  // }
+  @media screen and (max-width: 1280px) {
+    padding: 0 2rem;
+  }
 }
 
 /* width */

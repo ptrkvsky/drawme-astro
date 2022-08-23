@@ -8,9 +8,9 @@ import illustrationLetters from '@assets/images/illustration_letters.png';
 
 <script>
   import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  import { switchCanva } from './SectionPresentation.animation';
+  import { ScrollTrigger } from 'gsap/all';
+  import config from 'src/config';
+  gsap.registerPlugin(ScrollTrigger);
 
   const handleOnComplete = () => {
     document
@@ -21,32 +21,17 @@ import illustrationLetters from '@assets/images/illustration_letters.png';
   const handleToggleCanva = () => {
     document.getElementById('canvas-black').classList.toggle('visible');
   };
-  setTimeout(() => {
-    // ScrollTrigger.create({
-    //   trigger: '#section-presentation',
-    //   start: 'top bottom',
-    //   endTrigger: 'footer',
-    //   markers: true,
-    //   // onEnter: () => {
-    //   //   handleOnComplete();
-    //   // },
-    //   onToggle: (self) => {
-    //     handleToggleCanva();
-    //     console.log('toggled, isActive:', self.isActive);
-    //   },
-    // });
-    gsap.to('#canvas-black', {
-      autoAlpha: 0,
-      scrollTrigger: {
-        trigger: '#section-presentation',
-        start: 'top 50%',
-        endTrigger: 'footer',
-        markers: true,
-      },
-    });
-  }, 3000);
+
+  ScrollTrigger.create({
+    trigger: '#section-presentation',
+    start: 'top bottom',
+    endTrigger: 'footer',
+    markers: config.mode === 'development',
+    onToggle: (self) => {
+      handleToggleCanva();
+    },
+  });
 </script>
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 <section id="section-presentation" class="section-presentation">
   <div class="illustration book" data-speed="1.05" data-lag="0.25">
     <Image
@@ -88,7 +73,7 @@ import illustrationLetters from '@assets/images/illustration_letters.png';
     .illustration {
       position: absolute;
 
-      // ${({ theme }) => theme.breakpoints.mobile} {
+      // @media screen and (max-width: 550px){
       //   display: none;
       // } // ! TODO
 

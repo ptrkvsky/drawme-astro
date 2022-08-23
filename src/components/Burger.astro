@@ -14,9 +14,9 @@
     background: transparent;
     cursor: pointer;
 
-    // ${({ theme }) => theme.breakpoints.mobile} {
-    //   gap: 5px;
-    // } ; // ! TODO
+    @media screen and (max-width: 550px) {
+      gap: 5px;
+    }
   }
 
   .line {
@@ -25,8 +25,8 @@
     height: 3px;
     background-color: #fff;
   }
-  // ${({ theme }) => theme.breakpoints.mobile} {
-  //   width: 36px;
-  //   height: 6px;
-  // } ; // ! TODO
+  @media screen and (max-width: 550px) {
+    width: 36px;
+    height: 6px;
+  }
 </style>
