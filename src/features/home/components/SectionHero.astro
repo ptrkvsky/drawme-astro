@@ -84,7 +84,7 @@ import MiniMenu from './MiniMenu/MiniMenu.astro';
     mix-blend-mode: difference;
 
     .canva-black & {
-      color: #fff;
+      color: var(--color-white-beauty);
     }
     .canva-white & {
       color: var(--color-black-beauty);
@@ -122,11 +122,11 @@ import MiniMenu from './MiniMenu/MiniMenu.astro';
       bottom: 5.4rem;
       margin-left: -1.4rem;
       color: transparent;
-      -webkit-text-stroke: 2px #fff;
+
       letter-spacing: 1px;
 
       .canva-black & {
-        -webkit-text-stroke: 2px #fff;
+        -webkit-text-stroke: 2px var(--color-white-beauty);
       }
       .canva-white & {
         -webkit-text-stroke: 2px var(--color-black-beauty);
@@ -134,7 +134,7 @@ import MiniMenu from './MiniMenu/MiniMenu.astro';
 
       @media screen and (max-width: 766px) {
         .canva-black & {
-          -webkit-text-stroke: 1px #fff;
+          -webkit-text-stroke: 1px var(--color-white-beauty);
         }
         .canva-white & {
           -webkit-text-stroke: 1px var(--color-black-beauty);
