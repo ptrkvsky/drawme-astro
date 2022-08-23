@@ -19,7 +19,10 @@ import illustrationLetters from '@assets/images/illustration_letters.png';
   };
   // Switch Canva from black to white
   const handleToggleCanva = () => {
-    document.getElementById('canvas-black').classList.toggle('visible');
+    document.getElementById('canva-black').classList.toggle('visible');
+    document.getElementById('canva-white').classList.toggle('visible');
+    document.querySelector('body').classList.toggle('canva-black');
+    document.querySelector('body').classList.toggle('canva-white');
   };
 
   ScrollTrigger.create({

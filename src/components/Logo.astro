@@ -43,8 +43,11 @@
         display: 'none',
       })
       // Show content
-      .set(['#main-content', '#header', '#canvas-black'], {
+      .set(['#main-content', '#header'], {
         opacity: '1',
+      })
+      .call(() => {
+        document.querySelector('#canva-black').classList.add('visible');
       });
   });
 </script>

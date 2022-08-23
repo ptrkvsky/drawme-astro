@@ -1,19 +1,18 @@
+---
+import MiniMenu from './MiniMenu/MiniMenu.astro';
+---
+
 <script>
   import config from '../../../config';
-  import { gsap, ScrollSmoother, SplitText } from '../../../libs/gsap/all';
-  // @ts-ignore
-  // ScrollSmoother.create({
-  //   smooth: 1.5, // how long (in seconds) it takes to "catch up" to the native scroll position
-  //   effects: true, // looks for data-speed and data-lag attributes on elements
-  //   smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
-  // });
+  import { gsap } from '../../../libs/gsap/all';
+  import { revealResize } from './MiniMenu/MiniMenu.animations';
 
   let selector = gsap.utils.selector(
     document.querySelector('#section-hero-title')
   );
 
   // Duration of preloader
-  const timeout = config.mode === 'development' ? 1 : 8500;
+  const timeout = config.mode === 'development' ? 1500 : 8500;
 
   setTimeout(() => {
     gsap.set(selector('.letters div'), { yPercent: -103 });
@@ -32,8 +31,11 @@
         yPercent: 103,
         stagger: 0.1,
         ease: 'expo.inOut',
+      })
+      .call(() => {
+        revealResize('#mini-menu-mark');
       });
-  }, 1500);
+  }, timeout);
 </script>
 
 <div class="hero-wrapper">
@@ -59,18 +61,19 @@
       </div>
     </div>
   </h1>
+  <MiniMenu />
 </div>
 
 <style lang="scss" is:global>
   .hero-wrapper {
     position: relative;
-    min-height: calc(100vh - 58px);
+    min-height: calc(100vh);
     display: flex;
     align-items: center;
 
-    @media screen and (max-width: 550px){
+    @media screen and (max-width: 550px) {
       padding: 0 24px;
-    } 
+    }
   }
   .heading {
     visibility: hidden;
@@ -97,7 +100,7 @@
         display: inline-block;
         @media screen and (max-width: 766px) {
           font-size: 35rem;
-        } 
+        }
       }
 
       &.graphic {
@@ -134,7 +137,7 @@
           -webkit-text-stroke: 1px #fff;
         }
         .canva-white & {
-          -webkit-text-stroke: 1px ${({ theme }) => theme.colors.blackBeauty};
+          -webkit-text-stroke: 1px var(--color-black-beauty);
         }
       }
 

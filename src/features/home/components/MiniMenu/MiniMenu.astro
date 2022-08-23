@@ -1,0 +1,72 @@
+<div class="mini-menu">
+  <div class="relative" style={{ display: 'inline-block' }}>
+    <div id="mini-menu-mark" class="mark" class="mark hide-mobile">
+      <!-- <LogoMark /> -->
+    </div>
+    <div id="mini-menu-presentation" class="presentation" class="categories">
+      <span class="categorie opacity-0 webdesign add-lag">WEBDESIGN</span>
+      <span class="separator opacity-0 add-lag">I</span>
+      <span class="categorie opacity-0 print add-lag">PRINT</span>
+      <span class="separator opacity-0 add-lag">I</span>
+      <span class="categorie opacity-0 print add-lag">
+        BRAND <span class="hide-mobile">IDENTITY</span>
+      </span>
+      <span class="separator opacity-0 add-lag">I</span>
+      <span class="categorie opacity-0 print add-lag">ILLUSTRATION</span>
+      <span class="separator opacity-0 add-lag hide-mobile">I</span>
+      <span class="categorie opacity-0 print add-lag hide-mobile">LAYOUT</span>
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  .mini-menu {
+    position: absolute;
+    bottom: 54px;
+    width: 100%;
+    text-align: center;
+
+    @media screen and (max-width: 550px) {
+      bottom: 16px;
+      left: 0;
+    }
+  }
+
+  .mark {
+    position: absolute;
+    right: -3rem;
+    bottom: 18rem;
+    display: block;
+    width: 21.8rem;
+    height: 21.8rem;
+
+    .canva-black & {
+      color: var(--color-white-beauty);
+    }
+
+    .canva-white & {
+      color: var(--color-black-beauty);
+    }
+  }
+
+  .presentation {
+    gap: clamp(7px, 2.4rem, 2.4rem);
+    display: flex;
+    justify-content: center;
+    mix-blend-mode: difference;
+    span {
+      letter-spacing: clamp(2px, 0.56rem, 0.56rem);
+      font-size: clamp(10px, 1.6rem, 1.6rem);
+      transform: translate(-30, 0px);
+      .canva-black & {
+        color: var(--color-white-beauty);
+      }
+      .canva-white & {
+        color: var(--color-black-beauty);
+      }
+    }
+    .separator {
+      transform: translate(0%, 100%);
+    }
+  }
+</style>
