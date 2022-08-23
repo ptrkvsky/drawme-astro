@@ -23,7 +23,7 @@ import LogoMark from '../LogoMark.astro';
   </div>
 </div>
 
-<style lang="scss">
+<style lang="scss" is:global>
   .mini-menu {
     position: absolute;
     bottom: 54px;
@@ -54,6 +54,7 @@ import LogoMark from '../LogoMark.astro';
   }
 
   .presentation {
+    overflow: hidden;
     gap: clamp(7px, 2.4rem, 2.4rem);
     display: flex;
     justify-content: center;
@@ -61,7 +62,7 @@ import LogoMark from '../LogoMark.astro';
     span {
       letter-spacing: clamp(2px, 0.56rem, 0.56rem);
       font-size: clamp(10px, 1.6rem, 1.6rem);
-      transform: translate(-30, 0px);
+
       .canva-black & {
         color: var(--color-white-beauty);
       }
@@ -71,6 +72,12 @@ import LogoMark from '../LogoMark.astro';
     }
     .separator {
       transform: translate(0%, 100%);
+      .canva-black & {
+        color: var(--color-white-beauty);
+      }
+      .canva-white & {
+        color: var(--color-black-beauty);
+      }
     }
   }
 </style>

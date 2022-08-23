@@ -5,7 +5,11 @@ import MiniMenu from './MiniMenu/MiniMenu.astro';
 <script>
   import config from '../../../config';
   import { gsap } from '../../../libs/gsap/all';
-  import { revealResize } from './MiniMenu/MiniMenu.animations';
+  import {
+    animateCategories,
+    animateSeparators,
+    revealResize,
+  } from './MiniMenu/MiniMenu.animations';
 
   let selector = gsap.utils.selector(
     document.querySelector('#section-hero-title')
@@ -34,6 +38,12 @@ import MiniMenu from './MiniMenu/MiniMenu.astro';
       })
       .call(() => {
         revealResize('#mini-menu-mark');
+      })
+      .call(() => {
+        animateCategories();
+      })
+      .call(() => {
+        animateSeparators();
       });
   }, timeout);
 </script>
