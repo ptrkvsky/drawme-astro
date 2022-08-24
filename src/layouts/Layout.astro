@@ -17,43 +17,43 @@ export interface Props {
 const { title } = Astro.props as Props;
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-  </head>
-  <body class="canva-black">
-    <Header />
-    <Canvas />
-    <Logo />
-    <Gsap>
-      <div id="main-content" style={{ opacity: 0 }}>
-        <slot />
-      </div>
-      <footer>Footer</footer>
-    </Gsap>
+<script>
+  window.scrollTo(0, 0);
+</script>
 
-    <style lang="scss">
-      :global(:root) {
-        font-size: calc(100vw / 1920 * 10);
-      }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="generator" content={Astro.generator} />
+<title>{title}</title>
 
-      :global(h1) {
-        font-size: var(--font-size-xl);
-      }
+<body class="canva-black">
+  <Header />
+  <Canvas />
+  <Logo />
+  <Gsap>
+    <div id="main-content" style={{ opacity: 0 }}>
+      <slot />
+    </div>
+    <footer>Footer</footer>
+  </Gsap>
 
-      :global(h2) {
-        font-size: var(--font-size-lg);
-      }
+  <style lang="scss">
+    :global(:root) {
+      font-size: calc(100vw / 1920 * 10);
+    }
 
-      :global(code) {
-        font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-          DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-      }
-    </style>
-  </body>
-</html>
+    :global(h1) {
+      font-size: var(--font-size-xl);
+    }
+
+    :global(h2) {
+      font-size: var(--font-size-lg);
+    }
+
+    :global(code) {
+      font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+        DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+    }
+  </style>
+</body>

@@ -1,98 +1,65 @@
 import gsap from 'gsap';
-import _SplitText from 'gsap/SplitText';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import SplitText from 'gsap/SplitText';
 import config from 'src/config';
 
-const scaleIllustration = {
-  scale: 1.1,
-  duration: 0.75,
-  ease: 'power4.out',
+gsap.registerPlugin(ScrollTrigger, SplitText);
+// Switch Canva from black to white
+const handleToggleCanva = () => {
+  document.getElementById('canva-black').classList.toggle('visible');
+  document.getElementById('canva-white').classList.toggle('visible');
+  document.querySelector('body').classList.toggle('canva-black');
+  document.querySelector('body').classList.toggle('canva-white');
 };
 
-/**
- * @desc Switch canva from back to white
- * @param idSection
- * @param handleOnComplete
- */
-export const switchCanva = (
-  idSection: string,
-  handleOnComplete: () => void
-) => {
-  console.log('--------visible');
+export const switchCanva = () => {
   ScrollTrigger.create({
-    trigger: idSection,
+    trigger: '#section-presentation',
     start: 'top bottom',
     endTrigger: 'footer',
-    markers: true,
-    // onEnter: () => {
-    //   handleOnComplete();
-    // },
-    onToggle: (self) => {
-      handleOnComplete();
-      console.log('toggled, isActive:', self.isActive);
+    markers: config.mode === 'development',
+    onToggle: () => {
+      handleToggleCanva();
     },
   });
 };
 
-export const reveal = (
-  idSection: string,
-  splitIntroPresentation: _SplitText,
-  splitIntroDetail: _SplitText,
-  handleOnComplete: () => void
-) => {
-  setTimeout(() => {
-    // const selectElement = gsap.utils.selector(refSection);
+export const revealText = () => {
+  // Split texts
+  const splitIntroPresentation = new SplitText('#intro-presentation', {
+    type: 'lines',
+  });
 
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: idSection,
-          endTrigger: 'footer',
-          markers: !isProd,
-          start: '0 center',
-        },
-      })
-      // -------------------- Reveal image book
-      // .addLabel("revealBook")
-      // .from(selectElement(".illustration.book"), scaleIllustration, "revealBook")
-      // .to(selectElement(".illustration.book .reveal"), revealParam, "revealBook")
-      // .set(selectElement(".illustration.book .reveal"), { display: "none" })
-      // -------------------- Reveal image book
-      // .addLabel("revealFingers")
-      // .from(selectElement(".illustration.fingers"), scaleIllustration, "revealFingers-=0.35")
-      // .to(selectElement(".illustration.fingers .reveal"), revealParam, "revealFingers-=0.35")
-      // .set(selectElement(".illustration.fingers .reveal"), { display: "none" })
+  const splitIntroDetail = new SplitText('#intro-detail', {
+    type: 'lines',
+  });
 
-      // -------------------- Reveal image crayon
-      // .addLabel("revealCrayon")
-      // .from(selectElement(".illustration.crayon"), scaleIllustration, "revealCrayon-=0.25")
-      // .to(selectElement(".illustration.crayon .reveal"), revealParam, "revealCrayon-=0.25")
-      // .set(selectElement(".illustration.crayon .reveal"), { display: "none" })
-
-      // -------------------- Display Intro
-      .from(splitIntroPresentation.lines, {
-        y: 100,
-        ease: 'power4.out',
-        skewY: 10,
-        stagger: {
-          amount: 0.3,
-        },
-        opacity: 0,
-      })
-      // -------------------- Display Detail
-      .from(splitIntroDetail.lines, {
-        y: 100,
-        ease: 'power4.out',
-        skewY: 10,
-        stagger: {
-          amount: 0.3,
-        },
-        opacity: 0,
-        delay: -0.3,
-      })
-      // -------------------- Animation is complete
-      .from(splitIntroPresentation.lines, {
-        onComplete: handleOnComplete,
-      });
-  }, 100);
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '#section-presentation',
+        endTrigger: 'footer',
+        markers: config.mode === 'development',
+        start: 'top 35%',
+      },
+    })
+    .from(splitIntroPresentation.lines, {
+      y: 100,
+      ease: 'power4.out',
+      skewY: 10,
+      stagger: {
+        amount: 0.3,
+      },
+      opacity: 0,
+    })
+    .from(splitIntroDetail.lines, {
+      y: 100,
+      ease: 'power4.out',
+      skewY: 10,
+      stagger: {
+        amount: 0.3,
+      },
+      opacity: 0,
+      delay: -0.3,
+    });
 };

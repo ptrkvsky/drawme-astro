@@ -1,10 +1,21 @@
 ---
+import SectionDraw from '@features/home/components/SectionDraw';
 import SectionHero from '@features/home/components/SectionHero.astro';
 import SectionPresentation from '@features/home/components/SectionPresentation/SectionPresentation.astro';
+import SectionTest from '@features/home/components/SectionTest.astro';
+import { SanityHome } from '@features/home/interfaces/SanityHome';
+import { querySanityHome } from '@features/home/queries/querySanityHome';
+import fetchSanity from '@helpers/fetchSanity';
 import Layout from '@layouts/Layout.astro';
+
+const sanityHome = await fetchSanity<SanityHome>(querySanityHome);
+const presentation = sanityHome && sanityHome.Home.introPresentation;
+const detail = sanityHome && sanityHome.Home.introPresentation;
 ---
 
 <Layout title="Welcome to Astro.">
   <SectionHero />
-  <SectionPresentation />
+  <SectionPresentation presentation={presentation} detail={detail} />
+  <SectionDraw client:idle />
+  <!-- <SectionTest /> -->
 </Layout>

@@ -4,10 +4,22 @@ import LogoMark from '../LogoMark.astro';
 
 <div class="mini-menu">
   <div class="relative" style={{ display: 'inline-block' }}>
-    <div id="mini-menu-mark" class="mark" class="mark hide-mobile">
+    <div
+      id="mini-menu-mark"
+      data-speed="1.2"
+      data-lag="0.5"
+      class="mark"
+      class="mark hide-mobile"
+    >
       <LogoMark />
     </div>
-    <div id="mini-menu-presentation" class="presentation" class="categories">
+    <div
+      id="mini-menu-presentation"
+      class="presentation"
+      class="categories"
+      data-speed="1.1"
+      data-lag="0.3"
+    >
       <span class="categorie opacity-0 webdesign add-lag">WEBDESIGN</span>
       <span class="separator opacity-0 add-lag">I</span>
       <span class="categorie opacity-0 print add-lag">PRINT</span>
@@ -37,6 +49,7 @@ import LogoMark from '../LogoMark.astro';
   }
 
   .mark {
+    opacity: 0;
     position: absolute;
     right: -3rem;
     bottom: 18rem;

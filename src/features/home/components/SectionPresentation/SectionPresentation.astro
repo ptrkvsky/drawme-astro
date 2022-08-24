@@ -1,39 +1,23 @@
 ---
+interface AstroProps {
+  detail: string;
+  presentation: string;
+}
+
 import { Image } from '@astrojs/image/components';
 import illustrationBook from '@assets/images/illustration_book.png';
 import illustrationCrayon from '@assets/images/illustration_crayon.png';
 import illustrationFingers from '@assets/images/illustration_fingers.png';
 import illustrationLetters from '@assets/images/illustration_letters.png';
+
+const { detail, presentation } = Astro.props as AstroProps;
 ---
 
 <script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/all';
-  import config from 'src/config';
-  gsap.registerPlugin(ScrollTrigger);
+  import { switchCanva, revealText } from './SectionPresentation.animation';
 
-  const handleOnComplete = () => {
-    document
-      .querySelector('#section-presentation')
-      .classList.add('overflow-visible');
-  };
-  // Switch Canva from black to white
-  const handleToggleCanva = () => {
-    document.getElementById('canva-black').classList.toggle('visible');
-    document.getElementById('canva-white').classList.toggle('visible');
-    document.querySelector('body').classList.toggle('canva-black');
-    document.querySelector('body').classList.toggle('canva-white');
-  };
-
-  ScrollTrigger.create({
-    trigger: '#section-presentation',
-    start: 'top bottom',
-    endTrigger: 'footer',
-    markers: config.mode === 'development',
-    onToggle: () => {
-      handleToggleCanva();
-    },
-  });
+  switchCanva();
+  revealText();
 </script>
 <section id="section-presentation" class="section-presentation">
   <div class="illustration book" data-speed="1.05" data-lag="0.25">
@@ -50,15 +34,26 @@ import illustrationLetters from '@assets/images/illustration_letters.png';
   </div>
   <div class="illustration fingers">
     <div class="relative">
-      <div class="wrapper-overflow" data-speed="0.9" data-lag="0.025">
+      <div class="wrapper-overflow" data-speed="0.85" data-lag="0.025">
         <Image src={illustrationFingers} alt="Illustration fingers" />
         {/* <div class="reveal" /> */}
       </div>
       <div class="illustration letters" data-speed="1.15" data-lag="0.03">
         <Image src={illustrationLetters} alt="Illustration letters" />
-        {/* <div className="reveal" /> */}
+        {/* <div class="reveal" /> */}
       </div>
     </div>
+  </div>
+  <div
+    id="intro-presentation"
+    class="intro-presentation"
+    data-speed="0.85"
+    data-lag="0.025"
+  >
+    {presentation}
+  </div>
+  <div id="intro-detail" class="intro-detail" data-speed="0.75" data-lag="0.03">
+    {detail}
   </div>
 </section>
 
@@ -66,7 +61,7 @@ import illustrationLetters from '@assets/images/illustration_letters.png';
   .section-presentation {
     position: relative;
     margin: 12.3rem auto;
-    padding: 12.3rem 0;
+    padding: 12.3rem 0 0 0;
     max-width: 164rem;
     z-index: 10;
     font-size: 2.4rem;

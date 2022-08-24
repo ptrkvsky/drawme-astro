@@ -1,0 +1,9 @@
+{
+  "taskExplorer.showLastTasks": false,
+  "workbench.colorCustomizations": {
+    // "activityBar.background": "#120077",
+    "titleBar.activeBackground": "#7b34ff",
+    "statusBar.background": "#7b34ff"
+  },
+  "conventionalCommits.scopes": ["home", "global"]
+}
