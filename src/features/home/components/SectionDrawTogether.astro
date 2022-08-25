@@ -1,0 +1,56 @@
+---
+import AnswerNo from './AnswerNo';
+---
+
+<section
+  id="section-draw-together"
+  class="section-draw-together overflow-visible"
+>
+  <h2 data-speed="1.05" class="title">
+    Should we draw together <span class="highlight">?</span>
+  </h2>
+  <div class="answers">
+    <div>
+      <span dta-speed="1.1" data-lag="0.04" class="yes"> Yes</span>
+    </div>
+
+    <AnswerNo client:only="react" />
+  </div>
+</section>
+
+<style lang="scss">
+  .section-draw-together {
+    padding: 0 0 12rem 0;
+
+    .title {
+      margin-bottom: 6rem;
+    }
+
+    .answers {
+      margin: 7rem auto 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 44.6rem;
+      color: var(--color-text);
+      font-family: var(--text-heading);
+      .yes {
+        font-size: 7rem;
+      }
+      .no {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  .title {
+    text-align: center;
+    max-width: 47.6rem;
+    margin: 0 auto;
+    font-size: var(--font-size-heading);
+
+    .highlight {
+      color: var(--color-ice-ice-baby);
+    }
+  }
+</style>

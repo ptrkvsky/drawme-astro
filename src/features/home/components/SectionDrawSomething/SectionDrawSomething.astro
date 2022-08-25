@@ -1,0 +1,58 @@
+---
+import ReactCanva from './ReactCanva';
+---
+
+<section class="section-draw-something overflow-visible">
+  <h2 class="title">
+    What would you draw <br /> for me ?
+  </h2>
+  <ReactCanva client:only="react" />
+  <div class="wrapper-button">
+    <div class="relative container">
+      <button class="button-send" type="button">
+        Send me your artwork or your dick &gt;
+      </button>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .section-draw-something {
+    position: relative;
+    z-index: 30;
+    font-size: 2.4rem;
+    cursor: none;
+    min-height: 55.2rem;
+
+    .title {
+      position: absolute;
+      top: 6.7rem;
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      font-size: var(--font-size-heading);
+      text-align: center;
+    }
+
+    .wrapper-button {
+      position: absolute;
+      bottom: 3.3rem;
+      left: 0;
+      right: 0;
+      .container {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+
+    .button-send {
+      background-color: transparent;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      font-family: var(--text-body-medium);
+      letter-spacing: 0.2rem;
+      color: var(--color-white-beauty);
+      border: none;
+    }
+  }
+</style>

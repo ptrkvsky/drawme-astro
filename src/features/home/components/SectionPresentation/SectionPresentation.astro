@@ -62,18 +62,19 @@ const { detail, presentation } = Astro.props as AstroProps;
     position: relative;
     margin: 12.3rem auto;
     padding: 12.3rem 0 0 0;
+    height: clamp(400px, 70rem, 70rem);
     max-width: 164rem;
     z-index: 10;
     font-size: 2.4rem;
-    min-height: 90rem;
+
     /* overflow: hidden; */
 
     .illustration {
       position: absolute;
 
-      // @media screen and (max-width: 550px){
-      //   display: none;
-      // } // ! TODO
+      @media screen and (max-width: 550px) {
+        display: none;
+      } // TODO
 
       &.fingers {
         top: 6.8rem;
