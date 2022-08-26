@@ -46,13 +46,18 @@ const { detail, presentation } = Astro.props as AstroProps;
   </div>
   <div
     id="intro-presentation"
-    class="intro-presentation"
+    class="intro-presentation split-text"
     data-speed="0.85"
     data-lag="0.025"
   >
     {presentation}
   </div>
-  <div id="intro-detail" class="intro-detail" data-speed="0.75" data-lag="0.03">
+  <div
+    id="intro-detail"
+    class="intro-detail split-text"
+    data-speed="0.75"
+    data-lag="0.03"
+  >
     {detail}
   </div>
 </section>

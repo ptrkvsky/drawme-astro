@@ -27,7 +27,7 @@ const { title } = Astro.props as Props;
 <meta name="generator" content={Astro.generator} />
 <title>{title}</title>
 
-<body class="canva-black">
+<body style={{ background: '#000' }} class="canva-black">
   <Header />
   <Canvas />
   <Logo />
@@ -39,6 +39,9 @@ const { title } = Astro.props as Props;
   </Gsap>
 
   <style lang="scss">
+    body {
+      transition: all 0.3s linear;
+    }
     :global(:root) {
       font-size: calc(100vw / 1920 * 10);
     }

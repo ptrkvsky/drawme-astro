@@ -26,11 +26,16 @@ export const switchCanva = () => {
 
 export const revealText = () => {
   // Split texts
-  const splitIntroPresentation = new SplitText('#intro-presentation', {
+  new SplitText('#intro-presentation', {
     type: 'lines',
   });
-
-  const splitIntroDetail = new SplitText('#intro-detail', {
+  const splitIntroPresentation = new SplitText('#intro-presentation > div', {
+    type: 'lines',
+  });
+  new SplitText('#intro-detail', {
+    type: 'lines',
+  });
+  const splitIntroDetail = new SplitText('#intro-detail > div', {
     type: 'lines',
   });
 
@@ -44,18 +49,18 @@ export const revealText = () => {
       },
     })
     .from(splitIntroPresentation.lines, {
-      y: 100,
-      ease: 'power4.out',
-      skewY: 10,
+      y: 50,
+      ease: 'power1.out',
+      skewY: 5,
       stagger: {
         amount: 0.3,
       },
       opacity: 0,
     })
     .from(splitIntroDetail.lines, {
-      y: 100,
-      ease: 'power4.out',
-      skewY: 10,
+      y: 50,
+      ease: 'power1.out',
+      skewY: 5,
       stagger: {
         amount: 0.3,
       },

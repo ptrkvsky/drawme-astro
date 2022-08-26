@@ -31,9 +31,8 @@ const AnswerNo = () => {
       data-speed="0.98"
       data-lag="0.02"
       className="no"
-      style={{ position: 'absolute', fontSize: '3rem' }}
+      style={{ position: 'absolute', fontSize: '3rem', right: '74rem' }}
     >
-      {' '}
       No
     </span>
   );
