@@ -1,0 +1,123 @@
+---
+import Circle from '@components/Circle.astro';
+---
+
+<script>
+  import { horizontalLoop } from '@helpers/gsap/horizontalLoop';
+  import gsap from 'gsap';
+
+  gsap.utils.toArray('.stripes').forEach((line: any, i) => {
+    const links = line.querySelectorAll('.stripe'),
+      tl = horizontalLoop(links, {
+        repeat: -1,
+        speed: 1 + i * 0.5,
+        reversed: i ? true : false,
+        paddingRight: parseFloat(
+          `${gsap.getProperty(links[0], 'marginRight', 'px')}`
+        ), // otherwise first element would be right up against the last when it loops. In this layout, the spacing is done with marginRight.
+      });
+    links.forEach((link) => {
+      link.addEventListener('mouseenter', () =>
+        gsap.to(tl, { timeScale: 0, overwrite: true })
+      );
+      link.addEventListener('mouseleave', () =>
+        gsap.to(tl, { timeScale: i ? -1 : 1, overwrite: true })
+      );
+    });
+  });
+</script>
+
+<div id="section-who-am-i" class="section-who-am-i">
+  <div id="marquee-top" class="stripes top">
+    <span class="stripe"
+      >Wanna get to know me better <span class="highlight">?</span>
+    </span>
+    <span class="stripe"
+      >Wanna get to know me better <span class="highlight">?</span>
+    </span>
+    <span class="stripe"
+      >Wanna get to know me better <span class="highlight">?</span>
+    </span>
+    <span class="stripe"
+      >Wanna get to know me better <span class="highlight">?</span>
+    </span>
+    <span class="stripe"
+      >Wanna get to know me better <span class="highlight">?</span>
+    </span>
+    <span class="stripe"
+      >Wanna get to know me better <span class="highlight">?</span>
+    </span>
+    <span class="stripe"
+      >Wanna get to know me better <span class="highlight">?</span>
+    </span>
+    <span class="stripe"
+      >Wanna get to know me better <span class="highlight">?</span>
+    </span>
+  </div>
+  <p class="who-am-i">Who am i ?</p>
+  <Circle />
+  <div id="marquee-bottom" class="stripes bottom">
+    <span class="stripe"
+      >Wanna get to know me better <span class="highlight">?</span>
+    </span>
+    <span class="stripe"
+      >Wanna get to know me better <span class="highlight">?</span>
+    </span>
+    <span class="stripe"
+      >Wanna get to know me better <span class="highlight">?</span>
+    </span>
+    <span class="stripe"
+      >Wanna get to know me better <span class="highlight">?</span>
+    </span>
+    <span class="stripe"
+      >Wanna get to know me better <span class="highlight">?</span>
+    </span>
+    <span class="stripe"
+      >Wanna get to know me better <span class="highlight">?</span>
+    </span>
+    <span class="stripe"
+      >Wanna get to know me better <span class="highlight">?</span>
+    </span>
+    <span class="stripe"
+      >Wanna get to know me better <span class="highlight">?</span>
+    </span>
+  </div>
+</div>
+
+<style lang="scss">
+  .section-who-am-i {
+    position: relative;
+    display: block;
+    padding: 10.1rem 0;
+    background-color: var(--color-black-beauty);
+    overflow: hidden;
+    white-space: nowrap;
+
+    .who-am-i {
+      padding: 6.3rem 0;
+      font-size: 2.2rem;
+      letter-spacing: 0.44rem;
+      text-align: center;
+      color: var(--color-white-beauty);
+      text-transform: uppercase;
+    }
+
+    .stripes {
+      font-size: 5rem;
+      display: flex;
+      gap: 8rem;
+      color: var(--color-white-beauty);
+      font-family: var(--text-heading);
+      .stripe {
+        position: relative;
+        margin-right: 1rem;
+        display: flex;
+        justify-content: center;
+        gap: 28px;
+      }
+      .highlight {
+        color: var(--color-ice-ice-baby);
+      }
+    }
+  }
+</style>

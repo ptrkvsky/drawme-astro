@@ -4,9 +4,9 @@ import SectionDrawTogether from '@features/home/components/SectionDrawTogether.a
 import SectionHero from '@features/home/components/SectionHero.astro';
 import SectionPresentation from '@features/home/components/SectionPresentation/SectionPresentation.astro';
 import SectionProjects from '@features/home/components/SectionProjects.astro';
-import SectionTest from '@features/home/components/SectionTest.astro';
-import { SanityHome } from '@features/home/interfaces/SanityHome';
+import SectionWhoAmI from '@features/home/components/SectionWhoAmI.astro';
 import { querySanityHome } from '@features/home/queries/querySanityHome';
+import { SanityHome } from '@features/home/interfaces/SanityHome';
 import fetchSanity from '@helpers/fetchSanity';
 import Layout from '@layouts/Layout.astro';
 
@@ -18,8 +18,8 @@ const detail = sanityHome && sanityHome.Home.introPresentation;
 <Layout title="Grahic Designer at Cagnes sur Mer">
   <SectionHero />
   <SectionPresentation presentation={presentation} detail={detail} />
-  <SectionDrawTogether />
-  <SectionDraw />
   <SectionProjects />
-  <!-- <SectionTest /> -->
+  <SectionDraw />
+  <SectionDrawTogether />
+  <SectionWhoAmI />
 </Layout>
