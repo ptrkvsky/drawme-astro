@@ -5,5 +5,5 @@
     "titleBar.activeBackground": "#7b34ff",
     "statusBar.background": "#7b34ff"
   },
-  "conventionalCommits.scopes": ["home", "global"]
+  "conventionalCommits.scopes": ["home", "global", "project"]
 }

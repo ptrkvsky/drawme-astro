@@ -1,0 +1,16 @@
+---
+import getProjectUrlParams from '@features/project/functions/getProjectUrlParams';
+import { SanityProject } from '@features/project/interfaces/SanityProject';
+import { querySanityProjects } from '@features/project/queries/querySanityProjects';
+import fetchSanity from '@helpers/fetchSanity';
+
+export async function getStaticPaths() {
+  const sanityProjects = await fetchSanity<SanityProject>(querySanityProjects);
+  const params = sanityProjects && getProjectUrlParams(sanityProjects);
+  return params;
+}
+
+const { project } = Astro.props;
+---
+
+<h1>{project.slug.current}</h1>
