@@ -6,7 +6,7 @@ import config from 'src/config';
 gsap.registerPlugin(ScrollTrigger, SplitText);
 // Switch Canva from black to white
 const handleToggleCanva = () => {
-  document.getElementById('canva-black').classList.toggle('visible');
+  document.getElementById('main-canva').classList.toggle('visible');
   document.getElementById('canva-white').classList.toggle('visible');
   document.querySelector('body').classList.toggle('canva-black');
   document.querySelector('body').classList.toggle('canva-white');

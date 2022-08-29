@@ -1,0 +1,67 @@
+---
+import { toHTML } from '@portabletext/to-html';
+
+interface AstroProps {
+  projectColor: string;
+  text: any[];
+}
+const { projectColor, text } = Astro.props as AstroProps;
+console.log(projectColor);
+const textPresentation = toHTML(text, {
+  components: {
+    /* optional object of custom components to use */
+  },
+});
+---
+
+<script defer define:vars={{ textPresentation, projectColor }}>
+  document.addEventListener('DOMContentLoaded', function () {
+    const wrapper = document.getElementById('presentation-client');
+    const background = document.getElementById('bg-presentation');
+    console.log(background);
+
+    background.style.backgroundColor = projectColor;
+    wrapper.style.backgroundColor = projectColor;
+
+    const setHeight = () => {
+      const height = wrapper.clientHeight;
+      background.style.height = `${height}px`;
+    };
+
+    setHeight();
+    document.addEventListener('resize', setHeight);
+  });
+</script>
+
+<div id="presentation-client" class="wrapper" set:html={textPresentation}>
+  <div id="bg-presentation" class="background"></div>
+</div>
+
+<style lang="scss">
+  [data-height]:before {
+    content: attr(data-height);
+  }
+  .wrapper {
+    padding: 3rem 0 3rem 6rem;
+    margin-bottom: 3rem;
+    font-size: 2.4rem;
+    letter-spacing: 1.1px;
+    line-height: 1.2;
+    border-bottom-left-radius: 9rem;
+    .background {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 20%;
+      z-index: -1;
+    }
+    h2 {
+      font-family: var(--text-body-medium);
+      margin-bottom: 0.8rem;
+    }
+    p {
+      margin-bottom: 3rem;
+    }
+  }
+</style>

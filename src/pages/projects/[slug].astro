@@ -1,16 +1,42 @@
 ---
+import Canvas from '@features/project/components/Canvas.astro';
+import SectionProjectOverview from '@features/project/components/SectionProjectOverview.astro';
 import getProjectUrlParams from '@features/project/functions/getProjectUrlParams';
-import { SanityProject } from '@features/project/interfaces/SanityProject';
+import { SanityProjects } from '@features/project/interfaces/';
 import { querySanityProjects } from '@features/project/queries/querySanityProjects';
 import fetchSanity from '@helpers/fetchSanity';
+import Layout from '@layouts/Layout.astro';
 
 export async function getStaticPaths() {
-  const sanityProjects = await fetchSanity<SanityProject>(querySanityProjects);
+  const sanityProjects = await fetchSanity<SanityProjects>(querySanityProjects);
   const params = sanityProjects && getProjectUrlParams(sanityProjects);
   return params;
 }
 
 const { project } = Astro.props;
+
+const hue = 0.33;
+const saturation = 2.1875;
 ---
 
-<h1>{project.slug.current}</h1>
+<script define:vars={{ hue, saturation }}>
+  const root = document.querySelector(':root');
+  //@ts-ignore
+  root.style.setProperty('--canva-hue', hue);
+  root.style.setProperty('--canva-saturation', saturation);
+</script>
+
+<Layout background="#FFF" title={project.title}>
+  <Canvas slot="canvas" />
+  <div slot="main-content">
+    <div class="wrapper-project">
+      <SectionProjectOverview project={project} />
+    </div>
+  </div>
+</Layout>
+
+<style lang="scss">
+  .wrapper-project {
+    padding-top: 5.8rem;
+  }
+</style>

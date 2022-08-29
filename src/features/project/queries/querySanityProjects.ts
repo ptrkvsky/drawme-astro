@@ -10,6 +10,13 @@ export const querySanityProjects = `query ProjectPageQuery {
         asset{
           url
           altText
+          metadata {
+            dimensions{
+              height
+              width
+              aspectRatio
+            }
+          }
         }
       }
       excerptRaw

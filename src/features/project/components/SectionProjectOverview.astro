@@ -1,0 +1,55 @@
+---
+import { SanityProject } from '@features/project/interfaces';
+import DrawMeA from './DrawMeA.astro';
+import MainImages from './MainImages.astro';
+import PresentationClient from './PresentationClient.astro';
+
+interface AstroProps {
+  project: SanityProject;
+}
+
+const { project } = Astro.props as AstroProps;
+---
+
+<div class="relative">
+  <div class="wrapper-cols">
+    <div class="wrapper-col-left">
+      <DrawMeA projectColor={project.color1} drawMeA={project.drawMeA} />
+      <MainImages mainImages={project.mainImages} />
+    </div>
+    <div class="wrapper-col-right">
+      <PresentationClient
+        text={project.excerptRaw}
+        projectColor={project.color1}
+      />
+      <!-- <Colors
+        color1={project.color1}
+        color2={project.color2}
+        color3={project.color3}
+      />  -->
+      <!-- <Typography image={project.typographie.asset} /> -->
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  .wrapper-cols {
+    max-width: 163rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    display: flex;
+    flex-direction: row;
+    gap: 12rem;
+  }
+
+  .wrapper-col-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wrapper-col-right {
+    display: flex;
+    flex-direction: column;
+  }
+</style>

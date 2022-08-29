@@ -1,0 +1,33 @@
+---
+import BrushDrawMe from './BrushDrawMe.astro';
+
+interface AstroProps {
+  drawMeA: string;
+  projectColor: string;
+}
+
+const { drawMeA, projectColor } = Astro.props as AstroProps;
+---
+
+<h1 class="title">
+  <span class="brushed"
+    >Draw Me
+    <BrushDrawMe projectColor={projectColor} />
+    <div class="animate"></div>
+  </span>
+  <span class="highlight">{drawMeA}</span>
+</h1>
+
+<style lang="scss">
+  .title {
+    font-size: 12rem;
+    .brushed {
+      position: relative;
+    }
+    .highlight {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--color-text);
+    }
+  }
+</style>

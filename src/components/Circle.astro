@@ -6,16 +6,15 @@ interface AstroProps {
 const { idSvg = 'svg-cercle' } = Astro.props as AstroProps;
 ---
 
-<script define:vars={{ idSvg }}>
+<script>
   import gsap from 'gsap';
-
   document.addEventListener('DOMContentLoaded', function () {
     gsap
       .timeline({
         scrollTrigger: '#section-who-am-i',
       })
       .fromTo(
-        `#${idSvg}-line-1`,
+        `#svg-cercle-line-1`,
         {
           drawSVG: false,
         },
@@ -29,7 +28,7 @@ const { idSvg = 'svg-cercle' } = Astro.props as AstroProps;
 </script>
 
 <svg
-  id={idSvg}
+  id="svg-cercle"
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   width="224.766"
@@ -39,7 +38,7 @@ const { idSvg = 'svg-cercle' } = Astro.props as AstroProps;
 >
   <g id="encercle">
     <path
-      id={`${idSvg}-line-1`}
+      id={`svg-cercle-line-1`}
       stroke="#00f9df"
       stroke-width="3px"
       data-name="Tracé 2"

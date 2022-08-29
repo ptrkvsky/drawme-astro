@@ -4,52 +4,73 @@
   window.addEventListener('load', () => {
     const isProd = config.mode === 'production';
 
-    gsap
-      .timeline()
-      .set('body', {
-        opacity: 1,
-        background: '#FFF',
-      })
-      // Draw the path
-      .fromTo(
-        '#line1',
-        {
-          drawSVG: `50% 50%`,
-        },
-        {
-          drawSVG: true,
+    const isPreloaderSeen = sessionStorage.getItem('isPreloaderSeen');
+    if (!isPreloaderSeen) {
+      gsap
+        .timeline()
+        .set('body', {
+          opacity: 1,
+          background: '#FFF',
+        })
+        // Draw the path
+        .fromTo(
+          '#line1',
+          {
+            drawSVG: `50% 50%`,
+          },
+          {
+            drawSVG: true,
+            ease: `linear`,
+            duration: isProd ? 7 : 0.5,
+          }
+        )
+        // Fill in the path
+        .to('#line1', {
+          fill: `#000`,
+          duration: isProd ? 0.75 : 0.1,
           ease: `linear`,
-          duration: isProd ? 7 : 0.5,
-        }
-      )
-      // Fill in the path
-      .to('#line1', {
-        fill: `#000`,
-        duration: isProd ? 0.75 : 0.1,
-        ease: `linear`,
-      })
-      // Fade the logo out
-      .to('#line1', {
-        delay: 0.5,
-        opacity: 0,
-        duration: isProd ? 0.75 : 0.1,
-        ease: `linear`,
-      })
-      // // Hide the logo
-      // .set('#svg-logo', {
-      //   display: 'none',
-      // });
-      // Hide the logo
-      .set('#logo-wrapper-relative', {
-        display: 'none',
-      })
-      // Show content
-      .set(['#main-content', '#header'], {
-        opacity: '1',
-      })
-      .call(() => {
-        document.querySelector('#canva-black').classList.add('visible');
-      });
+        })
+        // Fade the logo out
+        .to('#line1', {
+          delay: 0.5,
+          opacity: 0,
+          duration: isProd ? 0.75 : 0.1,
+          ease: `linear`,
+        })
+        // // Hide the logo
+        // .set('#svg-logo', {
+        //   display: 'none',
+        // });
+        // Hide the logo
+        .set('#logo-wrapper-relative', {
+          display: 'none',
+        })
+        // Show content
+        .set(['#main-content', '#header'], {
+          opacity: '1',
+        })
+        .call(() => {
+          document.querySelector('#main-canva').classList.add('visible');
+          sessionStorage.setItem('isPreloaderSeen', 'true');
+        });
+    } else {
+      gsap
+        .timeline()
+        .set('body', {
+          opacity: 1,
+          background: '#FFF',
+        })
+        .set('#logo-wrapper-relative', {
+          display: 'none',
+        })
+        .set(['#main-content', '#header'], {
+          opacity: '1',
+        })
+        .call(() => {
+          document.querySelector('#main-canva').classList.add('visible');
+          sessionStorage.setItem('isPreloaderSeen', 'true');
+        });
+    }
   });
 </script>
 <div id="logo-wrapper-relative" class="wrapper-relative">

@@ -1,0 +1,36 @@
+---
+import { Image } from '@astrojs/image/components';
+
+import { SanityImage } from '@interfaces/SanityImage';
+
+interface AstroProps {
+  mainImages: SanityImage[];
+}
+
+const { mainImages } = Astro.props as AstroProps;
+---
+
+<div class="wrapper-images">
+  {
+    mainImages.map((image) => {
+      const { width, height, aspectRatio } = image.asset.metadata.dimensions;
+      return (
+        <Image
+          format={'avif'}
+          src={image.asset.url}
+          width={width}
+          height={height}
+          aspectRatio={aspectRatio}
+          alt="image"
+        />
+      );
+    })
+  }
+</div>
+
+<style lang="scss">
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+  }
+</style>
