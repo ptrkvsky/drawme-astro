@@ -1,0 +1,90 @@
+---
+import { Image } from '@astrojs/image/components';
+import instagram from '@assets/images/instagram.png';
+---
+
+<footer>
+  <div class="infos">
+    <a target="_blank" class="mail" href="mailto:melody.abdelnour@gmail.com">
+      melody.abdelnour@gmail.com
+    </a>
+    <p class="baseline">Drawing from Nice, France to all around the world</p>
+    <p class="developer">
+      <span class="highlight">Développement :</span>{' '}
+      <a target="_blank" href="https://developpeur-web.tech/"> Kovsky</a>
+    </p>
+  </div>
+  <div class="socials">
+    <div class="social instagram">
+      <Image src={instagram} alt="Instagram Draw me a sheep" />
+    </div>
+    <div class="detail">
+      <p>
+        <span class="highlight"> Insta:</span> drawmeasheep
+      </p>
+      <p>
+        <span class="highlight">Mascotte:</span> Sheepoteur
+      </p>
+      <p>
+        <span class="highlight">©drawmeasheep</span>
+      </p>
+    </div>
+  </div>
+  <div class="goodbye">
+    <h2 class="title">Can’t wait to draw with you !</h2>
+  </div>
+</footer>
+
+<style lang="scss">
+  footer {
+    display: flex;
+    justify-content: space-between;
+    max-width: 147.3rem;
+    margin: 0 auto;
+    padding: 4.2rem 0;
+  }
+
+  .infos {
+    .mail {
+      display: block;
+      font-size: clamp(24px, 2.4rem, 2.4rem);
+      font-family: var(--text-body-bold);
+    }
+
+    .baseline {
+      font-size: clamp(24px, 2.4rem, 2.4rem);
+      font-style: italic;
+      margin-bottom: 4px;
+    }
+
+    .developer {
+      font-size: clamp(16px, 1.6rem, 1.6rem);
+
+      .highlight {
+        font-family: var(--text-body-bold);
+      }
+    }
+  }
+
+  .socials {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    .social {
+      max-width: 4.2rem;
+    }
+    .detail {
+      font-size: 1.3rem;
+      line-height: 1.2;
+    }
+    .highlight {
+      font-weight: bold;
+    }
+  }
+
+  .goodbye {
+    .title {
+      font-size: clamp(37px, 3.7rem, 3.7rem);
+    }
+  }
+</style>
