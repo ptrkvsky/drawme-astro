@@ -1,0 +1,52 @@
+---
+import Color1 from './Color1.astro';
+import Color2 from './Color1.astro';
+
+interface AstroProps {
+  color1: string;
+  color2: string;
+  color3: string;
+}
+
+const { color1, color2, color3 } = Astro.props as AstroProps;
+---
+
+<div class="wrapper-colors">
+  <div>
+    <Color1 color={color1} />
+  </div>
+  <div>
+    <Color2 color={color2} />
+  </div>
+  <div>color 3 {color3}</div>
+</div>
+
+<style lang="scss">
+  .wrapper-colors {
+    display: flex;
+    gap: 7rem;
+  }
+</style>
+
+<style lang="scss" is:global>
+  .wrapper-colors .wrapper-color {
+    position: relative;
+    display: inline-block;
+    .color-name {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+      margin-left: 16px;
+      font-size: 22px;
+      text-transform: uppercase;
+      letter-spacing: 1.1px;
+    }
+    &.color-2 {
+      top: 27px;
+      .color-name {
+        margin-left: -10px;
+      }
+    }
+  }
+</style>

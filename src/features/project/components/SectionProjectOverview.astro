@@ -1,5 +1,7 @@
 ---
+import { Image } from '@astrojs/image/components';
 import { SanityProject } from '@features/project/interfaces';
+import Colors from './colors/Colors.astro';
 import DrawMeA from './DrawMeA.astro';
 import MainImages from './MainImages.astro';
 import PresentationClient from './PresentationClient.astro';
@@ -9,6 +11,14 @@ interface AstroProps {
 }
 
 const { project } = Astro.props as AstroProps;
+
+const {
+  url,
+  altText,
+  metadata: {
+    dimensions: { height, width },
+  },
+} = project.typographie.asset;
 ---
 
 <div class="relative">
@@ -22,12 +32,13 @@ const { project } = Astro.props as AstroProps;
         text={project.excerptRaw}
         projectColor={project.color1}
       />
-      <!-- <Colors
+      <Colors
         color1={project.color1}
         color2={project.color2}
         color3={project.color3}
-      />  -->
-      <!-- <Typography image={project.typographie.asset} /> -->
+      />
+      <Image src={url} alt={altText} width={width} height={height} format="avif"
+      />
     </div>
   </div>
 </div>

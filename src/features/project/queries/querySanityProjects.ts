@@ -24,16 +24,30 @@ export const querySanityProjects = `query ProjectPageQuery {
         _key
         text
         image{
-          asset {
-            altText
+          asset{
             url
+            altText
+            metadata {
+              dimensions{
+                height
+                width
+                aspectRatio
+              }
+            }
           }
         }
       }
       typographie { 
-        asset { 
+        asset{
           url
           altText
+          metadata {
+            dimensions{
+              height
+              width
+              aspectRatio
+            }
+          }
         }
       }
       categories { 
