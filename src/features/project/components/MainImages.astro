@@ -15,22 +15,30 @@ const { mainImages } = Astro.props as AstroProps;
     mainImages.map((image) => {
       const { width, height, aspectRatio } = image.asset.metadata.dimensions;
       return (
-        <Image
-          format={'avif'}
-          src={image.asset.url}
-          width={width}
-          height={height}
-          aspectRatio={aspectRatio}
-          alt="image"
-        />
+        <div class="wrapper-image">
+          <img src={image.asset.url} alt="image" />
+        </div>
       );
     })
   }
 </div>
 
 <style lang="scss">
-  .wrapper {
+  .wrapper-images {
     display: flex;
     flex-direction: row;
+    .wrapper-image {
+      &:nth-child(1) {
+        margin-top: 15rem;
+        position: relative;
+        right: 1.4rem;
+      }
+      &:nth-child(2) {
+        margin-top: 34px;
+      }
+    }
   }
 </style>
+
+<!-- 
+ -->

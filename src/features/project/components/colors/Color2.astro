@@ -6,8 +6,11 @@ interface AstroProps {
 const { color } = Astro.props as AstroProps;
 ---
 
-<div class="color-2">
-  <span style={{ color: '#FFF' }} class="color-name">
+<div class="color color-2">
+  <span
+    style={`color: ${color === '#000000' ? '#FFF' : '#000'};`}
+    class="color-name"
+  >
     {color}
   </span>
 
@@ -3102,5 +3105,3 @@ const { color } = Astro.props as AstroProps;
     </g>
   </svg>
 </div>
-
-

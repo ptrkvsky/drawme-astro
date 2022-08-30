@@ -11,7 +11,7 @@ const { drawMeA, projectColor } = Astro.props as AstroProps;
 
 <h1 class="title">
   <span class="brushed"
-    >Draw Me
+    >Draw me
     <BrushDrawMe projectColor={projectColor} />
     <div class="animate"></div>
   </span>
@@ -21,13 +21,17 @@ const { drawMeA, projectColor } = Astro.props as AstroProps;
 <style lang="scss">
   .title {
     font-size: 12rem;
+    line-height: 0.95;
+
     .brushed {
       position: relative;
     }
     .highlight {
       display: block;
       color: transparent;
-      -webkit-text-stroke: 1px var(--color-text);
+      text-transform: lowercase;
+      letter-spacing: 3px;
+      -webkit-text-stroke: 1px hsl(191deg 100% 10%);
     }
   }
 </style>

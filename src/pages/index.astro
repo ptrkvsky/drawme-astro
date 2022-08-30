@@ -10,6 +10,7 @@ import { SanityHome } from '@features/home/interfaces/SanityHome';
 import fetchSanity from '@helpers/fetchSanity';
 import Layout from '@layouts/Layout.astro';
 import Canvas from '@features/home/components/Canvas.astro';
+import config from 'src/config';
 
 const sanityHome = await fetchSanity<SanityHome>(querySanityHome);
 const presentation = sanityHome && sanityHome.Home.introPresentation;

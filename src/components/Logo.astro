@@ -3,9 +3,12 @@
   import gsap from '../libs/gsap';
   window.addEventListener('load', () => {
     const isProd = config.mode === 'production';
+    const isDarkSoul =
+      navigator.userAgent.indexOf('ouse') > -1 ||
+      navigator.userAgent.indexOf('eadles') > -1;
 
     const isPreloaderSeen = sessionStorage.getItem('isPreloaderSeen');
-    if (!isPreloaderSeen) {
+    if (!isPreloaderSeen && !isDarkSoul) {
       gsap
         .timeline()
         .set('body', {

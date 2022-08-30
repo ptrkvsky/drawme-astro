@@ -1,6 +1,7 @@
 ---
 import Color1 from './Color1.astro';
-import Color2 from './Color1.astro';
+import Color2 from './Color2.astro';
+import Color3 from './Color3.astro';
 
 interface AstroProps {
   color1: string;
@@ -18,18 +19,23 @@ const { color1, color2, color3 } = Astro.props as AstroProps;
   <div>
     <Color2 color={color2} />
   </div>
-  <div>color 3 {color3}</div>
+  <div>
+    <Color3 color={color3 === '#FFFFFF' ? color1 : color3} />
+  </div>
 </div>
 
 <style lang="scss">
   .wrapper-colors {
     display: flex;
     gap: 7rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 6rem;
   }
 </style>
 
 <style lang="scss" is:global>
-  .wrapper-colors .wrapper-color {
+  .wrapper-colors .color {
     position: relative;
     display: inline-block;
     .color-name {
@@ -37,13 +43,14 @@ const { color1, color2, color3 } = Astro.props as AstroProps;
       transform: translate(-50%, -50%);
       top: 50%;
       left: 50%;
-      margin-left: 16px;
-      font-size: 22px;
+      margin-left: 1.6rem;
+      font-size: 2.2rem;
       text-transform: uppercase;
       letter-spacing: 1.1px;
     }
     &.color-2 {
-      top: 27px;
+      top: 30px;
+      left: 13px;
       .color-name {
         margin-left: -10px;
       }

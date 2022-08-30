@@ -37,7 +37,13 @@ const {
         color2={project.color2}
         color3={project.color3}
       />
-      <Image src={url} alt={altText} width={width} height={height} format="avif"
+      <Image
+        class="typographie"
+        src={url}
+        alt={altText}
+        width={width}
+        height={height}
+        format="avif"
       />
     </div>
   </div>
@@ -49,14 +55,20 @@ const {
     margin-left: auto;
     margin-right: auto;
 
-    display: flex;
-    flex-direction: row;
-    gap: 12rem;
+    gap: 125px;
+    display: grid;
+    grid-template-columns: 1fr 70rem;
+  }
+
+  .typographie {
+    max-width: 54.6rem;
+    margin-left: 12rem;
   }
 
   .wrapper-col-left {
     display: flex;
     flex-direction: column;
+    padding-top: 3.2rem;
   }
 
   .wrapper-col-right {
