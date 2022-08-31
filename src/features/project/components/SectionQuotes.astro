@@ -1,0 +1,100 @@
+---
+import { Image } from '@astrojs/image/components';
+import { Quote } from '../interfaces';
+
+interface AstroProps {
+  quote: Quote[];
+  projectColor: string;
+}
+
+const { quote: quotes, projectColor } = Astro.props as AstroProps;
+---
+
+<section class="section-quotes">
+  <div class="conteneur">
+    {
+      quotes.map((quote) => {
+        const {
+          url,
+          altText,
+          metadata: {
+            dimensions: { height, width, aspectRatio },
+          },
+        } = quote.image.asset;
+
+        return (
+          <div class="quote">
+            <div class="wrapper-image col">
+              {
+                <Image
+                  src={url}
+                  alt={altText}
+                  width={width}
+                  height={height}
+                  aspectRatio={aspectRatio}
+                  format="avif"
+                />
+              }
+            </div>
+            <p class="text col">
+              <span style={`color: ${projectColor}`} class="mark">
+                ‟
+              </span>
+              {quote.text}
+            </p>
+          </div>
+        );
+      })
+    }
+  </div>
+</section>
+
+<style lang="scss">
+  .section-quotes {
+    margin-top: 18.3rem;
+  }
+
+  .conteneur {
+    max-width: 163rem;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .quote {
+    position: relative;
+    display: flex;
+    gap: 154px;
+    margin-bottom: 10.4rem;
+
+    &:nth-child(even) {
+      .text {
+        order: -1;
+        max-width: 76rem;
+      }
+      .wrapper-image {
+        position: absolute;
+        top: -36.9rem;
+        right: 0;
+      }
+    }
+
+    .wrapper-image {
+      max-width: 53.7rem;
+    }
+
+    .text {
+      position: relative;
+      margin-top: 13.2rem;
+
+      font-size: 5.5rem;
+      font-family: WagonBold;
+      line-height: 1.1;
+      .mark {
+        position: absolute;
+        font-size: 338px;
+        top: -178px;
+        left: -20px;
+      }
+    }
+  }
+</style>

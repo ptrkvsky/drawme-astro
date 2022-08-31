@@ -1,0 +1,75 @@
+---
+import { Image } from '@astrojs/image/components';
+import { SanityImage } from '@interfaces/SanityImage';
+import { Quote } from '../interfaces';
+
+interface AstroProps {
+  images: SanityImage[];
+}
+
+const { images } = Astro.props as AstroProps;
+---
+
+<section class="conteneur section-images-footer">
+  {
+    images.map((image, index) => {
+      const {
+        url,
+        altText,
+        metadata: {
+          dimensions: { height, width, aspectRatio },
+        },
+      } = image.asset;
+
+      return (
+        <div class={`wrapper-image image-${index}`}>
+          {
+            <Image
+              src={url}
+              alt={altText}
+              width={width}
+              height={height}
+              aspectRatio={aspectRatio}
+              format="avif"
+            />
+          }
+        </div>
+      );
+    })
+  }
+</section>
+
+<style lang="scss">
+  .section-images-footer {
+    margin-top: 18.3rem;
+    display: flex;
+  }
+
+  .image-0 {
+    max-width: 67rem;
+    position: relative;
+    margin-top: 8.5rem;
+    left: -3.7rem;
+  }
+
+  .image-1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-67%);
+    max-width: 39.8rem;
+  }
+
+  .image-2 {
+    max-width: 53.3rem;
+    position: absolute;
+    right: 0;
+    bottom: 70px;
+  }
+
+  .conteneur {
+    position: relative;
+    max-width: 163rem;
+    margin-right: auto;
+    margin-left: auto;
+  }
+</style>

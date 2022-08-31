@@ -19,9 +19,22 @@ export const querySanityProjects = `query ProjectPageQuery {
           }
         }
       }
+      imagesFooter {
+        asset{
+          altText
+          url
+          size
+          metadata {
+            dimensions{
+              height
+              width
+              aspectRatio
+            }
+          }
+        }
+      }
       excerptRaw
       quote{
-        _key
         text
         image{
           asset{

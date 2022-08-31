@@ -1,8 +1,10 @@
 ---
 import Canvas from '@features/project/components/Canvas.astro';
+import SectionImagesFooter from '@features/project/components/SectionImagesFooter.astro';
 import SectionProjectOverview from '@features/project/components/SectionProjectOverview.astro';
+import SectionQuotes from '@features/project/components/SectionQuotes.astro';
 import getProjectUrlParams from '@features/project/functions/getProjectUrlParams';
-import { SanityProjects } from '@features/project/interfaces/';
+import { SanityProject, SanityProjects } from '@features/project/interfaces/';
 import { querySanityProjects } from '@features/project/queries/querySanityProjects';
 import fetchSanity from '@helpers/fetchSanity';
 import Layout from '@layouts/Layout.astro';
@@ -13,7 +15,11 @@ export async function getStaticPaths() {
   return params;
 }
 
-const { project } = Astro.props;
+interface AstroProps {
+  project: SanityProject;
+}
+
+const { project } = Astro.props as AstroProps;
 
 const hue = 0.33;
 const saturation = 2.1875;
@@ -26,11 +32,13 @@ const saturation = 2.1875;
   root.style.setProperty('--canva-saturation', saturation);
 </script>
 
-<Layout background="#FFF" title={project.title}>
+<Layout background="#FFF" title="Un beau projet">
   <Canvas slot="canvas" />
   <div slot="main-content">
     <div class="wrapper-project">
       <SectionProjectOverview project={project} />
+      <SectionQuotes quote={project.quote} projectColor={project.color1} />
+      <SectionImagesFooter images={project.imagesFooter} />
     </div>
   </div>
 </Layout>

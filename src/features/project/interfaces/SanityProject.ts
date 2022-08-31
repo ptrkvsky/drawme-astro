@@ -1,5 +1,10 @@
 import { SanityImage } from '@interfaces/SanityImage';
 
+export interface Quote {
+  text: string;
+  image: SanityImage;
+}
+
 export interface SanityProject {
   _id: string;
   slug: {
@@ -11,10 +16,7 @@ export interface SanityProject {
   color3: string;
   mainImages: SanityImage[];
   excerptRaw: any[];
-  quore: {
-    _key: string;
-    text: string;
-    image: SanityImage;
-  }[];
+  quote: Quote[];
   typographie: SanityImage;
+  imagesFooter: SanityImage[];
 }
