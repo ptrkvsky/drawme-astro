@@ -21,7 +21,7 @@ function fetchSanity<ReturnType>(
       return result.data as ReturnType;
     })
     .catch((error: unknown) => {
-      console.error(error);
+      console.error('👨‍🚒', error);
     });
 }
 
