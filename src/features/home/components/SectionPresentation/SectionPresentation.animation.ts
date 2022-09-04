@@ -1,9 +1,9 @@
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import SplitText from 'gsap/SplitText';
+import splitText from '@helpers/gsap/splitText';
 import config from 'src/config';
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.registerPlugin(ScrollTrigger);
 // Switch Canva from black to white
 const handleToggleCanva = () => {
   document.getElementById('main-canva').classList.toggle('visible');
@@ -26,18 +26,8 @@ export const switchCanva = () => {
 
 export const revealText = () => {
   // Split texts
-  new SplitText('#intro-presentation', {
-    type: 'lines',
-  });
-  const splitIntroPresentation = new SplitText('#intro-presentation > div', {
-    type: 'lines',
-  });
-  new SplitText('#intro-detail', {
-    type: 'lines',
-  });
-  const splitIntroDetail = new SplitText('#intro-detail > div', {
-    type: 'lines',
-  });
+  const splitIntroPresentation = splitText('#intro-presentation', 'lines');
+  const splitIntroDetail = splitText('#intro-detail', 'lines');
 
   gsap
     .timeline({

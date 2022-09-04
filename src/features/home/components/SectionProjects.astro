@@ -7,9 +7,41 @@ import illustrationLogo from '@assets/images/illustration_logo.png';
 import illustrationIdentity from '@assets/images/illustration_identity.png';
 ---
 
-<section class="section-projets" id="section-projets">
+<script>
+  import gsap from 'gsap';
+  import splitText from '@helpers/gsap/splitText';
+  import _SplitText from 'gsap/SplitText';
+  import config from 'src/config';
+  const splitedTitle = splitText('#section-projets-title', 'chars');
+
+  function revealTitle(splitedTitle: _SplitText) {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '#section-projets',
+          endTrigger: 'footer',
+          markers: config.mode === 'development',
+          start: 'top 35%',
+        },
+      })
+      .from(splitedTitle.chars, {
+        y: 50,
+        ease: 'power1.out',
+        skewY: 5,
+        stagger: {
+          amount: 0.3,
+        },
+        opacity: 0,
+      });
+  }
+  revealTitle(splitedTitle);
+</script>
+
+<section id="section-projets" class="section-projets">
   <div class="wrapper-description-title">
-    <h2 class="title">What would i draw for you ?</h2>
+    <h2 id="section-projets-title" class="title split-text">
+      What would i draw for you ?
+    </h2>
     <p class="description">
       Drawmeasheep is an innovative graphic studio. It was a created by Mélody
       A.Nour, a freelance graphic designer that has always been passionate in
@@ -63,7 +95,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
     <div class="illustration" data-speed="0.98" data-lag="0.04">
       <Image src={illustrationLogo} alt="Illustration logo" />
     </div>
-    <h3 class="sub-title" data-speed="1.1" data-lag="0.05">Logotype</h3>
+    <h3 class="sub-title" data-speed="1.05" data-lag="0.03">Logotype</h3>
   </div>
 
   <div class="wrapper-illustration-title identity">
@@ -83,10 +115,10 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
     max-width: 164rem;
     z-index: 10;
     font-size: 2.4rem;
-    min-height: 120vh;
+    height: clamp(1000px, 125rem, 2450px);
 
     @media screen and (min-width: 1921px) {
-      min-height: 165vh;
+      // min-height: 165vh;
     }
 
     img {
@@ -107,7 +139,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
       position: absolute;
       left: 50%;
       transform: translate(-50%);
-      max-width: 55.8rem;
+      max-width: 56.1rem;
       top: 44.4rem;
 
       .description {

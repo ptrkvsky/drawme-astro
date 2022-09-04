@@ -20,8 +20,7 @@ const { detail, presentation } = Astro.props as AstroProps;
   revealText();
 </script>
 <section id="section-presentation" class="section-presentation">
-  {console.log(presentation, detail)}
-  <div class="illustration book" data-speed="1.05" data-lag="0.25">
+  <div class="illustration book" data-speed="1.05" data-lag="0.025">
     <Image
       width={372}
       height={404}
@@ -30,7 +29,7 @@ const { detail, presentation } = Astro.props as AstroProps;
       alt="Illustration book"
     />
   </div>
-  <div class="illustration crayon" data-speed="0.98" data-lag="0.3">
+  <div class="illustration crayon" data-speed="0.98" data-lag="0.03">
     <Image format="avif" src={illustrationCrayon} alt="Illustration crayon" />
   </div>
   <div class="illustration fingers">
