@@ -20,6 +20,7 @@ const { detail, presentation } = Astro.props as AstroProps;
   revealText();
 </script>
 <section id="section-presentation" class="section-presentation">
+  {console.log(presentation, detail)}
   <div class="illustration book" data-speed="1.05" data-lag="0.25">
     <Image
       width={372}

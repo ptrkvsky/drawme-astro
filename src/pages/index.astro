@@ -13,11 +13,18 @@ import Canvas from '@features/home/components/Canvas.astro';
 import config from 'src/config';
 
 const sanityHome = await fetchSanity<SanityHome>(querySanityHome);
-const presentation = sanityHome && sanityHome.Home.introPresentation;
-const detail = sanityHome && sanityHome.Home.introPresentation;
+
+let error: string, presentation: string, detail: string ;
+if (typeof sanityHome === 'string') {
+   error = sanityHome
+} else {
+  presentation = sanityHome && sanityHome.Home.introPresentation;
+  detail = sanityHome && sanityHome.Home.introPresentation;
+}
+
 ---
 
-<Layout background="#000" title="Grahic Designer at Cagnes sur Mer">
+{!error && <Layout background="#000" title="Grahic Designer at Cagnes sur Mer">
   <Canvas slot="canvas" />
   <div slot="main-content">
     <SectionHero />
@@ -27,4 +34,4 @@ const detail = sanityHome && sanityHome.Home.introPresentation;
     <SectionDrawTogether />
     <SectionWhoAmI />
   </div>
-</Layout>
+</Layout>}
