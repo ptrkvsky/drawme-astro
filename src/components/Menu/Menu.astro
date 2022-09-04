@@ -1,0 +1,104 @@
+---
+---
+
+<script>
+  import splitText from '@helpers/gsap/splitText';
+  import {
+    getBurgerAnimation,
+    getMenuAnimation,
+    handleClickBurger,
+  } from './Menu.animations';
+
+  const splitLink = splitText('.link', 'lines');
+  const tlMenu = getMenuAnimation(splitLink);
+  const tlBurger = getBurgerAnimation();
+
+  document
+    .getElementById('burger-button')
+    .addEventListener('click', () => handleClickBurger(tlMenu, tlBurger));
+
+  document.querySelectorAll('.link').forEach((element) => {
+    element.addEventListener('click', (event) => {
+      event.preventDefault();
+      tlBurger.reverse();
+      tlMenu.reverse();
+      setTimeout(() => {
+        const href = element.getAttribute('href');
+        window.location.href = href;
+      }, 1500);
+    });
+  });
+</script>
+
+<div id="wrapper-menu" class="wrapper-menu">
+  <div class="content" data-desktop="">
+    <ul class="menu">
+      <li>
+        <span class="line"></span>
+        <a class="link" href="/">Home</a>
+      </li>
+      <li>
+        <span class="line"></span>
+        <a class="link" href="/projects/dissidente">Who am i</a>
+      </li>
+      <li>
+        <span class="line"></span>
+        <a class="link" href="/contact">Contact</a>
+        <span class="line"></span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<style lang="scss">
+  .wrapper-menu {
+    display: block;
+
+    position: fixed;
+    z-index: 525;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+
+    .content {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: initial;
+      overflow: hidden;
+      will-change: opacity;
+      mix-blend-mode: difference;
+      background-color: black;
+
+      .menu {
+        overflow: hidden;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        max-width: 50vw;
+        transform: translateX(-50%) translateY(-50%);
+        font-size: 6vw;
+        font-family: WagonBold;
+        line-height: 10vw;
+        color: #fff;
+
+        .line {
+          display: block;
+          width: 100%;
+          height: 2px;
+          background-color: #fff;
+          transform-origin: 50% 50%;
+        }
+      }
+    }
+  }
+</style>

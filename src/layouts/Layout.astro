@@ -8,9 +8,7 @@ import '@styles/utilities.scss';
 import '@styles/variables.scss';
 import '@styles/global.scss';
 import '@styles/functions.scss';
-import Footer from '@components/Footer.astro';
-import Menu from '@components/Menu.astro';
-import Burger from '@components/Burger.astro';
+import { Menu, Burger, Footer } from '@components/index';
 
 export interface Props {
   title: string;
@@ -25,6 +23,8 @@ const { title, background } = Astro.props as Props;
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 <meta name="generator" content={Astro.generator} />
 <title>{title}</title>
+<link rel="prefetch" href="/contact" />
+<link rel="prefetch" href="/projects/dissidente" />
 
 <body style={{ background }} class="canva-black">
   <Burger />
