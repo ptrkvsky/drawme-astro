@@ -2,8 +2,20 @@
 import ReactCanva from './ReactCanva';
 ---
 
-<section class="section-draw-something overflow-visible">
-  <h2 class="title">
+<script>
+  import { ParamsSplitAndReveal, splitAndReveal } from '@helpers/gsap';
+
+  const paramsSplitAndRevealTitle: ParamsSplitAndReveal = {
+    element: '#draw-something-title',
+    typeSplit: 'lines',
+    trigger: '#section-ds-something',
+  };
+
+  splitAndReveal(paramsSplitAndRevealTitle);
+</script>
+
+<section id="section-ds-something" class="section-draw-something">
+  <h2 id="draw-something-title" class="title">
     What would you draw <br /> for me ?
   </h2>
   <ReactCanva client:only="react" />

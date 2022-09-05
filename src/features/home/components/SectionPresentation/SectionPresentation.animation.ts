@@ -1,6 +1,6 @@
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import splitText from '@helpers/gsap/splitText';
+import { splitText } from '@helpers/gsap';
 import config from 'src/config';
 
 gsap.registerPlugin(ScrollTrigger);

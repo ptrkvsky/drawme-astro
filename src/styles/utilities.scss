@@ -16,8 +16,9 @@
 
 .split-text div {
   overflow: hidden;
+  vertical-align: middle;
 }
 
-.overflow-visible .split-text div {
+.overflow-visible .split-text > div {
   overflow: visible;
 }
