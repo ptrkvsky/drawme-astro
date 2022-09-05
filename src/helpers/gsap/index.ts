@@ -1,6 +1,6 @@
 import gsap from 'gsap';
 import _SplitText from 'gsap/SplitText';
-import { SplitText } from 'gsap/all';
+import { SplitText } from 'gsap/SplitText';
 
 import config from 'src/config';
 
@@ -53,11 +53,7 @@ export interface ParamsSplitAndReveal {
  * @description don't forget to add the class split-text on the element
  * @param param0
  */
-export function splitAndReveal({
-  element,
-  typeSplit,
-  trigger,
-}: ParamsSplitAndReveal) {
+export function splitAndReveal({ element, typeSplit, trigger }: any) {
   const splitedText = splitText(element, typeSplit);
   revealSplitedTitle(splitedText, typeSplit, trigger);
 }

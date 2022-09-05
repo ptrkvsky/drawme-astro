@@ -10,6 +10,17 @@ import '@styles/global.scss';
 import '@styles/functions.scss';
 import { Menu, Burger, Footer } from '@components/index';
 
+import illustrationFingers from '@assets/images/illustration_fingers.png';
+import { getImage } from '@astrojs/image';
+import { GetImageTransform } from '@astrojs/image/dist/lib/get-image';
+const image: GetImageTransform = {
+  src: illustrationFingers.src,
+  width: 800,
+  height: 800,
+  format: 'avif',
+};
+const { src } = await getImage(image);
+
 export interface Props {
   title: string;
   background: string;
@@ -25,6 +36,8 @@ const { title, background } = Astro.props as Props;
 <title>{title}</title>
 <link rel="prefetch" href="/contact" />
 <link rel="prefetch" href="/projects/dissidente" />
+
+<link rel="preload" as="image" href={src} />
 
 <body style={{ background }} class="canva-black">
   <Burger />

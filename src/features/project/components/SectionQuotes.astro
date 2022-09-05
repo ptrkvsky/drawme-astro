@@ -10,10 +10,22 @@ interface AstroProps {
 const { quote: quotes, projectColor } = Astro.props as AstroProps;
 ---
 
+<script>
+  import { splitAndReveal } from '@helpers/gsap';
+
+  const paramsSplitAndRevealTitle = {
+    element: `quote-0`,
+    typeSplit: 'lines',
+    trigger: `wrapper-quote-0`,
+  };
+
+  splitAndReveal(paramsSplitAndRevealTitle);
+</script>
+
 <section class="section-quotes">
   <div class="conteneur">
     {
-      quotes.map((quote) => {
+      quotes.forEach((quote, index) => {
         const {
           url,
           altText,
@@ -22,8 +34,16 @@ const { quote: quotes, projectColor } = Astro.props as AstroProps;
           },
         } = quote.image.asset;
 
+        // const paramsSplitAndRevealTitle: ParamsSplitAndReveal = {
+        //   element: `quote-${index}`,
+        //   typeSplit: 'lines',
+        //   trigger: `wrapper-quote-${index}`,
+        // };
+
+        // splitAndReveal(paramsSplitAndRevealTitle);
+
         return (
-          <div class="quote">
+          <div id={`wrapper-quote-${index}`} class="quote">
             <div class="wrapper-image col">
               {
                 <Image
@@ -36,12 +56,14 @@ const { quote: quotes, projectColor } = Astro.props as AstroProps;
                 />
               }
             </div>
-            <p class="text col">
+            <div class="text col">
               <span style={`color: ${projectColor}`} class="mark">
                 ‟
               </span>
-              {quote.text}
-            </p>
+              <p class="split-text" id={`quote-${index}`}>
+                {quote.text}
+              </p>
+            </div>
           </div>
         );
       })

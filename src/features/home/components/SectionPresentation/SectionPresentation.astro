@@ -35,11 +35,19 @@ const { detail, presentation } = Astro.props as AstroProps;
   <div class="illustration fingers">
     <div class="relative">
       <div class="wrapper-overflow" data-speed="0.85" data-lag="0.025">
-        <Image src={illustrationFingers} alt="Illustration fingers" />
+        <Image
+          format="avif"
+          src={illustrationFingers}
+          alt="Illustration fingers"
+        />
         {/* <div class="reveal" /> */}
       </div>
       <div class="illustration letters" data-speed="1.15" data-lag="0.03">
-        <Image src={illustrationLetters} alt="Illustration letters" />
+        <Image
+          format="avif"
+          src={illustrationLetters}
+          alt="Illustration letters"
+        />
         {/* <div class="reveal" /> */}
       </div>
     </div>
