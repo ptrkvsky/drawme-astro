@@ -6,6 +6,8 @@ export const querySanityProjects = `query ProjectPageQuery {
       color1
       color2
       color3
+      hue
+      saturation
       mainImages{
         asset{
           url

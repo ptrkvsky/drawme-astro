@@ -21,8 +21,7 @@ interface AstroProps {
 
 const { project } = Astro.props as AstroProps;
 
-const hue = 0.33;
-const saturation = 2.1875;
+const { hue, saturation } = project;
 ---
 
 <script define:vars={{ hue, saturation }}>
