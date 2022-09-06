@@ -6,6 +6,8 @@ const AnswerNo = () => {
   const refElement = useRef<HTMLElement>(null);
 
   const handleNoHover = () => {
+    console.log(refElement.off);
+
     const elementWidth = refElement.current.offsetWidth;
     const elementHeight = refElement.current.offsetHeight;
     // /* Detect */

@@ -4,14 +4,15 @@ import ReactCanva from './ReactCanva';
 
 <script>
   import { ParamsSplitAndReveal, splitAndReveal } from '@helpers/gsap';
+  document.addEventListener('load', () => {
+    const paramsSplitAndRevealTitle: ParamsSplitAndReveal = {
+      element: '#draw-something-title',
+      typeSplit: 'lines',
+      trigger: '#section-ds-something',
+    };
 
-  const paramsSplitAndRevealTitle: ParamsSplitAndReveal = {
-    element: '#draw-something-title',
-    typeSplit: 'lines',
-    trigger: '#section-ds-something',
-  };
-
-  splitAndReveal(paramsSplitAndRevealTitle);
+    splitAndReveal(paramsSplitAndRevealTitle);
+  });
 </script>
 
 <section id="section-ds-something" class="section-draw-something">

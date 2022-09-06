@@ -1,7 +1,15 @@
 ---
+import instagram from '@assets/images/instagram.png';
 ---
 
 <script>
+  import Cursor from './scripts/cursor';
+  import { preloader } from './scripts/preloader';
+
+  import Menu from './scripts/menu';
+
+  // menu (<nav> element)
+
   import { splitText } from '@helpers/gsap';
   import {
     getBurgerAnimation,
@@ -12,6 +20,21 @@
   const splitLink = splitText('.link', 'lines');
   const tlMenu = getMenuAnimation(splitLink);
   const tlBurger = getBurgerAnimation();
+
+  // preload the images set as data attrs in the menu items
+  window.addEventListener('load', () => {
+    const menuEl = document.querySelector('.menu');
+    console.log('yooo 🌓', menuEl);
+    preloader('.menu__item').then(() => {
+      // initialize the smooth scroll
+
+      // initialize custom cursor
+      new Cursor(document.querySelector('.cursor'));
+
+      // initialize menu
+      new Menu(menuEl);
+    });
+  });
 
   document
     .getElementById('burger-button')
@@ -32,25 +55,51 @@
 
 <div id="wrapper-menu" class="wrapper-menu">
   <div class="content" data-desktop="">
-    <ul class="menu">
-      <li>
-        <span class="line"></span>
-        <a class="link" href="/">Home</a>
-      </li>
-      <li>
-        <span class="line"></span>
-        <a class="link" href="/projects/dissidente">Who am i</a>
-      </li>
-      <li>
-        <span class="line"></span>
-        <a class="link" href="/contact">Contact</a>
-        <span class="line"></span>
-      </li>
-    </ul>
+    <nav>
+      <ul class="menu">
+        <li>
+          <span class="line"></span>
+          <a
+            class="link menu__item"
+            data-img="https://developpeur-web.tech/_image/assets/images/developpeur-freelance_400x400.avif"
+            href="/">Home</a
+          >
+        </li>
+        <li>
+          <span class="line"></span>
+          <a
+            class="link menu__item"
+            data-img="https://developpeur-web.tech/_image/assets/images/developpeur-freelance_400x400.avif"
+            href="/projects/dissidente">Who am i</a
+          >
+        </li>
+        <li>
+          <span class="line"></span>
+          <a
+            class="link menu__item"
+            data-img="https://developpeur-web.tech/_image/assets/images/developpeur-freelance_400x400.avif"
+            href="/contact">Contact</a
+          >
+          <span class="line"></span>
+        </li>
+        <!-- <li>
+          <a
+     
+          >
+            <span class="menu__item-text"
+              ><span class="menu__item-textinner">Nesta Freeman</span>
+            </span>
+          </a>
+        </li> -->
+      </ul>
+    </nav>
   </div>
+  <svg class="cursor" width="80" height="80" viewBox="0 0 80 80">
+    <circle class="cursor__inner" fill="#FFF" cx="40" cy="40" r="20"></circle>
+  </svg>
 </div>
 
-<style lang="scss">
+<style lang="scss" is:global>
   .wrapper-menu {
     display: block;
     position: fixed;
@@ -83,16 +132,25 @@
         position: absolute;
         left: 50%;
         top: 50%;
-        max-width: 50vw;
+        width: 100%;
         transform: translateX(-50%) translateY(-50%);
         font-size: 6vw;
         font-family: WagonBold;
         line-height: 10vw;
         color: #fff;
+        text-align: center;
+
+        a {
+          text-align: center;
+          display: flex;
+          justify-content: center;
+        }
 
         .line {
           display: block;
-          width: 100%;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 50vw;
           height: 2px;
           background-color: #fff;
           transform-origin: 50% 50%;
@@ -105,5 +163,266 @@
         pointer-events: initial;
       }
     }
+  }
+  .hover-reveal__img {
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+  .hover-reveal__inner,
+  .hover-reveal__img {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .menu__item {
+    flex: none;
+    display: flex;
+    // justify-content: flex-end;
+    position: relative;
+    // padding-left: 5rem;
+  }
+
+  // .menu__item::before {
+  //   counter-increment: menucounter;
+  //   content: counters(menucounter, '.', decimal-leading-zero);
+  //   position: absolute;
+  //   left: 0;
+  //   border-left: 3px solid currentColor;
+  //   top: 20%;
+  //   height: 60%;
+  //   padding-left: 1rem;
+  //   display: flex;
+  //   align-items: center;
+  //   line-height: 1;
+  //   font-weight: bold;
+  //   opacity: 0;
+  //   transform: translateX(-1rem);
+  //   transition: transform 0.3s, opacity 0.3s;
+  // }
+
+  .menu__item:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .menu__item-text {
+    position: relative;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: block;
+    overflow: hidden;
+    font-size: 6vw;
+  }
+
+  .menu__item-textinner {
+    display: block;
+    font-family: goldenbook, serif;
+    font-weight: 300;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--color-menu);
+  }
+
+  .js .menu__item-textinner {
+    transform: translateY(100%);
+  }
+
+  .menu__item:hover .menu__item-textinner {
+    color: var(--color-menu-hover);
+  }
+
+  .menu__item-sub {
+    display: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    white-space: nowrap;
+    align-items: center;
+    position: relative;
+    margin-left: 2rem;
+    padding-left: 3rem;
+    opacity: 0;
+    transform: translateX(-1rem);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .menu__item:hover .menu__item-sub {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .menu__item-sub::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 15%;
+    width: 1px;
+    height: 70%;
+    background: currentColor;
+    transform-origin: 0 100%;
+    transform: rotate(22.5deg) scale3d(1, 0, 1);
+    transition: transform 0.3s;
+  }
+
+  .menu__item:hover .menu__item-sub::before {
+    transform: rotate(22.5deg) scale3d(1, 1, 1);
+  }
+
+  .hover-reveal {
+    position: absolute;
+    z-index: -1;
+    width: 220px;
+    height: 320px;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .hover-reveal__inner {
+    overflow: hidden;
+  }
+
+  .hover-reveal__inner,
+  .hover-reveal__img {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .hover-reveal__img {
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+
+  .cursor {
+    display: none;
+  }
+
+  .credits {
+    align-self: flex-start;
+    padding: 5rem 0 0 0;
+  }
+
+  .credits a {
+    text-decoration: underline;
+  }
+
+  @media screen and (min-width: 53em) {
+    .frame {
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: right;
+      background: none;
+      height: 50vh;
+      pointer-events: none;
+      padding-bottom: 0;
+    }
+    .frame__links a:not(:last-child) {
+      margin-right: 0;
+    }
+    .frame__links {
+      margin: 0.5rem 0 2rem;
+      justify-self: start;
+    }
+    .frame__links a {
+      margin-left: 0.5rem;
+      pointer-events: auto;
+    }
+    .frame__button {
+      cursor: not-allowed;
+      pointer-events: auto;
+      margin-top: auto;
+      transform: translateY(50%);
+    }
+    .menu {
+      padding-top: 20vh;
+    }
+    .menu__item {
+      // padding-left: 25vw;
+      justify-content: initial;
+    }
+    .menu__item-text {
+      padding: 1vh 0;
+      font-size: 4vw;
+    }
+    .menu__item-sub {
+      display: flex;
+    }
+  }
+
+  @media (any-pointer: fine) {
+    .cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: block;
+      pointer-events: none;
+    }
+    .cursor__inner {
+      fill: var(--cursor-fill);
+      stroke: var(--cursor-stroke);
+      stroke-width: var(--cursor-stroke-width);
+      opacity: 0.3;
+    }
+    .credits {
+      padding-left: 25vw;
+    }
+  }
+
+  /*! locomotive-scroll v3.5.4 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
+  html.has-scroll-smooth {
+    overflow: hidden;
+  }
+
+  html.has-scroll-dragging {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .has-scroll-smooth body {
+    overflow: hidden;
+  }
+
+  .has-scroll-smooth [data-scroll-container] {
+    min-height: 100vh;
+  }
+
+  .c-scrollbar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 11px;
+    height: 100vh;
+    transform-origin: center right;
+    transition: transform 0.3s, opacity 0.3s;
+    opacity: 0;
+  }
+  .c-scrollbar:hover {
+    transform: scaleX(1.45);
+  }
+  .c-scrollbar:hover,
+  .has-scroll-scrolling .c-scrollbar,
+  .has-scroll-dragging .c-scrollbar {
+    opacity: 1;
+  }
+
+  .c-scrollbar_thumb {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: black;
+    opacity: 0.5;
+    width: 7px;
+    border-radius: 10px;
+    margin: 2px;
+    cursor: -webkit-grab;
+    cursor: grab;
+  }
+  .has-scroll-dragging .c-scrollbar_thumb {
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
   }
 </style>
