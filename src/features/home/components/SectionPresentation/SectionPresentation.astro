@@ -139,9 +139,9 @@ const { detail, presentation } = Astro.props as AstroProps;
       margin-top: 7.2rem;
       max-width: 67.6rem;
       line-height: 1.4;
-      letter-spacing: 0.2rem;
+      letter-spacing: clamp(2px, 0.2rem, 0.2rem);
       font-weight: 800;
-      font-size: 2.1rem;
+      font-size: clamp(21px, 2.1rem, 2.1rem);
       font-family: MontrealThin;
     }
 
