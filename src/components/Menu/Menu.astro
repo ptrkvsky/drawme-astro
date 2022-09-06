@@ -144,6 +144,8 @@ import instagram from '@assets/images/instagram.png';
           text-align: center;
           display: flex;
           justify-content: center;
+          mix-blend-mode: difference;
+          color: white;
         }
 
         .line {
@@ -270,13 +272,14 @@ import instagram from '@assets/images/instagram.png';
 
   .hover-reveal {
     position: absolute;
-    z-index: -1;
+    z-index: 220;
     width: 220px;
     height: 320px;
     top: 0;
     left: 0;
     pointer-events: none;
     opacity: 0;
+    mix-blend-mode: difference;
   }
 
   .hover-reveal__inner {
