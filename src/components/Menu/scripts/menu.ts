@@ -1,4 +1,4 @@
-import { gsap } from 'gsap';
+import gsap from 'gsap';
 import { AnimatableProperties } from '../Menu.interfaces';
 import MenuItem from './menuItem';
 
@@ -11,6 +11,8 @@ export default class Menu {
   menuItems: any[];
 
   constructor(el: Element) {
+    const test = document.querySelectorAll('.menu__item');
+    console.log('qsdqsd', test);
     // el is the menu element (<nav>)
     //@ts-ignore
     this.DOM = {
@@ -44,6 +46,8 @@ export default class Menu {
   }
   // initial animation for revealing the menu items
   showMenuItems() {
+    const test = this.menuItems.map((item) => item.DOM.textInner);
+    console.log(test);
     gsap.to(
       this.menuItems.map((item) => item.DOM.textInner),
       {

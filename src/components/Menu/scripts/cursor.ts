@@ -17,7 +17,6 @@ export default class Cursor {
   onMouseMoveEv: () => void;
   constructor(el) {
     this.DOM = { el: el };
-    console.log(this.DOM, '🇦🇩');
     this.DOM.el.style.opacity = `${0}`;
 
     this.bounds = this.DOM.el.getBoundingClientRect();

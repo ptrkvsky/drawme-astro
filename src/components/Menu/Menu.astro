@@ -1,15 +1,7 @@
----
-import instagram from '@assets/images/instagram.png';
----
-
 <script>
   import Cursor from './scripts/cursor';
   import { preloader } from './scripts/preloader';
-
   import Menu from './scripts/menu';
-
-  // menu (<nav> element)
-
   import { splitText } from '@helpers/gsap';
   import {
     getBurgerAnimation,
@@ -24,10 +16,7 @@ import instagram from '@assets/images/instagram.png';
   // preload the images set as data attrs in the menu items
   window.addEventListener('load', () => {
     const menuEl = document.querySelector('.menu');
-    console.log('yooo 🌓', menuEl);
     preloader('.menu__item').then(() => {
-      // initialize the smooth scroll
-
       // initialize custom cursor
       new Cursor(document.querySelector('.cursor'));
 
