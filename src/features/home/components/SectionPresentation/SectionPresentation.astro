@@ -17,7 +17,9 @@ const { detail, presentation } = Astro.props as AstroProps;
   import { switchCanva, revealText } from './SectionPresentation.animation';
 
   switchCanva();
-  revealText();
+  window.addEventListener('load', () => {
+    revealText();
+  });
 </script>
 <section id="section-presentation" class="section-presentation">
   <div class="illustration book" data-speed="1.05" data-lag="0.025">

@@ -46,17 +46,20 @@ export default class Menu {
   }
   // initial animation for revealing the menu items
   showMenuItems() {
-    const test = this.menuItems.map((item) => item.DOM.textInner);
-    console.log(test);
-    gsap.to(
-      this.menuItems.map((item) => item.DOM.textInner),
-      {
-        duration: 1.2,
-        ease: 'Expo.easeOut',
-        startAt: { y: '100%' },
-        y: 0,
-        delay: (pos) => pos * 0.06,
-      }
-    );
+    const textInners = this.menuItems
+      .map((item) => item?.DOM?.textInner)
+      .filter((elem) => elem !== null);
+    if (textInners.length > 0) {
+      gsap.to(
+        this.menuItems.map((item) => item.DOM.textInner),
+        {
+          duration: 1.2,
+          ease: 'Expo.easeOut',
+          startAt: { y: '100%' },
+          y: 0,
+          delay: (pos) => pos * 0.06,
+        }
+      );
+    }
   }
 }

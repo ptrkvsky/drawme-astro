@@ -9,50 +9,51 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
 
 <script>
   import { splitAndReveal, ParamsSplitAndReveal } from '@helpers/gsap';
+  window.addEventListener('load', () => {
+    const paramsSplitAndRevealTitle: ParamsSplitAndReveal = {
+      element: '#section-projets-title',
+      typeSplit: 'chars',
+      trigger: '#section-projets',
+    };
+    const paramsSplitAndRevealDescription: ParamsSplitAndReveal = {
+      element: '#section-projets-description',
+      typeSplit: 'lines',
+      trigger: '#section-projets',
+    };
+    const paramsSplitAndRevealSubtitlePackaging: ParamsSplitAndReveal = {
+      element: '#subtitle-packaging',
+      typeSplit: 'chars',
+      trigger: '#section-projets',
+    };
+    const paramsSplitAndRevealSubtitleWebsite: ParamsSplitAndReveal = {
+      element: '#subtitle-website',
+      typeSplit: 'chars',
+      trigger: '#section-projets',
+    };
+    const paramsSplitAndRevealSubtitleSocial: ParamsSplitAndReveal = {
+      element: '#subtitle-social',
+      typeSplit: 'chars',
+      trigger: '#section-projets-title',
+    };
+    const paramsSplitAndRevealSubtitleIdentity: ParamsSplitAndReveal = {
+      element: '#subtitle-identity',
+      typeSplit: 'chars',
+      trigger: '#section-projets-title',
+    };
+    const paramsSplitAndRevealSubtitleLogo: ParamsSplitAndReveal = {
+      element: '#subtitle-logo',
+      typeSplit: 'chars',
+      trigger: '#subtitle-identity',
+    };
 
-  const paramsSplitAndRevealTitle: ParamsSplitAndReveal = {
-    element: '#section-projets-title',
-    typeSplit: 'chars',
-    trigger: '#section-projets',
-  };
-  const paramsSplitAndRevealDescription: ParamsSplitAndReveal = {
-    element: '#section-projets-description',
-    typeSplit: 'lines',
-    trigger: '#section-projets',
-  };
-  const paramsSplitAndRevealSubtitlePackaging: ParamsSplitAndReveal = {
-    element: '#subtitle-packaging',
-    typeSplit: 'chars',
-    trigger: '#section-projets',
-  };
-  const paramsSplitAndRevealSubtitleWebsite: ParamsSplitAndReveal = {
-    element: '#subtitle-website',
-    typeSplit: 'chars',
-    trigger: '#section-projets',
-  };
-  const paramsSplitAndRevealSubtitleSocial: ParamsSplitAndReveal = {
-    element: '#subtitle-social',
-    typeSplit: 'chars',
-    trigger: '#section-projets-title',
-  };
-  const paramsSplitAndRevealSubtitleIdentity: ParamsSplitAndReveal = {
-    element: '#subtitle-identity',
-    typeSplit: 'chars',
-    trigger: '#section-projets-title',
-  };
-  const paramsSplitAndRevealSubtitleLogo: ParamsSplitAndReveal = {
-    element: '#subtitle-logo',
-    typeSplit: 'chars',
-    trigger: '#subtitle-identity',
-  };
-
-  splitAndReveal(paramsSplitAndRevealTitle);
-  splitAndReveal(paramsSplitAndRevealDescription);
-  splitAndReveal(paramsSplitAndRevealSubtitlePackaging);
-  splitAndReveal(paramsSplitAndRevealSubtitleWebsite);
-  splitAndReveal(paramsSplitAndRevealSubtitleLogo);
-  splitAndReveal(paramsSplitAndRevealSubtitleSocial);
-  splitAndReveal(paramsSplitAndRevealSubtitleIdentity);
+    splitAndReveal(paramsSplitAndRevealTitle);
+    splitAndReveal(paramsSplitAndRevealDescription);
+    splitAndReveal(paramsSplitAndRevealSubtitlePackaging);
+    splitAndReveal(paramsSplitAndRevealSubtitleWebsite);
+    splitAndReveal(paramsSplitAndRevealSubtitleLogo);
+    splitAndReveal(paramsSplitAndRevealSubtitleSocial);
+    splitAndReveal(paramsSplitAndRevealSubtitleIdentity);
+  });
 </script>
 
 <section id="section-projets" class="section-projets">
