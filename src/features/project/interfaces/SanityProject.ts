@@ -11,9 +11,10 @@ export interface SanityProject {
     current: string;
   };
   drawMeA: string;
-  color1: string;
-  color2: string;
-  color3: string;
+  mainColor: string;
+  color1: SanityImage;
+  color2: SanityImage;
+  color3: SanityImage;
   hue: string;
   saturation: string;
   mainImages: SanityImage[];

@@ -3,9 +3,46 @@ export const querySanityProjects = `query ProjectPageQuery {
     _id
       slug{current}
       drawMeA
-      color1
-      color2
-      color3
+      mainColor
+      color1{
+        asset{
+          url
+          altText
+          metadata {
+            dimensions{
+              height
+              width
+              aspectRatio
+            }
+          }
+        }
+      }
+      color2{
+        asset{
+          url
+          altText
+          metadata {
+            dimensions{
+              height
+              width
+              aspectRatio
+            }
+          }
+        }
+      }
+      color3{
+        asset{
+          url
+          altText
+          metadata {
+            dimensions{
+              height
+              width
+              aspectRatio
+            }
+          }
+        }
+      }
       hue
       saturation
       mainImages{

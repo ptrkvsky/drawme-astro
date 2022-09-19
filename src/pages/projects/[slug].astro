@@ -11,6 +11,8 @@ import Layout from '@layouts/Layout.astro';
 
 export async function getStaticPaths() {
   const sanityProjects = await fetchSanity<SanityProjects>(querySanityProjects);
+
+  console.log('🔥 -->', sanityProjects);
   const params = sanityProjects && getProjectUrlParams(sanityProjects);
   return params;
 }
@@ -36,7 +38,7 @@ const { hue, saturation } = project;
   <div slot="main-content">
     <div class="wrapper-project">
       <SectionProjectOverview project={project} />
-      <SectionQuotes quote={project.quote} projectColor={project.color1} />
+      <SectionQuotes quote={project.quote} projectColor={project.mainColor} />
       <SectionImagesFooter images={project.imagesFooter} />
     </div>
   </div>

@@ -24,13 +24,13 @@ const {
 <div class="relative">
   <div class="wrapper-cols">
     <div class="wrapper-col-left">
-      <DrawMeA projectColor={project.color1} drawMeA={project.drawMeA} />
+      <DrawMeA projectColor={project.mainColor} drawMeA={project.drawMeA} />
       <MainImages mainImages={project.mainImages} />
     </div>
     <div class="wrapper-col-right">
       <PresentationClient
         text={project.excerptRaw}
-        projectColor={project.color1}
+        projectColor={project.mainColor}
       />
       <Colors
         color1={project.color1}
@@ -52,6 +52,7 @@ const {
 <style lang="scss">
   .wrapper-cols {
     max-width: 163rem;
+    margin-top: 1.4rem;
     margin-left: auto;
     margin-right: auto;
 

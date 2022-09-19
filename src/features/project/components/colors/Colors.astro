@@ -1,12 +1,15 @@
 ---
-import Color1 from './Color1.astro';
-import Color2 from './Color2.astro';
-import Color3 from './Color3.astro';
+import { Image } from '@astrojs/image/components';
+import { SanityImage } from '@interfaces/SanityImage';
+
+// import Color1 from './Color1.astro';
+// import Color2 from './Color2.astro';
+// import Color3 from './Color3.astro';
 
 interface AstroProps {
-  color1: string;
-  color2: string;
-  color3: string;
+  color1: SanityImage;
+  color2: SanityImage;
+  color3: SanityImage;
 }
 
 const { color1, color2, color3 } = Astro.props as AstroProps;
@@ -14,13 +17,31 @@ const { color1, color2, color3 } = Astro.props as AstroProps;
 
 <div class="wrapper-colors">
   <div>
-    <Color1 color={color1} />
+    <Image
+      src={color1.asset.url}
+      alt="couleur 1"
+      width={color1.asset.metadata.dimensions.width}
+      height={color1.asset.metadata.dimensions.height}
+      format="avif"
+    />
   </div>
   <div>
-    <Color2 color={color2} />
+    <Image
+      src={color2.asset.url}
+      alt="couleur 2"
+      width={color2.asset.metadata.dimensions.width}
+      height={color2.asset.metadata.dimensions.height}
+      format="avif"
+    />
   </div>
   <div>
-    <Color3 color={color3 === '#FFFFFF' ? color1 : color3} />
+    <Image
+      src={color3.asset.url}
+      alt="couleur 3"
+      width={color3.asset.metadata.dimensions.width}
+      height={color3.asset.metadata.dimensions.height}
+      format="avif"
+    />
   </div>
 </div>
 
