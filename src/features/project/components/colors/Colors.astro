@@ -45,17 +45,16 @@ const { color1, color2, color3 } = Astro.props as AstroProps;
   </div>
 </div>
 
-<style lang="scss">
+<style lang="scss" is:global>
   .wrapper-colors {
     display: flex;
     gap: 7rem;
+    margin-top: 1.4rem;
     margin-left: auto;
     margin-right: auto;
     padding-left: 6rem;
   }
-</style>
 
-<style lang="scss" is:global>
   .wrapper-colors .color {
     position: relative;
     display: inline-block;

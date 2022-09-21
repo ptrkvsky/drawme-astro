@@ -50,7 +50,7 @@
           <span class="line"></span>
           <a
             class="link menu__item"
-            data-img="https://developpeur-web.tech/_image/assets/images/developpeur-freelance_400x400.avif"
+            data-img="/assets/images/menu-home.png"
             href="/">Home</a
           >
         </li>
@@ -58,7 +58,7 @@
           <span class="line"></span>
           <a
             class="link menu__item"
-            data-img="https://developpeur-web.tech/_image/assets/images/developpeur-freelance_400x400.avif"
+            data-img="/assets/images/menu-who-am-i.png"
             href="/projects/dissidente">Who am i</a
           >
         </li>
@@ -66,20 +66,11 @@
           <span class="line"></span>
           <a
             class="link menu__item"
-            data-img="https://developpeur-web.tech/_image/assets/images/developpeur-freelance_400x400.avif"
+            data-img="/assets/images/menu-contact.png"
             href="/contact">Contact</a
           >
           <span class="line"></span>
         </li>
-        <!-- <li>
-          <a
-     
-          >
-            <span class="menu__item-text"
-              ><span class="menu__item-textinner">Nesta Freeman</span>
-            </span>
-          </a>
-        </li> -->
       </ul>
     </nav>
   </div>
@@ -117,10 +108,9 @@
       background-color: black;
 
       .menu {
-        overflow: hidden;
         position: absolute;
         left: 50%;
-        top: 50%;
+        top: 45%;
         width: 100%;
         transform: translateX(-50%) translateY(-50%);
         font-size: 6vw;
@@ -143,7 +133,7 @@
           margin-right: auto;
           max-width: 50vw;
           height: 2px;
-          background-color: #fff;
+          background-color: rgb(89, 89, 89);
           transform-origin: 50% 50%;
         }
       }
@@ -173,24 +163,6 @@
     position: relative;
     // padding-left: 5rem;
   }
-
-  // .menu__item::before {
-  //   counter-increment: menucounter;
-  //   content: counters(menucounter, '.', decimal-leading-zero);
-  //   position: absolute;
-  //   left: 0;
-  //   border-left: 3px solid currentColor;
-  //   top: 20%;
-  //   height: 60%;
-  //   padding-left: 1rem;
-  //   display: flex;
-  //   align-items: center;
-  //   line-height: 1;
-  //   font-weight: bold;
-  //   opacity: 0;
-  //   transform: translateX(-1rem);
-  //   transition: transform 0.3s, opacity 0.3s;
-  // }
 
   .menu__item:hover::before {
     opacity: 1;
@@ -262,8 +234,8 @@
   .hover-reveal {
     position: absolute;
     z-index: 220;
-    width: 220px;
-    height: 320px;
+    width: 300px;
+    height: 456px;
     top: 0;
     left: 0;
     pointer-events: none;

@@ -6,6 +6,23 @@ interface AstroProps {
 const { projectColor } = Astro.props as AstroProps;
 ---
 
+<script>
+  import gsap from 'gsap';
+
+  gsap.fromTo(
+    document.querySelector('#reveal-brush'),
+    {
+      xPercent: 0,
+    },
+    {
+      xPercent: 100,
+      delay: 0.5,
+      duration: 1.5,
+      ease: 'power4.inOut',
+    }
+  );
+</script>
+
 <div class="wrapper">
   <div id="reveal-brush" class="reveal"></div>
   <svg

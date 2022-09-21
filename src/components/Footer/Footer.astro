@@ -36,7 +36,7 @@ import instagram from '@assets/images/instagram.png';
     </div>
   </div>
   <div class="goodbye">
-    <h2 class="title">Can’t wait to draw with you !</h2>
+    <p class="title">Can’t wait to draw with you !</p>
   </div>
 </footer>
 
@@ -52,18 +52,18 @@ import instagram from '@assets/images/instagram.png';
   .infos {
     .mail {
       display: block;
-      font-size: clamp(24px, 2.4rem, 2.4rem);
+      font-size: clamp(11px, 2.4rem, 2.4rem);
       font-family: MontrealBold;
     }
 
     .baseline {
-      font-size: clamp(24px, 2.4rem, 2.4rem);
+      font-size: clamp(11px, 2.4rem, 2.4rem);
       font-style: italic;
       margin-bottom: 4px;
     }
 
     .developer {
-      font-size: clamp(16px, 1.6rem, 1.6rem);
+      font-size: clamp(10px, 1.6rem, 1.6rem);
 
       .highlight {
         font-family: MontrealBold;
@@ -90,8 +90,13 @@ import instagram from '@assets/images/instagram.png';
   .goodbye {
     display: flex;
     align-items: center;
+
+    @media screen and (max-width: 766px) {
+      display: none;
+    }
     .title {
       font-size: clamp(37px, 3.7rem, 3.7rem);
+      font-family: WagonBold;
     }
   }
 </style>
