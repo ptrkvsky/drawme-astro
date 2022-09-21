@@ -9,6 +9,7 @@ import illustrationBook from '@assets/images/illustration_book.png';
 import illustrationCrayon from '@assets/images/illustration_crayon.png';
 import illustrationFingers from '@assets/images/illustration_fingers.png';
 import illustrationLetters from '@assets/images/illustration_letters.png';
+import { Encercle } from '@components/Encercle';
 
 const { detail, presentation } = Astro.props as AstroProps;
 ---
@@ -61,6 +62,8 @@ const { detail, presentation } = Astro.props as AstroProps;
     data-lag="0.025"
   >
     {presentation}
+
+    <Encercle />
   </div>
   <div
     id="intro-detail"
