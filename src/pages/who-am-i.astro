@@ -4,7 +4,8 @@ import fetchSanity from '@helpers/fetchSanity';
 import { queryWhoAmI } from '@features/who-am-i/queries/queryWhoAmI';
 import { SanityWhoAmI } from '@features/who-am-i/interfaces/SanityWhoAmI';
 import Layout from '@layouts/Layout.astro';
-import { Hero } from '@features/who-am-i/Hero';
+import { Hero } from '@features/who-am-i/components/Hero';
+import { Presentation } from '@features/who-am-i/components/Presentation';
 const WhoAmI = await fetchSanity<{ WhoAmI: SanityWhoAmI }>(queryWhoAmI);
 const sanityWhoAmI = WhoAmI && WhoAmI.WhoAmI;
 ---
@@ -21,6 +22,10 @@ const sanityWhoAmI = WhoAmI && WhoAmI.WhoAmI;
   <Canvas slot="canvas" />
   <div class="wrapper-who-am-i" slot="main-content">
     <Hero sanityWhoAmI={sanityWhoAmI} />
+    <Presentation
+      portrait={sanityWhoAmI.portrait}
+      textPresentation={sanityWhoAmI.presentationRaw}
+    />
   </div>
 </Layout>
 
