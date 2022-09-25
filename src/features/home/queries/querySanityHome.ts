@@ -4,12 +4,12 @@ export const querySanityHome = `query IndexPageQuery {
     description
     keywords
   }
-   Home(id: "bd7e9f75-2800-4d97-82cf-0a174ed9a36f"){
+  Home(id: "bd7e9f75-2800-4d97-82cf-0a174ed9a36f"){
     _id
     title
-    introPresentation
+    introPresentationRaw
     introDetail
-    }
+  }
   allProject {
     title
     excerptRaw

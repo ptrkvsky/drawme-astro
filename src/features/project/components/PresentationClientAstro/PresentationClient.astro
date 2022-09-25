@@ -1,4 +1,5 @@
 ---
+import { portableTextComponents } from '@helpers/portableTextComponents';
 import { toHTML } from '@portabletext/to-html';
 
 interface AstroProps {
@@ -7,9 +8,7 @@ interface AstroProps {
 }
 const { projectColor, text } = Astro.props as AstroProps;
 const textPresentation = toHTML(text, {
-  components: {
-    /* optional object of custom components to use */
-  },
+  components: portableTextComponents,
 });
 ---
 

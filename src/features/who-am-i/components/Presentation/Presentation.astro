@@ -19,7 +19,7 @@ const textPresentationHTML = toHTML(textPresentation, {
 ---
 
 <section class="section-presentation">
-  <div class="col">
+  <div class="col col-left">
     <div class="wrapper-portrait">
       <span class="text text-who">Who</span>
       <span class="text text-am">am</span>
@@ -29,6 +29,7 @@ const textPresentationHTML = toHTML(textPresentation, {
         height={portrait.asset.metadata.dimensions.height}
         src={portrait.asset.url}
         format="avif"
+        aspectRatio={portrait.asset.metadata.dimensions.aspectRatio}
         alt="Instagram Draw me a sheep"
       />
     </div>
@@ -39,10 +40,17 @@ const textPresentationHTML = toHTML(textPresentation, {
 <style lang="scss" is:global>
   .section-presentation {
     display: grid;
-    grid-template-columns: 568px 1fr;
+    grid-template-columns: clamp(410px, 56.8rem, 56.8rem) auto;
     max-width: clamp(1208px, 120.8rem, 120.8rem);
+    padding-bottom: 15.1rem;
     margin: 11.1rem auto 0 auto;
     font-size: clamp(16px, 1.8rem, 1.8rem);
+  }
+
+  .col-left {
+    @media screen and (max-width: 1400px) {
+      padding-left: 13rem;
+    }
   }
 
   .text-presentation {
@@ -63,6 +71,13 @@ const textPresentationHTML = toHTML(textPresentation, {
   .wrapper-portrait {
     position: relative;
     display: inline-block;
+    width: clamp(35.3rem, 35.3rem, 353px);
+    min-height: 58.2rem;
+    img {
+      aspect-ratio: attr(width) / attr(height);
+      width: 100%;
+      height: auto;
+    }
 
     .text {
       position: absolute;
@@ -70,19 +85,19 @@ const textPresentationHTML = toHTML(textPresentation, {
       font-family: var(--text-heading);
       &.text-who {
         transform: rotate(-90deg);
-        top: 111px;
-        left: -216px;
+        top: 11rem;
+        left: -21.6rem;
         letter-spacing: 0;
       }
       &.text-am {
         transform: rotate(270deg);
-        right: -175px;
+        right: -17.5rem;
         bottom: 100px;
       }
       &.text-i {
-        left: 218px;
-        bottom: -150px;
-        width: clamp(160px, 16rem, 16rem);
+        left: 21.8rem;
+        bottom: -15rem;
+        width: 16rem;
       }
     }
   }

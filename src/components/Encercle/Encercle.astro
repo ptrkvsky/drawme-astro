@@ -1,5 +1,46 @@
-<!--?xml version="1.0" encoding="utf-8"?--><!-- Generator: Adobe Illustrator 26.4.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<script>
+  import gsap from 'gsap';
+  document.addEventListener('DOMContentLoaded', function () {
+    gsap
+      .timeline({
+        scrollTrigger: '#Calque_1111',
+      })
+      .fromTo(
+        `#zzzzzzzzzzzzzz`,
+        {
+          drawSVG: false,
+        },
+        {
+          drawSVG: true,
+          ease: `linear`,
+          delay: 0.5,
+          duration: 1.5,
+        }
+      );
+  });
+</script>
+
 <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 500 150"
+  preserveAspectRatio="none"
+  id="Calque_1111"
+>
+  <path
+    id="zzzzzzzzzzzzzz"
+    class="st0"
+    d="M9.3,127.3c49.3-3,150.7-7.6,199.7-7.4c121.9,0.4,189.9,0.4,282.3,7.2C380.1,129.6,181.2,130.6,70,139 c82.6-2.9,254.2-1,335.9,1.3c-56,1.4-137.2-0.3-197.1,9"
+  ></path>
+</svg>
+
+<style type="text/css">
+  .st0 {
+    fill: none;
+    stroke: #71f5df;
+    stroke-width: 8px;
+  }
+</style>
+<!-- <svg
   version="1.1"
   id="Calque_1"
   xmlns="http://www.w3.org/2000/svg"
@@ -36,4 +77,4 @@
       ></path>
     </g>
   </g>
-</svg>
+</svg> -->

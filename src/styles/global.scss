@@ -72,6 +72,33 @@ strong {
   }
 }
 
+.text-visible.split-text div {
+  overflow: visible;
+}
+
+.zigwigwi {
+  position: relative;
+  display: inline-block;
+
+  .svg-zigwigwi {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    bottom: -10px;
+    width: calc(100% + 2rem);
+    height: calc(100% + 2rem);
+
+    path {
+      stroke-dashoffset: 0;
+      stroke-dasharray: none;
+      stroke-width: 9;
+      stroke: var(--color-ice-ice-baby);
+      fill: none;
+    }
+  }
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 8px;

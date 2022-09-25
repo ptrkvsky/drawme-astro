@@ -2,7 +2,7 @@ import { SiteSettings } from '@interfaces/SiteSettings';
 
 interface Home {
   title: string;
-  introPresentation: string;
+  introPresentationRaw: any[];
   introDetail: string;
 }
 

@@ -12,7 +12,6 @@ export default class Menu {
 
   constructor(el: Element) {
     const test = document.querySelectorAll('.menu__item');
-    console.log('qsdqsd', test);
     // el is the menu element (<nav>)
     //@ts-ignore
     this.DOM = {

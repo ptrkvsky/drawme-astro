@@ -12,8 +12,8 @@ import Layout from '@layouts/Layout.astro';
 import Canvas from '@features/home/components/Canvas.astro';
 
 const sanityHome = await fetchSanity<SanityHome>(querySanityHome);
-const presentation = sanityHome && sanityHome.Home.introPresentation;
-const detail = sanityHome && sanityHome.Home.introPresentation;
+const presentation = sanityHome && sanityHome.Home.introPresentationRaw;
+const detail = sanityHome && sanityHome.Home.introDetail;
 ---
 
 <Layout background="#000" title="Grahic Designer at Cagnes sur Mer">

@@ -1,17 +1,21 @@
 ---
 interface AstroProps {
   detail: string;
-  presentation: string;
+  presentation: any[];
 }
-
+import { toHTML } from '@portabletext/to-html';
 import { Image } from '@astrojs/image/components';
 import illustrationBook from '@assets/images/illustration_book.png';
 import illustrationCrayon from '@assets/images/illustration_crayon.png';
 import illustrationFingers from '@assets/images/illustration_fingers.png';
 import illustrationLetters from '@assets/images/illustration_letters.png';
 import { Encercle } from '@components/Encercle';
+import { portableTextComponents } from '@helpers/portableTextComponents';
 
 const { detail, presentation } = Astro.props as AstroProps;
+const presentationHTML = toHTML(presentation, {
+  components: portableTextComponents,
+});
 ---
 
 <script>
@@ -22,6 +26,7 @@ const { detail, presentation } = Astro.props as AstroProps;
     revealText();
   });
 </script>
+
 <section id="section-presentation" class="section-presentation">
   <div class="illustration book" data-speed="1.05" data-lag="0.025">
     <Image
@@ -60,11 +65,10 @@ const { detail, presentation } = Astro.props as AstroProps;
     class="intro-presentation split-text"
     data-speed="0.85"
     data-lag="0.025"
+    set:html={presentationHTML}
   >
-    {presentation}
-
-    <Encercle />
   </div>
+
   <div
     id="intro-detail"
     class="intro-detail split-text"
