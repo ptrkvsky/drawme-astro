@@ -61,7 +61,7 @@ export const revealText = () => {
     // Animate the zigwigwi
     .to(`#intro-presentation .path-zigwigwi`, {
       drawSVG: true,
-      ease: `linear`,
+      ease: `power3.inOut`,
       delay: 0.4,
       duration: 1.5,
     })

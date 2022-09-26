@@ -1,6 +1,5 @@
 import { slugify } from '@lib/slugify';
 import type { PortableTextHtmlComponents } from '@portabletext/to-html';
-import { Encercle } from '@components/Encercle';
 
 export const portableTextComponents: Partial<PortableTextHtmlComponents> = {
   marks: {
