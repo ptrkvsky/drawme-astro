@@ -44,7 +44,10 @@ const idPath = 'draw-together-path';
 
     gsap
       .timeline({
-        scrollTrigger: `#section-draw-together`,
+        scrollTrigger: {
+          trigger: '#section-draw-together',
+          start: 'top center', // top of the element, center of the viewport
+        },
       })
       .fromTo(
         `#section-draw-together__path`,

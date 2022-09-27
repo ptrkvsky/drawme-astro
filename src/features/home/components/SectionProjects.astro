@@ -8,7 +8,9 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
 ---
 
 <script>
+  import gsap from 'gsap';
   import { splitAndReveal, ParamsSplitAndReveal } from '@helpers/gsap';
+
   window.addEventListener('load', () => {
     const paramsSplitAndRevealTitle: ParamsSplitAndReveal = {
       element: '#section-projets-title',
@@ -46,22 +48,79 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
       trigger: '#subtitle-identity',
     };
 
-    splitAndReveal(paramsSplitAndRevealTitle);
-    splitAndReveal(paramsSplitAndRevealDescription);
+    // splitAndReveal(paramsSplitAndRevealTitle);
+    // splitAndReveal(paramsSplitAndRevealDescription);
     splitAndReveal(paramsSplitAndRevealSubtitlePackaging);
     splitAndReveal(paramsSplitAndRevealSubtitleWebsite);
     splitAndReveal(paramsSplitAndRevealSubtitleLogo);
     splitAndReveal(paramsSplitAndRevealSubtitleSocial);
     splitAndReveal(paramsSplitAndRevealSubtitleIdentity);
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: `#section-projets-title`,
+          start: 'top center', // when the top of the trigger hits the center of the viewport
+        },
+      })
+      .fromTo(
+        '#section-projets-title',
+        {
+          opacity: 0,
+          scale: 0.98,
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 1.5,
+        }
+      )
+      .fromTo(
+        `#draw-for-you__path`,
+        {
+          drawSVG: false,
+        },
+        {
+          drawSVG: true,
+          ease: `power3.inOut`,
+          duration: 1.5,
+        }
+      )
+      .fromTo(
+        `#section-projets-description`,
+        {
+          opacity: 0,
+          scale: 0.98,
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          delay: -1,
+          duration: 1.5,
+        }
+      );
   });
 </script>
 
 <section id="section-projets" class="section-projets">
   <div class="wrapper-description-title">
-    <h2 id="section-projets-title" class="title split-text">
-      What would i draw for you ?
+    <h2 id="section-projets-title" class="title opacity-0">
+      What would i draw for <span id="draw-for-you" class="yes zigwigwi">
+        you <svg
+          class="svg-zigwigwi"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 500 150"
+          preserveAspectRatio="none"
+        >
+          <path
+            id="draw-for-you__path"
+            class="path-zigwigwi"
+            d="M9.3,127.3c49.3-3,150.7-7.6,199.7-7.4c121.9,0.4,189.9,0.4,282.3,7.2C380.1,129.6,181.2,130.6,70,139 c82.6-2.9,254.2-1,335.9,1.3c-56,1.4-137.2-0.3-197.1,9"
+          ></path>
+        </svg>
+      </span> ?
     </h2>
-    <p id="section-projets-description" class="description split-text">
+    <p id="section-projets-description" class="opacity-0 description">
       Drawmeasheep is an innovative graphic studio. It was a created by Mélody
       A.Nour, a freelance graphic designer that has always been passionate in
       all kinds of visual arts. The studio also provides you with all kind of
