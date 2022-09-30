@@ -25,7 +25,7 @@ const { quote: quotes, projectColor } = Astro.props as AstroProps;
 <section class="section-quotes">
   <div class="conteneur">
     {
-      quotes.forEach((quote, index) => {
+      quotes?.map((quote, index) => {
         const {
           url,
           altText,

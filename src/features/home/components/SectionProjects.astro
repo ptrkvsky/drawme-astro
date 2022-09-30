@@ -12,16 +12,6 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
   import { splitAndReveal, ParamsSplitAndReveal } from '@helpers/gsap';
 
   window.addEventListener('load', () => {
-    const paramsSplitAndRevealTitle: ParamsSplitAndReveal = {
-      element: '#section-projets-title',
-      typeSplit: 'chars',
-      trigger: '#section-projets',
-    };
-    const paramsSplitAndRevealDescription: ParamsSplitAndReveal = {
-      element: '#section-projets-description',
-      typeSplit: 'lines',
-      trigger: '#section-projets',
-    };
     const paramsSplitAndRevealSubtitlePackaging: ParamsSplitAndReveal = {
       element: '#subtitle-packaging',
       typeSplit: 'chars',
@@ -48,8 +38,6 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
       trigger: '#subtitle-identity',
     };
 
-    // splitAndReveal(paramsSplitAndRevealTitle);
-    // splitAndReveal(paramsSplitAndRevealDescription);
     splitAndReveal(paramsSplitAndRevealSubtitlePackaging);
     splitAndReveal(paramsSplitAndRevealSubtitleWebsite);
     splitAndReveal(paramsSplitAndRevealSubtitleLogo);
@@ -63,18 +51,13 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
           start: 'top center', // when the top of the trigger hits the center of the viewport
         },
       })
-      .fromTo(
-        '#section-projets-title',
-        {
-          opacity: 0,
-          scale: 0.98,
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 1.5,
-        }
-      )
+      // Reveal title
+      .from('#section-projets-title', {
+        opacity: 0,
+        scale: 0.995,
+        duration: 1.5,
+        ease: 'power1.inOut',
+      })
       .fromTo(
         `#draw-for-you__path`,
         {
@@ -86,25 +69,19 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
           duration: 1.5,
         }
       )
-      .fromTo(
-        `#section-projets-description`,
-        {
-          opacity: 0,
-          scale: 0.98,
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          delay: -1,
-          duration: 1.5,
-        }
-      );
+      // Reveal description
+      .to(`#section-projets-description`, {
+        opacity: 1,
+        delay: -1,
+        duration: 1.5,
+        ease: 'power1.inOut',
+      });
   });
 </script>
 
 <section id="section-projets" class="section-projets">
   <div class="wrapper-description-title">
-    <h2 id="section-projets-title" class="title opacity-0">
+    <h2 id="section-projets-title" class="title">
       What would i draw for <span id="draw-for-you" class="yes zigwigwi">
         you <svg
           class="svg-zigwigwi"
@@ -120,7 +97,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
         </svg>
       </span> ?
     </h2>
-    <p id="section-projets-description" class="opacity-0 description">
+    <p id="section-projets-description" class="description opacity-0">
       Drawmeasheep is an innovative graphic studio. It was a created by Mélody
       A.Nour, a freelance graphic designer that has always been passionate in
       all kinds of visual arts. The studio also provides you with all kind of

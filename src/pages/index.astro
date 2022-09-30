@@ -1,5 +1,5 @@
 ---
-import SectionDraw from '@features/home/components/SectionDrawSomething/SectionDrawSomething.astro';
+import { SectionDrawSomething } from '@features/home/components/SectionDrawSomething';
 import SectionDrawTogether from '@features/home/components/SectionDrawTogether.astro';
 import SectionHero from '@features/home/components/SectionHero.astro';
 import SectionPresentation from '@features/home/components/SectionPresentation/SectionPresentation.astro';
@@ -22,7 +22,7 @@ const detail = sanityHome && sanityHome.Home.introDetail;
     <SectionHero />
     <SectionPresentation presentation={presentation} detail={detail} />
     <SectionProjects />
-    <SectionDraw />
+    <SectionDrawSomething />
     <SectionDrawTogether />
     <SectionWhoAmI />
   </div>

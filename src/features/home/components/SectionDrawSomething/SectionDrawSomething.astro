@@ -7,7 +7,7 @@ import ReactCanva from './ReactCanva';
   document.addEventListener('load', () => {
     const paramsSplitAndRevealTitle: ParamsSplitAndReveal = {
       element: '#draw-something-title',
-      typeSplit: 'lines',
+      typeSplit: 'chars',
       trigger: '#section-ds-something',
     };
 
@@ -16,9 +16,7 @@ import ReactCanva from './ReactCanva';
 </script>
 
 <section id="section-ds-something" class="section-draw-something">
-  <h2 id="draw-something-title" class="title">
-    What would you draw <br /> for me ?
-  </h2>
+  <h2 id="draw-something-title" class="title">What would you draw for me ?</h2>
   <ReactCanva client:only="react" />
   <div class="wrapper-button">
     <div class="relative container">

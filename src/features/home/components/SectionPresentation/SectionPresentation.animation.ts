@@ -25,10 +25,6 @@ export const switchCanva = () => {
 };
 
 export const revealText = () => {
-  // Split texts
-  // const splitIntroPresentation = splitText('#intro-presentation', 'lines');
-  // const splitIntroDetail = splitText('#intro-detail', 'lines');
-
   gsap
     .timeline({
       scrollTrigger: {
@@ -38,56 +34,54 @@ export const revealText = () => {
         start: 'top 35%',
       },
     })
-    .from('#intro-presentation', {
-      opacity: 0,
-      scale: 0.995,
+
+    // Animate book
+    .to('.illustration.book', {
+      opacity: 1,
+      duration: 1,
+      ease: 'power1.inOut',
+    })
+    // Animate fingers
+    .to('.illustration.fingers .wrapper-overflow', {
+      opacity: 1,
+      duration: 1,
+      delay: -0.9,
+      ease: 'power1.inOut',
+    })
+    // Animate intro presentation
+    .to('#intro-presentation', {
+      opacity: 1,
       ease: `power1.in`,
       duration: 1.5,
+      delay: -0.9,
     })
-    .from(`#intro-presentation .path-zigwigwi`, {
+    // Hide zigwigwi
+    .set(`#intro-presentation .path-zigwigwi`, {
       drawSVG: false,
     })
-
-    // Intro presentation reveal
-    // Split text
-    // .from(splitIntroPresentation.lines, {
-    //   y: 50,
-    //   ease: 'power1.out',
-    //   skewY: 5,
-    //   stagger: {
-    //     amount: 0.3,
-    //   },
-    //   duration: 0.5,
-    //   opacity: 0,
-    // })
-    // Add remove overflow hidden
-    // .call(() => {
-    //   document
-    //     .querySelector('#intro-presentation')
-    //     .classList.add('text-visible');
-    // })
-    // Animate the zigwigwi
+    // Reveal the zigwigwi
     .to(`#intro-presentation .path-zigwigwi`, {
       drawSVG: true,
       ease: `power3.inOut`,
-      delay: 0.4,
       duration: 1.5,
     })
-    .from('#intro-detail', {
-      opacity: 0,
+    // Reveal the intro detail
+    .to('#intro-detail', {
+      opacity: 1,
       ease: `power3.inOut`,
       duration: 1.5,
-      delay: -0.4,
+      delay: -1.4,
+    })
+    .to('.illustration.crayon', {
+      opacity: 1,
+      duration: 1,
+      ease: 'power1.inOut',
+      delay: -1.4,
+    })
+    .to('.illustration.letters', {
+      opacity: 1,
+      duration: 1,
+      ease: 'power1.inOut',
+      delay: -0.9,
     });
-  // Intro detail représentation
-  // .from(splitIntroDetail.lines, {
-  //   y: 50,
-  //   ease: 'power1.out',
-  //   skewY: 5,
-  //   stagger: {
-  //     amount: 0.3,
-  //   },
-  //   opacity: 0,
-  //   delay: -0.3,
-  // });
 };

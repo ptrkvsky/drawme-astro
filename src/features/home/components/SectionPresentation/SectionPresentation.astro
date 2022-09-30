@@ -19,6 +19,7 @@ const presentationHTML = toHTML(presentation, {
 ---
 
 <script>
+  import gsap from 'gsap';
   import { switchCanva, revealText } from './SectionPresentation.animation';
 
   switchCanva();
@@ -28,7 +29,7 @@ const presentationHTML = toHTML(presentation, {
 </script>
 
 <section id="section-presentation" class="section-presentation">
-  <div class="illustration book" data-speed="1.05" data-lag="0.025">
+  <div class="illustration book opacity-0" data-speed="1.05" data-lag="0.025">
     <Image
       width={372}
       height={404}
@@ -37,12 +38,16 @@ const presentationHTML = toHTML(presentation, {
       alt="Illustration book"
     />
   </div>
-  <div class="illustration crayon" data-speed="0.98" data-lag="0.03">
+  <div class="illustration crayon opacity-0" data-speed="0.98" data-lag="0.03">
     <Image format="avif" src={illustrationCrayon} alt="Illustration crayon" />
   </div>
   <div class="illustration fingers">
     <div class="relative">
-      <div class="wrapper-overflow" data-speed="0.85" data-lag="0.025">
+      <div
+        class="wrapper-overflow opacity-0"
+        data-speed="0.85"
+        data-lag="0.025"
+      >
         <Image
           format="avif"
           src={illustrationFingers}
@@ -50,7 +55,11 @@ const presentationHTML = toHTML(presentation, {
         />
         {/* <div class="reveal" /> */}
       </div>
-      <div class="illustration letters" data-speed="1.15" data-lag="0.03">
+      <div
+        class="illustration letters opacity-0"
+        data-speed="1.15"
+        data-lag="0.03"
+      >
         <Image
           format="avif"
           src={illustrationLetters}
@@ -62,8 +71,8 @@ const presentationHTML = toHTML(presentation, {
   </div>
   <div
     id="intro-presentation"
-    class="intro-presentation split-text"
-    data-speed="0.85"
+    class="intro-presentation opacity-0"
+    data-speed="0.95"
     data-lag="0.025"
     set:html={presentationHTML}
   >
@@ -71,8 +80,8 @@ const presentationHTML = toHTML(presentation, {
 
   <div
     id="intro-detail"
-    class="intro-detail split-text"
-    data-speed="0.75"
+    class="intro-detail opacity-0"
+    data-speed="0.98"
     data-lag="0.03"
   >
     {detail}
