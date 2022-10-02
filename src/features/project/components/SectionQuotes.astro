@@ -8,6 +8,7 @@ interface AstroProps {
 }
 
 const { quote: quotes, projectColor } = Astro.props as AstroProps;
+console.log(projectColor);
 ---
 
 <script>
@@ -95,8 +96,9 @@ const { quote: quotes, projectColor } = Astro.props as AstroProps;
       }
       .wrapper-image {
         position: absolute;
-        top: -36.9rem;
+        bottom: -6.4rem;
         right: 0;
+        mix-blend-mode: color-burn;
       }
     }
 

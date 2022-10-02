@@ -1,8 +1,10 @@
 ---
 import Canvas from '@features/project/components/Canvas.astro';
+import SectionImagesDecale from '@features/project/components/SectionImagesDecale.astro';
 import SectionImagesFooter from '@features/project/components/SectionImagesFooter.astro';
 import SectionProjectOverview from '@features/project/components/SectionProjectOverview.astro';
 import SectionQuotes from '@features/project/components/SectionQuotes.astro';
+import SectionSingleImage from '@features/project/components/SectionSingleImage.astro';
 import getProjectUrlParams from '@features/project/functions/getProjectUrlParams';
 import { SanityProject, SanityProjects } from '@features/project/interfaces/';
 import { querySanityProjects } from '@features/project/queries/querySanityProjects';
@@ -36,7 +38,21 @@ const { hue, saturation } = project;
     <div class="wrapper-project">
       <SectionProjectOverview project={project} />
       <SectionQuotes quote={project.quote} projectColor={project.mainColor} />
-      <SectionImagesFooter images={project.imagesFooter} />
+      {
+        project.imagesFooter && project.imagesFooter.length > 0 && (
+          <SectionImagesFooter images={project.imagesFooter} />
+        )
+      }
+      {
+        project.imagesDecale && project.imagesDecale.length > 0 && (
+          <SectionImagesDecale images={project.imagesDecale} />
+        )
+      }
+      {
+        project.imageWebsite && (
+          <SectionSingleImage mainImage={project.imageWebsite} />
+        )
+      }
     </div>
   </div>
 </Layout>

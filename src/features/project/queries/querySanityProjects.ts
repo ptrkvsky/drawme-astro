@@ -43,9 +43,36 @@ export const querySanityProjects = `query ProjectPageQuery {
           }
         }
       }
+      imageWebsite {
+        asset{
+          url
+          altText
+          metadata {
+            dimensions{
+              height
+              width
+              aspectRatio
+            }
+          }
+        }
+      }
+      colorExcerpt
       hue
       saturation
       mainImages{
+        asset{
+          url
+          altText
+          metadata {
+            dimensions{
+              height
+              width
+              aspectRatio
+            }
+          }
+        }
+      }
+      imagesDecale{
         asset{
           url
           altText

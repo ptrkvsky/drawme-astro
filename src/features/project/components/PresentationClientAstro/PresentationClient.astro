@@ -5,11 +5,15 @@ import { toHTML } from '@portabletext/to-html';
 interface AstroProps {
   projectColor: string;
   text: any[];
+  textColor: string | null;
 }
-const { projectColor, text } = Astro.props as AstroProps;
+const { projectColor, text, textColor } = Astro.props as AstroProps;
+
 const textPresentation = toHTML(text, {
   components: portableTextComponents,
 });
+
+const finalTextColor = textColor || '#000';
 ---
 
 <script defer define:vars={{ textPresentation, projectColor }}>
@@ -28,19 +32,12 @@ const textPresentation = toHTML(text, {
     setHeight();
     window.addEventListener('resize', setHeight);
   });
-
-  // import gsap from 'gsap';
-
-  // gsap.to('#reveal-brush', {
-  //   scaleX: 0,
-  //   duration: 3,
-  //   ease: 'power4.inOut',
-  // });
 </script>
 
 <div
   id="presentation-client"
   class="presentation-client"
+  style={{ color: finalTextColor }}
   set:html={textPresentation}
 >
   <div id="bg-presentation" class="background"></div>
