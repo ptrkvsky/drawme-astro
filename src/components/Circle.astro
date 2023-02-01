@@ -64,16 +64,17 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    padding: 9.2rem;
+    padding: clamp(37px, 9.2rem, 9.2rem);
     display: flex;
     align-items: center;
     justify-content: center;
     transform: translate(-50%, calc(-50% - 5px));
-    font-size: 2.2rem;
     letter-spacing: 0.44rem;
     text-align: center;
     color: var(--color-white-beauty);
     text-transform: uppercase;
+    font-size: clamp(14px, 2.2rem, 2.2rem);
+    font-family: var(--text-body-bold);
 
     .text {
       display: inline-block;

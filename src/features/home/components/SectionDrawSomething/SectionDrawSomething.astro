@@ -41,7 +41,11 @@ import ReactCanva from './ReactCanva';
       width: 100%;
       text-align: center;
       color: #fff;
-      font-size: var(--font-size-heading);
+      font-size: clamp(
+        34px,
+        var(--font-size-heading),
+        var(--font-size-heading)
+      );
       text-align: center;
     }
 

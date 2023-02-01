@@ -88,20 +88,20 @@ import Circle from '@components/Circle.astro';
   .section-who-am-i {
     position: relative;
     display: block;
-    padding: 10.1rem 0;
+    padding: clamp(40px, 10.1rem, 10.1rem) 0;
     background-color: var(--color-black-beauty);
     overflow: hidden;
     white-space: nowrap;
 
     .stripes {
-      font-size: 5rem;
+      font-size: clamp(28px, 5rem, 5rem);
       display: flex;
       gap: 8rem;
       color: var(--color-white-beauty);
       font-family: var(--text-heading);
 
       &.top {
-        margin-bottom: 9.1rem;
+        margin-bottom: clamp(220px, 9.1rem, 9.1rem);
       }
       &.bottom {
         margin-top: 9.1rem;

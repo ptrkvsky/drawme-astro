@@ -214,7 +214,11 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
 
     .title {
       text-align: center;
-      font-size: var(--font-size-heading);
+      font-size: clamp(
+        34px,
+        var(--font-size-heading),
+        var(--font-size-heading)
+      );
     }
 
     .sub-title {

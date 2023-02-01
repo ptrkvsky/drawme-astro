@@ -99,36 +99,47 @@ const idPath = 'draw-together-path';
 
 <style lang="scss">
   .section-draw-together {
-    padding: 12rem 0 12rem 0;
+    padding: clamp(48px, 12rem, 12rem) 0 clamp(48px, 12rem, 12rem) 0;
 
     .title {
       margin-bottom: 6rem;
     }
 
     .answers {
-      margin: 7rem auto 0 auto;
+      margin: clamp(40px, 7rem, 7rem) auto 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
       max-width: 44.6rem;
       color: var(--color-text);
       font-family: var(--text-heading);
+      @media screen and (max-width: 766px) {
+        max-width: 100%;
+        width: 100%;
+        justify-content: space-evenly;
+      }
+
       .yes {
-        font-size: 7rem;
+        font-size: clamp(53px, 7rem, 7rem);
       }
       .no {
         position: absolute;
-        font-size: 3rem;
+        font-size: clamp(26px, 3rem, 3rem);
         right: 74rem;
+
+        @media screen and (max-width: 766px) {
+          position: static;
+          right: initial;
+        }
       }
     }
   }
 
   .title {
     text-align: center;
-    max-width: 47.6rem;
+    max-width: clamp(302px, 47.6rem, 47.6rem);
     margin: 0 auto;
-    font-size: var(--font-size-heading);
+    font-size: clamp(34px, var(--font-size-heading), var(--font-size-heading));
 
     .highlight {
       position: relative;

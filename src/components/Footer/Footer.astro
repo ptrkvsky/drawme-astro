@@ -47,26 +47,34 @@ import instagram from '@assets/images/instagram.png';
     max-width: 163rem;
     margin: 0 auto;
     padding: 4.2rem 0;
+
+    @media screen and (max-width: 726px) {
+      padding: 24px 36px;
+    }
   }
 
   .infos {
     .mail {
       display: block;
       font-size: clamp(11px, 2.4rem, 2.4rem);
-      font-family: MontrealBold;
+      font-family: var(--text-body-bold);
     }
 
     .baseline {
       font-size: clamp(11px, 2.4rem, 2.4rem);
       font-style: italic;
       margin-bottom: 4px;
+
+      @media screen and (max-width: 726px) {
+        max-width: 134px;
+      }
     }
 
     .developer {
       font-size: clamp(10px, 1.6rem, 1.6rem);
 
       .highlight {
-        font-family: MontrealBold;
+        font-family: var(--text-body-bold);
       }
     }
   }
@@ -76,14 +84,14 @@ import instagram from '@assets/images/instagram.png';
     gap: 0.4rem;
     align-items: center;
     .social {
-      max-width: 4.2rem;
+      max-width: clamp(42px, 4.2rem, 4.2rem);
     }
     .detail {
-      font-size: 1.3rem;
+      font-size: clamp(11px, 1.3rem, 1.3rem);
       line-height: 1.2;
     }
     .highlight {
-      font-family: MontrealBold;
+      font-family: var(--text-body-bold);
     }
   }
 
