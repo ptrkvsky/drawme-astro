@@ -1,17 +1,37 @@
 ---
 import { Image } from '@astrojs/image/components';
+import LogoMark from '@features/home/components/LogoMark.astro';
 import { SanityImage } from '@interfaces/SanityImage';
 import { toHTML } from '@portabletext/to-html';
 import { SanityWhoAmI } from '../../interfaces/SanityWhoAmI';
 
 interface AstroProps {
   textPresentation: any[];
+  textPresentationMobile1: any[];
+  textPresentationMobile2: any[];
   portrait: SanityImage;
 }
 
-const { textPresentation, portrait } = Astro.props as AstroProps;
+const {
+  textPresentation,
+  textPresentationMobile1,
+  textPresentationMobile2,
+  portrait,
+} = Astro.props as AstroProps;
 
 const textPresentationHTML = toHTML(textPresentation, {
+  components: {
+    /* optional object of custom components to use */
+  },
+});
+
+const textPresentationMobile1HTML = toHTML(textPresentationMobile1, {
+  components: {
+    /* optional object of custom components to use */
+  },
+});
+
+const textPresentationMobile2HTML = toHTML(textPresentationMobile2, {
   components: {
     /* optional object of custom components to use */
   },
@@ -34,7 +54,37 @@ const textPresentationHTML = toHTML(textPresentation, {
       />
     </div>
   </div>
-  <div class="text-presentation" set:html={textPresentationHTML}></div>
+  <div class="text-presentation hide-mobile" set:html={textPresentationHTML}>
+  </div>
+
+  <div class="wrapper-mobile hide-desktop">
+    <div
+      class="text-presentation mobile1"
+      set:html={textPresentationMobile1HTML}
+    >
+    </div>
+    <div class="wrapper-logo-mark canva-white">
+      <LogoMark />
+    </div>
+    <div class="wrapper-portrait">
+      <span class="text text-who">Who</span>
+      <span class="text text-am">am</span>
+      <span class="text text-i">I ?</span>
+      <Image
+        width={portrait.asset.metadata.dimensions.width}
+        height={portrait.asset.metadata.dimensions.height}
+        src={portrait.asset.url}
+        format="avif"
+        aspectRatio={portrait.asset.metadata.dimensions.aspectRatio}
+        alt="Instagram Draw me a sheep"
+      />
+    </div>
+    <div
+      class="text-presentation mobile2"
+      set:html={textPresentationMobile2HTML}
+    >
+    </div>
+  </div>
 </section>
 
 <style lang="scss" is:global>
@@ -45,20 +95,48 @@ const textPresentationHTML = toHTML(textPresentation, {
     padding-bottom: 15.1rem;
     margin: 11.1rem auto 0 auto;
     font-size: clamp(16px, 1.8rem, 1.8rem);
+
+    @media screen and (max-width: 1024px) {
+      display: flex;
+      flex-direction: column;
+      padding-top: 40px;
+      margin-top: 0;
+    }
   }
 
   .col-left {
     @media screen and (max-width: 1400px) {
       padding-left: 13rem;
     }
+
+    @media screen and (max-width: 1024px) {
+      // padding-left: 0;
+      // display: flex;
+      // justify-content: center;
+      display: none;
+    }
   }
 
   .text-presentation {
+    @media screen and (max-width: 1024px) {
+      &.hide-mobile {
+        display: inherit;
+        @media screen and (max-width: 1024px) {
+          display: none;
+        }
+      }
+
+      &.mobile1 {
+        padding: 0 37px;
+      }
+    }
+
     h2 {
       font-family: var(--text-body-bold);
       font-size: clamp(22px, 2.2rem, 2.5rem);
       letter-spacing: 2px;
       margin-bottom: clamp(29px, 2.9rem, 2.9rem);
+      line-height: 1.2;
     }
 
     p {
@@ -71,8 +149,9 @@ const textPresentationHTML = toHTML(textPresentation, {
   .wrapper-portrait {
     position: relative;
     display: inline-block;
-    width: clamp(35.3rem, 35.3rem, 353px);
+    width: clamp(194px, 35.3rem, 353px);
     min-height: 58.2rem;
+
     img {
       aspect-ratio: attr(width) / attr(height);
       width: 100%;
@@ -81,24 +160,82 @@ const textPresentationHTML = toHTML(textPresentation, {
 
     .text {
       position: absolute;
-      font-size: 12.9rem;
+      font-size: clamp(69px, 12.9rem, 12.9rem);
       font-family: var(--text-heading);
       &.text-who {
         transform: rotate(-90deg);
         top: 11rem;
         left: -21.6rem;
         letter-spacing: 0;
+
+        @media screen and (max-width: 1024px) {
+          top: 24rem;
+          left: -115px;
+        }
       }
       &.text-am {
         transform: rotate(270deg);
         right: -17.5rem;
         bottom: 100px;
+
+        @media screen and (max-width: 1024px) {
+          right: -88px;
+        }
       }
       &.text-i {
         left: 21.8rem;
         bottom: -15rem;
         width: 16rem;
+        @media screen and (max-width: 1024px) {
+          left: initial;
+          bottom: -74px;
+          right: -26px;
+          display: block;
+          width: 105px;
+        }
       }
+    }
+  }
+
+  .wrapper-mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h2 {
+      font-size: 19px;
+      line-height: 22px;
+      max-width: 310px;
+    }
+
+    .text-presentation p {
+      font-family: var(--text-body-book);
+    }
+
+    .mobile1 p {
+      padding-left: 37px;
+    }
+
+    .mobile2 p {
+      margin-bottom: 22px;
+      padding: 0 35px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      display: none;
+    }
+
+    .wrapper-logo-mark {
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 37px;
+      svg {
+        max-width: 102px;
+      }
+    }
+
+    .wrapper-portrait {
+      margin: 50px auto 90px;
     }
   }
 </style>

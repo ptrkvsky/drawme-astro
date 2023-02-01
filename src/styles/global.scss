@@ -130,3 +130,17 @@ strong {
     transform: rotate(360deg);
   }
 }
+
+.hide-tablet {
+  display: inherit;
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
+}
+
+.hide-desktop {
+  display: none;
+  @media screen and (max-width: 1024px) {
+    display: inherit;
+  }
+}

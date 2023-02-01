@@ -5,5 +5,7 @@ export interface SanityWhoAmI {
   titlePart2: string;
   intro: string;
   presentationRaw: any[];
+  presentationMobile1Raw: any[];
+  presentationMobile2Raw: any[];
   portrait: SanityImage;
 }

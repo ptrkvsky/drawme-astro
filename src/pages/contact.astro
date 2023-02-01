@@ -1,7 +1,78 @@
 ---
+import { Image } from '@astrojs/image/components';
+import Canvas from '@features/home/components/Canvas.astro';
 import Layout from '@layouts/Layout.astro';
+import email from '../assets/images/email.png';
+import telephone from '../assets/images/telephone.png';
 ---
 
-<Layout background="#000" title="Grahic Designer at Cagnes sur Mer">
-  <h1>contact</h1>
+<script>
+  import gsap from 'gsap';
+
+  gsap.fromTo(
+    '#mail',
+    {
+      opacity: 0,
+      y: -5,
+    },
+    {
+      opacity: 1,
+      x: 0,
+      duration: 2,
+      ease: 'power1.inOut',
+    }
+  );
+  gsap.fromTo(
+    '#telephone',
+    {
+      opacity: 0,
+      y: -5,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 2,
+      ease: 'power1.inOut',
+      delay: 0.25,
+    }
+  );
+</script>
+
+<Layout background="#000" title="Contact - Grahic Designer at Cagnes sur Mer">
+  <Canvas slot="canvas" />
+  <div class="wrapper-contact" slot="main-content">
+    <a id="mail" style="opacity: 0;" href="mailto:drawmeasheepdesign@gmail.com">
+      <Image src={email} alt="email" />
+    </a>
+    <a
+      id="telephone"
+      style="opacity: 0;"
+      class="telephone"
+      href="tel:+33635359793"
+    >
+      <Image src={telephone} alt="telephone" />
+    </a>
+  </div>
 </Layout>
+
+<style lang="scss" is:global>
+  .wrapper-contact {
+    min-height: calc(100vh - 133px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (max-width: 1280px) {
+      padding: 0 12px;
+    }
+  }
+
+  .telephone {
+    position: relative;
+    bottom: 5.9rem;
+  }
+  footer {
+    display: none !important;
+  }
+</style>

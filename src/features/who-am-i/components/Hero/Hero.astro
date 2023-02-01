@@ -8,8 +8,6 @@ interface AstroProps {
 const { sanityWhoAmI } = Astro.props as AstroProps;
 ---
 
-{console.log('sanityWhoAmI', sanityWhoAmI)}
-
 <div class="hero">
   <div class="conteneur">
     <div class="wrapper-text">
@@ -28,6 +26,12 @@ const { sanityWhoAmI } = Astro.props as AstroProps;
   .hero {
     background-image: url('/assets/images/who-am-i-hero-background.jpg');
     background-size: cover;
+    @media screen and (max-width: 766px) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 470px;
+    }
   }
 
   .conteneur {
@@ -41,11 +45,22 @@ const { sanityWhoAmI } = Astro.props as AstroProps;
     display: inline-flex;
     flex-direction: column;
     align-items: flex-end;
+
+    @media screen and (max-width: 766px) {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: center;
+      width: 100%;
+
+      position: relative;
+      top: -32px;
+    }
   }
 
   h1 {
     line-height: 1;
-    font-size: clamp(140px, 14rem, 14rem);
+    font-size: clamp(73px, 14rem, 14rem);
     color: #fff;
 
     .highlight {
@@ -60,5 +75,9 @@ const { sanityWhoAmI } = Astro.props as AstroProps;
     font-size: clamp(15px, 1.5rem, 1.5rem);
     color: #fff;
     line-height: clamp(22px, 2.2rem, 2.2rem);
+
+    @media screen and (max-width: 766px) {
+      display: none;
+    }
   }
 </style>

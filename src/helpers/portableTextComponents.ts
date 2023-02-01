@@ -52,8 +52,6 @@ export const portableTextComponents: Partial<PortableTextHtmlComponents> = {
       }</h2>`;
     },
     animate: ({ value }: any) => {
-      console.log('🅰️', value);
-
       return `<span class="animate">${value.children[0].text}</span>`;
     },
   },

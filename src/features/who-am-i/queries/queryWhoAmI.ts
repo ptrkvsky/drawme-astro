@@ -4,6 +4,8 @@ export const queryWhoAmI = `query WhoAmIPageQuery {
     titlePart2
   	intro 
     presentationRaw
+    presentationMobile1Raw
+    presentationMobile2Raw
     portrait{ 
     	asset{ 
       	url
