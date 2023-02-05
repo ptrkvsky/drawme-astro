@@ -49,18 +49,18 @@ export const revealText = () => {
       ease: 'power1.inOut',
     })
     // Animate intro presentation
-    .to('#intro-presentation', {
+    .to('.intro-presentation', {
       opacity: 1,
       ease: `power1.in`,
       duration: 1.5,
       delay: -0.9,
     })
     // Hide zigwigwi
-    .set(`#intro-presentation .path-zigwigwi`, {
+    .set(`.intro-presentation .path-zigwigwi`, {
       drawSVG: false,
     })
     // Reveal the zigwigwi
-    .to(`#intro-presentation .path-zigwigwi`, {
+    .to(`.intro-presentation .path-zigwigwi`, {
       drawSVG: true,
       ease: `power3.inOut`,
       duration: 1.5,

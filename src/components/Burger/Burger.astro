@@ -15,11 +15,16 @@
     position: fixed;
     z-index: 550;
     top: clamp(10px, 0.9rem, 0.9rem);
-    left: 1.4rem;
+    left: clamp(14px, 1.4rem, 1.4rem);
     padding: clamp(10px, 1rem, 1rem);
     border: none;
     background: transparent;
     cursor: pointer;
+
+    @media screen and (max-width: 766px) {
+      top: 4px;
+      left: 25px;
+    }
 
     .wrapper-open {
       width: clamp(19px, 1.9rem, 1.9rem);
@@ -27,11 +32,21 @@
       overflow: hidden;
       opacity: 1;
 
+      @media screen and (max-width: 766px) {
+        width: 36px;
+        height: 30px;
+        box-sizing: border-box;
+      }
+
       .line-open {
         position: absolute;
         display: block;
         width: 100%;
         height: clamp(3px, 0.3rem, 0.3rem);
+
+        @media screen and (max-width: 766px) {
+          height: 5px;
+        }
         &.line-1 {
           top: 0;
         }

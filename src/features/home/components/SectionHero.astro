@@ -76,6 +76,11 @@ import MiniMenu from './MiniMenu/MiniMenu.astro';
 </div>
 
 <style lang="scss" is:global>
+  .shadow {
+    @media screen and (max-width: 766px) {
+      display: none;
+    }
+  }
   .hero-wrapper {
     position: relative;
     min-height: calc(100vh);
@@ -83,7 +88,7 @@ import MiniMenu from './MiniMenu/MiniMenu.astro';
     align-items: center;
 
     @media screen and (max-width: 550px) {
-      padding: 0 24px;
+      padding: 0 35px;
     }
   }
   .heading {

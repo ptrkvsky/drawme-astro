@@ -138,11 +138,16 @@
     top: 0;
     display: flex;
     align-items: center;
-    padding-left: 5.8rem;
+    padding-left: clamp(35px, 5.8rem, 5.8rem);
     height: clamp(58px, 5.8rem, 5.8rem);
     width: 100vw;
     z-index: 500;
     background: #0000009c;
+    box-sizing: border-box;
+
+    @media screen and (max-width: 600px) {
+      justify-content: flex-end;
+    }
 
     /* @media screen and (max-width: 550px){
     padding: 0 24px !important; // overides gsap config
@@ -181,6 +186,9 @@
 
       @media screen and (max-width: 721px) {
         margin-left: 32px;
+        font-size: 13px;
+        top: 0;
+        right: 22px;
       }
 
       .dash {

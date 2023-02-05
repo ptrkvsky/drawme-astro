@@ -8,6 +8,7 @@ export const querySanityHome = `query IndexPageQuery {
     _id
     title
     introPresentationRaw
+    introPresentationMobileRaw
     introDetail
   }
   allProject {

@@ -3,7 +3,7 @@ import LogoMark from '../LogoMark.astro';
 ---
 
 <div class="mini-menu">
-  <div class="relative" style={{ display: 'inline-block' }}>
+  <div class="relative wrapper">
     <div
       id="mini-menu-mark"
       data-speed="1.2"
@@ -14,17 +14,17 @@ import LogoMark from '../LogoMark.astro';
       <LogoMark />
     </div>
     <div id="mini-menu-presentation" class="presentation" class="categories">
-      <span class="categorie opacity-0 webdesign">WEBDESIGN</span>
+      <span class="categorie opacity-0 webdesign desktop">WEBDESIGN</span>
+      <span class="categorie opacity-0 webdesign mobile">WEB</span>
       <span class="separator opacity-0">I</span>
       <span class="categorie opacity-0 print">PRINT</span>
       <span class="separator opacity-0">I</span>
-      <span class="categorie opacity-0 print">
-        BRAND <span class="hide-mobile">IDENTITY</span>
-      </span>
+      <span class="categorie opacity-0 brand desktop"> BRAND IDENTITY</span>
+      <span class="categorie opacity-0 brand mobile">BRAND</span>
       <span class="separator opacity-0">I</span>
-      <span class="categorie opacity-0 print">ILLUSTRATION</span>
-      <span class="separator opacity-0 hide-mobile">I</span>
-      <span class="categorie opacity-0 print hide-mobile">LAYOUT</span>
+      <span class="categorie opacity-0 illustration">ILLUSTRATION</span>
+      <span class="separator opacity-0 desktop">I</span>
+      <span class="categorie opacity-0 layout desktop">LAYOUT</span>
     </div>
   </div>
 </div>
@@ -37,8 +37,15 @@ import LogoMark from '../LogoMark.astro';
     text-align: center;
 
     @media screen and (max-width: 550px) {
-      bottom: 16px;
+      bottom: 24px;
       left: 0;
+    }
+  }
+
+  .wrapper {
+    display: inline-block;
+    @media screen and (max-width: 766px) {
+      display: block;
     }
   }
 
@@ -46,10 +53,14 @@ import LogoMark from '../LogoMark.astro';
     opacity: 0;
     position: absolute;
     right: -3rem;
-    bottom: 18rem;
+    bottom: clamp(180px, 18rem, 18rem);
     display: block;
-    width: 21.8rem;
+    width: clamp(100px, 21.8rem, 21.8rem);
     height: 21.8rem;
+
+    @media screen and (max-width: 766px) {
+      display: none;
+    }
 
     .canva-black & {
       color: var(--color-white-beauty);
@@ -66,9 +77,32 @@ import LogoMark from '../LogoMark.astro';
     display: flex;
     justify-content: center;
     mix-blend-mode: difference;
+    font-family: var(--text-body-bold);
+
+    @media screen and (max-width: 766px) {
+      justify-content: space-between;
+      padding: 0 35px;
+    }
+
+    .categorie {
+      &.mobile {
+        display: none;
+        @media screen and (max-width: 766px) {
+          display: inherit;
+        }
+      }
+
+      &.desktop {
+        display: inherit;
+        @media screen and (max-width: 766px) {
+          display: none;
+        }
+      }
+    }
+
     span {
       letter-spacing: clamp(2px, 0.56rem, 0.56rem);
-      font-size: clamp(10px, 1.6rem, 1.6rem);
+      font-size: clamp(12px, 1.6rem, 1.6rem);
 
       .canva-black & {
         color: var(--color-white-beauty);
@@ -77,6 +111,7 @@ import LogoMark from '../LogoMark.astro';
         color: var(--color-black-beauty);
       }
     }
+
     .separator {
       transform: translate(0%, 100%);
       .canva-black & {
@@ -84,6 +119,13 @@ import LogoMark from '../LogoMark.astro';
       }
       .canva-white & {
         color: var(--color-black-beauty);
+      }
+
+      &.desktop {
+        display: inherit;
+        @media screen and (max-width: 766px) {
+          display: none;
+        }
       }
     }
   }

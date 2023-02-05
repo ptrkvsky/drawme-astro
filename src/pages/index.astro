@@ -13,6 +13,8 @@ import Canvas from '@features/home/components/Canvas.astro';
 
 const sanityHome = await fetchSanity<SanityHome>(querySanityHome);
 const presentation = sanityHome && sanityHome.Home.introPresentationRaw;
+const presentationMobile =
+  sanityHome && sanityHome.Home.introPresentationMobileRaw;
 const detail = sanityHome && sanityHome.Home.introDetail;
 ---
 
@@ -20,7 +22,11 @@ const detail = sanityHome && sanityHome.Home.introDetail;
   <Canvas slot="canvas" />
   <div slot="main-content">
     <SectionHero />
-    <SectionPresentation presentation={presentation} detail={detail} />
+    <SectionPresentation
+      presentation={presentation}
+      presentationMobile={presentationMobile}
+      detail={detail}
+    />
     <SectionProjects />
     <SectionDrawSomething />
     <SectionDrawTogether />

@@ -2,6 +2,7 @@
 interface AstroProps {
   detail: string;
   presentation: any[];
+  presentationMobile: any[];
 }
 import { toHTML } from '@portabletext/to-html';
 import { Image } from '@astrojs/image/components';
@@ -11,9 +12,13 @@ import illustrationFingers from '@assets/images/illustration_fingers.png';
 import illustrationLetters from '@assets/images/illustration_letters.png';
 import { Encercle } from '@components/Encercle';
 import { portableTextComponents } from '@helpers/portableTextComponents';
+import LogoMark from '../LogoMark.astro';
 
-const { detail, presentation } = Astro.props as AstroProps;
+const { detail, presentation, presentationMobile } = Astro.props as AstroProps;
 const presentationHTML = toHTML(presentation, {
+  components: portableTextComponents,
+});
+const presentationMobileHTML = toHTML(presentationMobile, {
   components: portableTextComponents,
 });
 ---
@@ -71,11 +76,22 @@ const presentationHTML = toHTML(presentation, {
   </div>
   <div
     id="intro-presentation"
-    class="intro-presentation opacity-0"
+    class="intro-presentation opacity-0 desktop"
     data-speed="0.95"
     data-lag="0.025"
     set:html={presentationHTML}
   >
+  </div>
+  <div
+    id="intro-presentation"
+    class="intro-presentation opacity-0 mobile"
+    data-speed="0.95"
+    data-lag="0.025"
+    set:html={presentationMobileHTML}
+  >
+    <div class="wrapper-logo-mark">
+      <LogoMark />
+    </div>
   </div>
 
   <div
@@ -88,7 +104,7 @@ const presentationHTML = toHTML(presentation, {
   </div>
 </section>
 
-<style lang="scss">
+<style lang="scss" is:global>
   .section-presentation {
     position: relative;
     margin: 12.3rem auto;
@@ -97,6 +113,16 @@ const presentationHTML = toHTML(presentation, {
     max-width: 164rem;
     z-index: 10;
     font-size: 2.4rem;
+
+    @media screen and (max-width: 1300px) {
+      height: 800px;
+      max-width: 100%;
+      padding: 12.3rem 35px 0 35px;
+    }
+
+    @media screen and (max-width: 766px) {
+      height: auto;
+    }
 
     /* overflow: hidden; */
 
@@ -142,31 +168,80 @@ const presentationHTML = toHTML(presentation, {
     }
 
     .intro-presentation {
+      position: relative;
       margin-left: 69rem;
       margin-top: 12rem;
-      font-size: 3rem;
+      font-size: clamp(19px, 3rem, 3rem);
       max-width: 57.1rem;
       line-height: 1.2;
       letter-spacing: 0.2rem;
       font-family: var(--text-body-bold);
+
+      .wrapper-logo-mark {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+
+      &.desktop {
+        display: inherit;
+        @media screen and (max-width: 766px) {
+          display: none;
+        }
+      }
+
+      &.mobile {
+        display: none;
+        @media screen and (max-width: 766px) {
+          display: inherit;
+        }
+      }
+
+      .wrapper-logo-mark {
+        display: none;
+        @media screen and (max-width: 766px) {
+          display: inherit;
+          width: 102px;
+        }
+      }
+
+      @media screen and (max-width: 766px) {
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+
+        p {
+          margin-bottom: 16px;
+          &:nth-child(3) {
+            max-width: 210px;
+          }
+        }
+      }
     }
 
     .intro-detail {
       position: absolute;
       right: 0;
-      margin-top: 7.2rem;
+      margin-top: clamp(48px, 7.2rem, 7.2rem);
       max-width: 67.6rem;
       line-height: 1.4;
       letter-spacing: clamp(2px, 0.2rem, 0.2rem);
       font-weight: 800;
-      font-size: clamp(21px, 2.1rem, 2.1rem);
+      font-size: clamp(16px, 2.1rem, 2.1rem);
       font-family: MontrealThin;
+
+      @media screen and (max-width: 766px) {
+        position: relative;
+        max-width: 100%;
+        padding: 0;
+        right: initial;
+      }
     }
 
     .wrapper-svg {
       position: absolute;
       right: 0;
-      bottom: 0;
+      bottom: -8px;
       margin-top: 8rem;
       width: 67.6rem;
     }
