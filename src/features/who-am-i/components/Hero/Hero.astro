@@ -8,14 +8,36 @@ interface AstroProps {
 const { sanityWhoAmI } = Astro.props as AstroProps;
 ---
 
+<script>
+  import { splitAndReveal } from '@helpers/gsap';
+
+  // Split title
+  const paramsSplitAndRevealTitle = {
+    element: `h1`,
+    typeSplit: 'lines',
+    trigger: `body`,
+  };
+
+  splitAndReveal(paramsSplitAndRevealTitle);
+
+  // Split title
+  const paramsSplitAndRevealIntroduction = {
+    element: `.introduction`,
+    typeSplit: 'lines',
+    trigger: `body`,
+  };
+
+  splitAndReveal(paramsSplitAndRevealIntroduction);
+</script>
+
 <div class="hero">
   <div class="conteneur">
     <div class="wrapper-text">
-      <h1>
+      <h1 class="split-text">
         {sanityWhoAmI?.titlePart1}
         <span class="highlight">{sanityWhoAmI?.titlePart2}</span>
       </h1>
-      <p class="introduction">
+      <p id="who-am-i-intro" class="introduction">
         {sanityWhoAmI?.intro}
       </p>
     </div>

@@ -38,26 +38,68 @@ const textPresentationMobile2HTML = toHTML(textPresentationMobile2, {
 });
 ---
 
-<section class="section-presentation">
+<script>
+  import gsap from 'gsap';
+  import { ParamsSplitAndReveal, splitAndReveal } from '@helpers/gsap';
+
+  const paramsSplitAndRevealLineWho: ParamsSplitAndReveal = {
+    element: '#line-who',
+    typeSplit: 'chars',
+    trigger: '#section-presentation',
+  };
+  const paramsSplitAndRevealLineAm: ParamsSplitAndReveal = {
+    element: '#line-am',
+    typeSplit: 'chars',
+    trigger: '#section-presentation',
+  };
+  const paramsSplitAndRevealLineI: ParamsSplitAndReveal = {
+    element: '#line-i',
+    typeSplit: 'chars',
+    trigger: '#section-presentation',
+  };
+
+  gsap.set('.wrapper-mely-melo', {
+    opacity: 0,
+  });
+
+  window.addEventListener('load', () => {
+    splitAndReveal(paramsSplitAndRevealLineWho);
+    splitAndReveal(paramsSplitAndRevealLineAm);
+    splitAndReveal(paramsSplitAndRevealLineI);
+
+    gsap.to('.wrapper-mely-melo', {
+      opacity: 1,
+      delay: 1,
+      duration: 1,
+    });
+  });
+</script>
+<section id="section-presentation" class="section-presentation">
   <div class="col col-left">
     <div class="wrapper-portrait">
-      <span class="text text-who">Who</span>
-      <span class="text text-am">am</span>
-      <span class="text text-i">I ?</span>
-      <Image
-        width={portrait.asset.metadata.dimensions.width}
-        height={portrait.asset.metadata.dimensions.height}
-        src={portrait.asset.url}
-        format="avif"
-        aspectRatio={portrait.asset.metadata.dimensions.aspectRatio}
-        alt="Instagram Draw me a sheep"
-      />
+      <span id="line-who" class="split-text text text-who">Who</span>
+      <span id="line-am" class="text text-am">am</span>
+      <span id="line-i" class="text text-i">I ?</span>
+      <div class="wrapper-mely-melo">
+        <Image
+          width={portrait.asset.metadata.dimensions.width}
+          height={portrait.asset.metadata.dimensions.height}
+          src={portrait.asset.url}
+          format="avif"
+          aspectRatio={portrait.asset.metadata.dimensions.aspectRatio}
+          alt="Instagram Draw me a sheep"
+        />
+      </div>
     </div>
   </div>
-  <div class="text-presentation hide-mobile" set:html={textPresentationHTML}>
+  <div
+    id="desktop-presentation"
+    class="text-presentation hide-mobile split-text"
+    set:html={textPresentationHTML}
+  >
   </div>
 
-  <div class="wrapper-mobile hide-desktop">
+  <div class="wrapper-mobile hide-desktop split-text">
     <div
       class="text-presentation mobile1"
       set:html={textPresentationMobile1HTML}
@@ -70,14 +112,17 @@ const textPresentationMobile2HTML = toHTML(textPresentationMobile2, {
       <span class="text text-who">Who</span>
       <span class="text text-am">am</span>
       <span class="text text-i">I ?</span>
-      <Image
-        width={portrait.asset.metadata.dimensions.width}
-        height={portrait.asset.metadata.dimensions.height}
-        src={portrait.asset.url}
-        format="avif"
-        aspectRatio={portrait.asset.metadata.dimensions.aspectRatio}
-        alt="Instagram Draw me a sheep"
-      />
+      <div class="wrapper-mely-melo">
+        <Image
+          id="mely-melo"
+          width={portrait.asset.metadata.dimensions.width}
+          height={portrait.asset.metadata.dimensions.height}
+          src={portrait.asset.url}
+          format="avif"
+          aspectRatio={portrait.asset.metadata.dimensions.aspectRatio}
+          alt="Instagram Draw me a sheep"
+        />
+      </div>
     </div>
     <div
       class="text-presentation mobile2"
@@ -162,6 +207,7 @@ const textPresentationMobile2HTML = toHTML(textPresentationMobile2, {
       position: absolute;
       font-size: clamp(69px, 12.9rem, 12.9rem);
       font-family: var(--text-heading);
+
       &.text-who {
         transform: rotate(-90deg);
         top: 11rem;

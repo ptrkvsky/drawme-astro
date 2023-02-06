@@ -11,11 +11,21 @@ const sanityWhoAmI = WhoAmI && WhoAmI.WhoAmI;
 ---
 
 <script>
+  import { ParamsSplitAndReveal, splitAndReveal } from '@helpers/gsap';
+
   const root = document.querySelector(':root');
   //@ts-ignore
   root.style.setProperty('--canva-hue', 2.15);
   //@ts-ignore
   root.style.setProperty('--canva-saturation', 1);
+
+  const paramsSplitAndRevealSubtitleWebsite: ParamsSplitAndReveal = {
+    element: '#subtitle-website',
+    typeSplit: 'chars',
+    trigger: '#section-presentation',
+  };
+
+  splitAndReveal(paramsSplitAndRevealSubtitleWebsite);
 </script>
 
 <Layout background="#FFF" title="Who am i">

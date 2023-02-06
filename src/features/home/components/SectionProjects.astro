@@ -12,21 +12,6 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
   import { splitAndReveal, ParamsSplitAndReveal } from '@helpers/gsap';
 
   window.addEventListener('load', () => {
-    const paramsSplitAndRevealSubtitlePackaging: ParamsSplitAndReveal = {
-      element: '#subtitle-packaging',
-      typeSplit: 'chars',
-      trigger: '#section-projets',
-    };
-    const paramsSplitAndRevealSubtitleWebsite: ParamsSplitAndReveal = {
-      element: '#subtitle-website',
-      typeSplit: 'chars',
-      trigger: '#section-projets',
-    };
-    const paramsSplitAndRevealSubtitleSocial: ParamsSplitAndReveal = {
-      element: '#subtitle-social',
-      typeSplit: 'chars',
-      trigger: '#section-projets-title',
-    };
     const paramsSplitAndRevealSubtitleIdentity: ParamsSplitAndReveal = {
       element: '#subtitle-identity',
       typeSplit: 'chars',
@@ -37,12 +22,27 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
       typeSplit: 'chars',
       trigger: '#subtitle-identity',
     };
+    const paramsSplitAndRevealSubtitlePackaging: ParamsSplitAndReveal = {
+      element: '#subtitle-packaging',
+      typeSplit: 'chars',
+      trigger: '#section-projets',
+    };
+    const paramsSplitAndRevealSubtitleSocial: ParamsSplitAndReveal = {
+      element: '#subtitle-social',
+      typeSplit: 'chars',
+      trigger: '#section-projets-title',
+    };
+    const paramsSplitAndRevealSubtitleWebsite: ParamsSplitAndReveal = {
+      element: '#subtitle-website',
+      typeSplit: 'chars',
+      trigger: '#section-projets',
+    };
 
-    splitAndReveal(paramsSplitAndRevealSubtitlePackaging);
-    splitAndReveal(paramsSplitAndRevealSubtitleWebsite);
-    splitAndReveal(paramsSplitAndRevealSubtitleLogo);
-    splitAndReveal(paramsSplitAndRevealSubtitleSocial);
     splitAndReveal(paramsSplitAndRevealSubtitleIdentity);
+    splitAndReveal(paramsSplitAndRevealSubtitleLogo);
+    splitAndReveal(paramsSplitAndRevealSubtitlePackaging);
+    splitAndReveal(paramsSplitAndRevealSubtitleSocial);
+    splitAndReveal(paramsSplitAndRevealSubtitleWebsite);
 
     gsap
       .timeline({
