@@ -40,6 +40,7 @@ const textPresentationMobile2HTML = toHTML(textPresentationMobile2, {
 
 <script>
   import gsap from 'gsap';
+  import { TypeShuffle } from '@helpers/typeShuffle';
   import { ParamsSplitAndReveal, splitAndReveal } from '@helpers/gsap';
 
   const paramsSplitAndRevealLineWho: ParamsSplitAndReveal = {
@@ -73,6 +74,10 @@ const textPresentationMobile2HTML = toHTML(textPresentationMobile2, {
       duration: 1,
     });
   });
+
+  const textElement = document.querySelector('.text-presentation');
+  const ts = new TypeShuffle(textElement);
+  ts.trigger('fx3');
 </script>
 <section id="section-presentation" class="section-presentation">
   <div class="col col-left">

@@ -33,6 +33,7 @@
     "gsap": "npm:@gsap/shockingly@^3.11.0",
     "imagesloaded": "^5.0.0",
     "import": "^0.0.6",
-    "react-canvas-draw": "^1.2.1"
+    "react-canvas-draw": "^1.2.1",
+    "splitting": "^1.0.6"
   }
 }
