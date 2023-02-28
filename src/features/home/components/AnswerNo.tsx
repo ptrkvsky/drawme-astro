@@ -4,20 +4,20 @@ import { useRef } from 'react';
 
 const AnswerNo = () => {
   const refElement = useRef<HTMLElement>(null);
+  console.log('hello');
 
   const handleNoHover = () => {
+    console.log('hello');
     const elementWidth = refElement.current.offsetWidth;
     const elementHeight = refElement.current.offsetHeight;
     // /* Detect */
     const maxX = window.innerWidth - elementWidth;
     const maxY = window.innerHeight - elementHeight;
 
-    const topPos = getRandomInt(0, maxY);
-    const leftPos = getRandomInt(0, maxX);
+    const rightPos = getRandomInt(94, 24);
 
     gsap.to('#answer-no', {
-      x: topPos,
-      left: leftPos,
+      right: rightPos + 'rem',
       ease: 'Power4.out',
       duration: 0.3,
     });
