@@ -144,3 +144,10 @@ strong {
     display: inherit;
   }
 }
+
+.canva {
+  canvas {
+    min-width: 100vw !important;
+    min-height: 100vh !important;
+  }
+}
