@@ -203,39 +203,6 @@
       sampler: 'uRipplesTexture',
       fromTexture: ripples.getTexture(),
     });
-
-    // // GUI
-    // const gui = new GUI();
-
-    // const guiHue = gui.add({ hue: renderPass.uniforms.hue.value }, "hue", 0, Math.PI * 2, 0.01);
-    // guiHue.onChange((value: any) => {
-    // 	renderPass.uniforms.hue.value = value;
-    // });
-
-    // const guiSaturation = gui.add(
-    // 	{ saturation: renderPass.uniforms.saturation.value },
-    // 	"saturation",
-    // 	0,
-    // 	3,
-    // 	0.0625
-    // );
-    // guiSaturation.onChange((value: any) => {
-    // 	renderPass.uniforms.saturation.value = value;
-    // });
-
-    // const guiBgColor = gui.addColor(
-    // 	{
-    // 		bgColor: {
-    // 			r: renderPass.uniforms.bgColor.value[0],
-    // 			g: renderPass.uniforms.bgColor.value[1],
-    // 			b: renderPass.uniforms.bgColor.value[2]
-    // 		}
-    // 	},
-    // 	"bgColor"
-    // );
-    // guiBgColor.onChange((value: any) => {
-    // 	renderPass.uniforms.bgColor.value = [value.r, value.g, value.b];
-    // });
   });
 
   /**

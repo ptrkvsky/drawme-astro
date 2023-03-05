@@ -19,12 +19,18 @@ import LogoMark from '../LogoMark.astro';
       <span class="separator opacity-0">I</span>
       <span class="categorie opacity-0 print">PRINT</span>
       <span class="separator opacity-0">I</span>
-      <span class="categorie opacity-0 brand desktop"> BRAND IDENTITY</span>
-      <span class="categorie opacity-0 brand mobile">BRAND</span>
+      <span class="categorie opacity-0 brand desktop"
+        ><a href="/projects/la-recyclerie">BRAND IDENTITY</a>
+      </span>
+      <span class="categorie opacity-0 brand mobile"
+        ><a href="/projects/la-recyclerie">BRAND</a>
+      </span>
       <span class="separator opacity-0">I</span>
       <span class="categorie opacity-0 illustration">ILLUSTRATION</span>
       <span class="separator opacity-0 desktop">I</span>
-      <span class="categorie opacity-0 layout desktop">LAYOUT</span>
+      <span class="categorie opacity-0 layout desktop"
+        ><a href="/les-reservoirs-de-passy">LAYOUT</a>
+      </span>
     </div>
   </div>
 </div>
@@ -78,6 +84,13 @@ import LogoMark from '../LogoMark.astro';
     justify-content: center;
     mix-blend-mode: difference;
     font-family: var(--text-body-bold);
+
+    a {
+      transition: color 0.15s linear;
+      &:hover {
+        color: var(--color-ice-ice-baby);
+      }
+    }
 
     @media screen and (max-width: 766px) {
       justify-content: space-between;
