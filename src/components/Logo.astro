@@ -3,6 +3,7 @@
   import config from '../config';
   window.addEventListener('load', () => {
     const isProd = config.mode === 'production';
+    // const isProd = true;
     const isDarkSoul =
       navigator.userAgent.indexOf('ouse') > -1 ||
       navigator.userAgent.indexOf('eadles') > -1;
@@ -109,7 +110,7 @@
   }
 
   .wrapper-absolute {
-    max-width: clamp(275px, 40vw, 40vw);
+    max-width: clamp(175px, 7vw, 7vw);
     position: absolute;
     left: 50%;
     top: calc(50% - 4rem);
