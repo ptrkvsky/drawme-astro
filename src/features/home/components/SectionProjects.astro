@@ -208,11 +208,15 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
     font-size: 2.4rem;
     height: clamp(1000px, 125rem, 2450px);
 
-    @media screen and (max-width: 766px) {
+    @media screen and (max-width: 1024px) {
+      height: 100vh;
+    }
+
+    @media screen and (max-width: 768px) {
       height: auto;
     }
 
-    @media screen and (max-width: 766px) {
+    @media screen and (max-width: 768px) {
       margin-top: 35px;
     }
 
@@ -241,7 +245,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
       max-width: 56.1rem;
       top: 44.4rem;
 
-      @media screen and (max-width: 766px) {
+      @media screen and (max-width: 768px) {
         position: relative;
         top: initial;
         left: initial;
@@ -258,7 +262,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
         margin-top: 4.4rem;
         padding: 0 2rem;
 
-        @media screen and (max-width: 766px) {
+        @media screen and (max-width: 768px) {
           display: none;
         }
       }
@@ -266,7 +270,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
     .wrapper-illustration-title {
       position: absolute;
 
-      @media screen and (max-width: 766px) {
+      @media screen and (max-width: 768px) {
         position: relative;
         margin-bottom: 35px;
       }
@@ -276,7 +280,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
         left: 0;
         padding-left: 4rem;
 
-        @media screen and (max-width: 766px) {
+        @media screen and (max-width: 768px) {
           top: initial;
           left: initial;
           padding-left: 55px;
@@ -284,7 +288,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
 
         .illustration {
           max-width: 35.9rem;
-          @media screen and (max-width: 766px) {
+          @media screen and (max-width: 768px) {
             max-width: 203px;
           }
         }
@@ -295,7 +299,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
           color: var(--color-text);
           transform: rotate(-90deg);
 
-          @media screen and (max-width: 766px) {
+          @media screen and (max-width: 768px) {
             left: -97px;
           }
         }
@@ -312,7 +316,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
       &.packaging {
         top: 4.8rem;
         left: 110.8rem;
-        @media screen and (max-width: 766px) {
+        @media screen and (max-width: 768px) {
           top: initial;
           left: initial;
         }
@@ -335,8 +339,14 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
           left: 116rem;
         }
 
-        @media screen and (max-width: 766px) {
+        @media screen and (max-width: 1024px) {
           top: initial;
+          bottom: 8rem;
+        }
+
+        @media screen and (max-width: 768px) {
+          top: initial;
+          bottom: initial;
           left: initial;
           display: flex;
           justify-content: flex-end;
@@ -355,7 +365,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
           -webkit-text-stroke: 1px black;
           color: transparent;
 
-          @media screen and (max-width: 766px) {
+          @media screen and (max-width: 768px) {
             transform: rotate(-90deg);
             width: 280px;
             left: -168px;
@@ -367,7 +377,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
       &.logo {
         top: 86.7rem;
         left: 69rem;
-        @media screen and (max-width: 766px) {
+        @media screen and (max-width: 768px) {
           top: initial;
           left: initial;
         }
@@ -384,11 +394,14 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
         top: 57.6rem;
         left: 22.2rem;
 
-        @media screen and (max-width: 1280px) {
+        @media screen and (max-width: 1374px) {
           left: 14.2rem;
         }
+        @media screen and (max-width: 1200px) {
+          left: 0rem;
+        }
 
-        @media screen and (max-width: 766px) {
+        @media screen and (max-width: 768px) {
           top: initial;
           left: initial;
 
@@ -410,7 +423,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
           -webkit-text-stroke: 1px black;
           color: transparent;
 
-          @media screen and (max-width: 766px) {
+          @media screen and (max-width: 768px) {
             left: -32.8rem;
           }
         }
