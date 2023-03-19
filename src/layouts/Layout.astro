@@ -14,6 +14,8 @@ import CanvasProject from '@features/project/components/Canvas.astro';
 
 
 
+
+
 export interface Props {
   title: string;
   background: string;
@@ -22,12 +24,15 @@ export interface Props {
 const currentPath = Astro.url.pathname;
 const isHome = currentPath === "/"
 const isProject = currentPath.includes("/projects/")
+const isWhoAmi = currentPath.includes("/who-am-i/")
+const isContact = currentPath.includes("/contact")
 const { title, background } = Astro.props as Props;
 
 let Canvas
 
-if(isHome) Canvas = CanvasHome
-if(isProject) Canvas = CanvasProject
+if(isHome || isContact) Canvas = CanvasHome
+if(isProject || isWhoAmi) Canvas = CanvasProject
+
 ---
 
 <meta charset="UTF-8" />
