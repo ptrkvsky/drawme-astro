@@ -20,8 +20,8 @@ export interface Props {
 
 const currentPath = Astro.url.pathname;
 const isHome = currentPath === "/"
-const isProject = currentPath.includes("/projects/")
-const isWhoAmi = currentPath.includes("/who-am-i/")
+const isProject = currentPath.includes("/projects")
+const isWhoAmi = currentPath.includes("/who-am-i")
 const isContact = currentPath.includes("/contact")
 const { title, background } = Astro.props as Props;
 
@@ -40,9 +40,7 @@ if(isProject || isWhoAmi) Canvas = CanvasProject
 
 <body style={{ background }} class="canva-black">
   <Burger />
-  <Header />
-  <!-- <slot name="canvas" /> -->
-  
+  <Header />  
   <Canvas />
   <Logo />
   <Gsap>
