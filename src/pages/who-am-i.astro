@@ -28,8 +28,7 @@ const sanityWhoAmI = WhoAmI && WhoAmI.WhoAmI;
   splitAndReveal(paramsSplitAndRevealSubtitleWebsite);
 </script>
 
-<Layout background="#FFF" title="Who am i">
-  <Canvas slot="canvas" />
+<Layout isHome={false} background="#FFF" title="Who am i">
   <div class="wrapper-who-am-i" slot="main-content">
     <Hero sanityWhoAmI={sanityWhoAmI} />
     <Presentation
@@ -41,8 +40,12 @@ const sanityWhoAmI = WhoAmI && WhoAmI.WhoAmI;
   </div>
 </Layout>
 
-<style lang="scss">
+<style lang="scss" is:global>
   .wrapper-who-am-i {
     padding-top: clamp(58px, 5.8rem, 5.8rem);
+  }
+
+  #main-canva canvas:first-child {
+    display: none;
   }
 </style>

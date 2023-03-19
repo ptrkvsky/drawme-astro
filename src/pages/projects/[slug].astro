@@ -32,8 +32,8 @@ const { hue, saturation } = project;
   root.style.setProperty('--canva-saturation', saturation);
 </script>
 
-<Layout background="#FFF" title="Un beau projet">
-  <Canvas slot="canvas" />
+<Layout isHome={false} background="#FFF" title="Un beau projet">
+  <Canvas  />
   <div slot="main-content">
     <div class="wrapper-project">
       <SectionProjectOverview project={project} />
@@ -57,8 +57,12 @@ const { hue, saturation } = project;
   </div>
 </Layout>
 
-<style lang="scss">
+<style lang="scss" is:global>
   .wrapper-project {
     padding-top: clamp(95px, 9.5rem, 9.5rem);
+  }
+  // ! pas mieux
+  #main-canva canvas:first-child {
+    display: none;
   }
 </style>
