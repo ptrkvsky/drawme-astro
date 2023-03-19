@@ -9,13 +9,25 @@ import '@styles/variables.scss';
 import '@styles/global.scss';
 import '@styles/functions.scss';
 import { Menu, Burger, Footer } from '@components/index';
+import CanvasHome from '@features/home/components/Canvas.astro';
+import CanvasProject from '@features/project/components/Canvas.astro';
+
+
 
 export interface Props {
   title: string;
   background: string;
 }
 
+const currentPath = Astro.url.pathname;
+const isHome = currentPath === "/"
+const isProject = currentPath.includes("/projects/")
 const { title, background } = Astro.props as Props;
+
+let Canvas
+
+if(isHome) Canvas = CanvasHome
+if(isProject) Canvas = CanvasProject
 ---
 
 <meta charset="UTF-8" />
@@ -27,7 +39,9 @@ const { title, background } = Astro.props as Props;
 <body style={{ background }} class="canva-black">
   <Burger />
   <Header />
-  <slot name="canvas" />
+  <!-- <slot name="canvas" /> -->
+  
+  <Canvas />
   <Logo />
   <Gsap>
     <div id="main-content" style={{ opacity: 0 }}>
