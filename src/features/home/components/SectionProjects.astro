@@ -48,7 +48,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
       .timeline({
         scrollTrigger: {
           trigger: `#section-projets-title`,
-          start: 'top center', // when the top of the trigger hits the center of the viewport
+          start: 'top 85%', // when the top of the trigger hits the bottom of the viewport
         },
       })
       // Reveal title
@@ -269,6 +269,10 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
     }
     .wrapper-illustration-title {
       position: absolute;
+
+      .illustration {
+        opacity: 1;
+      }
 
       @media screen and (max-width: 768px) {
         position: relative;

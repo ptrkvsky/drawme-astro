@@ -31,7 +31,7 @@ export const revealText = () => {
         trigger: '#section-presentation',
         endTrigger: 'footer',
         markers: config.mode === 'development',
-        start: 'top 35%',
+        start: 'top 85%',
       },
     })
 
