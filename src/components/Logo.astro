@@ -5,15 +5,14 @@ const { background } = Astro.props;
 <script>
   import gsap from 'gsap';
   import config from '../config';
-
   window.addEventListener('load', () => {
     const isProd = config.mode === 'production';
+    // const isProd = true;
     const isDarkSoul =
       navigator.userAgent.indexOf('ouse') > -1 ||
       navigator.userAgent.indexOf('eadles') > -1;
 
     const isPreloaderSeen = sessionStorage.getItem('isPreloaderSeen');
-
     if (!isPreloaderSeen && !isDarkSoul) {
       gsap
         .timeline()
@@ -67,7 +66,7 @@ const { background } = Astro.props;
         .timeline()
         .set('body', {
           opacity: 1,
-          background: isPreloaderSeen ? '#000' : '#FFF',
+          background: '#FFF',
         })
         .set('#logo-wrapper-relative', {
           display: 'none',
