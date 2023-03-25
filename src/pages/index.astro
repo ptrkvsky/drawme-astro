@@ -9,7 +9,6 @@ import { querySanityHome } from '@features/home/queries/querySanityHome';
 import { SanityHome } from '@features/home/interfaces/SanityHome';
 import fetchSanity from '@helpers/fetchSanity';
 import Layout from '@layouts/Layout.astro';
-import Canvas from '@features/home/components/Canvas.astro';
 
 const sanityHome = await fetchSanity<SanityHome>(querySanityHome);
 const presentation = sanityHome && sanityHome.Home.introPresentationRaw;
@@ -21,7 +20,7 @@ const detail = sanityHome && sanityHome.Home.introDetail;
 <Layout
   isHome={true}
   background="#000"
-  title="Graphic Designer at Cagnes sur Mer"
+  title="Grahic Designer at Cagnes sur Mer"
 >
   <div slot="main-content">
     <SectionHero />

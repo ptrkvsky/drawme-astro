@@ -17,7 +17,9 @@ import MiniMenu from './MiniMenu/MiniMenu.astro';
   );
 
   // Duration of preloader
-  const timeout = config.mode === 'development' ? 1500 : 8500;
+  const isPreloaderSeen = sessionStorage.getItem('isPreloaderSeen');
+  const envDelay = config.mode === 'development' ? 1500 : 8500;
+  const delay = isPreloaderSeen ? 0 : envDelay;
 
   setTimeout(() => {
     gsap.set(selector('.letters div'), { yPercent: -103 });
@@ -46,7 +48,7 @@ import MiniMenu from './MiniMenu/MiniMenu.astro';
       .call(() => {
         animateSeparators();
       });
-  }, timeout);
+  }, delay);
 </script>
 
 <div class="hero-wrapper">

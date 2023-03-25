@@ -18,12 +18,14 @@
         letter: `S`,
       };
     }
+
     if (position === 1) {
       return {
         position,
         letter: `H`,
       };
     }
+
     if (position === 2 || position === 3) {
       return {
         position,
@@ -61,7 +63,7 @@
   const charsRandom = "!@#$%^&*+:'/|";
 
   if (letter1 && letter2 && letter3 && letter4 && letter5) {
-    const tl = gsap
+    gsap
       .timeline({
         repeat: -1,
         // scrollTrigger: {

@@ -1,14 +1,15 @@
 <script>
   import gsap from 'gsap';
   import config from '../config';
+
   window.addEventListener('load', () => {
     const isProd = config.mode === 'production';
-    // const isProd = true;
     const isDarkSoul =
       navigator.userAgent.indexOf('ouse') > -1 ||
       navigator.userAgent.indexOf('eadles') > -1;
 
     const isPreloaderSeen = sessionStorage.getItem('isPreloaderSeen');
+
     if (!isPreloaderSeen && !isDarkSoul) {
       gsap
         .timeline()
@@ -50,7 +51,7 @@
           display: 'none',
         })
         // Show content
-        .set(['#main-content', '#header'], {
+        .set(['#main-content', '#header', '#burger-button'], {
           opacity: '1',
         })
         .call(() => {
@@ -62,12 +63,12 @@
         .timeline()
         .set('body', {
           opacity: 1,
-          background: '#FFF',
+          background: isPreloaderSeen ? '#000' : '#FFF',
         })
         .set('#logo-wrapper-relative', {
           display: 'none',
         })
-        .set(['#main-content', '#header'], {
+        .set(['#main-content', '#header', '#burger-button'], {
           opacity: '1',
         })
         .call(() => {

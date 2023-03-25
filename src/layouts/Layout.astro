@@ -12,20 +12,14 @@ import { Menu, Burger, Footer } from '@components/index';
 import CanvasHome from '@features/home/components/Canvas.astro';
 import CanvasProject from '@features/project/components/Canvas.astro';
 
-
 export interface Props {
   title: string;
   background: string;
-  isHome: boolean
+  isHome: boolean;
 }
 
-
 const { title, background, isHome } = Astro.props as Props;
-
-
-
 ---
-
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width" />
@@ -34,11 +28,10 @@ const { title, background, isHome } = Astro.props as Props;
 <title>{title}</title>
 
 <body style={{ background }} class="canva-black">
-
   <Burger />
   <Header />
-  {isHome && <CanvasHome />  }  
-  {!isHome && <CanvasProject />  }  
+  {isHome && <CanvasHome />}
+  {!isHome && <CanvasProject />}
   <Logo />
   <Gsap>
     <div id="main-content" style={{ opacity: 0 }}>
