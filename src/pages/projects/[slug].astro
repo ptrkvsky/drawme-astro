@@ -1,5 +1,4 @@
 ---
-import Canvas from '@features/project/components/Canvas.astro';
 import SectionImagesDecale from '@features/project/components/SectionImagesDecale.astro';
 import SectionImagesFooter from '@features/project/components/SectionImagesFooter.astro';
 import SectionProjectOverview from '@features/project/components/SectionProjectOverview.astro';
@@ -33,7 +32,6 @@ const { hue, saturation } = project;
 </script>
 
 <Layout isHome={false} background="#FFF" title="Un beau projet">
-  <Canvas  />
   <div slot="main-content">
     <div class="wrapper-project">
       <SectionProjectOverview project={project} />
