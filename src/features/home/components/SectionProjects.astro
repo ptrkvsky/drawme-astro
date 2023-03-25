@@ -9,38 +9,59 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
 
 <script>
   import gsap from 'gsap';
+  import config from 'src/config';
   import { splitAndReveal, ParamsSplitAndReveal } from '@helpers/gsap';
 
-  window.addEventListener('load', () => {
+  window.addEventListener('DOMContentLoaded', () => {
+    // reveal image packaging
+
     const paramsSplitAndRevealSubtitleIdentity: ParamsSplitAndReveal = {
       element: '#subtitle-identity',
       typeSplit: 'chars',
       trigger: '#section-projets-title',
     };
+
     const paramsSplitAndRevealSubtitleLogo: ParamsSplitAndReveal = {
       element: '#subtitle-logo',
       typeSplit: 'chars',
       trigger: '#subtitle-identity',
     };
+
     const paramsSplitAndRevealSubtitlePackaging: ParamsSplitAndReveal = {
       element: '#subtitle-packaging',
       typeSplit: 'chars',
       trigger: '#section-projets',
     };
+
     const paramsSplitAndRevealSubtitleSocial: ParamsSplitAndReveal = {
       element: '#subtitle-social',
       typeSplit: 'chars',
       trigger: '#section-projets-title',
     };
+
     const paramsSplitAndRevealSubtitleWebsite: ParamsSplitAndReveal = {
       element: '#subtitle-website',
       typeSplit: 'chars',
       trigger: '#section-projets',
     };
 
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: `#packaging`,
+          start: 'top 85%', // when the top of the trigger hits the bottom of the viewport
+        },
+      })
+      .to('.illustration', {
+        opacity: 1,
+        duration: 1,
+      })
+      .call(() => {
+        splitAndReveal(paramsSplitAndRevealSubtitlePackaging);
+      });
+
     splitAndReveal(paramsSplitAndRevealSubtitleIdentity);
     splitAndReveal(paramsSplitAndRevealSubtitleLogo);
-    splitAndReveal(paramsSplitAndRevealSubtitlePackaging);
     splitAndReveal(paramsSplitAndRevealSubtitleSocial);
     splitAndReveal(paramsSplitAndRevealSubtitleWebsite);
 
@@ -51,7 +72,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
           start: 'top 85%', // when the top of the trigger hits the bottom of the viewport
         },
       })
-      // Reveal title
+      // Reveal
       .from('#section-projets-title', {
         opacity: 0,
         scale: 0.995,
@@ -182,7 +203,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
   </div> */
   }
   <!--PACKAGING -->
-  <div class="wrapper-illustration-title packaging">
+  <div id="packaging" class="wrapper-illustration-title packaging">
     <h3
       id="subtitle-packaging"
       class="sub-title"
@@ -271,7 +292,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
       position: absolute;
 
       .illustration {
-        opacity: 1;
+        opacity: 0;
       }
 
       @media screen and (max-width: 768px) {

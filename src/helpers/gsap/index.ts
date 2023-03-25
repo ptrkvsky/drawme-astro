@@ -29,7 +29,7 @@ export function revealSplitedTitle(
         trigger,
         endTrigger: 'footer',
         markers: config.mode === 'development',
-        start: 'top 35%',
+        start: 'top 85%',
       },
     })
     .from(splitedTitle[type], {
