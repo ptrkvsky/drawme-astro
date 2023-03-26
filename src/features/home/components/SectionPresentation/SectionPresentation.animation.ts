@@ -25,28 +25,60 @@ export const switchCanva = () => {
 };
 
 export const revealText = () => {
+  gsap.set(`.intro-presentation .path-zigwigwi`, {
+    drawSVG: false,
+  });
+
+  const paramsReveal = {
+    yPercent: -100,
+    scale: 1,
+    ease: 'power2.out',
+    duration: 1,
+  };
+
+  const paramsScaleImage = {
+    ease: 'power2.out',
+    duration: 2,
+    delay: -1,
+    scale: 1.3,
+  };
+
   gsap
     .timeline({
       scrollTrigger: {
         trigger: '#section-presentation',
         endTrigger: 'footer',
         markers: config.mode === 'development',
-        start: 'top 85%',
+        start: 'top 75%',
       },
     })
-
-    // Animate book
-    .to('.illustration.book', {
+    // to avoid clipping with switch canva illustration are hidden, we wait for it to complete
+    .pause(0.5)
+    .to('.illustration', {
       opacity: 1,
-      duration: 1,
-      ease: 'power1.inOut',
     })
-    // Animate fingers
-    .to('.illustration.fingers .wrapper-overflow', {
-      opacity: 1,
-      duration: 1,
-      delay: -0.9,
-      ease: 'power1.inOut',
+
+    // -- Animate book
+    // Reveal
+    .to('.illustration.book .reveal', paramsReveal)
+    // Scale image
+    .from('.illustration.book img', paramsScaleImage)
+    // Hide reveal
+    .set('.illustration.book .reveal', {
+      autoAlpha: 0,
+    })
+
+    //--  Animate fingers
+    // Reveal
+    .to('.illustration.fingers .reveal', {
+      ...paramsReveal,
+      yPercent: 0,
+      xPercent: -100,
+    })
+    .from('.illustration.fingers img', paramsScaleImage)
+    // Hide reveal
+    .set('.illustration.fingers .reveal', {
+      autoAlpha: 0,
     })
     // Animate intro presentation
     .to('.intro-presentation', {
@@ -54,10 +86,6 @@ export const revealText = () => {
       ease: `power1.in`,
       duration: 1.5,
       delay: -0.9,
-    })
-    // Hide zigwigwi
-    .set(`.intro-presentation .path-zigwigwi`, {
-      drawSVG: false,
     })
     // Reveal the zigwigwi
     .to(`.intro-presentation .path-zigwigwi`, {
@@ -78,10 +106,17 @@ export const revealText = () => {
       ease: 'power1.inOut',
       delay: -1.4,
     })
-    .to('.illustration.letters', {
-      opacity: 1,
-      duration: 1,
-      ease: 'power1.inOut',
-      delay: -0.9,
+    // -- Animate book
+    // Reveal
+    .to('.illustration.letters .reveal', {
+      ...paramsReveal,
+      yPercent: 0,
+      xPercent: -100,
+    })
+    // Scale image
+    .from('.illustration.letters img', paramsScaleImage)
+    // Hide reveal
+    .set('.illustration.letters .reveal', {
+      autoAlpha: 0,
     });
 };
