@@ -1,6 +1,5 @@
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import { splitText } from '@helpers/gsap';
 import config from 'src/config';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -33,13 +32,13 @@ export const revealText = () => {
     yPercent: -100,
     scale: 1,
     ease: 'power2.out',
-    duration: 1,
+    duration: 0.3,
   };
 
   const paramsScaleImage = {
     ease: 'power2.out',
-    duration: 2,
-    delay: -1,
+    duration: 0.3,
+    delay: -0.3,
     scale: 1.3,
   };
 
@@ -67,17 +66,37 @@ export const revealText = () => {
     .set('.illustration.book .reveal', {
       autoAlpha: 0,
     })
-
+    // -- Animate letter
+    // Reveal
+    .to('.illustration.letters .reveal', {
+      ...paramsReveal,
+      yPercent: 100,
+    })
+    // Scale image
+    .from('.illustration.letters img', paramsScaleImage)
+    // Hide reveal
+    .set('.illustration.letters .reveal', {
+      autoAlpha: 0,
+    })
     //--  Animate fingers
     // Reveal
-    .to('.illustration.fingers .reveal', {
+    .to('.finger-reveal', {
       ...paramsReveal,
       yPercent: 0,
       xPercent: -100,
     })
-    .from('.illustration.fingers img', paramsScaleImage)
+    .from('.finger-img', paramsScaleImage)
     // Hide reveal
-    .set('.illustration.fingers .reveal', {
+    .set('.finger-reveal', {
+      autoAlpha: 0,
+    })
+    //--  Animate crayon
+    // Reveal
+    .to('.illustration.crayon .reveal', paramsReveal)
+    // Scale image
+    .from('.illustration.crayon img', paramsScaleImage)
+    // Hide reveal
+    .set('.illustration.crayon .reveal', {
       autoAlpha: 0,
     })
     // Animate intro presentation
@@ -99,24 +118,5 @@ export const revealText = () => {
       ease: `power3.inOut`,
       duration: 1.5,
       delay: -1.4,
-    })
-    .to('.illustration.crayon', {
-      opacity: 1,
-      duration: 1,
-      ease: 'power1.inOut',
-      delay: -1.4,
-    })
-    // -- Animate book
-    // Reveal
-    .to('.illustration.letters .reveal', {
-      ...paramsReveal,
-      yPercent: 0,
-      xPercent: -100,
-    })
-    // Scale image
-    .from('.illustration.letters img', paramsScaleImage)
-    // Hide reveal
-    .set('.illustration.letters .reveal', {
-      autoAlpha: 0,
     });
 };
