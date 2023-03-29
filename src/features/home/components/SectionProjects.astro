@@ -9,61 +9,38 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
 
 <script>
   import gsap from 'gsap';
-  import config from 'src/config';
   import { splitAndReveal, ParamsSplitAndReveal } from '@helpers/gsap';
 
   window.addEventListener('DOMContentLoaded', () => {
-    // reveal image packaging
-
     const paramsSplitAndRevealSubtitleIdentity: ParamsSplitAndReveal = {
       element: '#subtitle-identity',
       typeSplit: 'chars',
-      trigger: '#section-projets-title',
+      trigger: '#subtitle-identity',
     };
 
     const paramsSplitAndRevealSubtitleLogo: ParamsSplitAndReveal = {
       element: '#subtitle-logo',
       typeSplit: 'chars',
-      trigger: '#subtitle-identity',
+      trigger: '#subtitle-logo',
     };
 
     const paramsSplitAndRevealSubtitlePackaging: ParamsSplitAndReveal = {
       element: '#subtitle-packaging',
       typeSplit: 'chars',
-      trigger: '#section-projets',
+      trigger: '#subtitle-packaging',
     };
 
     const paramsSplitAndRevealSubtitleSocial: ParamsSplitAndReveal = {
       element: '#subtitle-social',
       typeSplit: 'chars',
-      trigger: '#section-projets-title',
+      trigger: '#subtitle-social',
     };
 
     const paramsSplitAndRevealSubtitleWebsite: ParamsSplitAndReveal = {
       element: '#subtitle-website',
       typeSplit: 'chars',
-      trigger: '#section-projets',
+      trigger: '#subtitle-website',
     };
-
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: `#packaging`,
-          start: 'top 85%', // when the top of the trigger hits the bottom of the viewport
-        },
-      })
-      .to('.illustration', {
-        opacity: 1,
-        duration: 1,
-      })
-      .call(() => {
-        splitAndReveal(paramsSplitAndRevealSubtitlePackaging);
-      });
-
-    splitAndReveal(paramsSplitAndRevealSubtitleIdentity);
-    splitAndReveal(paramsSplitAndRevealSubtitleLogo);
-    splitAndReveal(paramsSplitAndRevealSubtitleSocial);
-    splitAndReveal(paramsSplitAndRevealSubtitleWebsite);
 
     gsap
       .timeline({
@@ -76,7 +53,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
       .from('#section-projets-title', {
         opacity: 0,
         scale: 0.995,
-        duration: 1.5,
+        duration: 1,
         ease: 'power1.inOut',
       })
       .fromTo(
@@ -87,15 +64,37 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
         {
           drawSVG: true,
           ease: `power3.inOut`,
-          duration: 1.5,
+          duration: 1,
         }
       )
       // Reveal description
       .to(`#section-projets-description`, {
         opacity: 1,
         delay: -1,
-        duration: 1.5,
+        duration: 1,
         ease: 'power1.inOut',
+      });
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: `#packaging`,
+          start: 'top 85%', // when the top of the trigger hits the bottom of the viewport
+        },
+      })
+
+      .call(() => {
+        splitAndReveal(paramsSplitAndRevealSubtitlePackaging);
+        splitAndReveal(paramsSplitAndRevealSubtitleWebsite);
+        splitAndReveal(paramsSplitAndRevealSubtitleIdentity);
+        splitAndReveal(paramsSplitAndRevealSubtitleLogo);
+        splitAndReveal(paramsSplitAndRevealSubtitleSocial);
+      })
+      .to('.section-projets .illustration', {
+        delay: 1,
+        opacity: 1,
+        duration: 1,
+        stagger: 0.05,
       });
   });
 </script>

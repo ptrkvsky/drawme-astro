@@ -53,7 +53,7 @@ export const revealText = () => {
     })
     // to avoid clipping with switch canva illustration are hidden, we wait for it to complete
     .pause(0.5)
-    .to('.illustration', {
+    .to('#section-presentation .illustration', {
       opacity: 1,
     })
 

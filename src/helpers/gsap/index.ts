@@ -58,18 +58,6 @@ export function splitAndReveal({ element, typeSplit, trigger }: any) {
   revealSplitedTitle(splitedText, typeSplit, trigger);
 }
 
-function mergeArrays<T extends unknown[], U extends unknown[]>(
-  arr1: T,
-  arr2: U
-) {
-  return [...arr1, ...arr2];
-}
-
-const tab1 = [1, 2, 3];
-const tab2 = ['1', '2', '3'];
-
-const result = mergeArrays(tab1, tab2);
-
 /**
  * @desc Apply GSAP lag to a SplitText object
  * @param splitText
