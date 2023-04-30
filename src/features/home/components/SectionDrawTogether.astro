@@ -39,11 +39,15 @@ const idPath = 'draw-together-path';
   }
 
   window.addEventListener('load', () => {
+    const noElement = document.getElementById('answer-no');
+    if (!noElement) return;
+    noElement.addEventListener('mouseenter', handleNoHover);
+
     gsap
       .timeline({
         scrollTrigger: {
           trigger: '#section-draw-together',
-          start: 'top center', // top of the element, center of the viewport
+          start: 'top 85%', // top of the element, bottom of the viewport
         },
       })
       .fromTo(

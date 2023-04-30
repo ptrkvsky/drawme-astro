@@ -16,14 +16,14 @@ import LogoMark from '../LogoMark.astro';
     <nav id="mini-menu-presentation" class="presentation" class="categories">
       <span class="categorie opacity-0 webdesign desktop"> WEBDESIGN</span>
       <span class="categorie opacity-0 webdesign mobile">WEB</span>
-      <span class="separator opacity-0">I</span>
+      <span class="separator opacity-0"></span>
       <span class="categorie opacity-0 print">PRINT</span>
-      <span class="separator opacity-0">I</span>
+      <span class="separator opacity-0"></span>
       <span class="categorie opacity-0 brand desktop">BRAND IDENTITY</span>
       <span class="categorie opacity-0 brand mobile">BRAND</span>
-      <span class="separator opacity-0">I</span>
+      <span class="separator opacity-0"></span>
       <span class="categorie opacity-0 illustration">ILLUSTRATION</span>
-      <span class="separator opacity-0 desktop">I</span>
+      <span class="separator opacity-0 desktop"></span>
       <span class="categorie opacity-0 layout desktop">LAYOUT</span>
     </nav>
   </div>
@@ -76,6 +76,7 @@ import LogoMark from '../LogoMark.astro';
     gap: clamp(7px, 2.4rem, 2.4rem);
     display: flex;
     justify-content: center;
+    align-items: center;
     mix-blend-mode: difference;
     font-family: var(--text-body-bold);
 
@@ -120,6 +121,10 @@ import LogoMark from '../LogoMark.astro';
     }
 
     .separator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--color-white-beauty);
       transform: translate(0%, 100%);
       .canva-black & {
         color: var(--color-white-beauty);

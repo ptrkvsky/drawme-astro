@@ -10,7 +10,6 @@ import illustrationBook from '@assets/images/illustration_book.png';
 import illustrationCrayon from '@assets/images/illustration_crayon.png';
 import illustrationFingers from '@assets/images/illustration_fingers.png';
 import illustrationLetters from '@assets/images/illustration_letters.png';
-import { Encercle } from '@components/Encercle';
 import { portableTextComponents } from '@helpers/portableTextComponents';
 import LogoMark from '../LogoMark.astro';
 
@@ -24,7 +23,6 @@ const presentationMobileHTML = toHTML(presentationMobile, {
 ---
 
 <script>
-  import gsap from 'gsap';
   import { switchCanva, revealText } from './SectionPresentation.animation';
 
   switchCanva();
@@ -34,43 +32,57 @@ const presentationMobileHTML = toHTML(presentationMobile, {
 </script>
 
 <section id="section-presentation" class="section-presentation">
-  <div class="illustration book opacity-0" data-speed="1.05" data-lag="0.025">
+  <div
+    class="illustration book wrapper-overflow opacity-0"
+    data-speed="1.05"
+    data-lag="0.025"
+  >
     <Image
       width={372}
       height={404}
       format="avif"
+      loading={'eager'}
       src={illustrationBook}
       alt="Illustration book"
     />
+    <div class="reveal"></div>
   </div>
-  <div class="illustration crayon opacity-0" data-speed="0.98" data-lag="0.03">
-    <Image format="avif" src={illustrationCrayon} alt="Illustration crayon" />
+  <div
+    class="illustration crayon wrapper-overflow opacity-0"
+    data-speed="0.98"
+    data-lag="0.03"
+  >
+    <Image
+      loading={'eager'}
+      format="avif"
+      src={illustrationCrayon}
+      alt="Illustration crayon"
+    />
+    <div class="reveal"></div>
   </div>
-  <div class="illustration fingers">
+  <div class="illustration fingers opacity-0">
     <div class="relative">
-      <div
-        class="wrapper-overflow opacity-0"
-        data-speed="0.85"
-        data-lag="0.025"
-      >
+      <div class="wrapper-overflow" data-speed="0.85" data-lag="0.025">
         <Image
           format="avif"
           src={illustrationFingers}
           alt="Illustration fingers"
+          class="finger-img"
         />
-        {/* <div class="reveal" /> */}
+        <div class="finger-reveal reveal"></div>
       </div>
       <div
-        class="illustration letters opacity-0"
+        class="illustration letters wrapper-overflow opacity-0"
         data-speed="1.15"
         data-lag="0.03"
       >
         <Image
           format="avif"
+          loading={'eager'}
           src={illustrationLetters}
           alt="Illustration letters"
         />
-        {/* <div class="reveal" /> */}
+        <div class="reveal"></div>
       </div>
     </div>
   </div>
@@ -124,7 +136,25 @@ const presentationMobileHTML = toHTML(presentationMobile, {
       height: auto;
     }
 
-    /* overflow: hidden; */
+    .reveal {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: 0.25s linear;
+      .canva-white & {
+        background-color: #fff;
+      }
+      .canva-black & {
+        background-color: #fff;
+      }
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+    }
+
+    .wrapper-overflow {
+      overflow: hidden;
+    }
 
     .illustration {
       position: absolute;

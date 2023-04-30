@@ -27,16 +27,7 @@ const { title, background, isHome } = Astro.props as Props;
 <meta name="generator" content={Astro.generator} />
 <title>{title}</title>
 
-<script define:vars={{ background }}>
-  const isPreloaderSeen = sessionStorage.getItem('isPreloaderSeen');
-  console.log(background);
-  const backgroundColor = isPreloaderSeen ? background : '#FFF';
-  window.addEventListener('load', () => {
-    document.body.style.backgroundColor = backgroundColor;
-  });
-</script>
-
-<body class="canva-black">
+<body style={{ background }} class="canva-black">
   <Burger />
   <Header />
   {isHome && <CanvasHome />}

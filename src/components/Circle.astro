@@ -3,7 +3,10 @@
   document.addEventListener('DOMContentLoaded', function () {
     gsap
       .timeline({
-        scrollTrigger: '#section-who-am-i',
+        scrollTrigger: {
+          trigger: '#section-who-am-i',
+          start: 'top 85%', // top of the element, bottom of the viewport
+        },
       })
       .fromTo(
         `#svg-cercle-line-1`,
@@ -13,7 +16,7 @@
         {
           drawSVG: true,
           ease: `power3.inOut`,
-          delay: 2,
+          delay: 0,
           duration: 1.5,
         }
       );
