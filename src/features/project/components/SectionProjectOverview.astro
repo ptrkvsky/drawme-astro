@@ -60,11 +60,27 @@ const {
     gap: 125px;
     display: grid;
     grid-template-columns: 1fr 70rem;
+
+    @media screen and (max-width: 1024px) {
+      grid-template-columns: 1fr;
+      max-width: 100%;
+      gap: 0;
+    }
   }
 
   .typographie {
     max-width: 54.6rem;
     margin-left: 12rem;
+    @media screen and (max-width: 1024px) {
+      order: -1;
+      max-width: calc(100% - 48px);
+      margin-left: 0;
+      display: block;
+      margin-top: 24px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 48px;
+    }
   }
 
   .wrapper-col-left {

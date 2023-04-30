@@ -20,8 +20,12 @@ const { drawMeA, projectColor } = Astro.props as AstroProps;
 
 <style lang="scss">
   .title {
-    font-size: 12rem;
+    font-size: clamp(59px, 12rem, 12rem);
     line-height: 0.95;
+
+    @media screen and (max-width: 1024px) {
+      padding: 0 24px;
+    }
 
     .brushed {
       position: relative;

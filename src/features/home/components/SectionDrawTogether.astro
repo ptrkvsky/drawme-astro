@@ -39,9 +39,6 @@ const idPath = 'draw-together-path';
   }
 
   window.addEventListener('load', () => {
-    const noElement = document.getElementById('answer-no');
-    noElement.addEventListener('mouseenter', handleNoHover);
-
     gsap
       .timeline({
         scrollTrigger: {
@@ -61,6 +58,10 @@ const idPath = 'draw-together-path';
           duration: 1.5,
         }
       );
+
+    const noElement = document.getElementById('answer-no');
+    if (!noElement) return;
+    noElement.addEventListener('mouseenter', handleNoHover);
   });
 </script>
 

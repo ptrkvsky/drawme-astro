@@ -65,7 +65,7 @@ const { projectColor } = Astro.props as AstroProps;
     left: -1.6rem;
     top: -5px;
     z-index: -1;
-    width: 61.9rem;
+    width: clamp(320px, 61.9rem, 61.9rem);
     height: 100%;
   }
   .reveal {
