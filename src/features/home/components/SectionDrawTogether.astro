@@ -10,36 +10,36 @@ const idPath = 'draw-together-path';
   import gsap from 'gsap';
   import getRandomInt from '@helpers/getRandomInt';
 
-  function handleNoHover() {
-    const noElement = document.getElementById('answer-no');
-    const elementWidth = noElement.offsetWidth;
-    const elementHeight = noElement.offsetHeight;
-
-    const maxX = window.innerWidth - elementWidth;
-    const maxY = window.innerHeight - elementHeight;
-
-    const topPos = getRandomInt(0, 200);
-    const leftPos = getRandomInt(0, 200);
-
-    document.addEventListener('DOMContentLoaded', function () {
-      gsap.to('#answer-no', {
-        top: topPos,
-        right: '10rem',
-        ease: 'power4.inOut',
-        duration: 0.75,
-      });
-      gsap.to('#answer-no', {
-        top: 'initial',
-        right: '74rem',
-        ease: 'Power4.inOut',
-        duration: 0.3,
-        delay: 2,
-      }).totalDuration;
-    });
-  }
-
   window.addEventListener('load', () => {
     const noElement = document.getElementById('answer-no');
+
+    function handleNoHover() {
+      const elementWidth = noElement.offsetWidth;
+      const elementHeight = noElement.offsetHeight;
+
+      const maxX = window.innerWidth - elementWidth;
+      const maxY = window.innerHeight - elementHeight;
+
+      const topPos = getRandomInt(0, 200);
+      const leftPos = getRandomInt(0, 200);
+
+      document.addEventListener('DOMContentLoaded', function () {
+        gsap.to('#answer-no', {
+          top: topPos,
+          right: '10rem',
+          ease: 'power4.inOut',
+          duration: 0.75,
+        });
+        gsap.to('#answer-no', {
+          top: 'initial',
+          right: '74rem',
+          ease: 'Power4.inOut',
+          duration: 0.3,
+          delay: 2,
+        }).totalDuration;
+      });
+    }
+
     if (!noElement) return;
     noElement.addEventListener('mouseenter', handleNoHover);
 
@@ -63,7 +63,6 @@ const idPath = 'draw-together-path';
         }
       );
 
-    const noElement = document.getElementById('answer-no');
     if (!noElement) return;
     noElement.addEventListener('mouseenter', handleNoHover);
   });

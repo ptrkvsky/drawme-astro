@@ -3,7 +3,9 @@ export const querySanityProjects = `query ProjectPageQuery {
     _id
       slug{current}
       drawMeA
-      mainColor
+      mainColor {
+        hex
+      }
       color1{
         asset{
           url
@@ -56,7 +58,9 @@ export const querySanityProjects = `query ProjectPageQuery {
           }
         }
       }
-      colorExcerpt
+      colorExcerpt {
+        hex
+      }
       hue
       saturation
       mainImages{

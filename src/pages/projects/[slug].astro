@@ -12,6 +12,9 @@ import Layout from '@layouts/Layout.astro';
 
 export async function getStaticPaths() {
   const sanityProjects = await fetchSanity<SanityProjects>(querySanityProjects);
+  console.log('-----------------------');
+  console.log(sanityProjects);
+  console.log('-----------------------');
   const params = sanityProjects && getProjectUrlParams(sanityProjects);
   return params;
 }
@@ -21,6 +24,7 @@ interface AstroProps {
 }
 
 const { project } = Astro.props as AstroProps;
+
 const { hue, saturation } = project;
 ---
 

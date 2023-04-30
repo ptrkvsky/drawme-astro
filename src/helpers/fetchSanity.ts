@@ -18,6 +18,7 @@ function fetchSanity<ReturnType>(
   })
     .then((r) => r.json())
     .then((result) => {
+      console.log('👨‍🚒', result.data);
       return result.data as ReturnType;
     })
     .catch((error: unknown) => {

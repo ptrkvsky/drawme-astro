@@ -24,14 +24,14 @@ const {
 <div class="relative">
   <div class="wrapper-cols">
     <div class="wrapper-col-left">
-      <DrawMeA projectColor={project.mainColor} drawMeA={project.drawMeA} />
+      <DrawMeA projectColor={project.mainColor.hex} drawMeA={project.drawMeA} />
       <MainImages mainImages={project.mainImages} />
     </div>
     <div class="wrapper-col-right">
       <PresentationClient
         text={project.excerptRaw}
-        textColor={project.colorExcerpt}
-        projectColor={project.mainColor}
+        textColor={project.colorExcerpt?.hex}
+        projectColor={project.mainColor.hex}
       />
       <Colors
         color1={project.color1}
