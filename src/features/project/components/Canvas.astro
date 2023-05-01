@@ -5,7 +5,6 @@ const saturation = 2.1875;
 
 <div id="main-canva" class="main-canva canva"></div>
 
-
 <script>
   import { Curtains, PingPongPlane, Vec2, ShaderPass } from 'curtainsjs';
   import { renderFs, ripplesFs, ripplesVs } from '../../../libs/curtains/fs';
@@ -19,7 +18,7 @@ const saturation = 2.1875;
    * WHITE
    */
   const curtainWhite = new Curtains({
-    container: document.getElementById("main-canva"),
+    container: document.getElementById('main-canva'),
     pixelRatio: Math.min(1.5, window.devicePixelRatio),
   });
 
@@ -195,8 +194,6 @@ const saturation = 2.1875;
       },
     };
 
-    console.log(renderPassUniforms)
-
     const params = {
       fragmentShader: renderFs,
       depth: false,
@@ -263,7 +260,6 @@ const saturation = 2.1875;
     // }
   });
 </script>
-
 
 <style lang="scss">
   .canva {

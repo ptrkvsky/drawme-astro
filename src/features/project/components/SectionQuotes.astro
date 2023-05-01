@@ -47,15 +47,15 @@ const { quote: quotes, projectColor } = Astro.props as AstroProps;
             <div class="mobile-flex">
               <div class="wrapper-image">
                 {
-                  // <Image
-                  //   src={url}
-                  //   alt={altText}
-                  //   width={width}
-                  //   height={height}
-                  //   aspectRatio={aspectRatio}
-                  //   format="avif"
-                  // />
-                  <img src={url} alt={altText} />
+                  <Image
+                    src={url}
+                    alt={altText}
+                    width={width}
+                    height={height}
+                    aspectRatio={aspectRatio}
+                    format="avif"
+                  />
+                  // <img src={url} alt={altText} />
                 }
               </div>
             </div>
