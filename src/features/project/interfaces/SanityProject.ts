@@ -10,6 +10,8 @@ export interface SanityProject {
   color1: SanityImage;
   color2: SanityImage;
   color3: SanityImage;
+  positionMainImageMobile?: string;
+  mainImageMobile: SanityImage;
   colorExcerpt?: {
     hex: string;
   };

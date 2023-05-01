@@ -46,20 +46,27 @@ const finalTextColor = textColor || '#000';
 <style lang="scss" is:global>
   .presentation-client {
     padding: 3rem 0 0rem 6rem;
-    font-size: clamp(21px, 2.1rem, 2.1rem);
+    font-size: clamp(15px, 2.1rem, 2.1rem);
     letter-spacing: 1.1px;
     line-height: 1.2;
-    border-bottom-left-radius: 9rem;
+    border-bottom-left-radius: clamp(90px, 9rem, 9rem);
+
+    @media screen and (max-width: 1024px) {
+      box-sizing: border-box;
+      padding: 32px 24px 56px;
+      max-width: calc(100% - 24px);
+      margin-left: auto;
+    }
 
     p {
-      margin-bottom: 3.2rem;
+      margin-bottom: clamp(24px, 3.2rem, 3.2rem);
       line-height: 1.3;
     }
 
     h2 {
-      font-size: clamp(22px, 2.2rem, 2.2rem);
+      font-size: clamp(16px, 2.2rem, 2.2rem);
       font-family: 'MontrealMedium';
-      margin-bottom: 0.4rem;
+      margin-bottom: clamp(4px, 0.4rem, 0.4rem);
     }
 
     .background {
@@ -69,6 +76,10 @@ const finalTextColor = textColor || '#000';
       right: 0;
       width: 20%;
       z-index: -1;
+
+      @media screen and (max-width: 1024px) {
+        display: none;
+      }
     }
   }
 </style>

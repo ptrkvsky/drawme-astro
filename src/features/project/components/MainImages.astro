@@ -5,15 +5,18 @@ import { SanityImage } from '@interfaces/SanityImage';
 
 interface AstroProps {
   mainImages: SanityImage[];
+  mainImageMobile: SanityImage;
+  positionMainImageMobile: string;
 }
 
-const { mainImages } = Astro.props as AstroProps;
+const { mainImages, mainImageMobile, positionMainImageMobile } =
+  Astro.props as AstroProps;
+const position = positionMainImageMobile || 'left';
 ---
 
-<div class="wrapper-images">
+<div class="wrapper-images desktop">
   {
     mainImages.map((image) => {
-      const { width, height, aspectRatio } = image.asset.metadata.dimensions;
       return (
         <div class="wrapper-image">
           <img src={image.asset.url} alt="image" />
@@ -22,11 +25,40 @@ const { mainImages } = Astro.props as AstroProps;
     })
   }
 </div>
+<div class={`wrapper-images mobile ${position}`}>
+  {mainImageMobile && <img src={mainImageMobile.asset.url} />}
+</div>
 
 <style lang="scss">
   .wrapper-images {
     display: flex;
     flex-direction: row;
+
+    &.left {
+      box-sizing: border-box;
+      justify-content: flex-start;
+      padding-right: 24px;
+    }
+    &.right {
+      justify-content: flex-end;
+    }
+    &.center {
+      justify-content: center;
+    }
+
+    &.mobile {
+      display: none;
+    }
+    @media screen and (max-width: 1024px) {
+      &.desktop {
+        display: none;
+      }
+      &.mobile {
+        display: inherit;
+        margin-top: 40px;
+      }
+    }
+
     .wrapper-image {
       &:nth-child(1) {
         margin-top: 15rem;

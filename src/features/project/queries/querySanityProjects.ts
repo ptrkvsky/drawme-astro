@@ -76,6 +76,20 @@ export const querySanityProjects = `query ProjectPageQuery {
           }
         }
       }
+      positionMainImageMobile
+      mainImageMobile{
+        asset{
+          url
+          altText
+          metadata {
+            dimensions{
+              height
+              width
+              aspectRatio
+            }
+          }
+        }
+      }
       imagesDecale{
         asset{
           url

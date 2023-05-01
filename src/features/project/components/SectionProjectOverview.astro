@@ -25,7 +25,11 @@ const {
   <div class="wrapper-cols">
     <div class="wrapper-col-left">
       <DrawMeA projectColor={project.mainColor.hex} drawMeA={project.drawMeA} />
-      <MainImages mainImages={project.mainImages} />
+      <MainImages
+        mainImages={project.mainImages}
+        mainImageMobile={project.mainImageMobile}
+        positionMainImageMobile={project.positionMainImageMobile}
+      />
     </div>
     <div class="wrapper-col-right">
       <PresentationClient
@@ -79,7 +83,7 @@ const {
       margin-top: 24px;
       margin-left: auto;
       margin-right: auto;
-      margin-bottom: 48px;
+      margin-bottom: 44px;
     }
   }
 

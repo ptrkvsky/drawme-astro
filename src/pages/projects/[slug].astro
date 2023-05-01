@@ -12,9 +12,6 @@ import Layout from '@layouts/Layout.astro';
 
 export async function getStaticPaths() {
   const sanityProjects = await fetchSanity<SanityProjects>(querySanityProjects);
-  console.log('-----------------------');
-  console.log(sanityProjects);
-  console.log('-----------------------');
   const params = sanityProjects && getProjectUrlParams(sanityProjects);
   return params;
 }
@@ -24,7 +21,6 @@ interface AstroProps {
 }
 
 const { project } = Astro.props as AstroProps;
-
 const { hue, saturation } = project;
 ---
 
@@ -39,7 +35,10 @@ const { hue, saturation } = project;
   <div slot="main-content">
     <div class="wrapper-project">
       <SectionProjectOverview project={project} />
-      <SectionQuotes quote={project.quote} projectColor={project.mainColor} />
+      <SectionQuotes
+        quote={project.quote}
+        projectColor={project.mainColor.hex}
+      />
       {
         project.imagesFooter && project.imagesFooter.length > 0 && (
           <SectionImagesFooter images={project.imagesFooter} />

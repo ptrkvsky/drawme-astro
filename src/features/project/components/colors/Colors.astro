@@ -18,6 +18,7 @@ const { color1, color2, color3 } = Astro.props as AstroProps;
 <div class="wrapper-colors">
   <div>
     <Image
+      class="color-item"
       src={color1.asset.url}
       alt="couleur 1"
       width={color1.asset.metadata.dimensions.width}
@@ -27,6 +28,7 @@ const { color1, color2, color3 } = Astro.props as AstroProps;
   </div>
   <div>
     <Image
+      class="color-item"
       src={color2.asset.url}
       alt="couleur 2"
       width={color2.asset.metadata.dimensions.width}
@@ -36,6 +38,7 @@ const { color1, color2, color3 } = Astro.props as AstroProps;
   </div>
   <div>
     <Image
+      class="color-item"
       src={color3.asset.url}
       alt="couleur 3"
       width={color3.asset.metadata.dimensions.width}
@@ -48,7 +51,7 @@ const { color1, color2, color3 } = Astro.props as AstroProps;
 <style lang="scss" is:global>
   .wrapper-colors {
     display: flex;
-    gap: 7rem;
+    gap: clamp(10px, 7rem, 7rem);
     margin-top: 1.4rem;
     margin-left: auto;
     margin-right: auto;
@@ -57,28 +60,35 @@ const { color1, color2, color3 } = Astro.props as AstroProps;
     @media screen and (max-width: 768px) {
       order: -1;
       margin-top: 48px;
-    }
-  }
-
-  .wrapper-colors .color {
-    position: relative;
-    display: inline-block;
-    .color-name {
-      position: absolute;
-      transform: translate(-50%, -50%);
-      top: 50%;
-      left: 50%;
-      margin-left: 1.6rem;
-      font-size: 2.2rem;
-      text-transform: uppercase;
-      letter-spacing: 1.1px;
-    }
-    &.color-2 {
-      top: 30px;
-      left: 13px;
-      .color-name {
-        margin-left: -10px;
+      padding: 0 24px;
+      box-sizing: border-box;
+      justify-content: space-between;
+      width: 100%;
+      .color-item {
+        max-width: 100px;
       }
     }
   }
+
+  // .wrapper-colors .color {
+  //   position: relative;
+  //   display: inline-block;
+  //   .color-name {
+  //     position: absolute;
+  //     transform: translate(-50%, -50%);
+  //     top: 50%;
+  //     left: 50%;
+  //     margin-left: 1.6rem;
+  //     font-size: 2.2rem;
+  //     text-transform: uppercase;
+  //     letter-spacing: 1.1px;
+  //   }
+  //   &.color-2 {
+  //     top: 30px;
+  //     left: 13px;
+  //     .color-name {
+  //       margin-left: -10px;
+  //     }
+  //   }
+  // }
 </style>

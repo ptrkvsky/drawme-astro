@@ -44,17 +44,20 @@ const { quote: quotes, projectColor } = Astro.props as AstroProps;
 
         return (
           <div id={`wrapper-quote-${index}`} class="quote">
-            <div class="wrapper-image col">
-              {
-                <Image
-                  src={url}
-                  alt={altText}
-                  width={width}
-                  height={height}
-                  aspectRatio={aspectRatio}
-                  format="avif"
-                />
-              }
+            <div class="mobile-flex">
+              <div class="wrapper-image">
+                {
+                  // <Image
+                  //   src={url}
+                  //   alt={altText}
+                  //   width={width}
+                  //   height={height}
+                  //   aspectRatio={aspectRatio}
+                  //   format="avif"
+                  // />
+                  <img src={url} alt={altText} />
+                }
+              </div>
             </div>
             <div class="text col">
               <span style={`color: ${projectColor}`} class="mark">
@@ -73,7 +76,7 @@ const { quote: quotes, projectColor } = Astro.props as AstroProps;
 
 <style lang="scss">
   .section-quotes {
-    margin-top: 18.3rem;
+    margin-top: clamp(24px, 18.3rem, 18.3rem);
   }
 
   .conteneur {
@@ -87,30 +90,55 @@ const { quote: quotes, projectColor } = Astro.props as AstroProps;
     display: flex;
     gap: 154px;
     // margin-bottom: 10.4rem;
-    margin-bottom: 26.4rem;
+    margin-bottom: clamp(24px, 26.4rem, 26.4rem);
+
+    @media screen and (max-width: 1024px) {
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 0;
+
+      &:nth-child(even) .wrapper-image {
+        margin-top: 24px;
+      }
+    }
 
     &:nth-child(even) {
+      .mobile-flex {
+        @media screen and (max-width: 1024px) {
+          display: flex;
+          justify-content: flex-end;
+          order: -1;
+        }
+      }
+
       .text {
         order: -1;
         max-width: 76rem;
+        @media screen and (max-width: 1024px) {
+          max-width: 100%;
+        }
       }
       .wrapper-image {
         position: absolute;
         bottom: -6.4rem;
         right: 0;
-        mix-blend-mode: color-burn;
+
+        @media screen and (max-width: 1024px) {
+          position: relative;
+          bottom: initial;
+        }
       }
     }
 
     .wrapper-image {
-      max-width: 53.7rem;
+      max-width: clamp(267px, 53.7rem, 53.7rem);
     }
 
     .text {
       position: relative;
-      margin-top: 13.2rem;
+      margin-top: clamp(24px, 13.2rem, 13.2rem);
 
-      font-size: 5.5rem;
+      font-size: clamp(28px, 5.5rem, 5.5rem);
       font-family: WagonBold;
       line-height: 1.1;
       .mark {
@@ -118,6 +146,16 @@ const { quote: quotes, projectColor } = Astro.props as AstroProps;
         font-size: 338px;
         top: -178px;
         left: -20px;
+
+        @media screen and (max-width: 1024px) {
+          position: relative;
+          display: block;
+          height: 44px;
+          font-size: 100px;
+          top: 0px;
+          left: 0px;
+          font-family: var(--text-heading);
+        }
       }
     }
   }
