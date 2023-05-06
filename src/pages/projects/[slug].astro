@@ -1,6 +1,9 @@
 ---
+import BackgroundDev from '@features/project/components/BackgroundDev.astro';
+
 import SectionImagesDecale from '@features/project/components/SectionImagesDecale.astro';
 import SectionImagesFooter from '@features/project/components/SectionImagesFooter.astro';
+import SectionNextProject from '@features/project/components/SectionNextProject.astro';
 import SectionProjectOverview from '@features/project/components/SectionProjectOverview.astro';
 import SectionQuotes from '@features/project/components/SectionQuotes.astro';
 import SectionSingleImage from '@features/project/components/SectionSingleImage.astro';
@@ -9,6 +12,7 @@ import { SanityProject, SanityProjects } from '@features/project/interfaces/';
 import { querySanityProjects } from '@features/project/queries/querySanityProjects';
 import fetchSanity from '@helpers/fetchSanity';
 import Layout from '@layouts/Layout.astro';
+import config from 'src/config';
 
 export async function getStaticPaths() {
   const sanityProjects = await fetchSanity<SanityProjects>(querySanityProjects);
@@ -57,13 +61,16 @@ const { hue, saturation } = project;
     </div>
   </div>
 </Layout>
+<SectionNextProject />
+
+{config.mode !== 'production' && <BackgroundDev />}
 
 <style lang="scss" is:global>
   .wrapper-project {
     padding-top: clamp(95px, 9.5rem, 9.5rem);
   }
   // ! pas mieux
-  #main-canva canvas:first-child {
-    // display: none;
-  }
+  // #main-canva canvas:first-child {
+  //   display: none;
+  // }
 </style>
