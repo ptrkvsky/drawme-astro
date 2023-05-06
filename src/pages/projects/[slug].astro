@@ -28,7 +28,11 @@ const { project } = Astro.props as AstroProps;
 const { hue, saturation } = project;
 ---
 
-<script define:vars={{ hue, saturation }}>
+<script define:vars={{ hue, saturation, config }}>
+  {
+    console.log(config.mode);
+  }
+
   const root = document.querySelector(':root');
   //@ts-ignore
   root.style.setProperty('--canva-hue', hue);
@@ -62,15 +66,10 @@ const { hue, saturation } = project;
   </div>
 </Layout>
 <SectionNextProject />
-
-{config.mode !== 'development' && <BackgroundDev />}
+{config.mode === 'development' ? <BackgroundDev /> : null}
 
 <style lang="scss" is:global>
   .wrapper-project {
     padding-top: clamp(95px, 9.5rem, 9.5rem);
   }
-  // ! pas mieux
-  // #main-canva canvas:first-child {
-  //   display: none;
-  // }
 </style>
