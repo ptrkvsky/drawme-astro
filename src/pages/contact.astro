@@ -38,7 +38,11 @@ import telephone from '../assets/images/telephone.png';
   );
 </script>
 
-<Layout background="#000" title="Contact - Grahic Designer at Cagnes sur Mer">
+<Layout
+  isHome={true}
+  background="#000"
+  title="Contact - Grahic Designer at Cagnes sur Mer"
+>
   <Canvas slot="canvas" />
   <div class="wrapper-contact" slot="main-content">
     <a id="mail" style="opacity: 0;" href="mailto:drawmeasheepdesign@gmail.com">
@@ -59,6 +63,9 @@ import telephone from '../assets/images/telephone.png';
 </Layout>
 
 <style lang="scss" is:global>
+  #main-canva canvas:first-child {
+    display: none;
+  }
   .wrapper-contact {
     max-width: clamp(103rem, 103px, 103px);
     margin-left: auto;
