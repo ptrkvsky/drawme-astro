@@ -11,9 +11,9 @@ const { quote: quotes, projectColor } = Astro.props as AstroProps;
 ---
 
 <script>
-  import { splitAndReveal } from '@helpers/gsap';
+  import { splitAndReveal, ParamsSplitAndReveal } from '@helpers/gsap';
 
-  const paramsSplitAndRevealTitle = {
+  const paramsSplitAndRevealTitle: ParamsSplitAndReveal = {
     element: `quote-0`,
     typeSplit: 'lines',
     trigger: `wrapper-quote-0`,

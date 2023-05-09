@@ -17,22 +17,22 @@ import config from 'src/config';
 export async function getStaticPaths() {
   const sanityProjects = await fetchSanity<SanityProjects>(querySanityProjects);
   const params = sanityProjects && getProjectUrlParams(sanityProjects);
+  console.log(params);
   return params;
 }
 
 interface AstroProps {
   project: SanityProject;
+  nextProject: SanityProject;
 }
 
-const { project } = Astro.props as AstroProps;
+const { project, nextProject } = Astro.props as AstroProps;
+
+console.log('-->', nextProject);
 const { hue, saturation } = project;
 ---
 
 <script define:vars={{ hue, saturation, config }}>
-  {
-    console.log(config.mode);
-  }
-
   const root = document.querySelector(':root');
   //@ts-ignore
   root.style.setProperty('--canva-hue', hue);
@@ -62,10 +62,10 @@ const { hue, saturation } = project;
           <SectionSingleImage mainImage={project.imageWebsite} />
         )
       }
+      <SectionNextProject nextProject={nextProject} />
     </div>
   </div>
 </Layout>
-<SectionNextProject />
 {config.mode === 'development' ? <BackgroundDev /> : null}
 
 <style lang="scss" is:global>

@@ -21,7 +21,8 @@ export function splitText(element: string, type: TypeSplit) {
 export function revealSplitedTitle(
   splitedTitle: _SplitText,
   type: TypeSplit,
-  trigger: string
+  trigger: string,
+  delay = 0
 ) {
   gsap
     .timeline({
@@ -40,6 +41,7 @@ export function revealSplitedTitle(
         amount: 0.3,
       },
       opacity: 0,
+      delay,
     });
 }
 
@@ -47,15 +49,22 @@ export interface ParamsSplitAndReveal {
   element: string;
   typeSplit: TypeSplit;
   trigger: string;
+  delay?: number;
 }
 
 /**
  * @description don't forget to add the class split-text on the element
  * @param param0
  */
-export function splitAndReveal({ element, typeSplit, trigger }: any) {
+export function splitAndReveal({
+  element,
+  typeSplit,
+  trigger,
+  delay = 0,
+}: ParamsSplitAndReveal) {
   const splitedText = splitText(element, typeSplit);
-  revealSplitedTitle(splitedText, typeSplit, trigger);
+  console.log(delay);
+  revealSplitedTitle(splitedText, typeSplit, trigger, delay);
 }
 
 /**

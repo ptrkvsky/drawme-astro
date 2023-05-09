@@ -1,17 +1,60 @@
 ---
+import Circle from '@features/project/components/Circle.astro';
+import { SanityProject } from '@features/project/interfaces/';
+
+interface Props {
+  nextProject: SanityProject;
+}
+
+const { nextProject } = Astro.props as Props;
 ---
 
 <script>
+  import { ParamsSplitAndReveal, splitAndReveal } from '@helpers/gsap';
   import gsap from 'gsap';
   import ScrollTrigger from 'gsap/ScrollTrigger';
   import config from 'src/config';
   gsap.registerPlugin(ScrollTrigger);
 
-  function toggleSection() {
+  function handleNoClick() {
     document.getElementById('next-project').classList.toggle('visible');
   }
 
+  document.getElementById('no-answer').addEventListener('click', handleNoClick);
+
+  function toggleSection() {
+    document.getElementById('next-project').classList.toggle('visible');
+
+    const paramsSplitReveal: ParamsSplitAndReveal = {
+      element: '.reveal',
+      typeSplit: 'chars',
+      trigger: 'body',
+      delay: 0.35,
+    };
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '#next-project',
+          start: 'top 85%', // top of the element, bottom of the viewport
+        },
+      })
+      .call(() => {
+        splitAndReveal(paramsSplitReveal);
+      })
+      .to(`#svg-cercle-line-1`, {
+        drawSVG: true,
+        ease: `power3.inOut`,
+        delay: 1.7,
+        duration: 1.5,
+      });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
+    gsap.to(`#svg-cercle-line-1`, {
+      drawSVG: false,
+    });
+
     const marker = {
       startColor: 'purple',
       endColor: 'pink',
@@ -23,7 +66,7 @@
 
     ScrollTrigger.create({
       trigger: 'footer',
-      start: 'top bottom',
+      start: '140px bottom',
       endTrigger: 'footer',
       markers: markers,
       onToggle: () => {
@@ -35,37 +78,46 @@
 
 <div id="next-project" class="next-project">
   <div class="wrapper">
-    <p class="see-next">
-      See <span class="highlight">Next</span>
-      <br /> Project ?
+    <p id="see-next" class="see-next split-text">
+      <span class="reveal line1">See</span><span class="highlight reveal line1"
+        >nex<span class="glitch reveal line1">t</span>
+      </span>
+      <span class="line reveal glitch">Project ?</span>
     </p>
     <div class="answers">
-      <span>Yes</span>
-      <span>No</span>
+      <!-- <a class="reveal" 
+        >Let's go</a
+      > -->
+      <Circle />
+      <span id="no-answer" class="reveal">No thanks</span>
     </div>
   </div>
 </div>
 <style lang="scss">
   .next-project {
-    position: fixed;
+    position: absolute;
+    bottom: 0;
     width: 100%;
     height: 100%;
-    top: 0;
 
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 
     background-color: black;
     z-index: -1;
     opacity: 0;
-    transition: all ease-in-out 1s;
+    transition: all ease-in-out 0.3s;
 
     &.visible {
       z-index: 999;
-      height: 100%;
       opacity: 1;
     }
+  }
+
+  .line {
+    position: relative;
+    top: -17rem;
   }
 
   .wrapper {
@@ -74,20 +126,32 @@
   }
 
   .see-next {
-    font-family: var(--text-heading);
+    font-family: var(--text-script);
     color: var(--color-white-beauty);
-    font-size: 20rem;
+    font-size: 35.7rem;
+    .line {
+      display: block;
+    }
+    .line1 {
+      font-size: 41.9rem;
+    }
 
     .highlight {
       color: var(--color-ice-ice-baby);
     }
+    .glitch {
+      font-family: var(--text-script-bold);
+    }
   }
 
   .answers {
+    position: relative;
+    top: -10rem;
     display: flex;
-    gap: 16px;
-    font-family: var(--text-body-medium);
+    justify-content: flex-end;
+    gap: clamp(16px, 2.4rem, 2.4rem);
     color: var(--color-white-beauty);
-    font-size: 4rem;
+    font-family: var(--text-body-bold);
+    font-size: clamp(20px, 4rem, 4rem);
   }
 </style>
