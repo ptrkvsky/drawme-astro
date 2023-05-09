@@ -63,7 +63,6 @@ export function splitAndReveal({
   delay = 0,
 }: ParamsSplitAndReveal) {
   const splitedText = splitText(element, typeSplit);
-  console.log(delay);
   revealSplitedTitle(splitedText, typeSplit, trigger, delay);
 }
 

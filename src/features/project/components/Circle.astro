@@ -1,9 +1,17 @@
+---
+interface PropsCircle {
+  link: string;
+}
+
+const { link } = Astro.props as PropsCircle;
+---
+
 <script>
   import gsap from 'gsap';
   document.addEventListener('DOMContentLoaded', function () {});
 </script>
 
-<a href="/lets-go" class="lets-go">
+<a href={link} class="lets-go">
   <span class="text reveal">Let's go !</span>
   <svg
     id="svg-cercle"

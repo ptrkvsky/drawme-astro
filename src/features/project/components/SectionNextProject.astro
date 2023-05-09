@@ -88,7 +88,7 @@ const { nextProject } = Astro.props as Props;
       <!-- <a class="reveal" 
         >Let's go</a
       > -->
-      <Circle />
+      <Circle link={`/projects/${nextProject.slug.current}`} />
       <span id="no-answer" class="reveal">No thanks</span>
     </div>
   </div>

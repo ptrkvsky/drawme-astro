@@ -17,7 +17,7 @@ import config from 'src/config';
 export async function getStaticPaths() {
   const sanityProjects = await fetchSanity<SanityProjects>(querySanityProjects);
   const params = sanityProjects && getProjectUrlParams(sanityProjects);
-  console.log(params);
+
   return params;
 }
 
@@ -27,8 +27,6 @@ interface AstroProps {
 }
 
 const { project, nextProject } = Astro.props as AstroProps;
-
-console.log('-->', nextProject);
 const { hue, saturation } = project;
 ---
 
