@@ -11,13 +11,11 @@ const { mainImage } = Astro.props as AstroProps;
 
 <section id="single-image" class="section-single-image">
   <div class="conteneur">
-    <Image
+    <img
       src={mainImage.asset.url}
       alt={mainImage.asset.altText}
       width={mainImage.asset.metadata.dimensions.width}
       height={mainImage.asset.metadata.dimensions.height}
-      aspectRatio={mainImage.asset.metadata.dimensions.aspectRatio}
-      format="avif"
     />
   </div>
 </section>

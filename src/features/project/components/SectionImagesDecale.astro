@@ -24,13 +24,12 @@ const { images } = Astro.props as AstroProps;
       return (
         <div class="wrapper-image">
           {
-            <Image
+            <img
               src={url}
               alt={altText}
               width={width}
               height={height}
-              aspectRatio={aspectRatio}
-              format="avif"
+              loading="lazy"
             />
           }
         </div>

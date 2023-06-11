@@ -28,6 +28,13 @@ interface AstroProps {
 
 const { project, nextProject } = Astro.props as AstroProps;
 const { hue, saturation } = project;
+
+// prefect images quotes
+const urlsImages = [
+  ...(project?.quote?.map((quote) => quote.image.asset.url) || []),
+  project?.imageWebsite?.asset?.url,
+  ...(project?.imagesFooter?.map((imageFooter) => imageFooter.asset.url) || []),
+].filter(Boolean);
 ---
 
 <script define:vars={{ hue, saturation, config }}>
@@ -37,7 +44,12 @@ const { hue, saturation } = project;
   root.style.setProperty('--canva-saturation', saturation);
 </script>
 
-<Layout isHome={false} background="#FFF" title="Un beau projet">
+<Layout
+  isHome={false}
+  background="#FFF"
+  title="Un beau projet"
+  urlsImages={urlsImages}
+>
   <div slot="main-content">
     <div class="wrapper-project">
       <SectionProjectOverview project={project} />

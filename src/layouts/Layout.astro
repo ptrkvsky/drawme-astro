@@ -16,9 +16,10 @@ export interface Props {
   title: string;
   background: string;
   isHome: boolean;
+  urlsImages?: string[];
 }
 
-const { title, background, isHome } = Astro.props as Props;
+const { title, background, isHome, urlsImages } = Astro.props as Props;
 ---
 
 <meta charset="UTF-8" />
@@ -26,6 +27,11 @@ const { title, background, isHome } = Astro.props as Props;
 <link rel="icon" type="image/x-icon" href="/favicon.png" />
 <meta name="generator" content={Astro.generator} />
 <title>{title}</title>
+
+{
+  urlsImages &&
+    urlsImages.map((urlImage) => <link rel="prefetch" href={urlImage} />)
+}
 
 <body style={{ background }} class="canva-black">
   <Burger />

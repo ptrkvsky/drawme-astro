@@ -34,27 +34,12 @@ const { quote: quotes, projectColor } = Astro.props as AstroProps;
           },
         } = quote.image.asset;
 
-        // const paramsSplitAndRevealTitle: ParamsSplitAndReveal = {
-        //   element: `quote-${index}`,
-        //   typeSplit: 'lines',
-        //   trigger: `wrapper-quote-${index}`,
-        // };
-
-        // splitAndReveal(paramsSplitAndRevealTitle);
-
         return (
           <div id={`wrapper-quote-${index}`} class="quote">
             <div class="mobile-flex">
               <div class="wrapper-image">
                 {
-                  <Image
-                    src={url}
-                    alt={altText}
-                    width={width}
-                    height={height}
-                    aspectRatio={aspectRatio}
-                    format="avif"
-                  />
+                  <img src={url} alt={altText} width={width} height={height} />
                   // <img src={url} alt={altText} />
                 }
               </div>

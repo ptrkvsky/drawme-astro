@@ -16,11 +16,12 @@ const { nextProject } = Astro.props as Props;
   import config from 'src/config';
   gsap.registerPlugin(ScrollTrigger);
 
-  function handleNoClick() {
-    document.getElementById('next-project').classList.toggle('visible');
-  }
+  // Toogle au click du bouton no
+  // function handleNoClick() {
+  //   document.getElementById('next-project').classList.toggle('visible');
+  // }
 
-  document.getElementById('no-answer').addEventListener('click', handleNoClick);
+  // document.getElementById('no-answer').addEventListener('click', handleNoClick);
 
   function toggleSection() {
     document.getElementById('next-project').classList.toggle('visible');
@@ -65,7 +66,7 @@ const { nextProject } = Astro.props as Props;
     const markers = config.mode === 'development' ? marker : false;
 
     ScrollTrigger.create({
-      trigger: 'footer',
+      trigger: '#trigger-next-project',
       start: '140px bottom',
       endTrigger: 'footer',
       markers: markers,
@@ -89,7 +90,7 @@ const { nextProject } = Astro.props as Props;
         >Let's go</a
       > -->
       <Circle link={`/projects/${nextProject.slug.current}`} />
-      <span id="no-answer" class="reveal">No thanks</span>
+      <a href="/" id="no-answer" class="reveal">No thanks</a>
     </div>
   </div>
 </div>

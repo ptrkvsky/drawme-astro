@@ -4,6 +4,7 @@ import instagram from '@assets/images/instagram.png';
 ---
 
 <footer>
+  <div id="trigger-next-project"></div>
   <div class="infos">
     <a target="_blank" class="mail" href="mailto:drawmeasheepdesign@gmail.com">
       drawmeasheepdesign@gmail.com
@@ -42,6 +43,7 @@ import instagram from '@assets/images/instagram.png';
 
 <style lang="scss">
   footer {
+    position: relative;
     display: flex;
     justify-content: space-between;
     max-width: 163rem;
@@ -51,6 +53,13 @@ import instagram from '@assets/images/instagram.png';
     @media screen and (max-width: 726px) {
       padding: 24px 36px;
     }
+  }
+
+  #trigger-next-project {
+    position: absolute;
+    top: -50px;
+    width: 100%;
+    height: 1px;
   }
 
   .infos {
