@@ -58,7 +58,7 @@ const { background } = Astro.props;
           opacity: '1',
         })
         .call(() => {
-          document.querySelector('#main-canva').classList.add('visible');
+          document.querySelector('#curtains-canvas').classList.add('visible');
           sessionStorage.setItem('isPreloaderSeen', 'true');
         });
     } else {
@@ -75,7 +75,7 @@ const { background } = Astro.props;
           opacity: '1',
         })
         .call(() => {
-          document.querySelector('#main-canva').classList.add('visible');
+          document.querySelector('#curtains-canvas').classList.add('visible');
           sessionStorage.setItem('isPreloaderSeen', 'true');
         });
     }

@@ -18,7 +18,6 @@ export default class Cursor {
   constructor(el) {
     this.DOM = { el: el };
     this.DOM.el.style.opacity = `${0}`;
-
     this.bounds = this.DOM.el.getBoundingClientRect();
 
     this.renderedStyles = {

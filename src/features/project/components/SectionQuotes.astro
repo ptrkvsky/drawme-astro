@@ -13,13 +13,15 @@ const { quote: quotes, projectColor } = Astro.props as AstroProps;
 <script>
   import { splitAndReveal, ParamsSplitAndReveal } from '@helpers/gsap';
 
-  const paramsSplitAndRevealTitle: ParamsSplitAndReveal = {
-    element: `quote-0`,
-    typeSplit: 'lines',
-    trigger: `wrapper-quote-0`,
-  };
+  document.addEventListener('load', () => {
+    const paramsSplitAndRevealTitle: ParamsSplitAndReveal = {
+      element: `quote-0`,
+      typeSplit: 'lines',
+      trigger: `wrapper-quote-0`,
+    };
 
-  splitAndReveal(paramsSplitAndRevealTitle);
+    splitAndReveal(paramsSplitAndRevealTitle);
+  });
 </script>
 
 <section class="section-quotes">
