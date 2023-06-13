@@ -5,6 +5,7 @@ const { background } = Astro.props;
 <script>
   import gsap from 'gsap';
   import config from '../config';
+
   window.addEventListener('load', () => {
     const isProd = config.mode === 'production';
     // const isProd = true;
@@ -58,7 +59,7 @@ const { background } = Astro.props;
           opacity: '1',
         })
         .call(() => {
-          document.querySelector('#curtains-canvas').classList.add('visible');
+          document.querySelector('#main-canva').classList.add('visible');
           sessionStorage.setItem('isPreloaderSeen', 'true');
         });
     } else {
@@ -75,7 +76,7 @@ const { background } = Astro.props;
           opacity: '1',
         })
         .call(() => {
-          document.querySelector('#curtains-canvas').classList.add('visible');
+          document.querySelector('#main-canva').classList.add('visible');
           sessionStorage.setItem('isPreloaderSeen', 'true');
         });
     }

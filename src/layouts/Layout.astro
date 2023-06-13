@@ -9,17 +9,18 @@ import '@styles/variables.scss';
 import '@styles/global.scss';
 import '@styles/functions.scss';
 import { Menu, Burger, Footer } from '@components/index';
-import CanvasHome from '@features/home/components/Canvas.astro';
-import CanvasProject from '@features/project/components/Canvas.astro';
+// import CanvasHome from '@features/home/components/Canvas.astro';
+// import CanvasProject from '@features/project/components/Canvas.astro';
 
 export interface Props {
   title: string;
   background: string;
   isHome: boolean;
   urlsImages?: string[];
+  Canvas: (_props: Record<string, any>) => any;
 }
 
-const { title, background, isHome, urlsImages } = Astro.props as Props;
+const { title, background, isHome, urlsImages, Canvas } = Astro.props as Props;
 
 console.log(title, isHome);
 ---
@@ -38,8 +39,9 @@ console.log(title, isHome);
 <body style={{ background }} class="canva-black">
   <Burger />
   <Header />
-  {isHome && <CanvasHome />}
-  {!isHome && <CanvasProject />}
+  <!-- {isHome && <CanvasHome />} -->
+  <!-- {!isHome && <CanvasProject />} -->
+  <Canvas />
   <Logo />
   <Gsap>
     <div id="main-content" style={{ opacity: 0 }}>

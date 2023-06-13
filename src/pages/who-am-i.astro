@@ -1,13 +1,14 @@
 ---
-import Canvas from '@features/project/components/Canvas.astro';
 import fetchSanity from '@helpers/fetchSanity';
 import { queryWhoAmI } from '@features/who-am-i/queries/queryWhoAmI';
 import { SanityWhoAmI } from '@features/who-am-i/interfaces/SanityWhoAmI';
 import Layout from '@layouts/Layout.astro';
 import { Hero } from '@features/who-am-i/components/Hero';
 import { Presentation } from '@features/who-am-i/components/Presentation';
-const WhoAmI = await fetchSanity<{ WhoAmI: SanityWhoAmI }>(queryWhoAmI);
-const sanityWhoAmI = WhoAmI && WhoAmI.WhoAmI;
+import Canvas from '@features/project/components/Canvas.astro';
+
+const whoAmI = await fetchSanity<{ WhoAmI: SanityWhoAmI }>(queryWhoAmI);
+const sanityWhoAmI = whoAmI && whoAmI.WhoAmI;
 ---
 
 <script>
@@ -28,7 +29,7 @@ const sanityWhoAmI = WhoAmI && WhoAmI.WhoAmI;
   splitAndReveal(paramsSplitAndRevealSubtitleWebsite);
 </script>
 
-<Layout isHome={false} background="#FFF" title="Who am i">
+<Layout Canvas={Canvas} isHome={false} background="#FFF" title="Who am i">
   <div class="wrapper-who-am-i" slot="main-content">
     <Hero sanityWhoAmI={sanityWhoAmI} />
     <Presentation
