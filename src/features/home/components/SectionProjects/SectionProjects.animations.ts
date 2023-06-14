@@ -1,5 +1,6 @@
 import gsap from 'gsap';
 import { splitAndReveal, ParamsSplitAndReveal } from '@helpers/gsap';
+import config from 'src/config';
 
 export function revealTexts() {
   gsap
@@ -67,13 +68,16 @@ export function revealIllustrations() {
     trigger: '#subtitle-website',
   };
 
-  const marker = {
-    startColor: 'red',
-    endColor: 'pink',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    indent: 20,
-  };
+  const marker =
+    config.mode === 'development'
+      ? {
+          startColor: 'red',
+          endColor: 'pink',
+          fontSize: '16px',
+          fontWeight: 'bold',
+          indent: 20,
+        }
+      : false;
 
   gsap
     .timeline({
