@@ -75,10 +75,19 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
         ease: 'power1.inOut',
       });
 
+    const marker = {
+      startColor: 'red',
+      endColor: 'pink',
+      fontSize: '16px',
+      fontWeight: 'bold',
+      indent: 20,
+    };
+
     gsap
       .timeline({
         scrollTrigger: {
-          trigger: `#packaging`,
+          trigger: `#section-projets`,
+          markers: marker,
           start: 'top 85%', // when the top of the trigger hits the bottom of the viewport
         },
       })
@@ -273,7 +282,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
         position: relative;
         top: initial;
         left: initial;
-        margin-bottom: 35px;
+        margin-bottom: 50px;
         max-width: 100%;
         transform: translate(0%);
       }
@@ -318,6 +327,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
           max-width: 35.9rem;
           @media screen and (max-width: 768px) {
             max-width: 203px;
+            padding-left: 55px;
           }
         }
         .sub-title {
@@ -328,7 +338,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
           transform: rotate(-90deg);
 
           @media screen and (max-width: 768px) {
-            left: -97px;
+            left: -44px;
           }
         }
       }
