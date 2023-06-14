@@ -35,6 +35,10 @@ import ReactCanva from './ReactCanva';
     cursor: none;
     min-height: clamp(55.2rem, 55.2rem, 520px);
 
+    @media screen and (max-width: 768px) {
+      min-height: 50vh;
+    }
+
     .title {
       position: absolute;
       top: clamp(35px, 6.7rem, 6.7rem);
@@ -51,18 +55,23 @@ import ReactCanva from './ReactCanva';
 
     .wrapper-button {
       position: absolute;
-      bottom: 3.3rem;
+      bottom: clamp(20px, 3.3rem, 3.3rem);
       left: 0;
       right: 0;
+
       .container {
         display: flex;
         justify-content: flex-end;
+
+        @media screen and (max-width: 768px) {
+          justify-content: center;
+        }
       }
     }
 
     .button-send {
       background-color: transparent;
-      font-size: 1.4rem;
+      font-size: clamp(12px, 1.4rem, 1.4rem);
       text-transform: uppercase;
       font-family: var(--text-body-medium);
       letter-spacing: 0.2rem;
