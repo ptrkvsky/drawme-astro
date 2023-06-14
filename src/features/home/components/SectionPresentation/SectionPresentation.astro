@@ -32,6 +32,9 @@ const presentationMobileHTML = toHTML(presentationMobile, {
 </script>
 
 <section id="section-presentation" class="section-presentation">
+  <div data-speed="1.05" data-lag="0.025" class="wrapper-logo-mark desktop">
+    <LogoMark />
+  </div>
   <div
     class="illustration book wrapper-overflow opacity-0"
     data-speed="1.05"
@@ -87,7 +90,6 @@ const presentationMobileHTML = toHTML(presentationMobile, {
     </div>
   </div>
   <div
-    id="intro-presentation"
     class="intro-presentation opacity-0 desktop"
     data-speed="0.95"
     data-lag="0.025"
@@ -95,7 +97,6 @@ const presentationMobileHTML = toHTML(presentationMobile, {
   >
   </div>
   <div
-    id="intro-presentation"
     class="intro-presentation opacity-0 mobile"
     data-speed="0.95"
     data-lag="0.025"
@@ -125,6 +126,17 @@ const presentationMobileHTML = toHTML(presentationMobile, {
     max-width: 164rem;
     z-index: 10;
     font-size: 2.4rem;
+
+    .wrapper-logo-mark {
+      position: absolute;
+      top: 11rem;
+      left: 42rem;
+      z-index: 10;
+      width: clamp(102px, 20.7rem, 20.7rem);
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+    }
 
     @media screen and (max-width: 1300px) {
       height: 800px;
@@ -177,6 +189,13 @@ const presentationMobileHTML = toHTML(presentationMobile, {
         img {
           max-width: 18.6rem;
         }
+
+        .wrapper-logo-mark {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 207px;
+        }
       }
 
       &.letters {
@@ -228,9 +247,7 @@ const presentationMobileHTML = toHTML(presentationMobile, {
       }
 
       .wrapper-logo-mark {
-        @media screen and (max-width: 768px) {
-          width: 102px;
-        }
+        width: clamp(102px, 20.7rem, 20.7rem);
       }
 
       @media screen and (max-width: 768px) {
