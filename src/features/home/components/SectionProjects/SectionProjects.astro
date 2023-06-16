@@ -1,10 +1,21 @@
 ---
-import { Image } from '@astrojs/image/components';
-import illustrationWebsite from '@assets/images/illustration_website.png';
-import illustrationPackaging from '@assets/images/illustration_packaging.png';
-import illustrationSocial from '@assets/images/illustration_social.png';
-import illustrationLogo from '@assets/images/illustration_logo.png';
-import illustrationIdentity from '@assets/images/illustration_identity.png';
+import { getImage } from '@astrojs/image';
+
+const { src: illustrationWebsite } = await getImage({
+  src: import('@assets/images/illustration_website.png'),
+});
+const { src: illustrationPackaging } = await getImage({
+  src: import('@assets/images/illustration_packaging.png'),
+});
+const { src: illustrationSocial } = await getImage({
+  src: import('@assets/images/illustration_social.png'),
+});
+const { src: illustrationLogo } = await getImage({
+  src: import('@assets/images/illustration_logo.png'),
+});
+const { src: illustrationIdentity } = await getImage({
+  src: import('@assets/images/illustration_identity.png'),
+});
 ---
 
 <script>
@@ -67,7 +78,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
         Website
       </h3>
       <div class="illustration" data-speed="1.07" data-lag="0.05">
-        <Image src={illustrationWebsite} alt="Illustration website" />
+        <img src={illustrationWebsite} alt="Illustration website" />
       </div>
     </div>
   </a>
@@ -84,7 +95,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
         Identity
       </h3>
       <div class="illustration" data-speed="0.95" data-lag="0.05">
-        <Image src={illustrationIdentity} alt="Illustration identity" />
+        <img src={illustrationIdentity} alt="Illustration identity" />
       </div>
     </div>
   </div>
@@ -92,7 +103,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
   <!-- LOGO -->
   <a href="/projects/infizio" class="wrapper-illustration-title logo">
     <div class="illustration" data-speed="0.98" data-lag="0.04">
-      <Image src={illustrationLogo} alt="Illustration logo" />
+      <img src={illustrationLogo} alt="Illustration logo" />
     </div>
     <h3 id="subtitle-logo" class="sub-title" data-speed="1.05" data-lag="0.03">
       Logotype
@@ -116,7 +127,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
         Social networks
       </h3>
       <div class="illustration" data-speed="1.05" data-lag="0.04">
-        <Image src={illustrationSocial} alt="Illustration social" />
+        <img src={illustrationSocial} alt="Illustration social" />
       </div>
     </div>
   </a>
@@ -143,7 +154,7 @@ import illustrationIdentity from '@assets/images/illustration_identity.png';
     </h3>
     <div class="relative" data-speed="1.02" data-lag="0.04">
       <div class="illustration">
-        <Image src={illustrationPackaging} alt="Illustration packaging" />
+        <img src={illustrationPackaging} alt="Illustration packaging" />
       </div>
     </div>
   </div>

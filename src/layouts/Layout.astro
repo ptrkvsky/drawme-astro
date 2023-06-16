@@ -9,8 +9,6 @@ import '@styles/variables.scss';
 import '@styles/global.scss';
 import '@styles/functions.scss';
 import { Menu, Burger, Footer } from '@components/index';
-// import CanvasHome from '@features/home/components/Canvas.astro';
-// import CanvasProject from '@features/project/components/Canvas.astro';
 
 export interface Props {
   title: string;
@@ -21,8 +19,6 @@ export interface Props {
 }
 
 const { title, background, isHome, urlsImages, Canvas } = Astro.props as Props;
-
-console.log(title, isHome);
 ---
 
 <meta charset="UTF-8" />
@@ -33,7 +29,9 @@ console.log(title, isHome);
 
 {
   urlsImages &&
-    urlsImages.map((urlImage) => <link rel="prefetch" href={urlImage} />)
+    urlsImages.map((urlImage) => (
+      <link rel="preload" as="image" href={urlImage} />
+    ))
 }
 
 <body style={{ background }} class="canva-black">

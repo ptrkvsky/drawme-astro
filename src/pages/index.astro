@@ -1,4 +1,6 @@
 ---
+import { getImage } from '@astrojs/image';
+
 import { SectionDrawSomething } from '@features/home/components/SectionDrawSomething';
 import SectionDrawTogether from '@features/home/components/SectionDrawTogether.astro';
 import SectionHero from '@features/home/components/SectionHero.astro';
@@ -16,6 +18,30 @@ const presentation = sanityHome && sanityHome.Home.introPresentationRaw;
 const presentationMobile =
   sanityHome && sanityHome.Home.introPresentationMobileRaw;
 const detail = sanityHome && sanityHome.Home.introDetail;
+
+const { src: illustrationWebsite } = await getImage({
+  src: import('@assets/images/illustration_website.png'),
+});
+const { src: illustrationPackaging } = await getImage({
+  src: import('@assets/images/illustration_packaging.png'),
+});
+const { src: illustrationSocial } = await getImage({
+  src: import('@assets/images/illustration_social.png'),
+});
+const { src: illustrationLogo } = await getImage({
+  src: import('@assets/images/illustration_logo.png'),
+});
+const { src: illustrationIdentity } = await getImage({
+  src: import('@assets/images/illustration_identity.png'),
+});
+
+const urlImages = [
+  illustrationWebsite,
+  illustrationPackaging,
+  illustrationSocial,
+  illustrationLogo,
+  illustrationIdentity,
+];
 ---
 
 <Layout
@@ -23,6 +49,7 @@ const detail = sanityHome && sanityHome.Home.introDetail;
   background="#000"
   title="Graphic Designer at Cagnes sur Mer"
   Canvas={Canvas}
+  urlsImages={urlImages}
 >
   <div slot="main-content">
     <SectionHero />
