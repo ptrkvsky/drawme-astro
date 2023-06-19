@@ -14,16 +14,17 @@ const { nextProject } = Astro.props as Props;
   import gsap from 'gsap';
   import ScrollTrigger from 'gsap/ScrollTrigger';
   import config from 'src/config';
+
   gsap.registerPlugin(ScrollTrigger);
 
-  // Toogle au click du bouton no
-  // function handleNoClick() {
-  //   document.getElementById('next-project').classList.toggle('visible');
-  // }
+  window.addEventListener('load', function () {
+    const portalDiv = document.getElementById('portal');
+    const nextProjectDiv = document.getElementById('next-project');
 
-  // document.getElementById('no-answer').addEventListener('click', handleNoClick);
+    portalDiv.appendChild(nextProjectDiv);
+  });
 
-  function toggleSection() {
+  function displayNextProject() {
     document.getElementById('next-project').classList.toggle('visible');
 
     const paramsSplitReveal: ParamsSplitAndReveal = {
@@ -63,6 +64,7 @@ const { nextProject } = Astro.props as Props;
       fontWeight: 'bold',
       indent: 20,
     };
+
     const markers = config.mode === 'development' ? marker : false;
 
     ScrollTrigger.create({
@@ -71,14 +73,14 @@ const { nextProject } = Astro.props as Props;
       endTrigger: 'footer',
       markers: markers,
       onToggle: () => {
-        toggleSection();
+        displayNextProject();
       },
     });
   });
 </script>
 
 <div id="next-project" class="next-project">
-  <div class="wrapper">
+  <div id="wrapper-next" class="wrapper">
     <p id="see-next" class="see-next split-text">
       <span class="reveal line1">See</span><span class="highlight reveal line1"
         >nex<span class="glitch reveal line1">t</span>
@@ -96,7 +98,7 @@ const { nextProject } = Astro.props as Props;
 </div>
 <style lang="scss">
   .next-project {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     height: 100%;
