@@ -9,7 +9,7 @@ const { sanityWhoAmI } = Astro.props as AstroProps;
 ---
 
 <script>
-  import { splitAndReveal } from '@helpers/gsap';
+  import { splitAndReveal, ParamsSplitAndReveal } from '@helpers/gsap';
   import { TypeShuffle } from '@helpers/typeShuffle';
 
   const textElement = document.querySelector('.introduction');
@@ -17,7 +17,7 @@ const { sanityWhoAmI } = Astro.props as AstroProps;
   ts.trigger('fx3');
 
   // Split title
-  const paramsSplitAndRevealTitle = {
+  const paramsSplitAndRevealTitle: ParamsSplitAndReveal = {
     element: `h1`,
     typeSplit: 'lines',
     trigger: `body`,
@@ -26,7 +26,7 @@ const { sanityWhoAmI } = Astro.props as AstroProps;
   splitAndReveal(paramsSplitAndRevealTitle);
 
   // Split title
-  const paramsSplitAndRevealIntroduction = {
+  const paramsSplitAndRevealIntroduction: ParamsSplitAndReveal = {
     element: `.introduction`,
     typeSplit: 'lines',
     trigger: `body`,
