@@ -66,6 +66,14 @@
           <span class="line"></span>
           <a
             class="link menu__item"
+            data-img="/assets/images/menu-who-am-i.png"
+            href="/projects">Projects</a
+          >
+        </li>
+        <li>
+          <span class="line"></span>
+          <a
+            class="link menu__item"
             data-img="/assets/images/menu-contact.png"
             href="/contact">Contact</a
           >
@@ -105,7 +113,7 @@
       overflow: hidden;
       will-change: opacity;
       mix-blend-mode: difference;
-      background-color: black;
+      background-color: var(--color-black-beauty);
 
       .menu {
         position: absolute;
@@ -113,7 +121,7 @@
         top: 45%;
         width: 100%;
         transform: translateX(-50%) translateY(-50%);
-        font-size: 6vw;
+        font-size: clamp(45px, 6rem, 6rem);
         font-family: WagonBold;
         line-height: 10vw;
         color: #fff;
@@ -135,6 +143,10 @@
           height: 2px;
           background-color: rgb(89, 89, 89);
           transform-origin: 50% 50%;
+
+          @media screen and (max-width: 768px) {
+            display: none;
+          }
         }
       }
     }
