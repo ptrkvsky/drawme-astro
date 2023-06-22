@@ -100,7 +100,7 @@ const { src: illustrationIdentity } = await getImage({
   <!-- IDENTITY -->
   <a
     id="wrapper-identity"
-    href="/projects/la-recyclerie"
+    href="/projects/la-recylerie"
     class="wrapper-illustration-title identity"
   >
     <div class="relative">
@@ -126,35 +126,66 @@ const { src: illustrationIdentity } = await getImage({
         </div>
       </div>
     </div>
+  </a>
 
-    <!-- LOGO -->
-  </a><a href="/projects/infizio" class="wrapper-illustration-title logo">
-    <div class="illustration" data-speed="0.98" data-lag="0.04">
-      <img src={illustrationLogo} alt="Illustration logo" />
+  <!-- LOGO -->
+  <a
+    id="wrapper-infizio"
+    href="/projects/infizio"
+    class="wrapper-illustration-title logo"
+  >
+    <div class="relative">
+      <h3
+        id="subtitle-infizio"
+        class="sub-title"
+        data-speed="0.93"
+        data-lag="0.04"
+      >
+        Logotype
+      </h3>
+      <div class="illustration" data-speed="1.07" data-lag="0.05">
+        <div id="curtain-infizio" class="curtain-illustration">
+          <div id="canva-infizio" class="canva-holder"></div>
+          <div class="curtain">
+            <img
+              crossorigin=""
+              data-sampler="simplePlaneTexture"
+              src={illustrationLogo}
+              alt="Illustration infizio"
+            />
+          </div>
+        </div>
+      </div>
     </div>
-    <h3 id="subtitle-logo" class="sub-title" data-speed="1.05" data-lag="0.03">
-      Logotype
-    </h3>
   </a>
 
   <!-- SOCIAL -->
   <a
+    id="wrapper-dissidente"
     href="/projects/dissidente"
     class="wrapper-illustration-title social"
-    data-speed="0.95"
-    data-lag="0.05"
   >
     <div class="relative">
       <h3
-        id="subtitle-social"
+        id="subtitle-dissidente"
         class="sub-title"
-        data-speed="0.95"
-        data-lag="0.05"
+        data-speed="0.93"
+        data-lag="0.04"
       >
         Social networks
       </h3>
-      <div class="illustration" data-speed="1.05" data-lag="0.04">
-        <img src={illustrationSocial} alt="Illustration social" />
+      <div class="illustration" data-speed="1.07" data-lag="0.05">
+        <div id="curtain-dissidente" class="curtain-illustration">
+          <div id="canva-dissidente" class="canva-holder"></div>
+          <div class="curtain">
+            <img
+              crossorigin=""
+              data-sampler="simplePlaneTexture"
+              src={illustrationSocial}
+              alt="Illustration dissidente"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </a>
@@ -170,21 +201,35 @@ const { src: illustrationIdentity } = await getImage({
   </div> */
   }
   <!--PACKAGING -->
-  <div id="packaging" class="wrapper-illustration-title packaging">
-    <h3
-      id="subtitle-packaging"
-      class="sub-title"
-      data-speed="0.95"
-      data-lag="0.05"
-    >
-      Packaging
-    </h3>
-    <div class="relative" data-speed="1.02" data-lag="0.04">
-      <div class="illustration">
-        <img src={illustrationPackaging} alt="Illustration packaging" />
+  <a
+    id="wrapper-packaging"
+    href="/projects/packaging"
+    class="wrapper-illustration-title packaging"
+  >
+    <div class="relative">
+      <h3
+        id="subtitle-packaging"
+        class="sub-title"
+        data-speed="0.93"
+        data-lag="0.04"
+      >
+        Packaging
+      </h3>
+      <div class="illustration" data-speed="1.07" data-lag="0.05">
+        <div id="curtain-packaging" class="curtain-illustration">
+          <div id="canva-packaging" class="canva-holder"></div>
+          <div class="curtain">
+            <img
+              crossorigin=""
+              data-sampler="simplePlaneTexture"
+              src={illustrationPackaging}
+              alt="Illustration packaging"
+            />
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </a>
 </section>
 
 <style lang="scss">
@@ -195,6 +240,18 @@ const { src: illustrationIdentity } = await getImage({
   #canva-identity {
     width: 516px;
     height: 584px;
+  }
+  #canva-infizio {
+    width: 362px;
+    height: 386px;
+  }
+  #canva-dissidente {
+    width: 620px;
+    height: 1034px;
+  }
+  #canva-packaging {
+    width: 303px;
+    height: 226px;
   }
 
   .illustration .curtain {
