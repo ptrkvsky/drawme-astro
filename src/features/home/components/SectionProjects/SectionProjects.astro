@@ -98,7 +98,11 @@ const { src: illustrationIdentity } = await getImage({
   </a>
 
   <!-- IDENTITY -->
-  <div class="wrapper-illustration-title identity">
+  <a
+    id="wrapper-identity"
+    href="/projects/la-recyclerie"
+    class="wrapper-illustration-title identity"
+  >
     <div class="relative">
       <h3
         id="subtitle-identity"
@@ -108,10 +112,9 @@ const { src: illustrationIdentity } = await getImage({
       >
         Identity
       </h3>
-      <div class="illustration" data-speed="0.95" data-lag="0.05">
+      <div class="illustration" data-speed="1.07" data-lag="0.05">
         <div id="curtain-identity" class="curtain-illustration">
           <div id="canva-identity" class="canva-holder"></div>
-
           <div class="curtain">
             <img
               crossorigin=""
@@ -123,10 +126,9 @@ const { src: illustrationIdentity } = await getImage({
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- LOGO -->
-  <a href="/projects/infizio" class="wrapper-illustration-title logo">
+    <!-- LOGO -->
+  </a><a href="/projects/infizio" class="wrapper-illustration-title logo">
     <div class="illustration" data-speed="0.98" data-lag="0.04">
       <img src={illustrationLogo} alt="Illustration logo" />
     </div>
