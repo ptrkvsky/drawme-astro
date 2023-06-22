@@ -42,139 +42,139 @@ export function setTextsLagAndSpeed() {
   });
 }
 
-const vs = `
-precision mediump float;
-
-// default mandatory variables
-attribute vec3 aVertexPosition;
-attribute vec2 aTextureCoord;
-
-uniform mat4 uMVMatrix;
-uniform mat4 uPMatrix;
-
-// our texture matrix uniform
-uniform mat4 simplePlaneTextureMatrix;
-
-// custom variables
-varying vec3 vVertexPosition;
-varying vec2 vTextureCoord;
-
-uniform float uTime;
-uniform vec2 uResolution;
-uniform vec2 uMousePosition;
-uniform float uMouseMoveStrength;
-
-
-void main() {
-
-    vec3 vertexPosition = aVertexPosition;
-
-    // get the distance between our vertex and the mouse position
-    float distanceFromMouse = distance(uMousePosition, vec2(vertexPosition.x, vertexPosition.y));
-
-    // calculate our wave effect
-    float waveSinusoid = cos(5.0 * (distanceFromMouse - (uTime / 75.0)));
-
-    // attenuate the effect based on mouse distance
-    float distanceStrength = (0.4 / (distanceFromMouse + 0.4));
-
-    // calculate our distortion effect
-    float distortionEffect = distanceStrength * waveSinusoid * uMouseMoveStrength;
-
-    // apply it to our vertex position
-    vertexPosition.z +=  distortionEffect / 30.0;
-    vertexPosition.x +=  (distortionEffect / 30.0 * (uResolution.x / uResolution.y) * (uMousePosition.x - vertexPosition.x));
-    vertexPosition.y +=  distortionEffect / 30.0 * (uMousePosition.y - vertexPosition.y);
-
-    gl_Position = uPMatrix * uMVMatrix * vec4(vertexPosition, 1.0);
-
-    // varyings
-    vTextureCoord = (simplePlaneTextureMatrix * vec4(aTextureCoord, 0.0, 1.0)).xy;
-    vVertexPosition = vertexPosition;
-}
-`;
-
-const fs = `
-precision mediump float;
-
-varying vec3 vVertexPosition;
-varying vec2 vTextureCoord;
-
-uniform sampler2D simplePlaneTexture;
-
-void main() {
-    // apply our texture
-    vec4 finalColor = texture2D(simplePlaneTexture, vTextureCoord);
-
-    // fake shadows based on vertex position along Z axis
-    finalColor.rgb -= clamp(-vVertexPosition.z, 0.0, 1.0);
-    // fake lights based on vertex position along Z axis
-    finalColor.rgb += clamp(vVertexPosition.z, 0.0, 1.0);
-
-    // handling premultiplied alpha (useful if we were using a png with transparency)
-    finalColor = vec4(finalColor.rgb * finalColor.a, finalColor.a);
-
-    gl_FragColor = finalColor;
-}
-`;
-
 export function createCanvas() {
   window.addEventListener('load', () => {
-    // track the mouse positions to send it to the shaders
-    const mousePosition = new Vec2();
-    // we will keep track of the last position in order to calculate the movement strength/delta
-    const mouseLastPosition = new Vec2();
-
-    // handle the mouse move event
-    function handleMovement(e: MouseEvent | TouchEvent, plane, curtain) {
-      // update mouse last pos
-      mouseLastPosition.copy(mousePosition);
-
-      const mouse = new Vec2();
-
-      // touch event
-      if ('targetTouches' in e && e.targetTouches) {
-        mouse.set(e.targetTouches[0].clientX, e.targetTouches[0].clientY);
-      }
-      // mouse event
-      else if ('clientX' in e) {
-        mouse.set(e.clientX, e.clientY);
-      }
-
-      // lerp the mouse position a bit to smoothen the overall effect
-      mousePosition.set(
-        curtain.lerp(mousePosition.x, mouse.x, 0.3),
-        curtain.lerp(mousePosition.y, mouse.y, 0.8)
-      );
-
-      // convert our mouse/touch position to coordinates relative to the vertices of the plane and update our uniform
-      plane.uniforms.mousePosition.value =
-        plane.mouseToPlaneCoords(mousePosition);
-
-      // calculate the mouse move strength
-      if (mouseLastPosition.x && mouseLastPosition.y) {
-        let delta =
-          Math.sqrt(
-            Math.pow(mousePosition.x - mouseLastPosition.x, 2) +
-              Math.pow(mousePosition.y - mouseLastPosition.y, 2)
-          ) / 30;
-        delta = Math.min(4, delta);
-        // update max delta only if it increased
-        if (delta >= deltas.max) {
-          deltas.max = delta;
-        }
-      }
-    }
-
-    const deltas = {
-      max: 0,
-      applied: 0,
-    };
-
     const wrappersIllustration: NodeListOf<HTMLDivElement> =
       document.querySelectorAll('.wrapper-illustration-title');
 
     wrappersIllustration.forEach((wrapperIllustration) => {
+      // track the mouse positions to send it to the shaders
+      const mousePosition = new Vec2();
+      // we will keep track of the last position in order to calculate the movement strength/delta
+      const mouseLastPosition = new Vec2();
+
+      // handle the mouse move event
+      function handleMovement(e: MouseEvent | TouchEvent, plane, curtain) {
+        // update mouse last pos
+        mouseLastPosition.copy(mousePosition);
+
+        const mouse = new Vec2();
+
+        // touch event
+        if ('targetTouches' in e && e.targetTouches) {
+          mouse.set(e.targetTouches[0].clientX, e.targetTouches[0].clientY);
+        }
+        // mouse event
+        else if ('clientX' in e) {
+          mouse.set(e.clientX, e.clientY);
+        }
+
+        // lerp the mouse position a bit to smoothen the overall effect
+        mousePosition.set(
+          curtain.lerp(mousePosition.x, mouse.x, 0.3),
+          curtain.lerp(mousePosition.y, mouse.y, 0.8)
+        );
+
+        // convert our mouse/touch position to coordinates relative to the vertices of the plane and update our uniform
+        plane.uniforms.mousePosition.value =
+          plane.mouseToPlaneCoords(mousePosition);
+
+        // calculate the mouse move strength
+        if (mouseLastPosition.x && mouseLastPosition.y) {
+          let delta =
+            Math.sqrt(
+              Math.pow(mousePosition.x - mouseLastPosition.x, 2) +
+                Math.pow(mousePosition.y - mouseLastPosition.y, 2)
+            ) / 30;
+          delta = Math.min(4, delta);
+          // update max delta only if it increased
+          if (delta >= deltas.max) {
+            deltas.max = delta;
+          }
+        }
+      }
+
+      const deltas = {
+        max: 0,
+        applied: 0,
+      };
+
+      const vs = `
+      precision mediump float;
+      
+      // default mandatory variables
+      attribute vec3 aVertexPosition;
+      attribute vec2 aTextureCoord;
+      
+      uniform mat4 uMVMatrix;
+      uniform mat4 uPMatrix;
+      
+      // our texture matrix uniform
+      uniform mat4 simplePlaneTextureMatrix;
+      
+      // custom variables
+      varying vec3 vVertexPosition;
+      varying vec2 vTextureCoord;
+      
+      uniform float uTime;
+      uniform vec2 uResolution;
+      uniform vec2 uMousePosition;
+      uniform float uMouseMoveStrength;
+      
+      
+      void main() {
+      
+          vec3 vertexPosition = aVertexPosition;
+      
+          // get the distance between our vertex and the mouse position
+          float distanceFromMouse = distance(uMousePosition, vec2(vertexPosition.x, vertexPosition.y));
+      
+          // calculate our wave effect
+          float waveSinusoid = cos(5.0 * (distanceFromMouse - (uTime / 75.0)));
+      
+          // attenuate the effect based on mouse distance
+          float distanceStrength = (0.4 / (distanceFromMouse + 0.4));
+      
+          // calculate our distortion effect
+          float distortionEffect = distanceStrength * waveSinusoid * uMouseMoveStrength;
+      
+          // apply it to our vertex position
+          vertexPosition.z +=  distortionEffect / 30.0;
+          vertexPosition.x +=  (distortionEffect / 30.0 * (uResolution.x / uResolution.y) * (uMousePosition.x - vertexPosition.x));
+          vertexPosition.y +=  distortionEffect / 30.0 * (uMousePosition.y - vertexPosition.y);
+      
+          gl_Position = uPMatrix * uMVMatrix * vec4(vertexPosition, 1.0);
+      
+          // varyings
+          vTextureCoord = (simplePlaneTextureMatrix * vec4(aTextureCoord, 0.0, 1.0)).xy;
+          vVertexPosition = vertexPosition;
+      }
+      `;
+
+      const fs = `
+      precision mediump float;
+      
+      varying vec3 vVertexPosition;
+      varying vec2 vTextureCoord;
+      
+      uniform sampler2D simplePlaneTexture;
+      
+      void main() {
+          // apply our texture
+          vec4 finalColor = texture2D(simplePlaneTexture, vTextureCoord);
+      
+          // fake shadows based on vertex position along Z axis
+          finalColor.rgb -= clamp(-vVertexPosition.z, 0.0, 1.0);
+          // fake lights based on vertex position along Z axis
+          finalColor.rgb += clamp(vVertexPosition.z, 0.0, 1.0);
+      
+          // handling premultiplied alpha (useful if we were using a png with transparency)
+          finalColor = vec4(finalColor.rgb * finalColor.a, finalColor.a);
+      
+          gl_FragColor = finalColor;
+      }
+      `;
+
       const curtainId = wrapperIllustration.querySelector('.canva-holder')?.id;
 
       if (!curtainId) return;
