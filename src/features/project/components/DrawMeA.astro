@@ -9,7 +9,7 @@ interface AstroProps {
 const { drawMeA, projectColor } = Astro.props as AstroProps;
 ---
 
-<h1 class="title">
+<h1 class="title" data-speed="0.95" data-lag="0.02">
   <span class="brushed"
     >Draw me
     <BrushDrawMe projectColor={projectColor} />

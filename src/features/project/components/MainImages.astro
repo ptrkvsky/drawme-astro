@@ -14,7 +14,7 @@ const { mainImages, mainImageMobile, positionMainImageMobile } =
 const position = positionMainImageMobile || 'left';
 ---
 
-<div class="wrapper-images desktop">
+<div class="wrapper-images desktop" data-speed="0.95" data-lag="0.02">
   {
     mainImages.map((image) => {
       return (

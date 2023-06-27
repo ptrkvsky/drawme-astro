@@ -24,7 +24,7 @@ const { nextProject } = Astro.props as Props;
     portalDiv.appendChild(nextProjectDiv);
   });
 
-  function displayNextProject() {
+  function displayNextProject(direction: number) {
     document.getElementById('next-project').classList.toggle('visible');
 
     const paramsSplitReveal: ParamsSplitAndReveal = {
@@ -34,22 +34,42 @@ const { nextProject } = Astro.props as Props;
       delay: 0.35,
     };
 
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: '#next-project',
-          start: 'top 85%', // top of the element, bottom of the viewport
-        },
-      })
-      .call(() => {
-        splitAndReveal(paramsSplitReveal);
-      })
-      .to(`#svg-cercle-line-1`, {
-        drawSVG: true,
-        ease: `power3.inOut`,
-        delay: 1.7,
-        duration: 1.5,
-      });
+    if (direction == 1) {
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: '#next-project',
+            start: 'top 85%', // top of the element, bottom of the viewport
+          },
+        })
+        .call(() => {
+          splitAndReveal(paramsSplitReveal);
+        })
+        .to(`#svg-cercle-line-1`, {
+          drawSVG: true,
+          ease: `power3.inOut`,
+          delay: 1,
+          duration: 1.5,
+        });
+    }
+    if (direction == -1) {
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: '#next-project',
+            start: 'top 85%', // top of the element, bottom of the viewport
+          },
+        })
+        .to(`#svg-cercle-line-1`, {
+          drawSVG: false,
+          ease: `power3.inOut`,
+          delay: 0,
+          duration: 0.5,
+        })
+        .call(() => {
+          splitAndReveal(paramsSplitReveal);
+        });
+    }
   }
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -72,8 +92,9 @@ const { nextProject } = Astro.props as Props;
       start: '140px bottom',
       endTrigger: 'footer',
       markers: markers,
-      onToggle: () => {
-        displayNextProject();
+      onToggle: (e) => {
+        console.log(e);
+        displayNextProject(e.direction);
       },
     });
   });

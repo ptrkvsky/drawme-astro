@@ -19,17 +19,20 @@ const { src: illustrationIdentity } = await getImage({
 ---
 
 <script>
+  import { createCanvas } from '@helpers/createCanvas';
+
   import {
     setIllustrationsLagAndSpeed,
     setTextsLagAndSpeed,
-    createCanvas,
   } from './SectionProjects.functions';
   import {
     revealTexts,
     revealIllustrations,
   } from './SectionProjects.animations';
 
-  createCanvas();
+  if (window.innerWidth > 1024) {
+    createCanvas();
+  }
 
   window.addEventListener('DOMContentLoaded', () => {
     setIllustrationsLagAndSpeed();
@@ -69,19 +72,19 @@ const { src: illustrationIdentity } = await getImage({
   <a
     id="wrapper-website"
     href="/projects/cats-business-club"
-    class="wrapper-illustration-title website"
+    class="wrapper-illustration-title wrapper-canva-image website"
   >
     <div class="relative">
       <h3
         class="sub-title"
         id="subtitle-website"
         class="split-text"
-        data-speed="0.93"
+        data-speed="0.97"
         data-lag="0.04"
       >
         Website
       </h3>
-      <div class="illustration" data-speed="1.07" data-lag="0.05">
+      <div class="illustration" data-speed="1.04" data-lag="0.05">
         <div id="curtain-website" class="curtain-illustration">
           <div id="canva-website" class="canva-holder"></div>
           <div class="curtain">
@@ -101,18 +104,18 @@ const { src: illustrationIdentity } = await getImage({
   <a
     id="wrapper-identity"
     href="/projects/la-recylerie"
-    class="wrapper-illustration-title identity"
+    class="wrapper-illustration-title wrapper-canva-image identity"
   >
     <div class="relative">
       <h3
         id="subtitle-identity"
         class="sub-title"
-        data-speed="0.93"
+        data-speed="0.97"
         data-lag="0.04"
       >
         Identity
       </h3>
-      <div class="illustration" data-speed="1.07" data-lag="0.05">
+      <div class="illustration" data-speed="1.04" data-lag="0.05">
         <div id="curtain-identity" class="curtain-illustration">
           <div id="canva-identity" class="canva-holder"></div>
           <div class="curtain">
@@ -132,18 +135,18 @@ const { src: illustrationIdentity } = await getImage({
   <a
     id="wrapper-infizio"
     href="/projects/infizio"
-    class="wrapper-illustration-title logo"
+    class="wrapper-illustration-title wrapper-canva-image logo"
   >
     <div class="relative">
       <h3
         id="subtitle-infizio"
         class="sub-title"
-        data-speed="0.93"
+        data-speed="0.97"
         data-lag="0.04"
       >
         Logotype
       </h3>
-      <div class="illustration" data-speed="1.07" data-lag="0.05">
+      <div class="illustration" data-speed="1.04" data-lag="0.05">
         <div id="curtain-infizio" class="curtain-illustration">
           <div id="canva-infizio" class="canva-holder"></div>
           <div class="curtain">
@@ -163,18 +166,18 @@ const { src: illustrationIdentity } = await getImage({
   <a
     id="wrapper-dissidente"
     href="/projects/dissidente"
-    class="wrapper-illustration-title social"
+    class="wrapper-illustration-title wrapper-canva-image social"
   >
     <div class="relative">
       <h3
         id="subtitle-dissidente"
         class="sub-title"
-        data-speed="0.93"
+        data-speed="0.97"
         data-lag="0.04"
       >
         Social networks
       </h3>
-      <div class="illustration" data-speed="1.07" data-lag="0.05">
+      <div class="illustration" data-speed="1.04" data-lag="0.05">
         <div id="curtain-dissidente" class="curtain-illustration">
           <div id="canva-dissidente" class="canva-holder"></div>
           <div class="curtain">
@@ -191,7 +194,7 @@ const { src: illustrationIdentity } = await getImage({
   </a>
 
   {
-    /* <div class="wrapper-illustration-title layout" data-speed="0.85">
+    /* <div class="wrapper-illustration-title wrapper-canva-image layout" data-speed="0.85">
     <div class="illustration">
       <Image
         src="../../../../assets/images/illustration_layout.png"
@@ -204,18 +207,18 @@ const { src: illustrationIdentity } = await getImage({
   <a
     id="wrapper-packaging"
     href="/projects/packaging"
-    class="wrapper-illustration-title packaging"
+    class="wrapper-illustration-title wrapper-canva-image packaging"
   >
     <div class="relative">
       <h3
         id="subtitle-packaging"
         class="sub-title"
-        data-speed="0.93"
+        data-speed="0.97"
         data-lag="0.04"
       >
         Packaging
       </h3>
-      <div class="illustration" data-speed="1.07" data-lag="0.05">
+      <div class="illustration" data-speed="1.04" data-lag="0.05">
         <div id="curtain-packaging" class="curtain-illustration">
           <div id="canva-packaging" class="canva-holder"></div>
           <div class="curtain">
@@ -268,6 +271,10 @@ const { src: illustrationIdentity } = await getImage({
 
   .illustration .curtain img {
     visibility: hidden;
+
+    @media screen and (max-width: 1024px) {
+      visibility: visible;
+    }
   }
 
   .section-projets {

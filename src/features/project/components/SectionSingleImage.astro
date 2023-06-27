@@ -9,7 +9,12 @@ interface AstroProps {
 const { mainImage } = Astro.props as AstroProps;
 ---
 
-<section id="single-image" class="section-single-image">
+<section
+  id="single-image"
+  class="section-single-image"
+  data-speed="0.95"
+  data-lag="0.02"
+>
   <div class="conteneur">
     <img
       src={mainImage.asset.url}
