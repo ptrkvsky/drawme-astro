@@ -34,6 +34,8 @@ const urlsImages = [
   project?.imageWebsite?.asset?.url,
   ...(project?.imagesFooter?.map((imageFooter) => imageFooter.asset.url) || []),
 ].filter(Boolean);
+
+const nextProjectUrls = [`/projects/${nextProject.slug.current}`];
 ---
 
 <script define:vars={{ hue, saturation, config }}>
@@ -48,6 +50,7 @@ const urlsImages = [
   background="#FFF"
   title="Un beau projet"
   urlsImages={urlsImages}
+  urlsPages={nextProjectUrls}
   Canvas={Canvas}
 >
   <div slot="main-content">

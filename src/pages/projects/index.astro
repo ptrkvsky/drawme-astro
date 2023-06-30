@@ -4,6 +4,9 @@ import Header from '@components/Header.astro';
 import '@styles/fonts.scss';
 import '@styles/variables.scss';
 
+const { src: flou } = await getImage({
+  src: import('@assets/images/flou.png'),
+});
 const { src: illustrationWebsite } = await getImage({
   src: import('@assets/images/illustration_website.png'),
 });
@@ -16,6 +19,8 @@ const { src: illustrationWebsite } = await getImage({
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Projects | Draw me a sheep</title>
     <meta name="author" content="Draw me a sheep" />
+    <link rel="preload" as="image" href={flou} />
+    <link rel="preload" as="image" href={illustrationWebsite} />
 
     <link rel="stylesheet" href="https://use.typekit.net/lgy2swt.css" />
 
@@ -145,29 +150,23 @@ const { src: illustrationWebsite } = await getImage({
   <body class="demo-1 loading">
     <Header />
     <main>
+      <div class="angle" style={`background-image : url(${flou})`}></div>
       <section class="section section--intro">
         <h2 class="section__title">
           Projects <br /> Where Artistry Soars
         </h2>
-        <p class="section__text">
-          In realms of art, where dreams take flight, <br />
-          Draw me a Sheep, an enchanting sight.<br />
-          Brush strokes weave tales, emotions untold,<br />
-          A graphic studio's treasures, stories unfold.<br /><br />
-          Logos, posters, websites designed with care,<br />
-          Bringing visions alive, colors beyond compare.<br /><br />
-          Illustrations breathe life, characters dance,<br />
-          Visual magic, inviting you to take a chance.<br />
-          Animations that dance, with vibrant glee,<br />
-          Draw me a Sheep, where imagination runs free.<br /><br />
-          Packaging, branding, a symphony of design,<br />
-          A world of creativity, where boundaries resign.<br />
-          Web development, UX, a seamless display,<br />
-          A captivating journey, guiding your way.<br /><br />
-          From concept to creation, a work of art takes shape,<br />
-          Draw me a Sheep, where artistry escapes.<br />
-          Unleashing the beauty, captivating your sight,<br />
-          A graphic studio's passion, igniting pure delight.<br />
+        <p class="section__poem">
+          In realms of allure, where desires ignite, Draw me a Sheep, a
+          seductive delight. Whispered strokes, secrets unveiled, A graphic
+          studio’s charm, where pleasure prevails. Logos, posters, a tantalizing
+          affair, Sensual designs, beguiling and rare.<br /><br /> Illustrations
+          entwine, passion’s embrace, Visual temptation, setting hearts in a chase.
+          Animations that tease, with sultry glee, Draw me a Sheep, where fantasies
+          roam free. Packaging, branding, an intimate design, A world of creativity,
+          where ecstasy intertwines. Web development, UX, a sensuous display, An
+          alluring journey, guiding your way. From concept to creation, an enchanting
+          escape, Draw me a Sheep, where desire takes shape. Unleashing the beauty,
+          captivating your sight, A graphic studio’s seduction, arousing pure delight.
         </p>
         <p class="section__text section__text--alt">
           <span>Discover</span>
@@ -583,6 +582,10 @@ const { src: illustrationWebsite } = await getImage({
         animation: loaderAnim 0.7s linear infinite alternate forwards;
       }
 
+      main {
+        overflow: hidden;
+      }
+
       @keyframes loaderAnim {
         to {
           opacity: 1;
@@ -765,11 +768,11 @@ const { src: illustrationWebsite } = await getImage({
         font-size: clamp(1.5rem, 12vw, 9rem);
       }
 
-      .section__text {
+      .section__poem {
         margin: 0;
-        max-width: 700px;
-        text-align: left;
-        line-height: 1.2;
+        max-width: 1135px;
+        text-align: center;
+        line-height: 33px;
       }
 
       .section__text--alt {
@@ -960,6 +963,14 @@ const { src: illustrationWebsite } = await getImage({
           justify-self: end;
           grid-column: revert;
         }
+      }
+
+      .angle {
+        position: absolute;
+        width: 60rem;
+        height: 47.2rem;
+        background-position: -403px -303px;
+        background-repeat: no-repeat;
       }
     </style>
   </body>

@@ -15,10 +15,12 @@ export interface Props {
   background: string;
   isHome: boolean;
   urlsImages?: string[];
-  Canvas: (_props: Record<string, any>) => any;
+  urlsPages?: string[];
+  Canvas?: (_props: Record<string, any>) => any;
 }
 
-const { title, background, isHome, urlsImages, Canvas } = Astro.props as Props;
+const { title, background, urlsPages, urlsImages, Canvas } =
+  Astro.props as Props;
 ---
 
 <meta charset="UTF-8" />
@@ -26,14 +28,16 @@ const { title, background, isHome, urlsImages, Canvas } = Astro.props as Props;
 <link rel="icon" type="image/x-icon" href="/favicon.png" />
 <meta name="generator" content={Astro.generator} />
 <title>{title}</title>
-
 {
   urlsImages &&
     urlsImages.map((urlImage) => (
       <link rel="preload" as="image" href={urlImage} />
     ))
 }
-
+{
+  urlsPages &&
+    urlsPages.map((urlPage) => <link rel="prefetch" href={urlPage} />)
+}
 <body style={{ background }} class="canva-black">
   <Burger />
   <Header />

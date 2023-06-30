@@ -115,7 +115,8 @@
   </div>
 </div>
 <div id="logo-wrapper-text" class="wrapper-relative wrapper-text">
-  <p class="text">DRAW ME A SHEEP</p>
+  <p class="text1">Please wait a sec</p>
+  <p class="text2">Creaty loading...</p>
 </div>
 
 <style lang="scss">
@@ -123,9 +124,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
-    .text {
-      font-size: 2rem;
+    .text1 {
+      font-size: clamp(40px, 4rem, 4rem);
+      font-family: var(--text-heading);
+    }
+    .text2 {
+      font-size: clamp(27px, 2.7rem, 2.7rem);
+      font-family: var(--text-body-thin);
     }
   }
   .wrapper-relative {
