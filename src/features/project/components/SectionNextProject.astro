@@ -198,9 +198,22 @@ const { nextProject } = Astro.props as Props;
     .no-answer {
       text-align: center;
       border: none;
+      background-color: transparent;
+      color: var(--color-white-beauty);
+      font-family: var(--text-body-bold);
+      font-size: clamp(16px, 3.5rem, 3.5rem);
+      cursor: pointer;
+      transition: all 0.3s linear;
+
+      &:hover {
+        color: var(--color-ice-ice-baby);
+      }
     }
 
     .lets-go {
+      &:hover {
+        color: var(--color-ice-ice-baby);
+      }
       @media screen and (max-width: 768px) {
         position: relative;
         top: initial;

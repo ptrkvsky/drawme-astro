@@ -46,12 +46,19 @@ const { link } = Astro.props as PropsCircle;
     font-family: var(--text-body-bold);
     font-size: clamp(20px, 4rem, 4rem);
 
+    &:hover {
+      .text {
+        color: var(--color-ice-ice-baby);
+      }
+    }
+
     .text {
       display: inline-block;
       line-height: 1;
       position: relative;
       vertical-align: middle;
       color: #fff;
+      transition: color 0.3s linear;
     }
 
     .circle {
