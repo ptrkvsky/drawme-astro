@@ -11,6 +11,7 @@
     MorphSVGPlugin,
     ScrollTrigger,
   } from 'gsap/all';
+  import { scrollToTop } from '../features/project/functions/scrollToTop';
 
   gsap.registerPlugin(
     ScrollTrigger,
@@ -28,6 +29,10 @@
   });
 
   smoother.scrollTo('body', false); // Reset the scroll position when refresh https://greensock.com/docs/v3/Plugins/ScrollSmoother/scrollTo()
+
+  document.querySelectorAll('.js-to-top').forEach((button) => {
+    scrollToTop(button, smoother);
+  });
 
   ScrollTrigger.refresh();
 </script>

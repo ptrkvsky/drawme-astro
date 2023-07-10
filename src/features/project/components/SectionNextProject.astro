@@ -107,7 +107,7 @@ const { nextProject } = Astro.props as Props;
 </script>
 
 <div id="next-project" class="next-project">
-  <div id="wrapper-next" class="wrapper">
+  <div id="wrapper-next" class="wrapper-next-project">
     <p id="see-next" class="see-next split-text">
       <span class="reveal line1">See</span><span class="highlight reveal line1"
         >nex<span class="glitch reveal line1">t</span>
@@ -116,7 +116,9 @@ const { nextProject } = Astro.props as Props;
     </p>
     <div class="answers">
       <Circle link={`/projects/${nextProject.slug.current}`} />
-      <a href="/" id="no-answer" class="reveal no-answer">No thanks</a>
+      <button id="no-answer" class="reveal no-answer js-to-top"
+        >No thanks</button
+      >
     </div>
   </div>
 </div>
@@ -147,7 +149,7 @@ const { nextProject } = Astro.props as Props;
     top: -17rem;
   }
 
-  .wrapper {
+  .wrapper-next-project {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -195,6 +197,7 @@ const { nextProject } = Astro.props as Props;
     }
     .no-answer {
       text-align: center;
+      border: none;
     }
 
     .lets-go {
