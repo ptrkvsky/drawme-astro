@@ -7,6 +7,7 @@ export interface Quote {
 
 export interface SanityProject {
   _id: string;
+  title: string;
   color1: SanityImage;
   color2: SanityImage;
   color3: SanityImage;

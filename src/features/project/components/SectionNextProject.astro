@@ -25,8 +25,6 @@ const { nextProject } = Astro.props as Props;
   });
 
   function displayNextProject(direction: number) {
-    document.getElementById('next-project').classList.toggle('visible');
-
     const paramsSplitReveal: ParamsSplitAndReveal = {
       element: '.reveal',
       typeSplit: 'chars',
@@ -34,15 +32,20 @@ const { nextProject } = Astro.props as Props;
       delay: 0.35,
     };
 
+    console.log(direction);
+
     if (direction == 1) {
+      // Reveal
       gsap
         .timeline({
           scrollTrigger: {
             trigger: '#next-project',
             start: 'top 85%', // top of the element, bottom of the viewport
           },
+          delay: 0.5,
         })
         .call(() => {
+          document.getElementById('next-project').classList.toggle('visible');
           splitAndReveal(paramsSplitReveal);
         })
         .to(`#svg-cercle-line-1`, {
@@ -53,12 +56,16 @@ const { nextProject } = Astro.props as Props;
         });
     }
     if (direction == -1) {
+      // Hide
       gsap
         .timeline({
           scrollTrigger: {
             trigger: '#next-project',
             start: 'top 85%', // top of the element, bottom of the viewport
           },
+        })
+        .call(() => {
+          document.getElementById('next-project').classList.toggle('visible');
         })
         .to(`#svg-cercle-line-1`, {
           drawSVG: false,
@@ -93,7 +100,6 @@ const { nextProject } = Astro.props as Props;
       endTrigger: 'footer',
       markers: markers,
       onToggle: (e) => {
-        console.log(e);
         displayNextProject(e.direction);
       },
     });
@@ -109,15 +115,12 @@ const { nextProject } = Astro.props as Props;
       <span class="line reveal glitch">Project ?</span>
     </p>
     <div class="answers">
-      <!-- <a class="reveal" 
-        >Let's go</a
-      > -->
       <Circle link={`/projects/${nextProject.slug.current}`} />
-      <a href="/" id="no-answer" class="reveal">No thanks</a>
+      <a href="/" id="no-answer" class="reveal no-answer">No thanks</a>
     </div>
   </div>
 </div>
-<style lang="scss">
+<style lang="scss" is:global>
   .next-project {
     position: fixed;
     bottom: 0;
@@ -125,8 +128,8 @@ const { nextProject } = Astro.props as Props;
     height: 100%;
 
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: flex-end;
 
     background-color: black;
     z-index: -1;
@@ -145,14 +148,20 @@ const { nextProject } = Astro.props as Props;
   }
 
   .wrapper {
-    position: relative;
-    top: -15px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 
   .see-next {
     font-family: var(--text-script);
     color: var(--color-white-beauty);
-    font-size: 35.7rem;
+    font-size: clamp(35.7rem, 35.7rem, 35.7rem);
     .line {
       display: block;
     }
@@ -171,11 +180,34 @@ const { nextProject } = Astro.props as Props;
   .answers {
     position: relative;
     top: -10rem;
+
+    width: 100%;
     display: flex;
     justify-content: flex-end;
     gap: clamp(16px, 2.4rem, 2.4rem);
+
     color: var(--color-white-beauty);
     font-family: var(--text-body-bold);
     font-size: clamp(20px, 4rem, 4rem);
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+    .no-answer {
+      text-align: center;
+    }
+
+    .lets-go {
+      @media screen and (max-width: 768px) {
+        position: relative;
+        top: initial;
+        left: initial;
+        transform: none;
+
+        .text {
+          font-size: 24px;
+        }
+      }
+    }
   }
 </style>

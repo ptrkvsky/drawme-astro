@@ -21,6 +21,7 @@ function fetchSanity<ReturnType>(
       return result.data as ReturnType;
     })
     .catch((error: unknown) => {
+      console.error('👨‍🚒', config.sanityGraphqlEndpoint);
       console.error('👨‍🚒', error);
     });
 }

@@ -28,6 +28,8 @@ interface AstroProps {
 const { project, nextProject } = Astro.props as AstroProps;
 const { hue, saturation } = project;
 
+const title = `${project.title} | Draw me a Sheep`;
+
 // prefect images quotes
 const urlsImages = [
   ...(project?.quote?.map((quote) => quote.image.asset.url) || []),
@@ -48,7 +50,7 @@ const nextProjectUrls = [`/projects/${nextProject.slug.current}`];
 <Layout
   isHome={false}
   background="#FFF"
-  title="Un beau projet"
+  title={title}
   urlsImages={urlsImages}
   urlsPages={nextProjectUrls}
   Canvas={Canvas}
