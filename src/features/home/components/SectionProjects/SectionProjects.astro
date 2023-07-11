@@ -138,14 +138,7 @@ const { src: illustrationIdentity } = await getImage({
     class="wrapper-illustration-title wrapper-canva-image logo"
   >
     <div class="relative">
-      <h3
-        id="subtitle-infizio"
-        class="sub-title"
-        data-speed="0.97"
-        data-lag="0.04"
-      >
-        Logotype
-      </h3>
+      <h3 id="subtitle-infizio" class="sub-title" data-lag="0.04">Logotype</h3>
       <div class="illustration" data-speed="1.04" data-lag="0.05">
         <div id="curtain-infizio" class="curtain-illustration">
           <div id="canva-infizio" class="canva-holder"></div>
@@ -236,6 +229,12 @@ const { src: illustrationIdentity } = await getImage({
 </section>
 
 <style lang="scss">
+  .canva-holder {
+    @media screen and (max-width: 1024px) {
+      display: none;
+    }
+  }
+
   #canva-website {
     width: 315px;
     height: 315px;
@@ -258,9 +257,11 @@ const { src: illustrationIdentity } = await getImage({
   }
 
   .illustration .curtain {
-    position: absolute;
-    top: 0;
-    left: 0;
+    @media screen and (min-width: 1024px) {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   }
 
   .illustration canvas {
