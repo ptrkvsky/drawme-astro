@@ -1,6 +1,8 @@
-import gsap from 'gsap';
-import getRandomInt from '@helpers/getRandomInt';
+import React from 'react';
 import { useRef } from 'react';
+import gsap from 'gsap';
+import './answerNo.scss';
+import getRandomInt from '@helpers/getRandomInt';
 
 const AnswerNo = () => {
   const refElement = useRef<HTMLElement>(null);
@@ -29,7 +31,6 @@ const AnswerNo = () => {
       data-speed="0.98"
       data-lag="0.02"
       className="no"
-      style={{ position: 'absolute', fontSize: '3rem', right: '74rem' }}
     >
       No
     </span>

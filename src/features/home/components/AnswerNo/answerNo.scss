@@ -1,0 +1,9 @@
+.no {
+  position: absolute;
+  font-size: clamp(14px, 3rem, 3rem);
+  right: 74rem;
+
+  @media screen and (max-width: 1024px) {
+    right: 30rem;
+  }
+}
