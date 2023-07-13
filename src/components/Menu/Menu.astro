@@ -1,29 +1,18 @@
 <script>
-  import Cursor from './scripts/cursor';
-  import { preloader } from './scripts/preloader';
-  import Menu from './scripts/menu';
   import { splitText } from '@helpers/gsap';
   import {
     getBurgerAnimation,
     getMenuAnimation,
     handleClickBurger,
   } from './Menu.animations';
+  import { startMenu } from './Menu.functions';
 
   const splitLink = splitText('.link', 'lines');
   const tlMenu = getMenuAnimation(splitLink);
   const tlBurger = getBurgerAnimation();
 
   // preload the images set as data attrs in the menu items
-  window.addEventListener('load', () => {
-    const menuEl = document.querySelector('.menu');
-    preloader('.menu__item').then(() => {
-      // initialize custom cursor
-      new Cursor(document.querySelector('.cursor'));
-
-      // initialize menu
-      new Menu(menuEl);
-    });
-  });
+  startMenu();
 
   document
     .getElementById('burger-button')
@@ -121,18 +110,20 @@
         top: 45%;
         width: 100%;
         transform: translateX(-50%) translateY(-50%);
-        font-size: clamp(45px, 6rem, 6rem);
         font-family: WagonBold;
-        line-height: 10vw;
+        line-height: 1;
         color: #fff;
         text-align: center;
 
         a {
-          text-align: center;
           display: flex;
+          text-align: center;
           justify-content: center;
           mix-blend-mode: difference;
+          padding: clamp(24px, 2.4rem, 2.4rem) 0;
+
           color: white;
+          font-size: clamp(60px, 6rem, 6rem);
         }
 
         .line {
