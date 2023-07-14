@@ -43,6 +43,28 @@ a:visited {
   color: inherit;
 }
 
+/* Better focus styles from https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible */
+a:focus {
+  /* Provide a fallback style for browsers
+that don't support :focus-visible */
+  outline: none;
+  background: lightgrey;
+}
+
+a:focus:not(:focus-visible) {
+  /* Remove the focus indicator on mouse-focus for browsers
+that do support :focus-visible */
+  background: transparent;
+}
+
+a:focus-visible {
+  /* Draw a very noticeable focus style for
+keyboard-focus on browsers that do support
+:focus-visible */
+  outline: 2px solid red;
+  background: transparent;
+}
+
 button {
   color: var(--color-text);
 }
@@ -128,6 +150,12 @@ strong {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+.only-tablet {
+  display: none;
+  @media screen and (max-width: 1024px) {
+    display: inherit;
   }
 }
 

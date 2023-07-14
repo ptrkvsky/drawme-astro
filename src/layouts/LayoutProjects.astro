@@ -1,0 +1,60 @@
+---
+// import Gsap from '@components/Gsap.astro';
+import Header from '@components/Header.astro';
+import Logo from '@components/Logo.astro';
+import '@styles/fonts.scss';
+import '@styles/reset.css';
+import '@styles/utilities.scss';
+import '@styles/variables.scss';
+import '@styles/global.scss';
+import '@styles/functions.scss';
+import { Menu, Burger, Footer } from '@components/index';
+
+export interface Props {
+  title: string;
+  background: string;
+  isHome: boolean;
+  urlsImages?: string[];
+  urlsPages?: string[];
+  // Canvas?: (_props: Record<string, any>) => any;
+}
+
+const { title, background, urlsPages, urlsImages } = Astro.props as Props;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<link rel="icon" type="image/x-icon" href="/favicon.png" />
+<meta name="generator" content={Astro.generator} />
+<title>{title}</title>
+{
+  urlsImages &&
+    urlsImages.map((urlImage) => (
+      <link rel="preload" as="image" href={urlImage} />
+    ))
+}
+{
+  urlsPages &&
+    urlsPages.map((urlPage) => <link rel="prefetch" href={urlPage} />)
+}
+<body style={{ background }} class="canva-black">
+  <Burger />
+  <Header />
+  <Logo />
+
+  <div id="main-content" style={{ opacity: 0 }}>
+    <slot name="main-content" />
+  </div>
+  <Footer />
+
+  <div id="portal"></div>
+  <Menu />
+  <style lang="scss" is:global>
+    body {
+      transition: all 0.3s linear;
+    }
+    :global(:root) {
+      font-size: calc(100vw / 1920 * 10);
+    }
+  </style>
+</body>

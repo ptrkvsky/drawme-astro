@@ -1,0 +1,46 @@
+---
+import { getImage } from '@astrojs/image';
+
+const { src: flou } = await getImage({
+  src: import('@assets/images/flou.png'),
+});
+---
+
+<div class="angle top" style={`background-image : url(${flou})`}></div>
+<div class="angle bottom" style={`background-image : url(${flou})`}></div>
+
+<style lang="scss">
+  .angle {
+    position: absolute;
+
+    &.top {
+      top: -10rem;
+      left: -20rem;
+    }
+
+    &.bottom {
+      bottom: -10rem;
+      right: -20rem;
+    }
+
+    width: clamp(250px, 80rem, 60rem);
+    max-width: 100%;
+    height: clamp(250px, 80rem, 60rem);
+
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    pointer-events: none;
+
+    @media screen and (max-width: 550px) {
+      &.top {
+        top: -21rem;
+        left: -48rem;
+      }
+      &.bottom {
+        bottom: -21rem;
+        right: -48rem;
+      }
+    }
+  }
+</style>

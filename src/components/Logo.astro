@@ -10,6 +10,8 @@
       navigator.userAgent.indexOf('eadles') > -1;
 
     const isPreloaderSeen = sessionStorage.getItem('isPreloaderSeen');
+    const canva = document.querySelector('#main-canva');
+
     if (!isPreloaderSeen && !isDarkSoul) {
       gsap
         .timeline()
@@ -69,7 +71,8 @@
         });
 
       setTimeout(() => {
-        document.querySelector('#main-canva').classList.add('visible');
+        if (!canva) return;
+        canva.classList.add('visible');
       }, 6800);
     } else {
       gsap
@@ -85,7 +88,9 @@
           opacity: '1',
         })
         .call(() => {
-          document.querySelector('#main-canva').classList.add('visible');
+          if (canva) {
+            document.querySelector('#main-canva').classList.add('visible');
+          }
           sessionStorage.setItem('isPreloaderSeen', 'false');
         });
     }

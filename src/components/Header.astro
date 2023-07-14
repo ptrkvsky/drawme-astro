@@ -66,17 +66,6 @@
     const tl = gsap
       .timeline({
         repeat: -1,
-        // scrollTrigger: {
-        //   trigger: 'header',
-        //   start: 'top top',
-        //   endTrigger: 'footer',
-        //   end: 'bottom+=100vh bottom',
-        //   pin: true,
-        //   pinType: 'fixed',
-        //   markers: false,
-        //   pinReparent: true,
-        //   pinSpacing: false,
-        // },
       })
       .to(splitSheep.chars[letter1?.position], {
         duration: getRandomInt(1, 4),

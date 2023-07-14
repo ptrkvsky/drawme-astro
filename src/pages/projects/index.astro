@@ -1,188 +1,150 @@
 ---
 import { getImage } from '@astrojs/image';
 import Header from '@components/Header.astro';
+import LayoutProjects from '@layouts/LayoutProjects.astro';
+import SectionIntro from '@features/listing/components/SectionIntro/SectionIntro.astro';
+import Angle from '@features/listing/components/Angle/Angle.astro';
+
 import '@styles/fonts.scss';
 import '@styles/variables.scss';
 
-const { src: flou } = await getImage({
-  src: import('@assets/images/flou.png'),
-});
 const { src: illustrationWebsite } = await getImage({
   src: import('@assets/images/illustration_website.png'),
 });
 ---
 
-<!DOCTYPE html>
-<html lang="en" class="no-js">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Projects | Draw me a sheep</title>
-    <meta name="author" content="Draw me a sheep" />
-    <link rel="preload" as="image" href={flou} />
-    <link rel="preload" as="image" href={illustrationWebsite} />
+<!-- <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Projects | Draw me a sheep</title>
+<meta name="author" content="Draw me a sheep" />
+<link rel="preload" as="image" href={flou} />
+<link rel="preload" as="image" href={illustrationWebsite} />
 
-    <link rel="stylesheet" href="https://use.typekit.net/lgy2swt.css" />
+<link rel="stylesheet" href="https://use.typekit.net/lgy2swt.css" /> -->
+<script>
+  document.documentElement.className = 'js';
+  var supportsCssVars = function () {
+    var e,
+      t = document.createElement('style');
+    return (
+      (t.innerHTML = 'root: { --tmp-var: bold; }'),
+      document.head.appendChild(t),
+      (e = !!(
+        window.CSS &&
+        window.CSS.supports &&
+        window.CSS.supports('font-weight', 'var(--tmp-var)')
+      )),
+      t.parentNode.removeChild(t),
+      e
+    );
+  };
+  supportsCssVars() ||
+    alert(
+      'Please view this demo in a modern browser that supports CSS Variables.'
+    );
+</script>
+<script>
+  import { preloadImages } from '../../features/listing/utils';
+  import Lenis from '@studio-freight/lenis';
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
 
-    <script>
-      document.documentElement.className = 'js';
-      var supportsCssVars = function () {
-        var e,
-          t = document.createElement('style');
-        return (
-          (t.innerHTML = 'root: { --tmp-var: bold; }'),
-          document.head.appendChild(t),
-          (e = !!(
-            window.CSS &&
-            window.CSS.supports &&
-            window.CSS.supports('font-weight', 'var(--tmp-var)')
-          )),
-          t.parentNode.removeChild(t),
-          e
-        );
-      };
-      supportsCssVars() ||
-        alert(
-          'Please view this demo in a modern browser that supports CSS Variables.'
-        );
-    </script>
-    <script>
-      import { preloadImages } from '../../features/listing/utils.ts';
-      import Lenis from '@studio-freight/lenis';
-      import { gsap } from 'gsap';
-      import { ScrollTrigger } from 'gsap/ScrollTrigger';
-      gsap.registerPlugin(ScrollTrigger);
+  const DOM = {
+    sections: {
+      columns: document.querySelector('.section--columns'),
+      showcase: document.querySelector('.section--showcase'),
+    },
+    columns: document.querySelectorAll('.section--columns > .columns'),
+    columnWraps: document.querySelectorAll('.section--columns .column-wrap'),
+    itemsWrappers: document.querySelectorAll(
+      '.section--columns .column-wrap .column'
+    ),
+    items: document.querySelectorAll('.section--columns .column__item'),
+    images: document.querySelectorAll('.section--columns .column__item-img'),
+  };
 
-      const DOM = {
-        sections: {
-          columns: document.querySelector('.section--columns'),
-          showcase: document.querySelector('.section--showcase'),
+  // Lenis smooth scrolling
+  let lenis;
+
+  // Initialize Lenis smooth scrolling
+  const initSmoothScrolling = () => {
+    lenis = new Lenis({
+      lerp: 0.075,
+      smoothWheel: true,
+    });
+    const scrollFn = (time) => {
+      lenis.raf(time);
+      requestAnimationFrame(scrollFn);
+    };
+    requestAnimationFrame(scrollFn);
+  };
+
+  // GSAP Scroll Triggers
+  const scroll = () => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          start: 0,
+          end: 'max',
+          scrub: true,
         },
-        columns: document.querySelectorAll('.section--columns > .columns'),
-        columnWraps: document.querySelectorAll(
-          '.section--columns .column-wrap'
-        ),
-        itemsWrappers: document.querySelectorAll(
-          '.section--columns .column-wrap .column'
-        ),
-        items: document.querySelectorAll('.section--columns .column__item'),
-        images: document.querySelectorAll(
-          '.section--columns .column__item-img'
-        ),
-      };
+      })
+      .addLabel('start', 0)
+      .to(
+        DOM.sections.columns,
+        {
+          ease: 'none',
+          startAt: { scale: 1.1 },
+          scale: 1,
+        },
+        'start'
+      )
+      .to(
+        DOM.sections.columns,
+        {
+          scrollTrigger: {
+            trigger: DOM.sections.showcase,
+            start: 0,
+            end: 'top top',
+            scrub: true,
+          },
+          ease: 'power4.inOut',
+          startAt: {
+            opacity: 0.2,
+          },
+          opacity: 1,
+          // repeat once (go back to "startAt" values)
+          yoyo: true,
+          repeat: 1,
+        },
+        'start'
+      )
+      .to(
+        DOM.columnWraps,
+        {
+          ease: 'none',
+          yPercent: (pos) => (pos % 2 ? 3 : -3),
+        },
+        'start'
+      );
+  };
 
-      // Lenis smooth scrolling
-      let lenis;
-
-      // Initialize Lenis smooth scrolling
-      const initSmoothScrolling = () => {
-        lenis = new Lenis({
-          lerp: 0.075,
-          smoothWheel: true,
-        });
-        const scrollFn = (time) => {
-          lenis.raf(time);
-          requestAnimationFrame(scrollFn);
-        };
-        requestAnimationFrame(scrollFn);
-      };
-
-      // GSAP Scroll Triggers
-      const scroll = () => {
-        gsap
-          .timeline({
-            scrollTrigger: {
-              start: 0,
-              end: 'max',
-              scrub: true,
-            },
-          })
-          .addLabel('start', 0)
-          .to(
-            DOM.sections.columns,
-            {
-              ease: 'none',
-              startAt: { scale: 1.1 },
-              scale: 1,
-            },
-            'start'
-          )
-          .to(
-            DOM.sections.columns,
-            {
-              scrollTrigger: {
-                trigger: DOM.sections.showcase,
-                start: 0,
-                end: 'top top',
-                scrub: true,
-              },
-              ease: 'power4.inOut',
-              startAt: {
-                opacity: 0.2,
-              },
-              opacity: 1,
-              // repeat once (go back to "startAt" values)
-              yoyo: true,
-              repeat: 1,
-            },
-            'start'
-          )
-          .to(
-            DOM.columnWraps,
-            {
-              ease: 'none',
-              yPercent: (pos) => (pos % 2 ? 3 : -3),
-            },
-            'start'
-          );
-      };
-
-      // Preload images
-      preloadImages('.column__item-img').then(() => {
-        document.body.classList.remove('loading');
-        // Lenis (smooth scrolling)
-        initSmoothScrolling();
-        // GSAP Scroll Triggers
-        scroll();
-      });
-    </script>
-  </head>
-  <body class="demo-1 loading">
+  // Preload images
+  preloadImages('.column__item-img').then(() => {
+    document.body.classList.remove('loading');
+    // Lenis (smooth scrolling)
+    initSmoothScrolling();
+    // GSAP Scroll Triggers
+    scroll();
+  });
+</script>
+<LayoutProjects>
+  <div slot="main-content">
     <Header />
     <main>
-      <div class="angle" style={`background-image : url(${flou})`}></div>
-      <section class="section section--intro">
-        <h2 class="section__title">
-          Projects <br /> Where Artistry Soars
-        </h2>
-        <p class="section__poem">
-          In realms of allure, where desires ignite, Draw me a Sheep, a
-          seductive delight. Whispered strokes, secrets unveiled, A graphic
-          studio’s charm, where pleasure prevails. Logos, posters, a tantalizing
-          affair, Sensual designs, beguiling and rare.<br /><br /> Illustrations
-          entwine, passion’s embrace, Visual temptation, setting hearts in a chase.
-          Animations that tease, with sultry glee, Draw me a Sheep, where fantasies
-          roam free. Packaging, branding, an intimate design, A world of creativity,
-          where ecstasy intertwines. Web development, UX, a sensuous display, An
-          alluring journey, guiding your way. From concept to creation, an enchanting
-          escape, Draw me a Sheep, where desire takes shape. Unleashing the beauty,
-          captivating your sight, A graphic studio’s seduction, arousing pure delight.
-        </p>
-        <p class="section__text section__text--alt">
-          <span>Discover</span>
-          <svg
-            class="section__arrow"
-            width="22px"
-            height="22px"
-            viewBox="0 0 24 24"
-            ><path
-              vector-effect="non-scaling-stroke"
-              d="M18.25 15.5a.75.75 0 00.75-.75v-9a.75.75 0 00-.75-.75h-9a.75.75 0 000 1.5h7.19L6.22 16.72a.75.75 0 101.06 1.06L17.5 7.56v7.19c0 .414.336.75.75.75z"
-            ></path>
-          </svg>
-          <span>Scroll</span>
-        </p>
-      </section>
+      <Angle />
+      <SectionIntro />
       <section class="section section--columns">
         <div class="columns">
           <div class="column-wrap">
@@ -474,505 +436,355 @@ const { src: illustrationWebsite } = await getImage({
         </div>
       </section>
     </main>
-    <style>
-      *,
-      *::after,
-      *::before {
-        box-sizing: border-box;
-      }
+  </div>
+</LayoutProjects>
 
-      :root {
-        font-size: 16px;
-        --color-text: #fff;
-        --color-bg: #f3f3f3;
-        --color-text-alt: #fff;
-        --color-link: #00f9df;
-        --color-link-hover: #00f9df;
-        /* Column/item variables */
-        --ratio: 1.3; /* image ratio */
-        --grid-item-width: 32vw; /* image width */
-        --justify: space-between; /* spread columns or center */
-        --gap: 2.5vw; /* column gap and margin for items */
-        --rotation: 0deg; /* section rotation */
-        --radius: 0px; /* image border radius */
-        --offset: -30vh; /* offset of even columns */
-        /* content section */
-        --radius-small: 4px; /* border radius of small images */
-      }
+<style lang="scss" is:global>
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
 
-      body {
-        margin: 0;
-        text-transform: uppercase;
-        color: hsl(191deg 100% 10%);
-        background-color: var(--color-bg);
-        font-family: acumin-pro, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
+  :root {
+    --color-text: #fff;
+    --color-bg: #f3f3f3;
+    --color-text-alt: #fff;
+    --color-link: #00f9df;
+    --color-link-hover: #00f9df;
+    /* Column/item variables */
+    --ratio: 1.3; /* image ratio */
+    --grid-item-width: 32vw; /* image width */
+    --justify: space-between; /* spread columns or center */
+    --gap: 2.5vw; /* column gap and margin for items */
+    --rotation: 0deg; /* section rotation */
+    --radius: 0px; /* image border radius */
+    --offset: -30vh; /* offset of even columns */
+    /* content section */
+    --radius-small: 4px; /* border radius of small images */
+  }
 
-      .demo-2 {
-        --color-bg: #df6a26;
-        --color-text-alt: #eaa750;
-        --ratio: 1;
-        --grid-item-width: 23vw;
-        --radius: 8px;
-      }
+  main {
+    overflow: hidden;
+  }
 
-      .demo-3 {
-        --color-bg: #ede9e6;
-        --color-text-alt: hsl(10deg 69% 50%);
-        --ratio: 1.1;
-        --grid-item-width: 17vw;
-        --radius: 12px;
-        --justify: center;
-        --gap: 2.5vw;
-      }
+  .unbutton {
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    cursor: pointer;
+  }
 
-      .demo-4 {
-        --color-text: #fff;
-        --color-link: #fff;
-        --color-link-hover: #aaa;
-        --color-bg: #0f0e0e;
-        --color-text-alt: hsl(10deg 69% 50%);
-        --ratio: 1;
-        --grid-item-width: 25vw;
-        --radius: 4px;
-        --justify: center;
-        --gap: 2.5vw;
-        --rotation: -45deg;
-        --offset: 20vh;
-      }
+  .unbutton:focus {
+    outline: none;
+  }
 
-      .demo-5 {
-        --color-bg: hsl(1deg 15% 83%);
-        --color-text-alt: hsl(10deg 69% 50%);
-        --ratio: 0.8;
-        --grid-item-width: 30vw;
-        --radius: 0;
-        --justify: center;
-        --gap: 1.5vw;
-        --offset: 0;
-      }
+  .frame {
+    width: 100%;
+    line-height: 1.2;
+    font-size: clamp(14px, 1.4rem, 1.4rem);
+    color: var(--color-title);
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-areas: 'title prev' 'nav nav' 'sponsor sponsor';
+    grid-gap: 1rem;
+    z-index: 100;
+    position: absolute;
+  }
 
-      /* Page Loader */
-      .js .loading::before,
-      .js .loading::after {
-        content: '';
-        position: fixed;
-        z-index: 1000;
-      }
+  .frame a:not(.frame__title-back),
+  .row + p a {
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+  }
 
-      .js .loading::before {
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--color-bg);
-      }
+  .frame a:not(.frame__title-back)::before,
+  .row + p a::before {
+    content: '';
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    position: absolute;
+    top: 90%;
+    transition: transform 0.3s;
+    transform-origin: 0% 50%;
+  }
 
-      .js .loading::after {
-        top: 50%;
-        left: 50%;
-        width: 60px;
-        height: 60px;
-        margin: -30px 0 0 -30px;
-        border-radius: 50%;
-        opacity: 0.4;
-        background: var(--color-link);
-        animation: loaderAnim 0.7s linear infinite alternate forwards;
-      }
+  .frame a:not(.frame__title-back):hover::before,
+  .row + p a:hover::before {
+    transform: scaleX(0);
+    transform-origin: 100% 50%;
+  }
 
-      main {
-        overflow: hidden;
-      }
+  .frame__title {
+    grid-area: title;
+    display: flex;
+    white-space: nowrap;
+  }
 
-      @keyframes loaderAnim {
-        to {
-          opacity: 1;
-          transform: scale3d(0.5, 0.5, 1);
-        }
-      }
+  .frame__title-main {
+    font-size: clamp(14px, 1.4rem, 1.4rem);
+    margin: 0;
+    font-weight: normal;
+  }
 
-      a {
-        text-decoration: none;
-        color: var(--color-link);
-        outline: none;
-        cursor: pointer;
-      }
+  .frame__title-back {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+  }
 
-      a:hover {
-        color: var(--color-link-hover);
-        outline: none;
-      }
+  .frame__title-back span {
+    display: none;
+  }
 
-      /* Better focus styles from https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible */
-      a:focus {
-        /* Provide a fallback style for browsers
-	 that don't support :focus-visible */
-        outline: none;
-        background: lightgrey;
-      }
+  .frame__title-back svg {
+    fill: currentColor;
+  }
 
-      a:focus:not(:focus-visible) {
-        /* Remove the focus indicator on mouse-focus for browsers
-	 that do support :focus-visible */
-        background: transparent;
-      }
+  .frame__prev {
+    justify-self: end;
+    grid-area: prev;
+  }
 
-      a:focus-visible {
-        /* Draw a very noticeable focus style for
-	 keyboard-focus on browsers that do support
-	 :focus-visible */
-        outline: 2px solid red;
-        background: transparent;
-      }
+  .frame__demos {
+    grid-area: nav;
+    display: flex;
+    flex-wrap: wrap;
+    justify-self: stretch;
+    justify-content: space-between;
+  }
 
-      .unbutton {
-        background: none;
-        border: 0;
-        padding: 0;
-        margin: 0;
-        font: inherit;
-        cursor: pointer;
-      }
+  .frame__demos-title {
+    font-weight: 400;
+    margin: 0;
+    font-size: clamp(14px, 1.4rem, 1.4rem);
+    width: 100%;
+    color: var(--color-text-alt);
+  }
 
-      .unbutton:focus {
-        outline: none;
-      }
+  .frame__demos-item {
+    grid-row: 2;
+  }
 
-      .frame {
-        width: 100%;
-        line-height: 1.2;
-        font-size: 1rem;
-        color: var(--color-title);
-        padding: 1rem;
-        display: grid;
-        grid-template-columns: auto auto;
-        grid-template-areas: 'title prev' 'nav nav' 'sponsor sponsor';
-        grid-gap: 1rem;
-        z-index: 100;
-        position: absolute;
-      }
+  .section {
+    line-height: 1;
+    position: static;
+    top: 0;
+    z-index: 4;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--color-bg);
+  }
 
-      .frame a:not(.frame__title-back),
-      .row + p a {
-        white-space: nowrap;
-        overflow: hidden;
-        position: relative;
-      }
+  .section__title {
+    font-family: var(--text-heading);
+    font-weight: 300;
+    font-size: clamp(36px, 17vw, 12.5rem);
+    margin: 5vh 0 6vh;
+    line-height: 0.9;
+    text-transform: none;
+    -moz-font-feature-settings: 'swsh';
+    -webkit-font-feature-settings: 'swsh';
+    font-feature-settings: 'swsh';
+  }
 
-      .frame a:not(.frame__title-back)::before,
-      .row + p a::before {
-        content: '';
-        height: 1px;
-        width: 100%;
-        background: currentColor;
-        position: absolute;
-        top: 90%;
-        transition: transform 0.3s;
-        transform-origin: 0% 50%;
-      }
+  .section__title--medium {
+    font-size: clamp(15px, 12vw, 9rem);
+  }
 
-      .frame a:not(.frame__title-back):hover::before,
-      .row + p a:hover::before {
-        transform: scaleX(0);
-        transform-origin: 100% 50%;
-      }
+  .section__text--alt {
+    margin-top: auto;
+    font-size: 14px;
+    color: var(--color-black-beauty);
+  }
 
-      .frame__title {
-        grid-area: title;
-        display: flex;
-        white-space: nowrap;
-      }
+  .section__arrow {
+    transform: translateY(3px) rotate(135deg);
+    fill: currentColor;
+  }
 
-      .frame__title-main {
-        font-size: 1rem;
-        margin: 0;
-        font-weight: normal;
-      }
+  .section--columns {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100vh;
+  }
 
-      .frame__title-back {
-        position: relative;
-        display: flex;
-        align-items: flex-end;
-      }
+  .columns {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: var(--justify);
+    gap: var(--gap);
+    height: 100%;
+    transform: rotate(var(--rotation));
+    align-items: center;
+    will-change: transform, opacity;
+  }
 
-      .frame__title-back span {
-        display: none;
-      }
+  .column-wrap {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 5vh 0 15vh;
+    will-change: transform;
+  }
 
-      .frame__title-back svg {
-        fill: currentColor;
-      }
+  .column-wrap:nth-child(even) {
+    margin-top: var(--offset);
+  }
 
-      .frame__prev {
-        justify-self: end;
-        grid-area: prev;
-      }
+  .column {
+    position: relative;
+    display: block;
+    will-change: transform;
+  }
 
-      .frame__demos {
-        grid-area: nav;
-        display: flex;
-        flex-wrap: wrap;
-        justify-self: stretch;
-        justify-content: space-between;
-      }
+  .column__item {
+    --grid-item-height: calc(var(--grid-item-width) * var(--ratio));
+    width: var(--grid-item-width);
+    height: var(--grid-item-height);
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    cursor: pointer;
+    margin: 0 0 var(--gap) 0;
+    z-index: 1;
+    will-change: transform, filter;
+  }
 
-      .frame__demos-title {
-        font-weight: 400;
-        margin: 0;
-        font-size: 1rem;
-        width: 100%;
-        color: var(--color-text-alt);
-      }
+  .column__item-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: 50% 50%;
+    will-change: transform;
+  }
 
-      .frame__demos-item {
-        grid-row: 2;
-      }
+  .section--showcase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: 8rem 5vw 10vh;
+    cursor: default;
+  }
 
-      .section {
-        line-height: 1;
-        position: static;
-        top: 0;
-        z-index: 4;
-        width: 100%;
-        min-height: 100vh;
-        background: var(--color-bg);
-      }
+  .section__header {
+    display: flex;
+    border-bottom: 1px solid #000;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    padding: 4vh 8vw;
+    margin-bottom: 4rem;
+  }
 
-      .section--intro {
-        margin-bottom: 250vh;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        justify-content: center;
-        padding: 8rem 0 2rem;
-        cursor: default;
-      }
+  .section__year {
+    color: var(--color-text-alt);
+  }
 
-      .section__title {
-        font-family: var(--text-heading);
-        font-weight: 300;
-        font-size: clamp(2rem, 17vw, 12.5rem);
-        margin: 5vh 0 6vh;
-        line-height: 0.9;
-        text-transform: none;
-        -moz-font-feature-settings: 'swsh';
-        -webkit-font-feature-settings: 'swsh';
-        font-feature-settings: 'swsh';
-      }
+  .row {
+    text-align: left;
+    width: 100%;
+  }
 
-      .section__title--medium {
-        font-size: clamp(1.5rem, 12vw, 9rem);
-      }
+  .row__header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 4ch 1fr;
+    grid-template-rows: auto auto;
+    grid-gap: 2rem;
+    justify-content: start;
+    padding: 6rem 0 3rem;
+  }
 
-      .section__poem {
-        margin: 0;
-        max-width: 1135px;
-        text-align: center;
-        line-height: 33px;
-      }
+  .row__header span:last-child {
+    grid-column: 1 / span 2;
+  }
 
-      .section__text--alt {
-        margin-top: auto;
-        color: var(--color-text-alt);
-      }
+  .row__content {
+    display: grid;
+    width: 100%;
+    grid-auto-flow: column;
+    grid-gap: 1rem;
+    justify-content: start;
+  }
 
-      .section__arrow {
-        transform: translateY(3px) rotate(135deg);
-        fill: currentColor;
-      }
+  .row__content-imgwrap {
+    overflow: hidden;
+    position: relative;
+    border-radius: var(--radius-small);
+  }
 
-      .section--columns {
-        position: fixed;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        z-index: -1;
-        width: 100%;
-        height: 100vh;
-      }
+  .row__content-img {
+    aspect-ratio: 2;
+    height: 100px;
+    background-size: cover;
+    background-position: 50% 50%;
+  }
 
-      .columns {
-        width: 100%;
-        position: relative;
-        display: flex;
-        justify-content: var(--justify);
-        gap: var(--gap);
-        height: 100%;
-        transform: rotate(var(--rotation));
-        align-items: center;
-        will-change: transform, opacity;
-      }
+  .row__content-imgwrap:nth-child(even) .row__content-img {
+    aspect-ratio: 1;
+  }
 
-      .column-wrap {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        padding: 5vh 0 15vh;
-        will-change: transform;
-      }
+  .row__content-imgwrap:nth-child(4n) .row__content-img {
+    aspect-ratio: 1.5;
+  }
 
-      .column-wrap:nth-child(even) {
-        margin-top: var(--offset);
-      }
+  .row__content-imgwrap:last-child {
+    justify-content: end;
+  }
 
-      .column {
-        position: relative;
-        display: block;
-        will-change: transform;
-      }
+  .row__content-imgwrap:last-child .row__content-img {
+    aspect-ratio: 2.75;
+  }
 
-      .column__item {
-        --grid-item-height: calc(var(--grid-item-width) * var(--ratio));
-        width: var(--grid-item-width);
-        height: var(--grid-item-height);
-        position: relative;
-        overflow: hidden;
-        border-radius: var(--radius);
-        cursor: pointer;
-        margin: 0 0 var(--gap) 0;
-        z-index: 1;
-        will-change: transform, filter;
-      }
+  .row + p {
+    margin-top: 40vh;
+  }
 
-      .column__item-img {
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: 50% 50%;
-        will-change: transform;
-      }
-
-      .section--showcase {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        justify-content: center;
-        padding: 8rem 5vw 10vh;
-        cursor: default;
-      }
-
-      .section__header {
-        display: flex;
-        border-bottom: 1px solid #000;
-        width: 100%;
-        align-items: center;
-        justify-content: space-around;
-        padding: 4vh 8vw;
-        margin-bottom: 4rem;
-      }
-
-      .section__year {
-        color: var(--color-text-alt);
-      }
-
-      .row {
-        text-align: left;
-        width: 100%;
-      }
-
-      .row__header {
-        width: 100%;
-        display: grid;
-        grid-template-columns: 4ch 1fr;
-        grid-template-rows: auto auto;
-        grid-gap: 2rem;
-        justify-content: start;
-        padding: 6rem 0 3rem;
-      }
-
-      .row__header span:last-child {
-        grid-column: 1 / span 2;
-      }
-
-      .row__content {
-        display: grid;
-        width: 100%;
-        grid-auto-flow: column;
-        grid-gap: 1rem;
-        justify-content: start;
-      }
-
-      .row__content-imgwrap {
-        overflow: hidden;
-        position: relative;
-        border-radius: var(--radius-small);
-      }
-
-      .row__content-img {
-        aspect-ratio: 2;
-        height: 100px;
-        background-size: cover;
-        background-position: 50% 50%;
-      }
-
-      .row__content-imgwrap:nth-child(even) .row__content-img {
-        aspect-ratio: 1;
-      }
-
-      .row__content-imgwrap:nth-child(4n) .row__content-img {
-        aspect-ratio: 1.5;
-      }
-
-      .row__content-imgwrap:last-child {
-        justify-content: end;
-      }
-
-      .row__content-imgwrap:last-child .row__content-img {
-        aspect-ratio: 2.75;
-      }
-
-      .row + p {
-        margin-top: 40vh;
-      }
-
-      @media screen and (min-width: 53em) {
-        .frame {
-          grid-template-columns: 15% 15% 1fr 15% 15%;
-          grid-template-rows: auto;
-          padding: 2rem 3rem;
-          grid-template-areas: 'title prev nav sponsor sponsor';
-          justify-content: start;
-          grid-gap: 2rem;
-          align-items: center;
-          justify-items: start;
-        }
-        .frame__prev {
-          justify-self: start;
-        }
-        .frame__demos {
-          text-align: center;
-          justify-self: center;
-        }
-        .section,
-        .row {
-          font-size: 1.45rem;
-        }
-        .row__header {
-          display: grid;
-          grid-template-columns: 4ch auto 1fr;
-          grid-template-rows: auto;
-        }
-        .row__header span:last-child {
-          justify-self: end;
-          grid-column: revert;
-        }
-      }
-
-      .angle {
-        position: absolute;
-        width: 60rem;
-        max-width: 100%;
-        height: 47.2rem;
-        background-position: -403px -303px;
-        background-repeat: no-repeat;
-      }
-    </style>
-  </body>
-</html>
+  @media screen and (min-width: 53em) {
+    .frame {
+      grid-template-columns: 15% 15% 1fr 15% 15%;
+      grid-template-rows: auto;
+      padding: 2rem 3rem;
+      grid-template-areas: 'title prev nav sponsor sponsor';
+      justify-content: start;
+      grid-gap: 2rem;
+      align-items: center;
+      justify-items: start;
+    }
+    .frame__prev {
+      justify-self: start;
+    }
+    .frame__demos {
+      text-align: center;
+      justify-self: center;
+    }
+    .section,
+    .row {
+      font-size: clamp(14px, 1.4rem, 1.4rem);
+    }
+    .row__header {
+      display: grid;
+      grid-template-columns: 4ch auto 1fr;
+      grid-template-rows: auto;
+    }
+    .row__header span:last-child {
+      justify-self: end;
+      grid-column: revert;
+    }
+  }
+</style>
