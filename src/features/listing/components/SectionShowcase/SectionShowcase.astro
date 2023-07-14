@@ -1,0 +1,339 @@
+---
+import { getImage } from '@astrojs/image';
+
+const { src: illustrationWebsite } = await getImage({
+  src: import('@assets/images/illustration_website.png'),
+});
+---
+
+<section class="section section--showcase">
+  <header class="section__header">
+    <span class="section__year">2000</span>
+    <h2 class="section__title section__title--medium">
+      Selected <br /> Work
+    </h2>
+    <span class="section__year">2022</span>
+  </header>
+  <div class="row">
+    <div class="row__header">
+      <span>2000</span>
+      <span>Cat's business club</span>
+      <span
+        >Feline Connections: A Graphical Harmony of Business and Playfulness</span
+      >
+    </div>
+    <div class="row__content">
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="row__header">
+      <span>2002</span>
+      <span>La recylerie</span>
+      <span>Symbolizing reuse, transformation, and care.</span>
+    </div>
+    <div class="row__content">
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="row__header">
+      <span>2010</span>
+      <span>Infizio</span>
+      <span>A modern, futuristic visual embrace</span>
+    </div>
+    <div class="row__content">
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="row__header">
+      <span>2012</span>
+      <span>Dissident.e</span>
+      <span>Awaken the desire, send nudes</span>
+    </div>
+    <div class="row__content">
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="row__header">
+      <span>2012</span>
+      <span>Les reservoirs de Passy</span>
+      <span>A tribute to Paris, where creativity beholds</span>
+    </div>
+    <div class="row__content">
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+      <div class="row__content-imgwrap">
+        <div
+          class="row__content-img"
+          style=`background-image:url(${illustrationWebsite})`
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss" is:global>
+  .section--showcase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: 8rem 5vw 10vh;
+    cursor: default;
+  }
+
+  .section__header {
+    display: flex;
+    border-bottom: 1px solid #000;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    padding: 4vh 8vw;
+    margin-bottom: 4rem;
+  }
+
+  .section__title--medium {
+    font-size: clamp(32px, 12vw, 9rem);
+  }
+
+  .section__year {
+    color: var(--color-text-alt);
+  }
+
+  .row {
+    text-align: left;
+    width: 100%;
+  }
+
+  .row + p a::before {
+    content: '';
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    position: absolute;
+    top: 90%;
+    transition: transform 0.3s;
+    transform-origin: 0% 50%;
+  }
+
+  .row + p a:hover::before {
+    transform: scaleX(0);
+    transform-origin: 100% 50%;
+  }
+
+  .row + p a {
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .row__header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 4ch 1fr;
+    grid-template-rows: auto auto;
+    grid-gap: 2rem;
+    justify-content: start;
+    padding: 6rem 0 3rem;
+  }
+
+  .row__header span:last-child {
+    grid-column: 1 / span 2;
+  }
+
+  .row__content {
+    display: grid;
+    width: 100%;
+    grid-auto-flow: column;
+    grid-gap: 1rem;
+    justify-content: start;
+  }
+
+  .row__content-imgwrap {
+    overflow: hidden;
+    position: relative;
+    border-radius: var(--radius-small);
+  }
+
+  .row__content-img {
+    aspect-ratio: 2;
+    height: 100px;
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+
+  .row__content-imgwrap:nth-child(even) .row__content-img {
+    aspect-ratio: 1;
+  }
+
+  .row__content-imgwrap:nth-child(4n) .row__content-img {
+    aspect-ratio: 1.5;
+  }
+
+  .row__content-imgwrap:last-child {
+    justify-content: end;
+  }
+
+  .row__content-imgwrap:last-child .row__content-img {
+    aspect-ratio: 2.75;
+  }
+
+  .row + p {
+    margin-top: 40vh;
+  }
+
+  @media screen and (min-width: 53em) {
+    .section,
+    .row {
+      font-size: clamp(14px, 1.4rem, 1.4rem);
+    }
+    .row__header {
+      display: grid;
+      grid-template-columns: 4ch auto 1fr;
+      grid-template-rows: auto;
+    }
+    .row__header span:last-child {
+      justify-self: end;
+      grid-column: revert;
+    }
+  }
+</style>

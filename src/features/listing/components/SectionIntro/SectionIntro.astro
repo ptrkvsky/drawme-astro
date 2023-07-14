@@ -75,6 +75,10 @@ import guillemets from '@assets/svg/guillemets.svg';
     justify-content: center;
     padding: clamp(58px, 5.8rem, 5.8rem) 0 2rem;
     cursor: default;
+
+    @media screen and (max-width: 560px) {
+      margin-bottom: 122vh;
+    }
   }
 
   .section__poem {
@@ -92,5 +96,16 @@ import guillemets from '@assets/svg/guillemets.svg';
       font-size: clamp(12px, 2.1rem, 2.1rem);
       font-family: var(--text-body-thin);
     }
+  }
+
+  .section__arrow {
+    transform: translateY(3px) rotate(135deg);
+    fill: currentColor;
+  }
+
+  .section__text--alt {
+    margin-top: auto;
+    font-size: 14px;
+    color: var(--color-black-beauty);
   }
 </style>
