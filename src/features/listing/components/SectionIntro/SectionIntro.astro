@@ -1,4 +1,5 @@
 ---
+import guillemets from '@assets/svg/guillemets.svg';
 ---
 
 <section class="section section--intro">
@@ -25,6 +26,8 @@
     Unleashing the beauty, captivating your sight, <br class="only-tablet" />A
     graphic studio’s seduction, arousing pure delight.
   </p>
+  <img class="guillemets" src={guillemets} alt="quotes" />
+
   <p class="section__text section__text--alt">
     <span>Discover</span>
     <svg class="section__arrow" width="22px" height="22px" viewBox="0 0 24 24"
@@ -38,7 +41,12 @@
 </section>
 
 <style lang="scss">
+  .guillemets {
+    margin: 5vh 0 6vh;
+  }
+
   .section__title {
+    z-index: 10;
     font-size: clamp(36px, 20rem, 20rem);
     .highlight {
       color: var(--color-ice-ice-baby);
