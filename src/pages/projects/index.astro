@@ -3,7 +3,6 @@ import { getImage } from '@astrojs/image';
 import Header from '@components/Header.astro';
 import LayoutProjects from '@layouts/LayoutProjects.astro';
 import SectionIntro from '@features/listing/components/SectionIntro/SectionIntro.astro';
-import Angle from '@features/listing/components/Angle/Angle.astro';
 
 import '@styles/fonts.scss';
 import '@styles/variables.scss';
@@ -143,7 +142,6 @@ const { src: illustrationWebsite } = await getImage({
   <div slot="main-content">
     <Header />
     <main>
-      <Angle />
       <SectionIntro />
       <section class="section section--columns">
         <div class="columns">
@@ -591,6 +589,10 @@ const { src: illustrationWebsite } = await getImage({
     -moz-font-feature-settings: 'swsh';
     -webkit-font-feature-settings: 'swsh';
     font-feature-settings: 'swsh';
+
+    @media screen and (max-width: 1024px) {
+      margin: 28px 0 24px;
+    }
   }
 
   .section__title--medium {
