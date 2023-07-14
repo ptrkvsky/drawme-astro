@@ -3,6 +3,7 @@ import { getImage } from '@astrojs/image';
 import Header from '@components/Header.astro';
 import LayoutProjects from '@layouts/LayoutProjects.astro';
 import SectionIntro from '@features/listing/components/SectionIntro/SectionIntro.astro';
+import SectionColumn from '@features/listing/components/SectionColumn/SectionColumn.astro';
 
 import '@styles/fonts.scss';
 import '@styles/variables.scss';
@@ -10,225 +11,26 @@ import '@styles/variables.scss';
 const { src: illustrationWebsite } = await getImage({
   src: import('@assets/images/illustration_website.png'),
 });
+
+const urlsImages = [illustrationWebsite];
 ---
 
-<!-- <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Projects | Draw me a sheep</title>
-<meta name="author" content="Draw me a sheep" />
-<link rel="preload" as="image" href={flou} />
-<link rel="preload" as="image" href={illustrationWebsite} />
-
-<link rel="stylesheet" href="https://use.typekit.net/lgy2swt.css" /> -->
 <script>
-  document.documentElement.className = 'js';
-  var supportsCssVars = function () {
-    var e,
-      t = document.createElement('style');
-    return (
-      (t.innerHTML = 'root: { --tmp-var: bold; }'),
-      document.head.appendChild(t),
-      (e = !!(
-        window.CSS &&
-        window.CSS.supports &&
-        window.CSS.supports('font-weight', 'var(--tmp-var)')
-      )),
-      t.parentNode.removeChild(t),
-      e
-    );
-  };
-  supportsCssVars() ||
-    alert(
-      'Please view this demo in a modern browser that supports CSS Variables.'
-    );
-</script>
-<script>
-  import { preloadImages } from '../../features/listing/utils';
-  import Lenis from '@studio-freight/lenis';
+  import { initListingAnimations } from '@features/listing/animations';
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
+  import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
+  gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin);
 
-  const DOM = {
-    sections: {
-      columns: document.querySelector('.section--columns'),
-      showcase: document.querySelector('.section--showcase'),
-    },
-    columns: document.querySelectorAll('.section--columns > .columns'),
-    columnWraps: document.querySelectorAll('.section--columns .column-wrap'),
-    itemsWrappers: document.querySelectorAll(
-      '.section--columns .column-wrap .column'
-    ),
-    items: document.querySelectorAll('.section--columns .column__item'),
-    images: document.querySelectorAll('.section--columns .column__item-img'),
-  };
-
-  // Lenis smooth scrolling
-  let lenis;
-
-  // Initialize Lenis smooth scrolling
-  const initSmoothScrolling = () => {
-    lenis = new Lenis({
-      lerp: 0.075,
-      smoothWheel: true,
-    });
-    const scrollFn = (time) => {
-      lenis.raf(time);
-      requestAnimationFrame(scrollFn);
-    };
-    requestAnimationFrame(scrollFn);
-  };
-
-  // GSAP Scroll Triggers
-  const scroll = () => {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          start: 0,
-          end: 'max',
-          scrub: true,
-        },
-      })
-      .addLabel('start', 0)
-      .to(
-        DOM.sections.columns,
-        {
-          ease: 'none',
-          startAt: { scale: 1.1 },
-          scale: 1,
-        },
-        'start'
-      )
-      .to(
-        DOM.sections.columns,
-        {
-          scrollTrigger: {
-            trigger: DOM.sections.showcase,
-            start: 0,
-            end: 'top top',
-            scrub: true,
-          },
-          ease: 'power4.inOut',
-          startAt: {
-            opacity: 0.2,
-          },
-          opacity: 1,
-          // repeat once (go back to "startAt" values)
-          yoyo: true,
-          repeat: 1,
-        },
-        'start'
-      )
-      .to(
-        DOM.columnWraps,
-        {
-          ease: 'none',
-          yPercent: (pos) => (pos % 2 ? 3 : -3),
-        },
-        'start'
-      );
-  };
-
-  // Preload images
-  preloadImages('.column__item-img').then(() => {
-    document.body.classList.remove('loading');
-    // Lenis (smooth scrolling)
-    initSmoothScrolling();
-    // GSAP Scroll Triggers
-    scroll();
-  });
+  window.addEventListener('load', initListingAnimations);
 </script>
-<LayoutProjects>
+
+<LayoutProjects urlsImages={urlsImages}>
   <div slot="main-content">
     <Header />
     <main>
       <SectionIntro />
-      <section class="section section--columns">
-        <div class="columns">
-          <div class="column-wrap">
-            <div class="column">
-              <div class="column__item">
-                <div
-                  class="column__item-img"
-                  style=`background-image:url(${illustrationWebsite})`
-                >
-                </div>
-              </div>
-              <div class="column__item">
-                <div
-                  class="column__item-img"
-                  style=`background-image:url(${illustrationWebsite})`
-                >
-                </div>
-              </div>
-              <div class="column__item">
-                <div
-                  class="column__item-img"
-                  style=`background-image:url(${illustrationWebsite})`
-                >
-                </div>
-              </div>
-            </div><!-- /column -->
-          </div><!-- /column-wrap -->
-          <div class="column-wrap">
-            <div class="column">
-              <div class="column__item">
-                <div
-                  class="column__item-img"
-                  style=`background-image:url(${illustrationWebsite})`
-                >
-                </div>
-              </div>
-              <div class="column__item">
-                <div
-                  class="column__item-img"
-                  style=`background-image:url(${illustrationWebsite})`
-                >
-                </div>
-              </div>
-              <div class="column__item">
-                <div
-                  class="column__item-img"
-                  style=`background-image:url(${illustrationWebsite})`
-                >
-                </div>
-              </div>
-              <div class="column__item">
-                <div
-                  class="column__item-img"
-                  style=`background-image:url(${illustrationWebsite})`
-                >
-                </div>
-              </div>
-            </div><!-- /column -->
-          </div>
-          <div class="column-wrap">
-            <div class="column">
-              <div class="column__item">
-                <div
-                  class="column__item-img"
-                  style=`background-image:url(${illustrationWebsite})`
-                >
-                </div>
-              </div>
-              <div class="column__item">
-                <div
-                  class="column__item-img"
-                  style=`background-image:url(${illustrationWebsite})`
-                >
-                </div>
-              </div>
-              <div class="column__item">
-                <div
-                  class="column__item-img"
-                  style=`background-image:url(${illustrationWebsite})`
-                >
-                </div>
-              </div>
-            </div><!-- /column -->
-          </div><!-- /column-wrap -->
-        </div><!-- columns -->
-      </section>
+      <SectionColumn />
       <section class="section section--showcase">
         <header class="section__header">
           <span class="section__year">2000</span>

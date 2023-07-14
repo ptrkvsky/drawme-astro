@@ -1,0 +1,105 @@
+---
+import { getImage } from '@astrojs/image';
+
+import '@styles/fonts.scss';
+import '@styles/variables.scss';
+
+const { src: illustrationWebsite } = await getImage({
+  src: import('@assets/images/illustration_website.png'),
+});
+
+const { src: bob } = await getImage({
+  src: import('@features/listing/assets/bob.png'),
+});
+
+const { src: infizio } = await getImage({
+  src: import('@features/listing/assets/infizio.png'),
+});
+
+const { src: recyclerie } = await getImage({
+  src: import('@features/listing/assets/recyclerie.png'),
+});
+
+const { src: kraken } = await getImage({
+  src: import('@features/listing/assets/kraken.png'),
+});
+
+const { src: passy } = await getImage({
+  src: import('@features/listing/assets/passy.png'),
+});
+---
+
+<section class="section section--columns">
+  <div class="columns">
+    <div class="column-wrap">
+      <div class="column">
+        <div class="column__item">
+          <div
+            class="column__item-img"
+            style=`background-image:url(${illustrationWebsite})`
+          >
+          </div>
+        </div>
+        <div class="column__item">
+          <div class="column__item-img" style=`background-image:url(${bob})`>
+          </div>
+        </div>
+        <div class="column__item">
+          <div
+            class="column__item-img"
+            style=`background-image:url(${infizio})`
+          >
+          </div>
+        </div>
+      </div><!-- /column -->
+    </div><!-- /column-wrap -->
+    <div class="column-wrap">
+      <div class="column">
+        <div class="column__item">
+          <div
+            class="column__item-img"
+            style=`background-image:url(${recyclerie})`
+          >
+          </div>
+        </div>
+        <div class="column__item">
+          <div
+            class="column__item-img"
+            style=`background-image:url(${recyclerie})`
+          >
+          </div>
+        </div>
+        <div class="column__item">
+          <div
+            class="column__item-img"
+            style=`background-image:url(${illustrationWebsite})`
+          >
+          </div>
+        </div>
+        <div class="column__item">
+          <div class="column__item-img" style=`background-image:url(${kraken})`>
+          </div>
+        </div>
+      </div><!-- /column -->
+    </div>
+    <div class="column-wrap">
+      <div class="column">
+        <div class="column__item">
+          <div
+            class="column__item-img"
+            style=`background-image:url(${illustrationWebsite})`
+          >
+          </div>
+        </div>
+        <div class="column__item">
+          <div class="column__item-img" style=`background-image:url(${kraken})`>
+          </div>
+        </div>
+        <div class="column__item">
+          <div class="column__item-img" style=`background-image:url(${passy})`>
+          </div>
+        </div>
+      </div><!-- /column -->
+    </div><!-- /column-wrap -->
+  </div><!-- columns -->
+</section>

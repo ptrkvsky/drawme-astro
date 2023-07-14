@@ -63,7 +63,7 @@
   const charsRandom = "!@#$%^&*+:'/|";
 
   if (letter1 && letter2 && letter3 && letter4 && letter5) {
-    const tl = gsap
+    gsap
       .timeline({
         repeat: -1,
       })
@@ -139,10 +139,6 @@
     @media screen and (max-width: 600px) {
       justify-content: flex-end;
     }
-
-    /* @media screen and (max-width: 550px){
-    padding: 0 24px !important; // overides gsap config
-  } */
 
     &.black {
       backdrop-filter: blur(7px);
