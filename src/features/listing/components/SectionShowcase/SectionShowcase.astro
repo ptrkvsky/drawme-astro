@@ -244,6 +244,11 @@ const { src: illustrationWebsite } = await getImage({
     width: 100%;
   }
 
+  .section,
+  .row {
+    font-size: clamp(14px, 1.6rem, 1.6rem);
+  }
+
   .row + p a::before {
     content: '';
     height: 1px;
@@ -273,7 +278,7 @@ const { src: illustrationWebsite } = await getImage({
     grid-template-rows: auto auto;
     grid-gap: 2rem;
     justify-content: start;
-    padding: 6rem 0 3rem;
+    padding: clamp(24px, 6rem, 6rem) 0 3rem;
   }
 
   .row__header span:last-child {
@@ -322,10 +327,6 @@ const { src: illustrationWebsite } = await getImage({
   }
 
   @media screen and (min-width: 53em) {
-    .section,
-    .row {
-      font-size: clamp(14px, 1.4rem, 1.4rem);
-    }
     .row__header {
       display: grid;
       grid-template-columns: 4ch auto 1fr;
