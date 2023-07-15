@@ -1,5 +1,5 @@
 ---
-import ReactCanva from './ReactCanva';
+import { ReactCanva } from './ReactCanva';
 ---
 
 <script>
@@ -18,13 +18,6 @@ import ReactCanva from './ReactCanva';
 <section id="section-ds-something" class="section-draw-something">
   <h2 id="draw-something-title" class="title">What would you draw for me ?</h2>
   <ReactCanva client:only="react" />
-  <div class="wrapper-button">
-    <div class="relative container">
-      <button class="button-send" type="button">
-        Send me your artwork or your dick &gt;
-      </button>
-    </div>
-  </div>
 </section>
 
 <style lang="scss">
@@ -52,32 +45,6 @@ import ReactCanva from './ReactCanva';
         var(--font-size-heading)
       );
       text-align: center;
-    }
-
-    .wrapper-button {
-      position: absolute;
-      bottom: clamp(20px, 3.3rem, 3.3rem);
-      left: 0;
-      right: 0;
-
-      .container {
-        display: flex;
-        justify-content: flex-end;
-
-        @media screen and (max-width: 768px) {
-          justify-content: center;
-        }
-      }
-    }
-
-    .button-send {
-      background-color: transparent;
-      font-size: clamp(12px, 1.4rem, 1.4rem);
-      text-transform: uppercase;
-      font-family: var(--text-body-medium);
-      letter-spacing: 0.2rem;
-      color: var(--color-white-beauty);
-      border: none;
     }
   }
 </style>

@@ -7,6 +7,9 @@ interface ImportMetaEnv {
   readonly PUBLIC_SANITY_READ_TOKEN: string;
   readonly SANITY_READ_TOKEN: string;
   readonly PUBLIC_URL: string;
+  readonly MAIL_HOST: string;
+  readonly MAIL_EMAIL: string;
+  readonly MAIL_PASS: string;
   // more env variables...
 }
 
