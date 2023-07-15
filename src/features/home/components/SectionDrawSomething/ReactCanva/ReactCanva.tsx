@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useRef } from 'react';
 import CanvasDraw from 'react-canvas-draw';
 import { useCanvasResize, useSendEmail } from './ReactCanva.hooks';
