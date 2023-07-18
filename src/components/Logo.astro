@@ -66,8 +66,12 @@
           display: 'none',
         })
         // Show content
-        .set(['#main-content', '#header', '#burger-button'], {
+        .set(['#main-content'], {
           opacity: '1',
+        })
+        .to(['#header', '#burger-button'], {
+          opacity: 1,
+          delay: 3,
         });
 
       setTimeout(() => {
