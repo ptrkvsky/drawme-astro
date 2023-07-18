@@ -2,8 +2,7 @@ import gsap from 'gsap';
 import { getRandomEntryFromArray } from '../../helpers/getRandomEntryFromArray';
 
 const tlMenu = gsap.timeline();
-const emojiString =
-  '♒Ϟꖌ⢭Ѯ៩𖣻০⌘⑂⎆ᕊ♚♡ꯨ༇❀℧◊⚑𑄅⚕⚘☀⚔⚡⚖☂⛆⛩⛼☏⛏✿❂⛲⚗⚘⚓✣⚒⚜⚜⚚⚰✡⚡⚠⚢⚥⚤⚧☿⚦⚨⚩⚬⚭⚯⚰✠⚤⚞⚟⚚⚭⚮';
+const emojiString = '⚢⚥⚤⚧☿⚦⚨!@#$&*';
 const emojis = emojiString.split(''); // Splits the sentence into an array of individual characters
 
 export function getMenuAnimation(splitLink: SplitText) {
