@@ -7,7 +7,7 @@
   } from './Menu.animations';
   import { startMenu } from './Menu.functions';
 
-  const splitLink = splitText('.link', 'lines');
+  const splitLink = splitText('.link', 'chars');
   const tlMenu = getMenuAnimation(splitLink);
   const tlBurger = getBurgerAnimation();
 
@@ -38,6 +38,7 @@
         <li>
           <span class="line"></span>
           <a
+            data-txt-origin="Home"
             class="link menu__item"
             data-img="/assets/images/menu-home.png"
             href="/">Home</a

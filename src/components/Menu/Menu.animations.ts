@@ -1,7 +1,12 @@
 import gsap from 'gsap';
+import { getRandomEntryFromArray } from '../../helpers/getRandomEntryFromArray';
+
+const tlMenu = gsap.timeline();
+const emojiString =
+  '♒Ϟꖌ⢭Ѯ៩𖣻০⌘⑂⎆ᕊ♚♡ꯨ༇❀℧◊⚑𑄅⚕⚘☀⚔⚡⚖☂⛆⛩⛼☏⛏✿❂⛲⚗⚘⚓✣⚒⚜⚜⚚⚰✡⚡⚠⚢⚥⚤⚧☿⚦⚨⚩⚬⚭⚯⚰✠⚤⚞⚟⚚⚭⚮';
+const emojis = emojiString.split(''); // Splits the sentence into an array of individual characters
 
 export function getMenuAnimation(splitLink: SplitText) {
-  const tlMenu = gsap.timeline();
   // fadein menu
   tlMenu
     .fromTo(
@@ -28,19 +33,28 @@ export function getMenuAnimation(splitLink: SplitText) {
     'reveal'
   );
   tlMenu.from(
-    splitLink.lines,
+    splitLink.chars,
     {
-      y: 35,
+      y: 45,
       ease: 'power1.out',
       skewY: 0,
       stagger: {
         amount: 0.25,
       },
-      duration: 0.65,
+      duration: 0.7,
       opacity: 0,
     },
     'reveal+=0.5'
   );
+  // SCRAMBLE
+  splitLink.chars.forEach((char, index) => {
+    const emoji = getRandomEntryFromArray(emojis);
+    tlMenu.from(char, {
+      scrambleText: emoji,
+      duration: 0.05,
+      stagger: 0.25,
+    });
+  });
   tlMenu.pause();
 
   return tlMenu;
@@ -101,6 +115,32 @@ export function handleClickBurger(
   } else {
     tlBurger.play(0);
     tlMenu.play(0);
+    // scrambleMenu();
   }
   wrapperMenu.classList.toggle('is-open');
+}
+
+export function scrambleMenu() {
+  const elementsWithDataAttribute: NodeListOf<HTMLAnchorElement> =
+    document.querySelectorAll('[data-txt-origin]');
+
+  elementsWithDataAttribute.forEach((element) => {
+    // Access the original text using the data attribute
+    const originalText = element.dataset.txtOrigin;
+
+    // Do something with the original text (example: console log)
+    gsap.to(element, {
+      duration: 1,
+      scrambleText: {
+        text: originalText,
+        chars: 'XO',
+        revealDelay: 0.5,
+        speed: 0.3,
+      },
+    });
+
+    // You can also modify the element's text content or perform other actions here.
+    // For example, to set the text content to uppercase:
+    element.textContent = originalText.toUpperCase();
+  });
 }
