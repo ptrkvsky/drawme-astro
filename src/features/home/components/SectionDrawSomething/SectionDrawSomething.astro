@@ -20,7 +20,7 @@ import { ReactCanva } from './ReactCanva';
   <ReactCanva client:only="react" />
 </section>
 
-<style lang="scss">
+<style lang="scss" is:global>
   .section-draw-something {
     position: relative;
     z-index: 30;
@@ -45,6 +45,40 @@ import { ReactCanva } from './ReactCanva';
         var(--font-size-heading)
       );
       text-align: center;
+    }
+
+    .wrapper-button {
+      position: absolute;
+      bottom: clamp(20px, 3.3rem, 3.3rem);
+      left: 0;
+      right: 0;
+
+      .container {
+        display: flex;
+        justify-content: flex-end;
+        gap: 16px;
+
+        @media screen and (max-width: 768px) {
+          justify-content: center;
+        }
+      }
+    }
+
+    .section-draw-button {
+      padding: 4px;
+      background-color: transparent;
+      font-size: clamp(12px, 1.4rem, 1.4rem);
+      text-transform: uppercase;
+      font-family: var(--text-body-medium);
+      letter-spacing: 0.2rem;
+      color: var(--color-white-beauty);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s linear;
+      &:hover,
+      &.success {
+        color: var(--color-ice-ice-baby);
+      }
     }
   }
 </style>

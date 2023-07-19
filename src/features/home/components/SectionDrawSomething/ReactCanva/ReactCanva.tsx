@@ -2,7 +2,6 @@ import React from 'react';
 import { useRef } from 'react';
 import CanvasDraw from 'react-canvas-draw';
 import { useCanvasResize, useSendEmail } from './ReactCanva.hooks';
-import './ReactCanva.style.scss';
 
 const ReactCanva = () => {
   const refCanvas = useRef<CanvasDraw | null>();
