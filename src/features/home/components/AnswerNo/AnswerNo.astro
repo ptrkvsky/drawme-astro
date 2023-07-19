@@ -1,0 +1,33 @@
+<span id="answer-no" data-speed="0.98" data-lag="0.02" class="no"> No</span>
+
+<style lang="scss">
+  .no {
+    position: absolute;
+    font-size: clamp(16px, 3rem, 3rem);
+    right: 74rem;
+
+    @media screen and (max-width: 1024px) {
+      right: 30rem;
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import getRandomInt from '@helpers/getRandomInt';
+
+  function handleNoHover() {
+    const rightPos = getRandomInt(94, 24);
+
+    gsap.to('#answer-no', {
+      right: rightPos + 'rem',
+      ease: 'Power4.out',
+      duration: 0.3,
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const answerno = document.querySelector('#answer-no');
+    answerno.addEventListener('mouseenter', handleNoHover);
+  });
+</script>

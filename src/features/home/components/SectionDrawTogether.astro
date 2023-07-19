@@ -1,68 +1,6 @@
 ---
-import AnswerNo from './AnswerNo/index';
+import { AnswerNo } from './AnswerNo';
 ---
-
-<script>
-  import gsap from 'gsap';
-  import getRandomInt from '@helpers/getRandomInt';
-
-  window.addEventListener('load', () => {
-    const noElement = document.getElementById('answer-no');
-
-    function handleNoHover() {
-      const elementWidth = noElement.offsetWidth;
-      const elementHeight = noElement.offsetHeight;
-
-      const maxX = window.innerWidth - elementWidth;
-      const maxY = window.innerHeight - elementHeight;
-
-      const topPos = getRandomInt(0, 200);
-      const leftPos = getRandomInt(0, 200);
-
-      document.addEventListener('DOMContentLoaded', function () {
-        gsap.to('#answer-no', {
-          top: topPos,
-          right: '10rem',
-          ease: 'power4.inOut',
-          duration: 0.75,
-        });
-        gsap.to('#answer-no', {
-          top: 'initial',
-          right: '74rem',
-          ease: 'Power4.inOut',
-          duration: 0.3,
-          delay: 2,
-        }).totalDuration;
-      });
-    }
-
-    if (!noElement) return;
-    noElement.addEventListener('mouseenter', handleNoHover);
-
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: '#section-draw-together',
-          start: 'top 85%', // top of the element, bottom of the viewport
-        },
-      })
-      .fromTo(
-        `#section-draw-together__path`,
-        {
-          drawSVG: false,
-        },
-        {
-          drawSVG: true,
-          ease: `power3.inOut`,
-          delay: 0.5,
-          duration: 1.5,
-        }
-      );
-
-    if (!noElement) return;
-    noElement.addEventListener('mouseenter', handleNoHover);
-  });
-</script>
 
 <section
   id="section-draw-together"
@@ -95,8 +33,7 @@ import AnswerNo from './AnswerNo/index';
         </svg>
       </a>
     </div>
-    <!-- <span id="answer-no" class="no"> No</span> -->
-    <AnswerNo client:only="react" />
+    <AnswerNo />
   </div>
 </section>
 
