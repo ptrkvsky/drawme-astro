@@ -2,8 +2,8 @@ import gsap from 'gsap';
 import { getRandomEntryFromArray } from '../../helpers/getRandomEntryFromArray';
 
 const tlMenu = gsap.timeline();
-const emojiString = '⚢⚥⚤⚧☿⚦⚨!@#$&*';
-const emojis = emojiString.split(''); // Splits the sentence into an array of individual characters
+const emojiString = 'DЯΛЩ MΞ Δ ƧΗΣΣР';
+const emojis = emojiString.split(' '); // Splits the sentence into an array of individual characters
 
 export function getMenuAnimation(splitLink: SplitText) {
   // fadein menu
@@ -32,7 +32,7 @@ export function getMenuAnimation(splitLink: SplitText) {
     'reveal'
   );
   tlMenu.from(
-    splitLink.chars,
+    splitLink.lines,
     {
       y: 45,
       ease: 'power1.out',
@@ -46,11 +46,11 @@ export function getMenuAnimation(splitLink: SplitText) {
     'reveal+=0.5'
   );
   // SCRAMBLE
-  splitLink.chars.forEach((char, index) => {
+  splitLink.lines.forEach((char, index) => {
     const emoji = getRandomEntryFromArray(emojis);
     tlMenu.from(char, {
-      scrambleText: emoji,
-      duration: 0.05,
+      scrambleText: emojis[index],
+      duration: 0.25,
       stagger: 0.25,
     });
   });

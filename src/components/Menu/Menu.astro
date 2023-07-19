@@ -7,7 +7,7 @@
   } from './Menu.animations';
   import { startMenu } from './Menu.functions';
 
-  const splitLink = splitText('.link', 'chars');
+  const splitLink = splitText('.link', 'lines');
   const tlMenu = getMenuAnimation(splitLink);
   const tlBurger = getBurgerAnimation();
 
@@ -127,7 +127,7 @@
           padding: clamp(24px, 2.4rem, 2.4rem) 0;
 
           color: white;
-          font-size: clamp(60px, 6rem, 6rem);
+          font-size: clamp(50px, 6rem, 6rem);
         }
 
         .line {
