@@ -18,7 +18,6 @@ export default function handleCurtainSuccess(
     b: 0,
   }
 ) {
-  console.log('called');
   return () => {
     // track the mouse position
     const mouse = {

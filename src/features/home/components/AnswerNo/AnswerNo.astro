@@ -16,7 +16,7 @@
   import gsap from 'gsap';
   import getRandomInt from '@helpers/getRandomInt';
 
-  function handleNoHover() {
+  function handleNoHoverDesktop() {
     const rightPos = getRandomInt(94, 24);
 
     gsap.to('#answer-no', {
@@ -27,7 +27,37 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    const answerno = document.querySelector('#answer-no');
-    answerno.addEventListener('mouseenter', handleNoHover);
+    const answerNo = document.querySelector('#answer-no');
+
+    function handleNoHoverMobile() {
+      gsap
+        .timeline({
+          yoyo: true,
+        })
+        .fromTo(
+          answerNo,
+          {
+            scale: 1,
+            opacity: 1,
+          },
+          {
+            scale: 0.2,
+            opacity: 0,
+            duration: 0.75,
+            ease: 'power4.out',
+          }
+        )
+        .to(answerNo, {
+          delay: 1,
+          scale: 1,
+          opacity: 1,
+          duration: 0.75,
+          ease: 'bounce.out',
+        });
+    }
+    if (window.innerWidth > 1024) {
+      answerNo.addEventListener('mouseenter', handleNoHoverDesktop);
+    }
+    answerNo.addEventListener('touchstart', handleNoHoverMobile);
   });
 </script>
