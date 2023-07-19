@@ -35,9 +35,7 @@ const ReactCanva = () => {
               type="button"
               disabled={isLoading}
             >
-              {isLoading
-                ? 'Loading...'
-                : 'Send me your artwork or your dick &gt;'}
+              {isLoading ? 'Loading...' : 'Send me your artwork >'}
             </button>
           ) : (
             <button className="section-draw-button success">Thank you !</button>
