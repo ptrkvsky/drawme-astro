@@ -426,10 +426,18 @@ const { src: illustrationIdentity } = await getImage({
 
         .illustration {
           max-width: clamp(300px, 34.5rem, 34.5rem);
+
+          @media screen and (max-width: 768px) {
+            margin-top: 16px;
+          }
         }
         .sub-title {
           padding-left: 3.6rem;
           margin-bottom: 1.1rem;
+
+          @media screen and (max-width: 768px) {
+            padding-left: 0;
+          }
         }
       }
 
@@ -481,12 +489,15 @@ const { src: illustrationIdentity } = await getImage({
         bottom: 80px;
         left: 69rem;
         @media screen and (max-width: 768px) {
-          top: initial;
+          bottom: initial;
           left: initial;
         }
 
         .illustration {
           max-width: clamp(166px, 18.1rem, 18.1rem);
+          @media screen and (max-width: 768px) {
+            margin-top: 16px;
+          }
         }
         .sub-title {
           margin-top: 1.4rem;
