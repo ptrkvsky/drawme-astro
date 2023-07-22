@@ -14,10 +14,16 @@ import Layout from '@layouts/Layout.astro';
 import Canvas from '@features/home/components/Canvas.astro';
 
 const sanityHome = await fetchSanity<SanityHome>(querySanityHome);
+// Section Intro
 const presentation = sanityHome && sanityHome.Home.introPresentationRaw;
 const presentationMobile =
   sanityHome && sanityHome.Home.introPresentationMobileRaw;
 const detail = sanityHome && sanityHome.Home.introDetail;
+// Section Projects
+const sectionProjectsTitle =
+  sanityHome && sanityHome.Home.sectionProjectsTitleRaw;
+const sectionProjectsDescription =
+  sanityHome && sanityHome.Home.sectionProjectsDescriptionRaw;
 
 const { src: illustrationWebsite } = await getImage({
   src: import('@assets/images/illustration_website.png'),
@@ -58,7 +64,10 @@ const urlImages = [
       presentationMobile={presentationMobile}
       detail={detail}
     />
-    <SectionProjects />
+    <SectionProjects
+      sectionProjectsTitle={sectionProjectsTitle}
+      sectionProjectsDescription={sectionProjectsDescription}
+    />
     <SectionDrawSomething />
     <SectionDrawTogether />
     <SectionWhoAmI />

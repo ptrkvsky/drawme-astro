@@ -28,18 +28,11 @@ export const revealText = () => {
     drawSVG: false,
   });
 
-  const paramsReveal = {
-    yPercent: -100,
-    scale: 1,
-    ease: 'power2.out',
-    duration: 0.3,
-  };
-
   const paramsScaleImage = {
-    ease: 'power2.out',
-    duration: 0.3,
+    ease: 'linear',
+    duration: 1,
     delay: -0.3,
-    scale: 1.3,
+    opacity: 0,
   };
 
   gsap
@@ -58,47 +51,20 @@ export const revealText = () => {
     })
 
     // -- Animate book
-    // Reveal
-    .to('.illustration.book .reveal', paramsReveal)
     // Scale image
-    .from('.illustration.book img', paramsScaleImage)
-    // Hide reveal
-    .set('.illustration.book .reveal', {
-      autoAlpha: 0,
-    })
+    .from('.illustration.book img', { ...paramsScaleImage, delay: 0 })
+
+    //--  Animate fingers
+    .from('.finger-img', paramsScaleImage)
+
     // -- Animate letter
-    // Reveal
-    .to('.illustration.letters .reveal', {
-      ...paramsReveal,
-      yPercent: 100,
-    })
     // Scale image
     .from('.illustration.letters img', paramsScaleImage)
-    // Hide reveal
-    .set('.illustration.letters .reveal', {
-      autoAlpha: 0,
-    })
-    //--  Animate fingers
-    // Reveal
-    .to('.finger-reveal', {
-      ...paramsReveal,
-      yPercent: 0,
-      xPercent: -100,
-    })
-    .from('.finger-img', paramsScaleImage)
-    // Hide reveal
-    .set('.finger-reveal', {
-      autoAlpha: 0,
-    })
+
     //--  Animate crayon
-    // Reveal
-    .to('.illustration.crayon .reveal', paramsReveal)
     // Scale image
     .from('.illustration.crayon img', paramsScaleImage)
-    // Hide reveal
-    .set('.illustration.crayon .reveal', {
-      autoAlpha: 0,
-    })
+
     // Animate intro presentation
     .to('.intro-presentation', {
       opacity: 1,

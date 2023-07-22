@@ -1,9 +1,4 @@
 ---
-interface AstroProps {
-  detail: string;
-  presentation: any[];
-  presentationMobile: any[];
-}
 import { toHTML } from '@portabletext/to-html';
 import { Image } from '@astrojs/image/components';
 import illustrationBook from '@assets/images/illustration_book.png';
@@ -12,6 +7,12 @@ import illustrationFingers from '@assets/images/illustration_fingers.png';
 import illustrationLetters from '@assets/images/illustration_letters.png';
 import { portableTextComponents } from '@helpers/portableTextComponents';
 import LogoMark from '../LogoMark.astro';
+
+interface AstroProps {
+  detail: string;
+  presentation: any[];
+  presentationMobile: any[];
+}
 
 const { detail, presentation, presentationMobile } = Astro.props as AstroProps;
 const presentationHTML = toHTML(presentation, {
@@ -30,7 +31,6 @@ const presentationMobileHTML = toHTML(presentationMobile, {
     revealText();
   });
 </script>
-
 <section id="section-presentation" class="section-presentation">
   <div data-speed="1.05" data-lag="0.025" class="wrapper-logo-mark desktop">
     <LogoMark />
@@ -149,19 +149,17 @@ const presentationMobileHTML = toHTML(presentationMobile, {
     }
 
     .reveal {
+      display: none;
+      z-index: 10;
       position: absolute;
       top: 0;
       left: 0;
-      transition: 0.25s linear;
-      .canva-white & {
-        background-color: #fff;
-      }
-      .canva-black & {
-        background-color: #fff;
-      }
-      z-index: 10;
+
       width: 100%;
       height: 100%;
+
+      background-color: #fff;
+      transition: 0.25s linear;
     }
 
     .wrapper-overflow {

@@ -5,6 +5,8 @@ interface Home {
   introPresentationRaw: any[];
   introPresentationMobileRaw: any[];
   introDetail: string;
+  sectionProjectsTitleRaw: any[];
+  sectionProjectsDescriptionRaw: any[];
 }
 
 export interface SanityHome {

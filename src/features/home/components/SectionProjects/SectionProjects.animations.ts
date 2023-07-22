@@ -18,7 +18,7 @@ export function revealTexts() {
       ease: 'power1.inOut',
     })
     .fromTo(
-      `#draw-for-you__path`,
+      `#section-projets-title .path-zigwigwi`,
       {
         drawSVG: false,
       },
