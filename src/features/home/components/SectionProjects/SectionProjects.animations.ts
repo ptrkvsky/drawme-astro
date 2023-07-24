@@ -45,9 +45,9 @@ export function revealIllustrations() {
   };
 
   const paramsSplitAndRevealSubtitleLogo: ParamsSplitAndReveal = {
-    element: '#subtitle-logo',
+    element: '#subtitle-infizio',
     typeSplit: 'chars',
-    trigger: '#subtitle-logo',
+    trigger: '#subtitle-infizio',
   };
 
   const paramsSplitAndRevealSubtitlePackaging: ParamsSplitAndReveal = {
@@ -57,9 +57,9 @@ export function revealIllustrations() {
   };
 
   const paramsSplitAndRevealSubtitleSocial: ParamsSplitAndReveal = {
-    element: '#subtitle-social',
+    element: '#subtitle-dissidente',
     typeSplit: 'chars',
-    trigger: '#subtitle-social',
+    trigger: '#subtitle-dissidente',
   };
 
   const paramsSplitAndRevealSubtitleWebsite: ParamsSplitAndReveal = {

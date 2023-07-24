@@ -3,7 +3,7 @@ import { getImage } from '@astrojs/image';
 
 import { SectionDrawSomething } from '@features/home/components/SectionDrawSomething';
 import SectionDrawTogether from '@features/home/components/SectionDrawTogether.astro';
-import SectionHero from '@features/home/components/SectionHero.astro';
+import { SectionHero } from '@features/home/components/SectionHero';
 import SectionPresentation from '@features/home/components/SectionPresentation/SectionPresentation.astro';
 import SectionProjects from '@features/home/components/SectionProjects/SectionProjects.astro';
 import SectionWhoAmI from '@features/home/components/SectionWhoAmI.astro';
@@ -49,6 +49,12 @@ const urlImages = [
   illustrationIdentity,
 ];
 ---
+
+<script>
+  import { setCanvaStyle } from '@helpers/setCanvaStyle';
+
+  setCanvaStyle('2.23', '2.875', '#000');
+</script>
 
 <Layout
   isHome={true}

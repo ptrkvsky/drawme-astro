@@ -8,6 +8,7 @@ import '@styles/utilities.scss';
 import '@styles/variables.scss';
 import '@styles/global.scss';
 import '@styles/functions.scss';
+import '@styles/pageTransitions.scss';
 import { Menu, Burger, Footer } from '@components/index';
 
 export interface Props {
@@ -23,6 +24,129 @@ const { title, background, urlsPages, urlsImages, Canvas } =
   Astro.props as Props;
 ---
 
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+  import ScrollSmoother from 'gsap/ScrollSmoother';
+  import handleCurtainSuccess from '@features/project/functions/handleCurtainSuccess';
+  import Swup from 'swup';
+  import { getCanvaStyle } from '@helpers/getCanvaStyle';
+  import { animateHome } from '@features/home/functions/animateHome';
+  import { handleRevealBrush } from '@features/project/components/BrushDrawMe/BrushDrawMe.animations';
+  import { switchCanva } from '@features/home/components';
+  import {
+    setCurtainsHome,
+    newCurtain,
+  } from '@features/home/functions/setCurtainsHome';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  console.log('document.readyState', document.readyState);
+
+  const swup = new Swup();
+
+  const customEvent = new CustomEvent('swup', {
+    detail: {
+      message: 'Here is Swup !',
+      swup,
+    },
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const { hue, saturation, background } = getCanvaStyle();
+
+    const smoother = ScrollSmoother.create({
+      smooth: 1.5, // how long (in seconds) it takes to "catch up" to the native scroll position
+      effects: true, // looks for data-speed and data-lag attributes on elements
+      smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+    });
+    smoother.scrollTo('body', false); // Reset the scroll position when refresh https://greensock.com/docs/v3/Plugins/ScrollSmoother/scrollTo()
+
+    const mainCanva = newCurtain('main-canva');
+    const secondCanva = newCurtain('canva-white');
+
+    const bgBlack = {
+      r: 0,
+      v: 0,
+      b: 0,
+    };
+
+    const bgWhite = {
+      r: 255,
+      v: 255,
+      b: 255,
+    };
+
+    mainCanva.onSuccess(
+      handleCurtainSuccess(mainCanva, 'main-canva', hue, saturation, bgBlack)
+    );
+
+    secondCanva.onSuccess(
+      handleCurtainSuccess(secondCanva, 'canva-white', hue, saturation, bgWhite)
+    );
+
+    swup.on('animationInDone', () => {
+      const smoother = ScrollSmoother.create({
+        smooth: 1.5, // how long (in seconds) it takes to "catch up" to the native scroll position
+        effects: true, // looks for data-speed and data-lag attributes on elements
+        smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+      });
+      smoother.scrollTo('body', false);
+    });
+
+    swup.on('animationOutDone', () => {
+      smoother.kill();
+      // Delete Canvas
+      // const canvas = document.querySelectorAll('.portal canvas');
+      // console.log('lenght', canvas.length);
+      // document.querySelectorAll('#portal-canva canvas').forEach((element) => {
+      //   element.remove();
+      // });
+    });
+
+    swup.on('animationInDone', () => {
+      const mainCanva = newCurtain('main-canva');
+      const secondCanva = newCurtain('canva-white');
+      const { hue, saturation, background } = getCanvaStyle();
+
+      const currentURL = window.location.href;
+      console.log('currentURL', currentURL);
+
+      // mainCanva.render();
+      // secondCanva.render();
+      mainCanva.onSuccess(
+        handleCurtainSuccess(mainCanva, 'main-canva', hue, saturation, bgWhite)
+      );
+
+      secondCanva.onSuccess(
+        handleCurtainSuccess(
+          secondCanva,
+          'canva-white',
+          hue,
+          saturation,
+          bgWhite
+        )
+      );
+      switchCanva();
+    });
+  });
+
+  document.addEventListener('swup', handleRevealBrush);
+  // document.addEventListener('swup', animateHome);
+  document.dispatchEvent(customEvent);
+
+  swup.on('animationOutStart', () => {});
+
+  swup.on('animationOutDone', () => {});
+
+  swup.on('transitionEnd', () => {
+    ScrollTrigger.refresh();
+  });
+
+  // document.addEventListener('swup:animationInDone', () => {
+  //   console.log('hello dude');
+  // });
+</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width" />
 <link rel="icon" type="image/x-icon" href="/favicon.png" />
@@ -41,17 +165,18 @@ const { title, background, urlsPages, urlsImages, Canvas } =
 <body style={{ background }} class="canva-black">
   <Burger />
   <Header />
-  <!-- {isHome && <CanvasHome />} -->
-  <!-- {!isHome && <CanvasProject />} -->
-  <Canvas />
   <Logo />
-  <Gsap>
-    <div id="main-content" style={{ opacity: 0 }}>
-      <slot name="main-content" />
-    </div>
-    <Footer />
-  </Gsap>
+  <div id="swup" class="transition-fade">
+    <Canvas />
+    <Gsap>
+      <div id="main-content">
+        <slot name="main-content" />
+      </div>
+      <Footer />
+    </Gsap>
+  </div>
   <div id="portal"></div>
+  <div id="portal-canva"></div>
   <Menu />
   <style lang="scss" is:global>
     body {

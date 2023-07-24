@@ -1,17 +1,19 @@
----
-const hue = 0.33;
-
-const saturation = 2.1875;
----
-
 <script>
   import handleCurtainSuccess from '../functions/handleCurtainSuccess';
-  import { Curtains, PingPongPlane, Vec2, ShaderPass } from 'curtainsjs';
+  //@ts-ignore
+  import { Curtains } from 'curtainsjs';
   const root = document.querySelector(':root');
   const cssStyle = getComputedStyle(root);
   // Alert the value of the --blue variable
   const hue = +cssStyle.getPropertyValue('--canva-hue');
   const saturation = +cssStyle.getPropertyValue('--canva-saturation');
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const mainCanva = document.getElementById('main-canva');
+    const portal = document.getElementById('portal');
+
+    portal.appendChild(mainCanva);
+  });
 
   window.addEventListener('load', () => {
     /**
@@ -38,6 +40,7 @@ const saturation = 2.1875;
 
 <style lang="scss">
   .canva {
+    z-index: -1;
     position: fixed;
     width: 100vw;
     height: 100vh;

@@ -5,25 +5,55 @@ import config from 'src/config';
 gsap.registerPlugin(ScrollTrigger);
 // Switch Canva from black to white
 const handleToggleCanva = () => {
-  document.getElementById('main-canva').classList.toggle('visible');
-  document.getElementById('canva-white').classList.toggle('visible');
-  document.querySelector('body').classList.toggle('canva-black');
-  document.querySelector('body').classList.toggle('canva-white');
+  console.log('handleToglle 🆑');
+
+  const mainCanva = document.getElementById('main-canva');
+  const canvaWhite = document.getElementById('canva-white');
+
+  if (!mainCanva || !canvaWhite) {
+    console.log('mainCanva', typeof mainCanva, mainCanva);
+    console.log('canvaWhite', typeof canvaWhite, canvaWhite);
+
+    return;
+  }
+  const body = document.querySelector('body');
+
+  console.log(mainCanva, 'visible');
+  canvaWhite.classList.toggle('visible');
+  body.classList.toggle('canva-black');
+  body.classList.toggle('canva-white');
 };
 
 export const switchCanva = () => {
-  ScrollTrigger.create({
-    trigger: '#section-presentation',
-    start: 'top bottom',
-    endTrigger: 'footer',
-    markers: config.mode === 'development',
-    onToggle: () => {
-      handleToggleCanva();
-    },
-  });
+  const sectionPresentation = document.getElementById('section-presentation');
+  if (!sectionPresentation) {
+    console.log('🌇 sectionPresentation not found');
+    return;
+  }
+
+  const marker: ScrollTrigger.MarkersVars = {
+    startColor: 'yellow',
+    endColor: 'red',
+    fontSize: '36px',
+    fontWeight: 'bold',
+    indent: 40,
+  };
+
+  setTimeout(() => {
+    ScrollTrigger.create({
+      trigger: '#section-presentation',
+      start: 'top bottom',
+      endTrigger: 'footer',
+      markers: marker,
+      onToggle: () => {
+        console.log('does it toggle ?');
+        handleToggleCanva();
+      },
+    });
+  }, 500);
 };
 
-export const revealText = () => {
+export const revealTextSectionPresentation = () => {
   gsap.set(`.intro-presentation .path-zigwigwi`, {
     drawSVG: false,
   });
@@ -35,10 +65,18 @@ export const revealText = () => {
     opacity: 0,
   };
 
+  const sectionPresentation = <HTMLElement>(
+    document.querySelector('#section-presentation')
+  );
+
+  if (!sectionPresentation) {
+    console.log('sectionPresentation not found');
+  }
+
   gsap
     .timeline({
       scrollTrigger: {
-        trigger: '#section-presentation',
+        trigger: sectionPresentation,
         endTrigger: 'footer',
         markers: config.mode === 'development',
         start: 'top 75%',

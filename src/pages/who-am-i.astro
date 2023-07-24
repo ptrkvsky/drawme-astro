@@ -13,12 +13,9 @@ const sanityWhoAmI = whoAmI && whoAmI.WhoAmI;
 
 <script>
   import { ParamsSplitAndReveal, splitAndReveal } from '@helpers/gsap';
+  import { setCanvaStyle } from '@helpers/setCanvaStyle';
 
-  const root = document.querySelector(':root');
-  //@ts-ignore
-  root.style.setProperty('--canva-hue', 2.15);
-  //@ts-ignore
-  root.style.setProperty('--canva-saturation', 1);
+  setCanvaStyle('2.23', '2.875', '#FFF');
 
   const paramsSplitAndRevealSubtitleWebsite: ParamsSplitAndReveal = {
     element: '#subtitle-website',

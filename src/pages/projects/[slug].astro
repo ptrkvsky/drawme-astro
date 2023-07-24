@@ -12,6 +12,7 @@ import { querySanityProjects } from '@features/project/queries/querySanityProjec
 import fetchSanity from '@helpers/fetchSanity';
 import Layout from '@layouts/Layout.astro';
 import config from 'src/config';
+import { setCanvaStyle } from '@helpers/setCanvaStyle';
 
 export async function getStaticPaths() {
   const sanityProjects = await fetchSanity<SanityProjects>(querySanityProjects);
@@ -40,11 +41,11 @@ const urlsImages = [
 const nextProjectUrls = [`/projects/${nextProject.slug.current}`];
 ---
 
-<script define:vars={{ hue, saturation, config }}>
+<script define:vars={{ hue, saturation, config, setCanvaStyle }}>
   const root = document.querySelector(':root');
-  //@ts-ignore
   root.style.setProperty('--canva-hue', hue);
   root.style.setProperty('--canva-saturation', saturation);
+  root.style.setProperty('--canva-background', '#FFF');
 </script>
 
 <Layout

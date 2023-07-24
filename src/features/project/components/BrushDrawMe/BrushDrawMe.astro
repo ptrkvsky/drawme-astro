@@ -4,33 +4,17 @@ interface AstroProps {
 }
 
 const { projectColor } = Astro.props as AstroProps;
+
+console.log(projectColor);
 ---
 
 <script>
-  import gsap from 'gsap';
-
-  const tlBrush = gsap.timeline();
-
-  tlBrush
-    .fromTo(
-      '#reveal-brush',
-      {
-        xPercent: 0,
-      },
-      {
-        xPercent: 100,
-        delay: 0.5,
-        duration: 1.5,
-        ease: 'power4.inOut',
-      }
-    )
-    .to('#reveal-brush', {
-      autoAlpha: 0,
-      duration: 0,
-    });
+  import { revealBrush } from './BrushDrawMe.animations';
+  console.log('📢 brush draw me');
+  revealBrush();
 </script>
 
-<div class="wrapper">
+<div class="wrapper" style={{ backgroundColor: projectColor }}>
   <div id="reveal-brush" class="reveal"></div>
   <svg
     class="wrapper"

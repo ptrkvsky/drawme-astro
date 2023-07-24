@@ -1,4 +1,5 @@
 import { ripplesVs, ripplesFs, renderFs } from '@lib/curtains/fs';
+//@ts-ignore
 import { PingPongPlane, Vec2, ShaderPass } from 'curtainsjs';
 
 interface Bg {

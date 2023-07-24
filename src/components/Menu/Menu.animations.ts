@@ -1,6 +1,8 @@
 import gsap from 'gsap';
+import ScrambleTextPlugin from 'gsap/ScrambleTextPlugin';
 import { getRandomEntryFromArray } from '../../helpers/getRandomEntryFromArray';
 
+gsap.registerPlugin(ScrambleTextPlugin);
 const tlMenu = gsap.timeline();
 const emojiString = 'DЯΛЩ MΞ Δ ƧΗΣΣР';
 const emojis = emojiString.split(' '); // Splits the sentence into an array of individual characters

@@ -1,5 +1,5 @@
 ---
-import BrushDrawMe from './BrushDrawMe.astro';
+import { BrushDrawMe } from './BrushDrawMe';
 
 interface AstroProps {
   drawMeA: string;
@@ -13,10 +13,15 @@ const { drawMeA, projectColor } = Astro.props as AstroProps;
   <span class="brushed"
     >Draw me
     <BrushDrawMe projectColor={projectColor} />
-    <div class="animate"></div>
   </span>
   <span class="highlight">{drawMeA}</span>
 </h1>
+
+<script>
+  {
+    console.log('DrawMeAstro');
+  }
+</script>
 
 <style lang="scss">
   .title {

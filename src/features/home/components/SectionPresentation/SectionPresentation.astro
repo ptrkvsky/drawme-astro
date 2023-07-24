@@ -24,11 +24,14 @@ const presentationMobileHTML = toHTML(presentationMobile, {
 ---
 
 <script>
-  import { switchCanva, revealText } from './SectionPresentation.animation';
+  import { revealTextSectionPresentation } from './SectionPresentation.animation';
 
-  switchCanva();
+  // document.addEventListener('DOMContentLoaded', () => {
+  //   switchCanva();
+  // });
+
   window.addEventListener('load', () => {
-    revealText();
+    revealTextSectionPresentation();
   });
 </script>
 <section id="section-presentation" class="section-presentation">
