@@ -2,21 +2,22 @@ import config from 'src/config';
 import gsap from 'gsap';
 import Swup from 'swup';
 
-export function revealBrush() {
-  const tlBrush = gsap.timeline();
+const tlBrush = gsap.timeline();
 
+export function revealBrush() {
+  console.log('🇳🇱 here is the reveal');
   const brush = document.querySelector('#reveal-brush'); // eslint-disable-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/
 
-  console.log('🏩 reveal brush');
-
   if (config.mode === 'development') {
-    if (!brush) console.error('🔥 Brush not found');
-    return;
+    if (!brush) {
+      console.error('🔥 Brush not found');
+      return;
+    }
   }
 
   tlBrush
     .fromTo(
-      brush,
+      '#reveal-brush',
       {
         xPercent: 0,
       },
@@ -30,7 +31,8 @@ export function revealBrush() {
     .to('#reveal-brush', {
       autoAlpha: 0,
       duration: 0,
-    });
+    })
+    .play();
 }
 
 export function handleRevealBrush(

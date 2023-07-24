@@ -9,6 +9,9 @@ interface AstroProps {
 const { drawMeA, projectColor } = Astro.props as AstroProps;
 ---
 
+<script>
+  console.log('DrawMeAstro');
+</script>
 <h1 class="title" data-speed="0.95" data-lag="0.02">
   <span class="brushed"
     >Draw me
@@ -16,12 +19,6 @@ const { drawMeA, projectColor } = Astro.props as AstroProps;
   </span>
   <span class="highlight">{drawMeA}</span>
 </h1>
-
-<script>
-  {
-    console.log('DrawMeAstro');
-  }
-</script>
 
 <style lang="scss">
   .title {

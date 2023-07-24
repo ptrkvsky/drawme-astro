@@ -3,10 +3,15 @@ import { Curtains } from 'curtainsjs';
 import handleCurtainSuccess from '@features/project/functions/handleCurtainSuccess';
 
 export function newCurtain(idContainer: string) {
-  return new Curtains({
-    container: document.getElementById(idContainer),
-    pixelRatio: Math.min(1.5, window.devicePixelRatio),
-  });
+  const container = document.getElementById(idContainer);
+
+  if (container) {
+    return new Curtains({
+      container,
+      pixelRatio: Math.min(1.5, window.devicePixelRatio),
+    });
+  }
+  return null;
 }
 
 export function setCurtainsHome() {

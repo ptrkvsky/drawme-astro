@@ -31,17 +31,11 @@ const { title, background, urlsPages, urlsImages, Canvas } =
   import handleCurtainSuccess from '@features/project/functions/handleCurtainSuccess';
   import Swup from 'swup';
   import { getCanvaStyle } from '@helpers/getCanvaStyle';
-  import { animateHome } from '@features/home/functions/animateHome';
   import { handleRevealBrush } from '@features/project/components/BrushDrawMe/BrushDrawMe.animations';
   import { switchCanva } from '@features/home/components';
-  import {
-    setCurtainsHome,
-    newCurtain,
-  } from '@features/home/functions/setCurtainsHome';
+  import { newCurtain } from '@features/home/functions/setCurtainsHome';
 
   gsap.registerPlugin(ScrollTrigger);
-
-  console.log('document.readyState', document.readyState);
 
   const swup = new Swup();
 
@@ -77,13 +71,23 @@ const { title, background, urlsPages, urlsImages, Canvas } =
       b: 255,
     };
 
-    mainCanva.onSuccess(
-      handleCurtainSuccess(mainCanva, 'main-canva', hue, saturation, bgBlack)
-    );
+    if (mainCanva) {
+      mainCanva.onSuccess(
+        handleCurtainSuccess(mainCanva, 'main-canva', hue, saturation, bgBlack)
+      );
+    }
 
-    secondCanva.onSuccess(
-      handleCurtainSuccess(secondCanva, 'canva-white', hue, saturation, bgWhite)
-    );
+    if (secondCanva) {
+      secondCanva.onSuccess(
+        handleCurtainSuccess(
+          secondCanva,
+          'canva-white',
+          hue,
+          saturation,
+          bgWhite
+        )
+      );
+    }
 
     swup.on('animationInDone', () => {
       const smoother = ScrollSmoother.create({
@@ -107,10 +111,10 @@ const { title, background, urlsPages, urlsImages, Canvas } =
     swup.on('animationInDone', () => {
       const mainCanva = newCurtain('main-canva');
       const secondCanva = newCurtain('canva-white');
-      const { hue, saturation, background } = getCanvaStyle();
+      const { hue, saturation } = getCanvaStyle();
 
-      const currentURL = window.location.href;
-      console.log('currentURL', currentURL);
+      // const currentURL = window.location.href;
+      // console.log('currentURL', currentURL);
 
       // mainCanva.render();
       // secondCanva.render();
@@ -142,10 +146,6 @@ const { title, background, urlsPages, urlsImages, Canvas } =
   swup.on('transitionEnd', () => {
     ScrollTrigger.refresh();
   });
-
-  // document.addEventListener('swup:animationInDone', () => {
-  //   console.log('hello dude');
-  // });
 </script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width" />
