@@ -5,14 +5,12 @@ import config from 'src/config';
 gsap.registerPlugin(ScrollTrigger);
 // Switch Canva from black to white
 const handleToggleCanva = () => {
-  console.log('handleToglle 🆑');
-
   const mainCanva = document.getElementById('main-canva');
   const canvaWhite = document.getElementById('canva-white');
 
   if (!mainCanva || !canvaWhite) {
-    console.log('mainCanva', typeof mainCanva, mainCanva);
-    console.log('canvaWhite', typeof canvaWhite, canvaWhite);
+    console.log('mainCanva', mainCanva);
+    console.log('canvaWhite', canvaWhite);
 
     return;
   }
@@ -46,7 +44,6 @@ export const switchCanva = () => {
       endTrigger: 'footer',
       markers: marker,
       onToggle: () => {
-        console.log('does it toggle ?');
         handleToggleCanva();
       },
     });

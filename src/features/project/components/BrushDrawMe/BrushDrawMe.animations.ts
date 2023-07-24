@@ -5,7 +5,6 @@ import Swup from 'swup';
 const tlBrush = gsap.timeline();
 
 export function revealBrush() {
-  console.log('🇳🇱 here is the reveal');
   const brush = document.querySelector('#reveal-brush'); // eslint-disable-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/
 
   if (config.mode === 'development') {

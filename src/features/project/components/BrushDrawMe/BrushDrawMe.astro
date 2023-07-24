@@ -4,13 +4,10 @@ interface AstroProps {
 }
 
 const { projectColor } = Astro.props as AstroProps;
-
-console.log(projectColor);
 ---
 
 <script>
   import { revealBrush } from './BrushDrawMe.animations';
-  console.log('📢 brush draw me, lets go reveal');
   revealBrush();
 </script>
 
