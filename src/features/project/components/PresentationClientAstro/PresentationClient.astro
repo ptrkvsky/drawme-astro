@@ -17,21 +17,38 @@ const finalTextColor = textColor || '#000';
 ---
 
 <script defer define:vars={{ textPresentation, projectColor }}>
-  document.addEventListener('DOMContentLoaded', function () {
+  // Adjust backkound color and  height of the wrapper
+  document.addEventListener('DOMContentLoaded', () => {
     const wrapper = document.getElementById('presentation-client');
     const background = document.getElementById('bg-presentation');
 
+    if (!wrapper || !background) {
+      return; // Exit early if the elements are not found
+    }
+
     background.style.backgroundColor = projectColor;
     wrapper.style.backgroundColor = projectColor;
+
+    let resizeTimeout;
 
     const setHeight = () => {
       const height = wrapper.clientHeight;
       background.style.height = `${height}px`;
     };
 
+    const debouncedSetHeight = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(setHeight, 100); // Adjust the debounce delay as needed
+    };
+
     setHeight();
-    window.addEventListener('resize', setHeight);
+    window.addEventListener('resize', debouncedSetHeight);
   });
+</script>
+<script>
+  import { revealWrapper } from './PresentationClient.animation';
+
+  revealWrapper();
 </script>
 
 <div

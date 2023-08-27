@@ -14,19 +14,29 @@ const { mainImages, mainImageMobile, positionMainImageMobile } =
 const position = positionMainImageMobile || 'left';
 ---
 
+<script>
+  import { revealImages } from './MainImages.animation';
+
+  revealImages();
+</script>
+
 <div class="wrapper-images desktop" data-speed="0.95" data-lag="0.02">
   {
     mainImages.map((image) => {
       return (
         <div class="wrapper-image">
-          <img src={image.asset.url} alt="image" />
+          <img class="reveal-illustration" src={image.asset.url} alt="image" />
         </div>
       );
     })
   }
 </div>
 <div class={`wrapper-images mobile ${position}`}>
-  {mainImageMobile && <img src={mainImageMobile.asset.url} />}
+  {
+    mainImageMobile && (
+      <img class="reveal-illustration" src={mainImageMobile.asset.url} />
+    )
+  }
 </div>
 
 <style lang="scss">
