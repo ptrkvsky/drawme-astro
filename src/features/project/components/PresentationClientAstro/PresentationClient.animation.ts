@@ -26,7 +26,7 @@ export function revealWrapper() {
         stagger: 0.1,
         onComplete: () => {
           const animationCompleteEvent = new Event(
-            'presentationElementAnimationComplete'
+            'presentationClientAnimationComplete'
           );
           document.dispatchEvent(animationCompleteEvent);
         },

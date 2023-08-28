@@ -15,6 +15,11 @@ interface AstroProps {
 const { color1, color2, color3 } = Astro.props as AstroProps;
 ---
 
+<script>
+  import { revealColors } from './Colors.animation';
+  revealColors();
+</script>
+
 <div class="wrapper-colors" data-speed="0.95" data-lag="0.02">
   <div>
     <Image

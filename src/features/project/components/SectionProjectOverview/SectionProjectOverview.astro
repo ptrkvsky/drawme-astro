@@ -1,10 +1,9 @@
 ---
-import { Image } from '@astrojs/image/components';
 import { SanityProject } from '@features/project/interfaces';
-import Colors from './colors/Colors.astro';
-import DrawMeA from './DrawMeA.astro';
-import { MainImages } from './MainImages';
-import { PresentationClient } from './PresentationClientAstro';
+import { Colors } from '../Colors';
+import DrawMeA from '../DrawMeA.astro';
+import { MainImages } from '../MainImages';
+import { PresentationClient } from '../PresentationClientAstro';
 
 interface AstroProps {
   project: SanityProject;
@@ -20,6 +19,12 @@ const {
   },
 } = project.typographie.asset;
 ---
+
+<script>
+  import { revealTypographie } from './SectionProjectOverview.animation';
+
+  revealTypographie();
+</script>
 
 <div class="relative">
   <div class="wrapper-cols">
