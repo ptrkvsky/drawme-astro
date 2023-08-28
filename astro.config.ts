@@ -6,7 +6,6 @@ import prefetch from '@astrojs/prefetch';
 
 // https://astro.build/config
 export default defineConfig({
-  // integrations: [image(), react(), compress()],
   integrations: [
     image({
       serviceEntryPoint: '@astrojs/image/sharp',
