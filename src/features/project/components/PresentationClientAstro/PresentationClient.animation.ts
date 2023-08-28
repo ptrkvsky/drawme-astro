@@ -13,24 +13,29 @@ export function revealWrapper() {
   document.addEventListener('mainImagesAnimationComplete', () => {
     const tlRevealWrapper = gsap.timeline(); // New timeline for the second animation
 
-    tlRevealWrapper.fromTo(
-      presentationElement,
-      {
-        opacity: 0,
-        x: -10,
-      },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 1,
-        stagger: 0.1,
-        onComplete: () => {
+    tlRevealWrapper
+      .fromTo(
+        presentationElement,
+        {
+          opacity: 0,
+          x: -10,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.1,
+        }
+      )
+      .call(
+        () => {
           const animationCompleteEvent = new Event(
             'presentationClientAnimationComplete'
           );
           document.dispatchEvent(animationCompleteEvent);
         },
-      }
-    );
+        [],
+        0.5
+      );
   });
 }

@@ -27,11 +27,15 @@ const { projectColor } = Astro.props as AstroProps;
     .to('#reveal-brush', {
       autoAlpha: 0,
       duration: 0,
-      onComplete: () => {
+    })
+    .call(
+      () => {
         const animationCompleteEvent = new Event('brushAnimationComplete');
         document.dispatchEvent(animationCompleteEvent);
       },
-    });
+      [],
+      1.5
+    );
 </script>
 
 <div class="wrapper">

@@ -1,7 +1,7 @@
 ---
 import { Image } from '@astrojs/image/components';
 import { SanityImage } from '@interfaces/SanityImage';
-import { Quote } from '../interfaces';
+import { Quote } from '../../interfaces';
 
 interface AstroProps {
   images: SanityImage[];
@@ -10,6 +10,14 @@ interface AstroProps {
 const { images } = Astro.props as AstroProps;
 ---
 
+<script>
+  import { animateSectionImagesFooter } from './SectionImagesFooter.animation';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    animateSectionImagesFooter();
+  });
+</script>
+
 <section id="section-images-footer" class="conteneur section-images-footer">
   {
     images.map((image, index) => {
@@ -17,7 +25,7 @@ const { images } = Astro.props as AstroProps;
         url,
         altText,
         metadata: {
-          dimensions: { height, width, aspectRatio },
+          dimensions: { height, width },
         },
       } = image.asset;
 
@@ -25,13 +33,16 @@ const { images } = Astro.props as AstroProps;
         <div class="wrapper-flexi">
           <div class={`wrapper-image image-${index}`}>
             {
-              <img
-                src={url}
-                alt={altText}
-                width={width}
-                height={height}
-                loading="lazy"
-              />
+              <div class="o-hidden">
+                <img
+                  src={url}
+                  alt={altText}
+                  width={width}
+                  height={height}
+                  loading="lazy"
+                  class="image-footer"
+                />
+              </div>
             }
           </div>
         </div>

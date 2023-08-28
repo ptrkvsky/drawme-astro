@@ -1,6 +1,5 @@
 ---
-import { Image } from '@astrojs/image/components';
-import { Quote } from '../interfaces';
+import { Quote } from '../../interfaces';
 
 interface AstroProps {
   quote: Quote[];
@@ -11,17 +10,9 @@ const { quote: quotes, projectColor } = Astro.props as AstroProps;
 ---
 
 <script>
-  import { splitAndReveal, ParamsSplitAndReveal } from '@helpers/gsap';
+  import { animateQuotes } from './SectionQuotes.animation';
 
-  document.addEventListener('load', () => {
-    const paramsSplitAndRevealTitle: ParamsSplitAndReveal = {
-      element: `quote-0`,
-      typeSplit: 'lines',
-      trigger: `wrapper-quote-0`,
-    };
-
-    splitAndReveal(paramsSplitAndRevealTitle);
-  });
+  animateQuotes();
 </script>
 
 <section class="section-quotes">
@@ -32,27 +23,41 @@ const { quote: quotes, projectColor } = Astro.props as AstroProps;
           url,
           altText,
           metadata: {
-            dimensions: { height, width, aspectRatio },
+            dimensions: { height, width },
           },
         } = quote.image.asset;
+
+        const quoteWithBreakLines = quote.text.replace(/\n/g, '<br>');
 
         return (
           <div id={`wrapper-quote-${index}`} class="quote">
             <div class="mobile-flex">
               <div class="wrapper-image">
                 {
-                  <img src={url} alt={altText} width={width} height={height} />
+                  <div class="o-hidden">
+                    <img
+                      src={url}
+                      alt={altText}
+                      width={width}
+                      height={height}
+                      class="illustration"
+                    />
+                  </div>
                   // <img src={url} alt={altText} />
                 }
               </div>
             </div>
             <div class="text col">
-              <span style={`color: ${projectColor}`} class="mark">
-                ‟
-              </span>
-              <p class="split-text" id={`quote-${index}`}>
-                {quote.text}
-              </p>
+              <div class="o-hidden">
+                <span style={`color: ${projectColor}`} class="mark">
+                  ‟
+                </span>
+              </div>
+              <p
+                class="split-text"
+                id={`quote-${index}`}
+                set:html={quoteWithBreakLines}
+              />
             </div>
           </div>
         );
@@ -73,6 +78,7 @@ const { quote: quotes, projectColor } = Astro.props as AstroProps;
   }
 
   .quote {
+    display: block;
     position: relative;
     display: flex;
     gap: 154px;

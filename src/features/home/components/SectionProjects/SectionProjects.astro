@@ -24,8 +24,7 @@ interface AstroProps {
   sectionProjectsDescription: any[];
 }
 
-const { sectionProjectsTitle, sectionProjectsDescription } =
-  Astro.props as AstroProps;
+const { sectionProjectsTitle } = Astro.props as AstroProps;
 
 const sectionProjectsTitleHTML = toHTML(sectionProjectsTitle, {
   components: portableTextComponents,
@@ -63,22 +62,8 @@ const sectionProjectsTitleHTML = toHTML(sectionProjectsTitle, {
       class="title"
       set:html={sectionProjectsTitleHTML}
     >
-      <!-- What would i draw for <span id="draw-for-you" class="yes zigwigwi">
-        you <svg
-          class="svg-zigwigwi"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 500 150"
-          preserveAspectRatio="none"
-        >
-          <path
-            id="draw-for-you__path"
-            class="path-zigwigwi"
-            d="M9.3,127.3c49.3-3,150.7-7.6,199.7-7.4c121.9,0.4,189.9,0.4,282.3,7.2C380.1,129.6,181.2,130.6,70,139 c82.6-2.9,254.2-1,335.9,1.3c-56,1.4-137.2-0.3-197.1,9"
-          ></path>
-        </svg>
-      </span> ? -->
-      {}
     </h2>
+
     <p id="section-projets-description" class="description opacity-0">
       Drawmeasheep is an innovative graphic studio. It was a created by Mélody
       A.Nour, a freelance graphic designer that has always been passionate in

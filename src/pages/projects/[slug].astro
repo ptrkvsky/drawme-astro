@@ -1,10 +1,10 @@
 ---
 import Canvas from '@features/project/components/Canvas.astro';
 import SectionImagesDecale from '@features/project/components/SectionImagesDecale.astro';
-import SectionImagesFooter from '@features/project/components/SectionImagesFooter.astro';
+import { SectionImagesFooter } from '@features/project/components/SectionImagesFooter';
 import SectionNextProject from '@features/project/components/SectionNextProject.astro';
 import { SectionProjectOverview } from '@features/project/components/SectionProjectOverview';
-import SectionQuotes from '@features/project/components/SectionQuotes.astro';
+import { SectionQuotes } from '@features/project/components/SectionQuotes';
 import SectionSingleImage from '@features/project/components/SectionSingleImage.astro';
 import getProjectUrlParams from '@features/project/functions/getProjectUrlParams';
 import { SanityProject, SanityProjects } from '@features/project/interfaces/';
@@ -42,7 +42,6 @@ const nextProjectUrls = [`/projects/${nextProject.slug.current}`];
 
 <script define:vars={{ hue, saturation, config }}>
   const root = document.querySelector(':root');
-  //@ts-ignore
   root.style.setProperty('--canva-hue', hue);
   root.style.setProperty('--canva-saturation', saturation);
 </script>
