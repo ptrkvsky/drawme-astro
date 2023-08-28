@@ -1,8 +1,6 @@
 import { defineConfig } from 'astro/config';
 import image from '@astrojs/image';
 import react from '@astrojs/react';
-// import compress from 'astro-compress';
-// https://astro.build/config
 
 import prefetch from '@astrojs/prefetch';
 
@@ -15,6 +13,5 @@ export default defineConfig({
     }),
     react(),
     prefetch(),
-    // compress(),
   ],
 });
