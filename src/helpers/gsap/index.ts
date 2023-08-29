@@ -22,7 +22,8 @@ export function revealSplitedTitle(
   splitedTitle: _SplitText,
   type: TypeSplit,
   trigger: string,
-  delay = 0
+  delay = 0,
+  duration = 1
 ) {
   gsap
     .timeline({
@@ -41,6 +42,7 @@ export function revealSplitedTitle(
         amount: 0.3,
       },
       opacity: 0,
+      duration,
       delay,
     });
 }
@@ -50,6 +52,7 @@ export interface ParamsSplitAndReveal {
   typeSplit: TypeSplit;
   trigger: string;
   delay?: number;
+  duration?: number;
 }
 
 /**
@@ -61,9 +64,10 @@ export function splitAndReveal({
   typeSplit,
   trigger,
   delay = 0,
+  duration = 1,
 }: ParamsSplitAndReveal) {
   const splitedText = splitText(element, typeSplit);
-  revealSplitedTitle(splitedText, typeSplit, trigger, delay);
+  revealSplitedTitle(splitedText, typeSplit, trigger, delay, duration);
 }
 
 /**

@@ -4,11 +4,26 @@ import Angle from '@features/listing/components/Angle/Angle.astro';
 import guillemets from '@assets/svg/guillemets.svg';
 ---
 
+<script>import { revealTitle } from "./SectionIntro.animation";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    revealTitle()
+  })
+</script>
+
 <section class="section section--intro">
   <Angle />
 
   <h2 class="section__title">
-    Projects <br /> where <span class="highlight">artistry</span> soars
+    <span class="reveal-title o-hidden">Projects</span>
+    <br />
+    <span class="reveal-title o-hidden">
+      where
+    </span>
+
+      <span class="reveal-title highlight o-hidden">artistry</span>
+    <br />
+    <span class="reveal-title o-hidden">soars</span>
   </h2>
   <p class="section__poem">
     In realms of allure, where desires ignite, <br class="only-tablet" /> Draw me
@@ -31,17 +46,6 @@ import guillemets from '@assets/svg/guillemets.svg';
     graphic studio’s seduction, arousing pure delight.
   </p>
   <img class="guillemets" src={guillemets} alt="quotes" />
-
-  <!-- <p class="section__text section__text--alt">
-    <span>Discover</span>
-    <svg class="section__arrow" width="22px" height="22px" viewBox="0 0 24 24"
-      ><path
-        vector-effect="non-scaling-stroke"
-        d="M18.25 15.5a.75.75 0 00.75-.75v-9a.75.75 0 00-.75-.75h-9a.75.75 0 000 1.5h7.19L6.22 16.72a.75.75 0 101.06 1.06L17.5 7.56v7.19c0 .414.336.75.75.75z"
-      ></path>
-    </svg>
-    <span>Scroll</span>
-  </p> -->
 </section>
 
 <style lang="scss">
