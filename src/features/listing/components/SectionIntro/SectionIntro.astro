@@ -1,13 +1,14 @@
 ---
 import Angle from '@features/listing/components/Angle/Angle.astro';
-
 import guillemets from '@assets/svg/guillemets.svg';
 ---
 
-<script>import { revealTitle } from "./SectionIntro.animation";
+<script>
+  import { revealText, revealParagraph } from "./SectionIntro.animation";
 
   document.addEventListener("DOMContentLoaded", () => {
-    revealTitle()
+    revealText('.reveal-title')
+    revealParagraph()
   })
 </script>
 
@@ -25,13 +26,18 @@ import guillemets from '@assets/svg/guillemets.svg';
     <br />
     <span class="reveal-title o-hidden">soars</span>
   </h2>
-  <p class="section__poem">
+  <div class="o-hidden">
+  <p class="section__poem reveal-paragraph split-text">
     In realms of allure, where desires ignite, <br class="only-tablet" /> Draw me
     a Sheep, a seductive delight. <br /> Whispered strokes, secrets unveiled, <br
       class="only-tablet"
     />A graphic studio’s charm, where pleasure prevails.<br /> Logos, posters, a
     tantalizing affair, <br class="only-tablet" />Sensual designs, beguiling and
-    rare.<br /><br /> Illustrations entwine, passion’s embrace,<br
+    rare.
+  </p>
+  </div>
+    <br /> 
+    <p class="section__poem reveal-paragraph split-text">Illustrations entwine, passion’s embrace,<br
       class="only-tablet"
     /> Visual temptation, setting hearts in a chase.<br />
     Animations that tease, with sultry glee,<br class="only-tablet" /> Draw me a
@@ -45,17 +51,23 @@ import guillemets from '@assets/svg/guillemets.svg';
     Unleashing the beauty, captivating your sight, <br class="only-tablet" />A
     graphic studio’s seduction, arousing pure delight.
   </p>
-  <img class="guillemets" src={guillemets} alt="quotes" />
+  <div class="o-hidden guillemets-wrapper">
+  <img class="guillemets-image" src={guillemets} alt="quotes" />
+  </div>
 </section>
 
 <style lang="scss">
-  .guillemets {
-    width: clamp(40px, 8.3rem, 8.3rem);
+  .guillemets-wrapper {
     margin: 5vh 0 6vh;
 
     @media screen and (max-width: 1024px) {
       margin: 28px 0 24px;
     }
+  }
+
+  .guillemets-image {
+    width: clamp(40px, 8.3rem, 8.3rem);
+
   }
 
   .section__title {

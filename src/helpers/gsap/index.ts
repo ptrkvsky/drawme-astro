@@ -1,6 +1,5 @@
 import gsap from 'gsap';
-import _SplitText from 'gsap/SplitText';
-import { SplitText } from 'gsap/SplitText';
+import _SplitText, { SplitText } from 'gsap/SplitText';
 
 import config from 'src/config';
 
