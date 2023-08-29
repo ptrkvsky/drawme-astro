@@ -6,6 +6,14 @@ const { src: flou } = await getImage({
 });
 ---
 
+<script>
+  import { animateAngle } from "./Angle.animation"
+
+  document.addEventListener('DOMContentLoaded', () => {
+    animateAngle()
+  })
+</script>
+
 <div class="angle top" style={`background-image : url(${flou})`}></div>
 <div class="angle bottom" style={`background-image : url(${flou})`}></div>
 
