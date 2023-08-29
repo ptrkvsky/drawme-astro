@@ -1,29 +1,26 @@
 ---
-import { getImage } from '@astrojs/image';
-import Header from '@components/Header.astro';
-import LayoutProjects from '@layouts/LayoutProjects.astro';
-import SectionIntro from '@features/listing/components/SectionIntro/SectionIntro.astro';
-import SectionColumn from '@features/listing/components/SectionColumn/SectionColumn.astro';
-import SectionShowcase from '@features/listing/components/SectionShowcase/SectionShowcase.astro';
-
-// import '@styles/fonts.scss';
-// import '@styles/variables.scss';
+import { getImage } from "@astrojs/image";
+import Header from "@components/Header.astro";
+import LayoutProjects from "@layouts/LayoutProjects.astro";
+import SectionIntro from "@features/listing/components/SectionIntro/SectionIntro.astro";
+import SectionColumn from "@features/listing/components/SectionColumn/SectionColumn.astro";
+import SectionShowcase from "@features/listing/components/SectionShowcase/SectionShowcase.astro";
 
 const { src: illustrationWebsite } = await getImage({
-  src: import('@assets/images/illustration_website.png'),
+  src: import("@assets/images/illustration_website.png"),
 });
 
 const urlsImages = [illustrationWebsite];
 ---
 
 <script>
-  import { initListingAnimations } from '@features/listing/animations';
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
+  import { initListingAnimations } from "@features/listing/animations";
+  import { gsap } from "gsap";
+  import { ScrambleTextPlugin } from "gsap/all";
+  import ScrollTrigger from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin);
 
-  window.addEventListener('load', initListingAnimations);
+  window.addEventListener("load", initListingAnimations);
 </script>
 
 <LayoutProjects urlsImages={urlsImages}>
@@ -78,16 +75,6 @@ const urlsImages = [illustrationWebsite];
     outline: none;
   }
 
-  .section {
-    line-height: 1;
-    position: static;
-    top: 0;
-    z-index: 4;
-    width: 100%;
-    min-height: 100vh;
-    background: var(--color-bg);
-  }
-
   .section__title {
     font-family: var(--text-heading);
     font-weight: 300;
@@ -95,9 +82,9 @@ const urlsImages = [illustrationWebsite];
     margin: 5vh 0 6vh;
     line-height: 0.9;
     text-transform: none;
-    -moz-font-feature-settings: 'swsh';
-    -webkit-font-feature-settings: 'swsh';
-    font-feature-settings: 'swsh';
+    -moz-font-feature-settings: "swsh";
+    -webkit-font-feature-settings: "swsh";
+    font-feature-settings: "swsh";
 
     @media screen and (max-width: 1024px) {
       margin: 28px 0 24px;

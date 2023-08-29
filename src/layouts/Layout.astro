@@ -1,14 +1,15 @@
 ---
-import Gsap from '@components/Gsap.astro';
-import Header from '@components/Header.astro';
-import Logo from '@components/Logo.astro';
-import '@styles/fonts.scss';
-import '@styles/reset.css';
-import '@styles/utilities.scss';
-import '@styles/variables.scss';
-import '@styles/global.scss';
-import '@styles/functions.scss';
-import { Menu, Burger, Footer } from '@components/index';
+import Gsap from "@components/Gsap.astro";
+import Header from "@components/Header.astro";
+import Logo from "@components/Logo.astro";
+import { LogASheep } from "@components/LogASheep";
+import { Menu, Burger, Footer } from "@components/index";
+import "@styles/fonts.scss";
+import "@styles/reset.css";
+import "@styles/utilities.scss";
+import "@styles/variables.scss";
+import "@styles/global.scss";
+import "@styles/functions.scss";
 
 export interface Props {
   title: string;
@@ -39,8 +40,10 @@ const { title, background, urlsPages, urlsImages, Canvas } =
     urlsPages.map((urlPage) => <link rel="prefetch" href={urlPage} />)
 }
 <body style={{ background }} class="canva-black">
+  <LogASheep />
   <Burger />
   <Header />
+  <LogASheep />
   <!-- {isHome && <CanvasHome />} -->
   <!-- {!isHome && <CanvasProject />} -->
   <Canvas />

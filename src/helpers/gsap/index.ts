@@ -1,9 +1,9 @@
-import gsap from 'gsap';
-import _SplitText, { SplitText } from 'gsap/SplitText';
+import gsap from "gsap";
+import _SplitText, { SplitText } from "gsap/SplitText";
 
-import config from 'src/config';
+import config from "src/config";
 
-type TypeSplit = 'chars' | 'words' | 'lines';
+type TypeSplit = "chars" | "words" | "lines";
 
 export function splitText(element: string, type: TypeSplit) {
   new SplitText(element, {
@@ -18,7 +18,7 @@ export function splitText(element: string, type: TypeSplit) {
 }
 
 export function revealSplitedTitle(
-  splitedTitle: _SplitText,
+  splitedTitle: any,
   type: TypeSplit,
   trigger: string,
   delay = 0,
@@ -28,14 +28,14 @@ export function revealSplitedTitle(
     .timeline({
       scrollTrigger: {
         trigger,
-        endTrigger: 'footer',
-        markers: config.mode === 'development',
-        start: 'top 85%',
+        endTrigger: "footer",
+        markers: config.mode === "development",
+        start: "top 85%",
       },
     })
     .from(splitedTitle[type], {
       y: 50,
-      ease: 'power1.out',
+      ease: "power1.out",
       skewY: 5,
       stagger: {
         amount: 0.3,

@@ -1,15 +1,15 @@
-import { SplitText } from 'gsap/SplitText';
+import { SplitText } from "gsap/SplitText";
 
-import config from 'src/config';
-import gsap from 'gsap';
+import config from "src/config";
+import gsap from "gsap";
 
 /**
  * Animates quotes by revealing illustrations, marks, and lines of text.
  */
 export function animateQuotes() {
-  document.addEventListener('DOMContentLoaded', () => {
-    const marks = document.querySelectorAll('.mark');
-    const illustration = gsap.utils.toArray('.illustration');
+  document.addEventListener("DOMContentLoaded", () => {
+    const marks = document.querySelectorAll(".mark");
+    const illustration = gsap.utils.toArray(".illustration");
 
     gsap.set(marks, {
       x: -10,
@@ -20,15 +20,15 @@ export function animateQuotes() {
       opacity: 0,
     });
 
-    const quotesElement = document.querySelectorAll('.section-quotes .quote');
+    const quotesElement = document.querySelectorAll(".section-quotes .quote");
 
     if (!quotesElement.length) return;
 
     quotesElement.forEach((quoteElement) => {
-      const wrapperImage = quoteElement.querySelector('.illustration');
-      const mark = quoteElement.querySelector('.mark');
-      const paragraph = quoteElement.querySelector('.split-text');
-      const splitText = new SplitText(paragraph, { type: 'lines' });
+      const wrapperImage = quoteElement.querySelector(".illustration");
+      const mark = quoteElement.querySelector(".mark");
+      const paragraph = quoteElement.querySelector(".split-text");
+      const splitText = new SplitText(paragraph, { type: "lines" });
       const lines = splitText.lines;
 
       lines.forEach((line) => {
@@ -41,9 +41,9 @@ export function animateQuotes() {
       const tlQuote = gsap.timeline({
         scrollTrigger: {
           trigger: quoteElement,
-          endTrigger: 'footer',
-          markers: config.mode === 'development',
-          start: 'top 75%',
+          endTrigger: "footer",
+          markers: config.mode === "development",
+          start: "top 75%",
         },
       });
 
@@ -52,13 +52,13 @@ export function animateQuotes() {
           x: 0,
           opacity: 1,
           duration: 1,
-          ease: 'linear',
+          ease: "linear",
         })
         .to(mark, {
           x: 0,
           opacity: 1,
           duration: 0.5,
-          ease: 'power4.out',
+          ease: "power4.out",
           delay: -0.5,
         })
         .call(() => {

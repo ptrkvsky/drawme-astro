@@ -1,8 +1,8 @@
 ---
-import { getImage } from '@astrojs/image';
+import { getImage } from "@astrojs/image";
 
 const { src: illustrationWebsite } = await getImage({
-  src: import('@assets/images/illustration_website.png'),
+  src: import("@assets/images/illustration_website.png"),
 });
 
 const currentDate = new Date();
@@ -222,6 +222,11 @@ const currentYear = currentDate.getFullYear();
     justify-content: center;
     padding: 8rem 5vw 10vh;
     cursor: default;
+    line-height: 1;
+    top: 0;
+    z-index: 4;
+    width: 100%;
+    background: var(--color-bg);
   }
 
   .section__year {
@@ -253,7 +258,7 @@ const currentYear = currentDate.getFullYear();
   }
 
   .row + p a::before {
-    content: '';
+    content: "";
     height: 1px;
     width: 100%;
     background: currentColor;

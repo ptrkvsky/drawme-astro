@@ -1,41 +1,44 @@
-import gsap from 'gsap';
-import { getRandomEntryFromArray } from '../../helpers/getRandomEntryFromArray';
+import gsap from "gsap";
+import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
+import { getRandomEntryFromArray } from "../../helpers/getRandomEntryFromArray";
 
 const tlMenu = gsap.timeline();
-const emojiString = 'DЯΛЩ MΞ Δ ƧΗΣΣР';
-const emojis = emojiString.split(' '); // Splits the sentence into an array of individual characters
+const emojiString = "DЯΛЩ MΞ Δ ƧΗΣΣР";
+const emojis = emojiString.split(" "); // Splits the sentence into an array of individual characters
+
+gsap.registerPlugin(ScrambleTextPlugin);
 
 export function getMenuAnimation(splitLink: SplitText) {
   // fadein menu
   tlMenu
     .fromTo(
-      '#wrapper-menu .content',
+      "#wrapper-menu .content",
       {
         opacity: 0,
       },
       {
         opacity: 1,
         duration: 0.75,
-        ease: 'back.inOut',
+        ease: "back.inOut",
       }
     )
-    .addLabel('reveal');
+    .addLabel("reveal");
   // animate lines
   tlMenu.from(
-    '#wrapper-menu .line',
+    "#wrapper-menu .line",
     {
       scaleX: 0,
       stagger: 0.25,
-      ease: 'power1.inOut',
+      ease: "power1.inOut",
       duration: 0.75,
     },
-    'reveal'
+    "reveal"
   );
   tlMenu.from(
     splitLink.lines,
     {
       y: 45,
-      ease: 'power1.out',
+      ease: "power1.out",
       skewY: 0,
       stagger: {
         amount: 0.25,
@@ -43,7 +46,7 @@ export function getMenuAnimation(splitLink: SplitText) {
       duration: 0.7,
       opacity: 0,
     },
-    'reveal+=0.5'
+    "reveal+=0.5"
   );
   // SCRAMBLE
   splitLink.lines.forEach((char, index) => {
@@ -62,40 +65,40 @@ export function getMenuAnimation(splitLink: SplitText) {
 export function getBurgerAnimation() {
   const tlBurger = gsap.timeline();
 
-  tlBurger.addLabel('animate-button-open');
+  tlBurger.addLabel("animate-button-open");
   // Animate top bar
   tlBurger.to(
-    '#burger-open .line-1',
+    "#burger-open .line-1",
     {
-      top: '33%',
-      translateY: '-50%',
-      rotate: '-45deg',
+      top: "33%",
+      translateY: "-50%",
+      rotate: "-45deg",
       duration: 0.1,
-      ease: 'power4.inOut',
+      ease: "power4.inOut",
     },
-    'animate-button-open'
+    "animate-button-open"
   );
   // Animate bottom bar
   tlBurger.to(
-    '#burger-open .line-3',
+    "#burger-open .line-3",
     {
-      bottom: '50%',
-      rotate: '45deg',
-      translateY: '-50%',
+      bottom: "50%",
+      rotate: "45deg",
+      translateY: "-50%",
       duration: 0.1,
-      ease: 'power4.inOut',
+      ease: "power4.inOut",
     },
-    'animate-button-open'
+    "animate-button-open"
   );
   // hide bar 2
   tlBurger.to(
-    '#burger-open .line-2',
+    "#burger-open .line-2",
     {
       scaleX: 0,
       duration: 0.1,
-      ease: 'power4.inOut',
+      ease: "power4.inOut",
     },
-    'animate-button-open'
+    "animate-button-open"
   );
 
   tlBurger.pause();
@@ -107,21 +110,20 @@ export function handleClickBurger(
   tlBurger: gsap.core.Timeline,
   tlMenu: gsap.core.Timeline
 ) {
-  const wrapperMenu = document.querySelector('#wrapper-menu');
-  if (wrapperMenu.classList.contains('is-open')) {
+  const wrapperMenu = document.querySelector("#wrapper-menu");
+  if (wrapperMenu.classList.contains("is-open")) {
     tlBurger.reverse();
     tlMenu.reverse();
   } else {
     tlBurger.play(0);
     tlMenu.play(0);
-    // scrambleMenu();
   }
-  wrapperMenu.classList.toggle('is-open');
+  wrapperMenu.classList.toggle("is-open");
 }
 
 export function scrambleMenu() {
   const elementsWithDataAttribute: NodeListOf<HTMLAnchorElement> =
-    document.querySelectorAll('[data-txt-origin]');
+    document.querySelectorAll("[data-txt-origin]");
 
   elementsWithDataAttribute.forEach((element) => {
     // Access the original text using the data attribute
@@ -132,7 +134,7 @@ export function scrambleMenu() {
       duration: 1,
       scrambleText: {
         text: originalText,
-        chars: 'XO',
+        chars: "XO",
         revealDelay: 0.5,
         speed: 0.3,
       },

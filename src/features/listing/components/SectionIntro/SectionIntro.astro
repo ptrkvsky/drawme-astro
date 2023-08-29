@@ -1,15 +1,15 @@
 ---
-import Angle from '@features/listing/components/Angle/Angle.astro';
-import guillemets from '@assets/svg/guillemets.svg';
+import Angle from "@features/listing/components/Angle/Angle.astro";
+import guillemets from "@assets/svg/guillemets.svg";
 ---
 
 <script>
   import { revealText, revealParagraph } from "./SectionIntro.animation";
 
   document.addEventListener("DOMContentLoaded", () => {
-    revealText('.reveal-title')
-    revealParagraph()
-  })
+    revealText(".reveal-title");
+    revealParagraph();
+  });
 </script>
 
 <section class="section section--intro">
@@ -18,28 +18,25 @@ import guillemets from '@assets/svg/guillemets.svg';
   <h2 class="section__title">
     <span class="reveal-title o-hidden">Projects</span>
     <br />
-    <span class="reveal-title o-hidden">
-      where
-    </span>
-
-      <span class="reveal-title highlight o-hidden">artistry</span>
+    <span class="reveal-title o-hidden"> where</span>
+    <span class="reveal-title highlight o-hidden">artistry</span>
     <br />
     <span class="reveal-title o-hidden">soars</span>
   </h2>
   <div class="o-hidden">
-  <p class="section__poem reveal-paragraph split-text">
-    In realms of allure, where desires ignite, <br class="only-tablet" /> Draw me
-    a Sheep, a seductive delight. <br /> Whispered strokes, secrets unveiled, <br
-      class="only-tablet"
-    />A graphic studio’s charm, where pleasure prevails.<br /> Logos, posters, a
-    tantalizing affair, <br class="only-tablet" />Sensual designs, beguiling and
-    rare.
-  </p>
+    <p class="section__poem reveal-paragraph split-text">
+      In realms of allure, where desires ignite, <br class="only-tablet" /> Draw
+      me a Sheep, a seductive delight. <br /> Whispered strokes, secrets unveiled,
+      <br class="only-tablet" />A graphic studio’s charm, where pleasure
+      prevails.<br /> Logos, posters, a tantalizing affair, <br
+        class="only-tablet"
+      />Sensual designs, beguiling and rare.
+    </p>
   </div>
-    <br /> 
-    <p class="section__poem reveal-paragraph split-text">Illustrations entwine, passion’s embrace,<br
-      class="only-tablet"
-    /> Visual temptation, setting hearts in a chase.<br />
+  <br />
+  <p class="section__poem reveal-paragraph split-text">
+    Illustrations entwine, passion’s embrace,<br class="only-tablet" /> Visual temptation,
+    setting hearts in a chase.<br />
     Animations that tease, with sultry glee,<br class="only-tablet" /> Draw me a
     Sheep, where fantasies roam free.<br /><br class="only-tablet" /> Packaging,
     branding, an intimate design,<br class="only-tablet" /> A world of creativity,
@@ -52,11 +49,20 @@ import guillemets from '@assets/svg/guillemets.svg';
     graphic studio’s seduction, arousing pure delight.
   </p>
   <div class="o-hidden guillemets-wrapper">
-  <img class="guillemets-image" src={guillemets} alt="quotes" />
+    <img class="guillemets-image" src={guillemets} alt="quotes" />
   </div>
 </section>
 
-<style lang="scss">
+<style lang="scss" is:global>
+  .section {
+    line-height: 1;
+    position: static;
+    top: 0;
+    z-index: 4;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--color-bg);
+  }
   .guillemets-wrapper {
     margin: 5vh 0 6vh;
 
@@ -67,7 +73,6 @@ import guillemets from '@assets/svg/guillemets.svg';
 
   .guillemets-image {
     width: clamp(40px, 8.3rem, 8.3rem);
-
   }
 
   .section__title {

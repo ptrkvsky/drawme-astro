@@ -1,13 +1,13 @@
 <script>
-  import { splitText } from '@helpers/gsap';
+  import { splitText } from "../../helpers/gsap/index";
   import {
     getBurgerAnimation,
     getMenuAnimation,
     handleClickBurger,
-  } from './Menu.animations';
-  import { startMenu } from './Menu.functions';
+  } from "./Menu.animations";
+  import { startMenu } from "./Menu.functions";
 
-  const splitLink = splitText('.link', 'lines');
+  const splitLink = splitText(".link", "lines");
   const tlMenu = getMenuAnimation(splitLink);
   const tlBurger = getBurgerAnimation();
 
@@ -15,16 +15,16 @@
   startMenu();
 
   document
-    .getElementById('burger-button')
-    .addEventListener('click', () => handleClickBurger(tlMenu, tlBurger));
+    .getElementById("burger-button")
+    .addEventListener("click", () => handleClickBurger(tlMenu, tlBurger));
 
-  document.querySelectorAll('.link').forEach((element) => {
-    element.addEventListener('click', (event) => {
+  document.querySelectorAll(".link").forEach((element) => {
+    element.addEventListener("click", (event) => {
       event.preventDefault();
       tlBurger.reverse();
       tlMenu.reverse();
       setTimeout(() => {
-        const href = element.getAttribute('href');
+        const href = element.getAttribute("href");
         window.location.href = href;
       }, 1500);
     });
@@ -222,7 +222,7 @@
   }
 
   .menu__item-sub::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 15%;

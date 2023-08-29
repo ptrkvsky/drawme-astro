@@ -1,7 +1,9 @@
 <script>
-  import gsap from 'gsap';
-  import { SplitText } from 'gsap/SplitText';
-  import getRandomInt from '../helpers/getRandomInt';
+  import gsap from "gsap";
+  import { SplitText } from "gsap/SplitText";
+  import getRandomInt from "../helpers/getRandomInt";
+
+  gsap.registerPlugin(SplitText);
 
   const getLetter = (positions: number[]) => {
     // Choose one random letter to swap
@@ -56,7 +58,7 @@
     letter4?.position,
   ]);
 
-  const splitSheep = new SplitText('#header-sheep', {
+  const splitSheep = new SplitText("#header-sheep", {
     type: `chars`,
   });
 
@@ -92,31 +94,31 @@
         delay: getRandomInt(0, 3),
         scrambleText: { text: letter5.letter, chars: charsRandom },
       })
-      .to(splitSheep.chars[0], { duration: 0.5, scrambleText: 'S' })
-      .to(splitSheep.chars[1], { duration: 0.5, scrambleText: 'H' })
-      .to(splitSheep.chars[2], { duration: 0.5, scrambleText: 'E' })
-      .to(splitSheep.chars[3], { duration: 0.5, scrambleText: 'E' })
-      .to(splitSheep.chars[4], { duration: 0.5, scrambleText: 'P' })
+      .to(splitSheep.chars[0], { duration: 0.5, scrambleText: "S" })
+      .to(splitSheep.chars[1], { duration: 0.5, scrambleText: "H" })
+      .to(splitSheep.chars[2], { duration: 0.5, scrambleText: "E" })
+      .to(splitSheep.chars[3], { duration: 0.5, scrambleText: "E" })
+      .to(splitSheep.chars[4], { duration: 0.5, scrambleText: "P" })
       // // DESIGN
       .to(splitSheep.chars[0], {
         duration: 0.5,
         delay: getRandomInt(1, 4),
-        scrambleText: 'D',
+        scrambleText: "D",
       })
-      .to(splitSheep.chars[1], { duration: 0.5, scrambleText: 'E' })
-      .to(splitSheep.chars[2], { duration: 0.5, scrambleText: 'S' })
-      .to(splitSheep.chars[3], { duration: 0.5, scrambleText: 'I' })
-      .to(splitSheep.chars[4], { duration: 0.5, scrambleText: 'G' })
+      .to(splitSheep.chars[1], { duration: 0.5, scrambleText: "E" })
+      .to(splitSheep.chars[2], { duration: 0.5, scrambleText: "S" })
+      .to(splitSheep.chars[3], { duration: 0.5, scrambleText: "I" })
+      .to(splitSheep.chars[4], { duration: 0.5, scrambleText: "G" })
       // Display the last letter
-      .set('.dash', { opacity: 1 })
-      .to(splitSheep.chars[5], { duration: 0.5, scrambleText: 'N' })
-      .set('.dash', { opacity: 0 });
+      .set(".dash", { opacity: 1 })
+      .to(splitSheep.chars[5], { duration: 0.5, scrambleText: "N" })
+      .set(".dash", { opacity: 0 });
   }
 </script>
 
 <header id="header" style={{ opacity: 0 }}>
   <a href="/" id="header-logo" class="logo" rel="prefetch">
-    <span id="header-draw">DRAW</span> ME A{' '}
+    <span id="header-draw">DRAW</span> ME A{" "}
     <span id="header-sheep" class="highlight">
       SHEEP<span class="dash">-</span>
     </span>
@@ -145,7 +147,7 @@
       background-color: #161618 !important; //gsap overtakes
       background: #161618 !important; //gsap overtakes
       &:before {
-        content: '';
+        content: "";
         display: block;
         position: absolute;
         height: 100%;
@@ -169,7 +171,7 @@
       font-size: clamp(12px, 1.6rem, 1.6rem);
       letter-spacing: 5.6px;
       text-transform: uppercase;
-      font-family: 'MontrealBold';
+      font-family: "MontrealBold";
 
       @media screen and (max-width: 721px) {
         margin-left: 32px;

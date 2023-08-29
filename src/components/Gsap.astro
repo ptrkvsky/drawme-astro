@@ -2,7 +2,7 @@
 ---
 
 <script>
-  import gsap from 'gsap';
+  import gsap from "gsap";
   import {
     ScrollSmoother,
     DrawSVGPlugin,
@@ -10,8 +10,8 @@
     SplitText,
     MorphSVGPlugin,
     ScrollTrigger,
-  } from 'gsap/all';
-  import { scrollToTop } from '../features/project/functions/scrollToTop';
+  } from "gsap/all";
+  import { scrollToTop } from "../features/project/functions/scrollToTop";
 
   gsap.registerPlugin(
     ScrollTrigger,
@@ -28,9 +28,9 @@
     smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
   });
 
-  smoother.scrollTo('body', false); // Reset the scroll position when refresh https://greensock.com/docs/v3/Plugins/ScrollSmoother/scrollTo()
+  smoother.scrollTo("body", false); // Reset the scroll position when refresh https://greensock.com/docs/v3/Plugins/ScrollSmoother/scrollTo()
 
-  document.querySelectorAll('.js-to-top').forEach((button) => {
+  document.querySelectorAll(".js-to-top").forEach((button) => {
     scrollToTop(button, smoother);
   });
 

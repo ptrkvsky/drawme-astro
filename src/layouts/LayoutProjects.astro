@@ -9,6 +9,7 @@ import '@styles/variables.scss';
 import '@styles/global.scss';
 import '@styles/functions.scss';
 import { Menu, Burger, Footer } from '@components/index';
+import { LogASheep } from '@components/LogASheep';
 
 export interface Props {
   title: string;
@@ -38,6 +39,8 @@ const { title, background, urlsPages, urlsImages } = Astro.props as Props;
     urlsPages.map((urlPage) => <link rel="prefetch" href={urlPage} />)
 }
 <body style={{ background }} class="canva-black">
+  <LogASheep />
+
   <Burger />
   <Header />
   <Logo />

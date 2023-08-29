@@ -1,31 +1,31 @@
 ---
-import { getImage } from '@astrojs/image';
+import { getImage } from "@astrojs/image";
 
-import '@styles/fonts.scss';
-import '@styles/variables.scss';
+import "@styles/fonts.scss";
+import "@styles/variables.scss";
 
 const { src: illustrationWebsite } = await getImage({
-  src: import('@assets/images/illustration_website.png'),
+  src: import("@assets/images/illustration_website.png"),
 });
 
 const { src: bob } = await getImage({
-  src: import('@features/listing/assets/bob.png'),
+  src: import("@features/listing/assets/bob.png"),
 });
 
 const { src: infizio } = await getImage({
-  src: import('@features/listing/assets/infizio.png'),
+  src: import("@features/listing/assets/infizio.png"),
 });
 
 const { src: recyclerie } = await getImage({
-  src: import('@features/listing/assets/recyclerie.png'),
+  src: import("@features/listing/assets/recyclerie.png"),
 });
 
 const { src: kraken } = await getImage({
-  src: import('@features/listing/assets/kraken.png'),
+  src: import("@features/listing/assets/kraken.png"),
 });
 
 const { src: passy } = await getImage({
-  src: import('@features/listing/assets/passy.png'),
+  src: import("@features/listing/assets/passy.png"),
 });
 ---
 
@@ -104,7 +104,17 @@ const { src: passy } = await getImage({
   </div><!-- columns -->
 </section>
 
-<style lang="scss" is:global>
+<style lang="scss">
+  .section {
+    line-height: 1;
+    position: static;
+    top: 0;
+    z-index: 4;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--color-bg);
+  }
+
   .section--columns {
     position: fixed;
     left: 0;
@@ -116,6 +126,10 @@ const { src: passy } = await getImage({
     height: 100vh;
 
     padding-top: clamp(58px, 5.8rem, 5.8rem);
+
+    line-height: 1;
+    min-height: 100vh;
+    background: var(--color-bg);
   }
 
   .columns {
