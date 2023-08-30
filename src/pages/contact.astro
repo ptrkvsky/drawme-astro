@@ -1,16 +1,16 @@
 ---
-import { Image } from '@astrojs/image/components';
-import Canvas from '@features/home/components/Canvas.astro';
-import Layout from '@layouts/Layout.astro';
-import email from '../assets/images/email.png';
-import telephone from '../assets/images/telephone.png';
+import { Image } from "@astrojs/image/components";
+import { Telephone } from "@features/contact";
+import Canvas from "@features/home/components/Canvas.astro";
+import Layout from "@layouts/Layout.astro";
+import email from "../assets/images/email.png";
 ---
 
 <script>
-  import gsap from 'gsap';
+  import gsap from "gsap";
 
   gsap.fromTo(
-    '#mail',
+    "#mail",
     {
       opacity: 0,
       y: -5,
@@ -19,21 +19,7 @@ import telephone from '../assets/images/telephone.png';
       opacity: 1,
       x: 0,
       duration: 2,
-      ease: 'power1.inOut',
-    }
-  );
-  gsap.fromTo(
-    '#telephone',
-    {
-      opacity: 0,
-      y: -5,
-    },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 2,
-      ease: 'power1.inOut',
-      delay: 0.25,
+      ease: "power1.inOut",
     }
   );
 </script>
@@ -48,14 +34,7 @@ import telephone from '../assets/images/telephone.png';
     <a id="mail" style="opacity: 0;" href="mailto:drawmeasheepdesign@gmail.com">
       <Image src={email} alt="Contact Draw me a sheep design by mail" />
     </a>
-    <a
-      id="telephone"
-      style="opacity: 0;"
-      class="telephone"
-      href="tel:+33635359793"
-    >
-      06.35.35.97.93
-    </a>
+    <Telephone />
   </div>
 </Layout>
 
@@ -76,12 +55,6 @@ import telephone from '../assets/images/telephone.png';
     }
   }
 
-  .telephone {
-    position: relative;
-    color: #fff;
-    font-size: clamp(71px, 23rem, 50rem);
-    font-family: var(--text-script-bold);
-  }
   footer {
     display: none !important;
   }
