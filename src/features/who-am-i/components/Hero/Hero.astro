@@ -1,5 +1,5 @@
 ---
-import { SanityWhoAmI } from '../../interfaces/SanityWhoAmI';
+import { SanityWhoAmI } from "../../interfaces/SanityWhoAmI";
 
 interface AstroProps {
   sanityWhoAmI: SanityWhoAmI;
@@ -9,17 +9,17 @@ const { sanityWhoAmI } = Astro.props as AstroProps;
 ---
 
 <script>
-  import { splitAndReveal, ParamsSplitAndReveal } from '@helpers/gsap';
-  import { TypeShuffle } from '@helpers/typeShuffle';
+  import { splitAndReveal, ParamsSplitAndReveal } from "@helpers/gsap";
+  import { TypeShuffle } from "@helpers/typeShuffle";
 
-  const textElement = document.querySelector('.introduction');
+  const textElement = document.querySelector(".introduction");
   const ts = new TypeShuffle(textElement);
-  ts.trigger('fx3');
+  ts.trigger("fx3");
 
   // Split title
   const paramsSplitAndRevealTitle: ParamsSplitAndReveal = {
     element: `h1`,
-    typeSplit: 'lines',
+    typeSplit: "lines",
     trigger: `body`,
   };
 
@@ -28,7 +28,7 @@ const { sanityWhoAmI } = Astro.props as AstroProps;
   // Split title
   const paramsSplitAndRevealIntroduction: ParamsSplitAndReveal = {
     element: `.introduction`,
-    typeSplit: 'lines',
+    typeSplit: "lines",
     trigger: `body`,
   };
 
@@ -38,7 +38,7 @@ const { sanityWhoAmI } = Astro.props as AstroProps;
 <div class="hero">
   <div class="conteneur">
     <div class="wrapper-text">
-      <h1 class="split-text">
+      <h1 class="title split-text">
         {sanityWhoAmI?.titlePart1}
         <span class="highlight">{sanityWhoAmI?.titlePart2}</span>
       </h1>
@@ -52,7 +52,7 @@ const { sanityWhoAmI } = Astro.props as AstroProps;
 <style lang="scss">
   .hero {
     height: 435px;
-    background-image: url('/assets/images/who-am-i-hero-background.jpg');
+    background-image: url("/assets/images/who-am-i-hero-background.jpg");
     background-size: cover;
     @media screen and (max-width: 768px) {
       display: flex;
@@ -86,7 +86,7 @@ const { sanityWhoAmI } = Astro.props as AstroProps;
     }
   }
 
-  h1 {
+  .title {
     line-height: 1;
     font-size: clamp(73px, 14rem, 14rem);
     color: #fff;
