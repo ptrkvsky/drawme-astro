@@ -1,6 +1,5 @@
 import gsap from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
-import { getRandomEntryFromArray } from "../../helpers/getRandomEntryFromArray";
 
 const tlMenu = gsap.timeline();
 const emojiString = "DЯΛЩ MΞ Δ ƧΗΣΣР";
@@ -50,7 +49,6 @@ export function getMenuAnimation(splitLink: SplitText) {
   );
   // SCRAMBLE
   splitLink.lines.forEach((char, index) => {
-    const emoji = getRandomEntryFromArray(emojis);
     tlMenu.from(char, {
       scrambleText: emojis[index],
       duration: 0.25,
