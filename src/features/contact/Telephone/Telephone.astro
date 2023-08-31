@@ -1,0 +1,49 @@
+---
+---
+
+<script>
+  import { SplitText } from "gsap/SplitText";
+  import { splitTelephone } from "./Telephone.animation";
+  import gsap from "gsap";
+  import config from "src/config";
+  gsap.registerPlugin(SplitText);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Duration of preloader
+    const isPreloaderSeen = sessionStorage.getItem("isPreloaderSeen");
+    const envDelay = config.mode === "development" ? 1.5 : 8.5;
+    const delay = isPreloaderSeen ? 0 : envDelay;
+    console.log(delay);
+    splitTelephone();
+
+    gsap.set("#telephone div", { yPercent: -103 });
+
+    gsap.timeline().to("#telephone div", {
+      duration: 0.75,
+      yPercent: 0,
+      stagger: 0.05,
+      ease: "expo.inOut",
+      delay: delay,
+    });
+  });
+</script>
+
+<a id="telephone" class="contact___telephone o-hidden" href="tel:+33635359793">
+  06.35.35.97.93
+</a>
+
+<style lang="scss" is:global>
+  .contact___telephone {
+    position: relative;
+    color: #fff;
+    font-size: 0;
+    font-family: var(--text-script-bold);
+    line-height: 0.85;
+  }
+
+  .contact___telephone div {
+    position: relative;
+    display: inline-block;
+    font-size: clamp(71px, 23rem, 50rem);
+  }
+</style>

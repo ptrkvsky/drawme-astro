@@ -1,28 +1,11 @@
 ---
 import { Image } from "@astrojs/image/components";
-import { Telephone } from "@features/contact";
+import { Telephone } from "@features/contact/Telephone";
+import { Email } from "@features/contact/Email";
 import Canvas from "@features/home/components/Canvas.astro";
 import Layout from "@layouts/Layout.astro";
 import email from "../assets/images/email.png";
 ---
-
-<script>
-  import gsap from "gsap";
-
-  gsap.fromTo(
-    "#mail",
-    {
-      opacity: 0,
-      y: -5,
-    },
-    {
-      opacity: 1,
-      x: 0,
-      duration: 2,
-      ease: "power1.inOut",
-    }
-  );
-</script>
 
 <Layout
   Canvas={Canvas}
@@ -31,9 +14,7 @@ import email from "../assets/images/email.png";
   title="Contact - Grahic Designer at Cagnes sur Mer"
 >
   <div class="wrapper-contact" slot="main-content">
-    <a id="mail" style="opacity: 0;" href="mailto:drawmeasheepdesign@gmail.com">
-      <Image src={email} alt="Contact Draw me a sheep design by mail" />
-    </a>
+    <Email />
     <Telephone />
   </div>
 </Layout>

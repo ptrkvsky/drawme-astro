@@ -1,0 +1,52 @@
+---
+---
+
+<script>
+  import { SplitText } from "gsap/SplitText";
+  import gsap from "gsap";
+  gsap.registerPlugin(SplitText);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    gsap.set("#mail span", { yPercent: -103 });
+
+    gsap.timeline().to("#mail span", {
+      duration: 0.75,
+      yPercent: 0,
+      stagger: 0.05,
+      ease: "expo.inOut",
+      delay: 1,
+    });
+  });
+</script>
+
+<a
+  class="contact___email o-hidden"
+  id="mail"
+  href="mailto:drawmeasheepdesign@gmail.com"
+>
+  <span>drawmeasheepdesign</span>
+  <span class="contact___highlight">@</span>
+  <span>gmail.com</span>
+</a>
+
+<style lang="scss" is:global>
+  .contact___email {
+    position: relative;
+    color: #fff;
+    font-size: 0;
+    font-family: var(--text-script);
+  }
+
+  .contact___highlight {
+    color: var(--color-ice-ice-baby);
+    bottom: 0.9rem;
+    font-weight: bold;
+  }
+
+  .contact___email span {
+    position: relative;
+    display: inline-block;
+    font-size: clamp(5px, 9.5rem, 50rem);
+    text-transform: uppercase;
+  }
+</style>
