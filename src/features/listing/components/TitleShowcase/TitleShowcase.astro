@@ -1,0 +1,49 @@
+---
+---
+
+<script>
+  import { SplitText } from "gsap/SplitText";
+  import gsap from "gsap";
+  gsap.registerPlugin(SplitText);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const showCaseTitle = document.querySelector("#showcase-title");
+    console.log(showCaseTitle);
+    if (!showCaseTitle) return;
+
+    const splitSheep = new SplitText(
+      document.querySelectorAll("#showcase-title .word"),
+      {
+        type: `chars`,
+      }
+    );
+
+    gsap.set("#showcase-title .word div", { yPercent: -103 });
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: showCaseTitle,
+          endTrigger: "footer",
+          markers: true,
+          start: "top 75%",
+        },
+      })
+      .to("#showcase-title .word div", {
+        duration: 0.75,
+        yPercent: 0,
+        stagger: 0.05,
+        ease: "expo.inOut",
+      });
+  });
+</script>
+
+<h2 id="showcase-title" class="section__title section__title--medium o-hidden">
+  <div class="word o-hidden">Selected</div><div class="word o-hidden">Work</div>
+</h2>
+
+<style lang="scss">
+  .section__title--medium {
+    font-size: clamp(32px, 12vw, 9rem);
+  }
+</style>

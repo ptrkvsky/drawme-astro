@@ -4,17 +4,22 @@
 <script>
   import { SplitText } from "gsap/SplitText";
   import gsap from "gsap";
+  import { getPreloaderDelay } from "@helpers/getPreloaderDelay";
   gsap.registerPlugin(SplitText);
 
   document.addEventListener("DOMContentLoaded", () => {
+    const delayPreloader = getPreloaderDelay();
+    const delay = delayPreloader + 0.25;
+
     gsap.set("#mail span", { yPercent: -103 });
+    gsap.set("#arobase", { opacity: 1 });
 
     gsap.timeline().to("#mail span", {
       duration: 0.75,
       yPercent: 0,
       stagger: 0.05,
       ease: "expo.inOut",
-      delay: 1,
+      delay,
     });
   });
 </script>
@@ -25,7 +30,7 @@
   href="mailto:drawmeasheepdesign@gmail.com"
 >
   <span>drawmeasheepdesign</span>
-  <span class="contact___highlight">@</span>
+  <span id="arobase" class="contact___highlight" style="opacity: 0;">@</span>
   <span>gmail.com</span>
 </a>
 

@@ -1,5 +1,6 @@
 ---
 import { getImage } from "@astrojs/image";
+import { TitleShowcase } from "@features/listing/components/TitleShowcase";
 
 const { src: illustrationWebsite } = await getImage({
   src: import("@assets/images/illustration_website.png"),
@@ -12,9 +13,7 @@ const currentYear = currentDate.getFullYear();
 <section class="section section--showcase">
   <header class="section__header">
     <span class="section__year">2000</span>
-    <h2 class="section__title section__title--medium">
-      Selected <br /> Work
-    </h2>
+    <TitleShowcase />
     <span class="section__year">{currentYear}</span>
   </header>
   <a href="/projects/cats-business-club" rel="prefetch" class="row">
@@ -241,10 +240,6 @@ const currentYear = currentDate.getFullYear();
     justify-content: space-around;
     padding: 4vh 8vw;
     margin-bottom: 4rem;
-  }
-
-  .section__title--medium {
-    font-size: clamp(32px, 12vw, 9rem);
   }
 
   .row {
