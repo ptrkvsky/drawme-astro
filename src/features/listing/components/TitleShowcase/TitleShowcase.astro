@@ -4,6 +4,8 @@
 <script>
   import { SplitText } from "gsap/SplitText";
   import gsap from "gsap";
+  import config from "../../../../config";
+
   gsap.registerPlugin(SplitText);
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -25,7 +27,7 @@
         scrollTrigger: {
           trigger: showCaseTitle,
           endTrigger: "footer",
-          markers: true,
+          markers: config.mode === "development",
           start: "top 75%",
         },
       })
