@@ -10,11 +10,27 @@ const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
 ---
 
+<script>
+  import gsap from "gsap";
+
+  document.addEventListener("titleShowcaseAnimationComplete", () => {
+    const borderElement = document.querySelector("#section__header__border");
+    if (!borderElement) return;
+
+    gsap.to(borderElement, {
+      duration: 2, // Animation duration in seconds
+      width: "100%", // The target width you want to animate to
+      ease: "expo.inOut",
+    });
+  });
+</script>
+
 <section class="section section--showcase">
   <header class="section__header">
-    <span class="section__year">2000</span>
+    <span class="section__year o-hidden">2000</span>
     <TitleShowcase />
-    <span class="section__year">{currentYear}</span>
+    <span class="section__year o-hidden">{currentYear}</span>
+    <div id="section__header__border" class="section__header__border"></div>
   </header>
   <a href="/projects/cats-business-club" rel="prefetch" class="row">
     <div class="row__header">
@@ -230,16 +246,26 @@ const currentYear = currentDate.getFullYear();
 
   .section__year {
     color: var(--color-black-beauty);
+    opacity: 0;
   }
 
   .section__header {
+    position: relative;
     display: flex;
-    border-bottom: 1px solid #000;
     width: 100%;
     align-items: center;
     justify-content: space-around;
     padding: 4vh 8vw;
     margin-bottom: 4rem;
+  }
+
+  .section__header__border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    background-color: var(--color-black-beauty);
+    height: 2px;
   }
 
   .row {

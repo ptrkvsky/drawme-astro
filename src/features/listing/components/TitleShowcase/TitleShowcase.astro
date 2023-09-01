@@ -2,41 +2,11 @@
 ---
 
 <script>
-  import { SplitText } from "gsap/SplitText";
-  import gsap from "gsap";
-  import config from "../../../../config";
-
-  gsap.registerPlugin(SplitText);
+  import { animateTitle } from "./TitleShowcase.animation";
 
   document.addEventListener("DOMContentLoaded", () => {
-    const showCaseTitle = document.querySelector("#showcase-title");
-    console.log(showCaseTitle);
-    if (!showCaseTitle) return;
-
-    const splitSheep = new SplitText(
-      document.querySelectorAll("#showcase-title .word"),
-      {
-        type: `chars`,
-      }
-    );
-
-    gsap.set("#showcase-title .word div", { yPercent: -103 });
-
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: showCaseTitle,
-          endTrigger: "footer",
-          markers: config.mode === "development",
-          start: "top 75%",
-        },
-      })
-      .to("#showcase-title .word div", {
-        duration: 0.75,
-        yPercent: 0,
-        stagger: 0.05,
-        ease: "expo.inOut",
-      });
+    console.log("zoooooo");
+    animateTitle();
   });
 </script>
 
