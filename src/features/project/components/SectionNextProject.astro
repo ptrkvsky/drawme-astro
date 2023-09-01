@@ -123,9 +123,9 @@ const { nextProject } = Astro.props as Props;
 <style lang="scss" is:global>
   .next-project {
     position: fixed;
-    bottom: 0;
+    top: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100% - clamp(111px, 15rem, 15rem));
 
     display: flex;
     align-items: center;
