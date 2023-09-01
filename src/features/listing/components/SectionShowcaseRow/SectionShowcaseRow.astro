@@ -1,0 +1,173 @@
+---
+import { getImage } from "@astrojs/image";
+
+const { src: illustrationWebsite } = await getImage({
+  src: import("@assets/images/illustration_website.png"),
+});
+
+interface AstroProps {
+  date: string;
+  name: string;
+  slug: string;
+  tagline: string;
+}
+
+const { date, name, slug, tagline } = Astro.props as AstroProps;
+---
+
+<script>
+  import gsap from "gsap";
+  import { SplitText } from "gsap/SplitText";
+  import { animateRow } from "./SectionShowcaseRow.animation";
+
+  gsap.registerPlugin(SplitText);
+
+  const rows: NodeListOf<HTMLLinkElement> =
+    document.querySelectorAll(".row-showcase");
+
+  const imagesProject = document.querySelectorAll(".row__content-img");
+
+  gsap.set(imagesProject, {
+    autoAlpha: 0,
+    xPercent: -20,
+  });
+
+  if (rows.length) {
+    rows.forEach((row) => animateRow(row));
+  }
+</script>
+
+<a href=`/projects/${slug}` rel="prefetch" class="row row-showcase">
+  <div class="row__header">
+    <span class="row__header__date o-hidden">{date}</span>
+    <span class="row__header__name o-hidden">{name}</span>
+    <span class="row__header__tagline o-hidden">{tagline}</span>
+  </div>
+  <div class="row__content">
+    <div class="row__content-imgwrap o-hidden">
+      <div
+        class="row__content-img"
+        style=`background-image:url(${illustrationWebsite})`
+      >
+      </div>
+    </div>
+    <div class="row__content-imgwrap o-hidden">
+      <div
+        class="row__content-img"
+        style=`background-image:url(${illustrationWebsite})`
+      >
+      </div>
+    </div>
+    <div class="row__content-imgwrap o-hidden">
+      <div
+        class="row__content-img"
+        style=`background-image:url(${illustrationWebsite})`
+      >
+      </div>
+    </div>
+    <div class="row__content-imgwrap o-hidden">
+      <div
+        class="row__content-img"
+        style=`background-image:url(${illustrationWebsite})`
+      >
+      </div>
+    </div>
+  </div>
+</a>
+
+<style lang="scss">
+  .row {
+    text-align: left;
+    width: 100%;
+    // opacity: 0;
+  }
+
+  .row + p a::before {
+    content: "";
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    position: absolute;
+    top: 90%;
+    transition: transform 0.3s;
+    transform-origin: 0% 50%;
+  }
+
+  .row + p a:hover::before {
+    transform: scaleX(0);
+    transform-origin: 100% 50%;
+  }
+
+  .row + p a {
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .row__header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 4ch 1fr;
+    grid-template-rows: auto auto;
+    grid-gap: 2rem;
+    justify-content: start;
+    padding: clamp(24px, 6rem, 6rem) 0 3rem;
+  }
+
+  .row__header span:last-child {
+    grid-column: 1 / span 2;
+  }
+
+  .row__content {
+    display: grid;
+    width: 100%;
+    grid-auto-flow: column;
+    grid-gap: 1rem;
+    justify-content: start;
+  }
+
+  .row__content-imgwrap {
+    overflow: hidden;
+    position: relative;
+    border-radius: var(--radius-small);
+  }
+
+  .row__content-img {
+    aspect-ratio: 2;
+    height: 100px;
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+
+  .row__content-imgwrap:nth-child(even) .row__content-img {
+    aspect-ratio: 1;
+  }
+
+  .row__content-imgwrap:nth-child(4n) .row__content-img {
+    aspect-ratio: 1.5;
+  }
+
+  .row__content-imgwrap:last-child {
+    justify-content: end;
+  }
+
+  .row__content-imgwrap:last-child .row__content-img {
+    aspect-ratio: 2.75;
+  }
+
+  .row + p {
+    margin-top: 40vh;
+  }
+
+  @media screen and (min-width: 53em) {
+    .row__header {
+      display: grid;
+      grid-template-columns: 4ch auto 1fr;
+      grid-template-rows: auto;
+    }
+    .row__header span:last-child {
+      justify-self: end;
+      grid-column: revert;
+    }
+  }
+</style>
