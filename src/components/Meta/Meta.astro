@@ -24,7 +24,7 @@ const ogImage = image || defaultOgImage;
 <!-- OpenGraph for Social Media -->
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:url" content=`${process.env.domain}/${slug}` />
+<meta property="og:url" content=`${process.env.domain}/${slug || ""}` />
 <meta property="og:image" content={ogImage} />
 
 <!-- Twitter Cards -->
