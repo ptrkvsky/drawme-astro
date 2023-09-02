@@ -1,0 +1,49 @@
+---
+import { SanityImage } from "@interfaces/SanityImage";
+
+interface SectionShowcaseRowImageProps {
+  thumbnail: SanityImage;
+}
+
+const { thumbnail } = Astro.props as SectionShowcaseRowImageProps;
+---
+
+<div class="row__content-imgwrap o-hidden">
+  <div
+    class="row__content-img"
+    style=`background-image:url(${thumbnail.asset.url})`
+    aria-label={thumbnail.alt || "image"}
+  >
+  </div>
+</div>
+
+<style lang="scss">
+  .row__content-imgwrap {
+    overflow: hidden;
+    position: relative;
+    border-radius: var(--radius-small);
+  }
+
+  .row__content-img {
+    aspect-ratio: 2;
+    height: 100px;
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+
+  .row__content-imgwrap:nth-child(even) .row__content-img {
+    aspect-ratio: 1;
+  }
+
+  .row__content-imgwrap:nth-child(4n) .row__content-img {
+    aspect-ratio: 1.5;
+  }
+
+  .row__content-imgwrap:last-child {
+    justify-content: end;
+  }
+
+  .row__content-imgwrap:last-child .row__content-img {
+    aspect-ratio: 2.75;
+  }
+</style>

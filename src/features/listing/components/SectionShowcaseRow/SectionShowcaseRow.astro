@@ -1,18 +1,21 @@
 ---
-import { getImage } from "@astrojs/image";
-
-const { src: illustrationWebsite } = await getImage({
-  src: import("@assets/images/illustration_website.png"),
-});
+import { SanityImage } from "@interfaces/SanityImage";
+import { extractYear } from "./SectionShowcase.functions";
+import { SectionShowcaseRowImage } from "@features/listing/components/SectionShowcaseRowImage";
 
 interface AstroProps {
   date: string;
   name: string;
-  slug: string;
+  slug: {
+    current: string;
+  };
   tagline: string;
+  thumbnails: SanityImage[];
 }
 
-const { date, name, slug, tagline } = Astro.props as AstroProps;
+const { date, name, slug, tagline, thumbnails } = Astro.props as AstroProps;
+
+const year = extractYear(date);
 ---
 
 <script>
@@ -37,41 +40,18 @@ const { date, name, slug, tagline } = Astro.props as AstroProps;
   }
 </script>
 
-<a href=`/projects/${slug}` rel="prefetch" class="row row-showcase">
+<a href=`/projects/${slug.current}` rel="prefetch" class="row row-showcase">
   <div class="row__header">
-    <span class="row__header__date o-hidden">{date}</span>
+    <span class="row__header__date o-hidden">{year}</span>
     <span class="row__header__name o-hidden">{name}</span>
     <span class="row__header__tagline o-hidden">{tagline}</span>
   </div>
   <div class="row__content">
-    <div class="row__content-imgwrap o-hidden">
-      <div
-        class="row__content-img"
-        style=`background-image:url(${illustrationWebsite})`
-      >
-      </div>
-    </div>
-    <div class="row__content-imgwrap o-hidden">
-      <div
-        class="row__content-img"
-        style=`background-image:url(${illustrationWebsite})`
-      >
-      </div>
-    </div>
-    <div class="row__content-imgwrap o-hidden">
-      <div
-        class="row__content-img"
-        style=`background-image:url(${illustrationWebsite})`
-      >
-      </div>
-    </div>
-    <div class="row__content-imgwrap o-hidden">
-      <div
-        class="row__content-img"
-        style=`background-image:url(${illustrationWebsite})`
-      >
-      </div>
-    </div>
+    {
+      thumbnails?.map((thumbnail) => (
+        <SectionShowcaseRowImage thumbnail={thumbnail} />
+      ))
+    }
   </div>
 </a>
 
@@ -124,35 +104,6 @@ const { date, name, slug, tagline } = Astro.props as AstroProps;
     grid-auto-flow: column;
     grid-gap: 1rem;
     justify-content: start;
-  }
-
-  .row__content-imgwrap {
-    overflow: hidden;
-    position: relative;
-    border-radius: var(--radius-small);
-  }
-
-  .row__content-img {
-    aspect-ratio: 2;
-    height: 100px;
-    background-size: cover;
-    background-position: 50% 50%;
-  }
-
-  .row__content-imgwrap:nth-child(even) .row__content-img {
-    aspect-ratio: 1;
-  }
-
-  .row__content-imgwrap:nth-child(4n) .row__content-img {
-    aspect-ratio: 1.5;
-  }
-
-  .row__content-imgwrap:last-child {
-    justify-content: end;
-  }
-
-  .row__content-imgwrap:last-child .row__content-img {
-    aspect-ratio: 2.75;
   }
 
   .row + p {

@@ -1,4 +1,4 @@
-import { SanityImage } from '@interfaces/SanityImage';
+import { SanityImage } from "@interfaces/SanityImage";
 
 export interface Quote {
   text: string;
@@ -16,11 +16,14 @@ export interface SanityProject {
   colorExcerpt?: {
     hex: string;
   };
+  startedAt: string;
   drawMeA: string;
   excerptRaw: any[];
   hue: string;
+  tagline: string;
   imagesDecale?: SanityImage[];
   imagesFooter?: SanityImage[];
+  thumbnails?: SanityImage[];
   imageWebsite: SanityImage;
   mainColor: {
     hex: string;

@@ -1,4 +1,5 @@
 export interface SanityImage {
+  alt;
   asset: {
     altText: string;
     url: string;

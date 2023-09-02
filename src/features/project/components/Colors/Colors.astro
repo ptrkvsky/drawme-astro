@@ -1,6 +1,6 @@
 ---
-import { Image } from '@astrojs/image/components';
-import { SanityImage } from '@interfaces/SanityImage';
+import { Image } from "@astrojs/image/components";
+import { SanityImage } from "@interfaces/SanityImage";
 
 // import Color1 from './Color1.astro';
 // import Color2 from './Color2.astro';
@@ -16,7 +16,7 @@ const { color1, color2, color3 } = Astro.props as AstroProps;
 ---
 
 <script>
-  import { revealColors } from './Colors.animation';
+  import { revealColors } from "./Colors.animation";
   revealColors();
 </script>
 
@@ -57,7 +57,7 @@ const { color1, color2, color3 } = Astro.props as AstroProps;
   .wrapper-colors {
     display: flex;
     gap: clamp(10px, 7rem, 7rem);
-    margin-top: 1.4rem;
+    margin-top: 2rem;
     margin-left: auto;
     margin-right: auto;
     padding-left: 6rem;
@@ -74,26 +74,4 @@ const { color1, color2, color3 } = Astro.props as AstroProps;
       }
     }
   }
-
-  // .wrapper-colors .color {
-  //   position: relative;
-  //   display: inline-block;
-  //   .color-name {
-  //     position: absolute;
-  //     transform: translate(-50%, -50%);
-  //     top: 50%;
-  //     left: 50%;
-  //     margin-left: 1.6rem;
-  //     font-size: 2.2rem;
-  //     text-transform: uppercase;
-  //     letter-spacing: 1.1px;
-  //   }
-  //   &.color-2 {
-  //     top: 30px;
-  //     left: 13px;
-  //     .color-name {
-  //       margin-left: -10px;
-  //     }
-  //   }
-  // }
 </style>

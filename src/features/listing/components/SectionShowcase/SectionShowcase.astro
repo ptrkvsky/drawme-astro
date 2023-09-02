@@ -1,11 +1,13 @@
 ---
-import { getImage } from "@astrojs/image";
 import { TitleShowcase } from "@features/listing/components/TitleShowcase";
 import { SectionShowcaseRow } from "@features/listing/components/SectionShowcaseRow";
+import { SanityProject } from "@features/project/interfaces";
 
-const { src: illustrationWebsite } = await getImage({
-  src: import("@assets/images/illustration_website.png"),
-});
+interface SectionShowcaseProps {
+  projects: SanityProject[];
+}
+
+const { projects } = Astro.props as SectionShowcaseProps;
 
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
@@ -33,80 +35,62 @@ const currentYear = currentDate.getFullYear();
     <span class="section__year o-hidden">{currentYear}</span>
     <div id="section__header__border" class="section__header__border"></div>
   </header>
-  <SectionShowcaseRow
-    name="Cat's business club"
-    date="2000"
-    slug="cats-business-club"
-    tagline="Feline Connections: A Graphical Harmony of Business and Playfulness"
-  />
-  <SectionShowcaseRow
-    name="La recylerie"
-    date="2002"
-    slug="la-recyclerie"
-    tagline="Symbolizing reuse, transformation, and care."
-  />
-  <SectionShowcaseRow
-    name="Infizio"
-    date="2010"
-    slug="infizio"
-    tagline="A modern, futuristic visual embrace"
-  />
-  <SectionShowcaseRow
-    name="Dissident.e"
-    date="2012"
-    slug="dissidente"
-    tagline="Share another images"
-  />
-  <SectionShowcaseRow
-    name="Les reservoirs de Passy"
-    date="2023"
-    slug="les-reservoirs-de-passy"
-    tagline="A tribute to Paris, where creativity beholds"
-  />
+  {
+    projects.map((project) => (
+      <SectionShowcaseRow
+        name={project.title}
+        date={project.startedAt}
+        slug={project.slug}
+        tagline={project.tagline}
+        thumbnails={project.thumbnails}
+      />
+    ))
+  }
+
+  <style lang="scss" is:global>
+    .section--showcase {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      padding: 8rem 5vw 10vh;
+      cursor: default;
+      line-height: 1;
+      top: 0;
+      z-index: 4;
+      width: 100%;
+      background: var(--color-bg);
+      box-sizing: border-box;
+    }
+
+    .section__year {
+      color: var(--color-black-beauty);
+      opacity: 0;
+    }
+
+    .section__header {
+      position: relative;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-around;
+      padding: 4vh 8vw;
+      margin-bottom: 4rem;
+    }
+
+    .section__header__border {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      background-color: var(--color-black-beauty);
+      height: 3px;
+    }
+
+    .section,
+    .row {
+      font-size: clamp(14px, 1.6rem, 1.6rem);
+    }
+  </style>
 </section>
-
-<style lang="scss" is:global>
-  .section--showcase {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    padding: 8rem 5vw 10vh;
-    cursor: default;
-    line-height: 1;
-    top: 0;
-    z-index: 4;
-    width: 100%;
-    background: var(--color-bg);
-  }
-
-  .section__year {
-    color: var(--color-black-beauty);
-    opacity: 0;
-  }
-
-  .section__header {
-    position: relative;
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-around;
-    padding: 4vh 8vw;
-    margin-bottom: 4rem;
-  }
-
-  .section__header__border {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    background-color: var(--color-black-beauty);
-    height: 3px;
-  }
-
-  .section,
-  .row {
-    font-size: clamp(14px, 1.6rem, 1.6rem);
-  }
-</style>

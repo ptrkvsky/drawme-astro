@@ -2,10 +2,11 @@ export const querySanityProjects = `query ProjectPageQuery {
   allProject {
     _id
     title
+    tagline
+    drawMeA
     slug{
       current
     }
-    drawMeA
     mainColor {
       hex
     }
@@ -48,6 +49,19 @@ export const querySanityProjects = `query ProjectPageQuery {
         }
       }
     }
+    thumbnails {
+      alt
+      asset{
+        url
+        metadata {
+          dimensions{
+            height
+            width
+            aspectRatio
+          }
+        }
+      }
+    }
     imageWebsite {
       asset{
         url
@@ -64,6 +78,7 @@ export const querySanityProjects = `query ProjectPageQuery {
     colorExcerpt {
       hex
     }
+    startedAt
     hue
     saturation
     mainImages{

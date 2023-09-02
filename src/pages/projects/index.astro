@@ -5,10 +5,15 @@ import LayoutProjects from "@layouts/LayoutProjects.astro";
 import SectionIntro from "@features/listing/components/SectionIntro/SectionIntro.astro";
 import SectionColumn from "@features/listing/components/SectionColumn/SectionColumn.astro";
 import SectionShowcase from "@features/listing/components/SectionShowcase/SectionShowcase.astro";
+import { SanityProject, SanityProjects } from "@features/project/interfaces/";
+import { querySanityProjects } from "@features/project/queries/querySanityProjects";
+import fetchSanity from "@helpers/fetchSanity";
 
 const { src: illustrationWebsite } = await getImage({
   src: import("@assets/images/illustration_website.png"),
 });
+
+const sanityProjects = await fetchSanity<SanityProjects>(querySanityProjects);
 
 const urlsImages = [illustrationWebsite];
 ---
@@ -18,6 +23,7 @@ const urlsImages = [illustrationWebsite];
   import { gsap } from "gsap";
   import { ScrambleTextPlugin } from "gsap/all";
   import ScrollTrigger from "gsap/ScrollTrigger";
+
   gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin);
 
   window.addEventListener("load", initListingAnimations);
@@ -29,7 +35,8 @@ const urlsImages = [illustrationWebsite];
     <main>
       <SectionIntro />
       <SectionColumn />
-      <SectionShowcase />
+      {sanityProjects?.all}
+      <SectionShowcase projects={sanityProjects.allProject} />
     </main>
   </div>
 </LayoutProjects>
