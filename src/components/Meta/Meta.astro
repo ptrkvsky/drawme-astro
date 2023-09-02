@@ -14,7 +14,9 @@ interface MetaProps {
 
 const { title, description, slug, image } = Astro.props as MetaProps;
 
-const ogImage = image || defaultOgImage;
+const ogImage = image || import.meta.env.DOMAIN + defaultOgImage;
+
+const slugFinal = slug || "";
 ---
 
 <title>{title}</title>
@@ -24,7 +26,7 @@ const ogImage = image || defaultOgImage;
 <!-- OpenGraph for Social Media -->
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:url" content=`${process.env.domain}/${slug || ""}` />
+<meta property="og:url" content=`${import.meta.env.DOMAIN}/${slugFinal}` />
 <meta property="og:image" content={ogImage} />
 
 <!-- Twitter Cards -->
