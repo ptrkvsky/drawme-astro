@@ -7,11 +7,11 @@ const { projectColor } = Astro.props as AstroProps;
 ---
 
 <script>
-  import { animateBrush } from "./BrushDrawMe.animation" 
+  import { animateBrush } from "./BrushDrawMe.animation";
 
   document.addEventListener("DOMContentLoaded", () => {
-    animateBrush()
-  })
+    animateBrush();
+  });
 </script>
 
 <div class="wrapper">
@@ -58,6 +58,9 @@ const { projectColor } = Astro.props as AstroProps;
     z-index: -1;
     width: clamp(320px, 61.9rem, 61.9rem);
     height: 100%;
+    @media screen and (max-width: 475px) {
+      height: 62px;
+    }
   }
   .reveal {
     position: absolute;

@@ -1,4 +1,4 @@
-import gsap from 'gsap';
+import gsap from "gsap";
 
 /**
  * Animates the reveal of images using GSAP.
@@ -14,23 +14,25 @@ import gsap from 'gsap';
  * revealImages();
  */
 export function revealImages() {
-  gsap.set('.reveal-illustration', {
+  gsap.set(".reveal-illustration", {
     opacity: 0,
   });
 
-  document.addEventListener('brushAnimationComplete', () => {
+  document.addEventListener("brushAnimationComplete", () => {
     const tlRevealImages = gsap.timeline(); // New timeline for the second animation
 
     tlRevealImages
       .fromTo(
-        '.reveal-illustration',
+        ".reveal-illustration",
         {
           opacity: 0,
           x: -10,
+          scale: 1.1,
         },
         {
           x: 0,
           opacity: 1,
+          scale: 1,
           duration: 1,
           stagger: 0.1,
         }
@@ -38,7 +40,7 @@ export function revealImages() {
       .call(
         () => {
           const animationCompleteEvent = new Event(
-            'mainImagesAnimationComplete'
+            "mainImagesAnimationComplete"
           );
           document.dispatchEvent(animationCompleteEvent);
         },

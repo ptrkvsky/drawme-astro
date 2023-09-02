@@ -136,9 +136,12 @@ const { nextProject } = Astro.props as Props;
     opacity: 0;
     transition: all ease-in-out 0.3s;
 
+    pointer-events: none;
+
     &.visible {
       z-index: 999;
       opacity: 1;
+      pointer-events: all;
     }
 
     .line {

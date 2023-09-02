@@ -1,7 +1,7 @@
 ---
-import { Image } from '@astrojs/image/components';
+import { Image } from "@astrojs/image/components";
 
-import { SanityImage } from '@interfaces/SanityImage';
+import { SanityImage } from "@interfaces/SanityImage";
 
 interface AstroProps {
   mainImages: SanityImage[];
@@ -11,11 +11,11 @@ interface AstroProps {
 
 const { mainImages, mainImageMobile, positionMainImageMobile } =
   Astro.props as AstroProps;
-const position = positionMainImageMobile || 'left';
+const position = positionMainImageMobile || "left";
 ---
 
 <script>
-  import { revealImages } from './MainImages.animation';
+  import { revealImages } from "./MainImages.animation";
 
   revealImages();
 </script>
@@ -24,7 +24,7 @@ const position = positionMainImageMobile || 'left';
   {
     mainImages.map((image) => {
       return (
-        <div class="wrapper-image">
+        <div class="wrapper-image o-hidden  ">
           <img class="reveal-illustration" src={image.asset.url} alt="image" />
         </div>
       );
