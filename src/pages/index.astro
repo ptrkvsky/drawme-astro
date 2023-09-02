@@ -1,17 +1,17 @@
 ---
-import { getImage } from '@astrojs/image';
+import { getImage } from "@astrojs/image";
 
-import { SectionDrawSomething } from '@features/home/components/SectionDrawSomething';
-import SectionDrawTogether from '@features/home/components/SectionDrawTogether.astro';
-import SectionHero from '@features/home/components/SectionHero.astro';
-import SectionPresentation from '@features/home/components/SectionPresentation/SectionPresentation.astro';
-import SectionProjects from '@features/home/components/SectionProjects/SectionProjects.astro';
-import SectionWhoAmI from '@features/home/components/SectionWhoAmI.astro';
-import { querySanityHome } from '@features/home/queries/querySanityHome';
-import { SanityHome } from '@features/home/interfaces/SanityHome';
-import fetchSanity from '@helpers/fetchSanity';
-import Layout from '@layouts/Layout.astro';
-import Canvas from '@features/home/components/Canvas.astro';
+import { SectionDrawSomething } from "@features/home/components/SectionDrawSomething";
+import SectionDrawTogether from "@features/home/components/SectionDrawTogether.astro";
+import SectionHero from "@features/home/components/SectionHero.astro";
+import SectionPresentation from "@features/home/components/SectionPresentation/SectionPresentation.astro";
+import SectionProjects from "@features/home/components/SectionProjects/SectionProjects.astro";
+import SectionWhoAmI from "@features/home/components/SectionWhoAmI.astro";
+import { querySanityHome } from "@features/home/queries/querySanityHome";
+import { SanityHome } from "@features/home/interfaces/SanityHome";
+import fetchSanity from "@helpers/fetchSanity";
+import Layout from "@layouts/Layout.astro";
+import Canvas from "@features/home/components/Canvas.astro";
 
 const sanityHome = await fetchSanity<SanityHome>(querySanityHome);
 // Section Intro
@@ -26,19 +26,19 @@ const sectionProjectsDescription =
   sanityHome && sanityHome.Home.sectionProjectsDescriptionRaw;
 
 const { src: illustrationWebsite } = await getImage({
-  src: import('@assets/images/illustration_website.png'),
+  src: import("@assets/images/illustration_website.png"),
 });
 const { src: illustrationPackaging } = await getImage({
-  src: import('@assets/images/illustration_packaging.png'),
+  src: import("@assets/images/illustration_packaging.png"),
 });
 const { src: illustrationSocial } = await getImage({
-  src: import('@assets/images/illustration_social.png'),
+  src: import("@assets/images/illustration_social.png"),
 });
 const { src: illustrationLogo } = await getImage({
-  src: import('@assets/images/illustration_logo.png'),
+  src: import("@assets/images/illustration_logo.png"),
 });
 const { src: illustrationIdentity } = await getImage({
-  src: import('@assets/images/illustration_identity.png'),
+  src: import("@assets/images/illustration_identity.png"),
 });
 
 const urlImages = [
@@ -56,6 +56,7 @@ const urlImages = [
   title="Graphic Designer at Cagnes sur Mer"
   Canvas={Canvas}
   urlsImages={urlImages}
+  description="Unlock your imagination with our graphic studio in Nice. We don't just draw sheep; we create artistic wonders. Let your creativity run wild with us!"
 >
   <div slot="main-content">
     <SectionHero />
