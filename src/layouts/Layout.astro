@@ -19,10 +19,11 @@ export interface Props {
   isHome: boolean;
   urlsImages?: string[];
   urlsPages?: string[];
+  description: string;
   Canvas?: (_props: Record<string, any>) => any;
 }
 
-const { title, background, urlsPages, urlsImages, Canvas } =
+const { title, background, urlsPages, urlsImages, Canvas, description } =
   Astro.props as Props;
 ---
 
@@ -30,10 +31,7 @@ const { title, background, urlsPages, urlsImages, Canvas } =
 <meta name="viewport" content="width=device-width" />
 <link rel="icon" type="image/x-icon" href="/favicon.png" />
 <meta name="generator" content={Astro.generator} />
-<Meta
-  title={"Draw me a sheep, graphic studio @ Nice"}
-  description="Unlock your imagination with our graphic studio in Nice. We don't just draw sheep; we create artistic wonders. Let your creativity run wild with us!"
-/>
+<Meta title={title} description={description} />
 
 {
   urlsImages &&
