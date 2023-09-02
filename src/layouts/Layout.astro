@@ -2,6 +2,8 @@
 import Gsap from "@components/Gsap.astro";
 import Header from "@components/Header.astro";
 import Logo from "@components/Logo.astro";
+import { Meta } from "@components/Meta";
+
 import { LogASheep } from "@components/LogASheep";
 import { Menu, Burger, Footer } from "@components/index";
 import "@styles/fonts.scss";
@@ -28,7 +30,11 @@ const { title, background, urlsPages, urlsImages, Canvas } =
 <meta name="viewport" content="width=device-width" />
 <link rel="icon" type="image/x-icon" href="/favicon.png" />
 <meta name="generator" content={Astro.generator} />
-<title>{title}</title>
+<Meta
+  title={"Draw me a sheep, graphic studio @ Nice"}
+  description="Unlock your imagination with our graphic studio in Nice. We don't just draw sheep; we create artistic wonders. Let your creativity run wild with us!"
+/>
+
 {
   urlsImages &&
     urlsImages.map((urlImage) => (
@@ -39,13 +45,11 @@ const { title, background, urlsPages, urlsImages, Canvas } =
   urlsPages &&
     urlsPages.map((urlPage) => <link rel="prefetch" href={urlPage} />)
 }
-<body style={{ background }} class="canva-black">
-  <LogASheep />
+<body style={{ background }} class="canva-black"
+  ><LogASheep />
   <Burger />
   <Header />
   <LogASheep />
-  <!-- {isHome && <CanvasHome />} -->
-  <!-- {!isHome && <CanvasProject />} -->
   <Canvas />
   <Logo />
   <Gsap>
@@ -56,6 +60,7 @@ const { title, background, urlsPages, urlsImages, Canvas } =
   </Gsap>
   <div id="portal"></div>
   <Menu />
+
   <style lang="scss" is:global>
     body {
       transition: all 0.3s linear;

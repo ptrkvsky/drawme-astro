@@ -1,0 +1,35 @@
+---
+import { getImage } from "@astrojs/image";
+
+const { src: defaultOgImage } = await getImage({
+  src: import("@assets/images/defaultOgImage.webp"),
+});
+
+interface MetaProps {
+  title: string;
+  description: string;
+  slug?: string;
+  image: string;
+}
+
+const { title, description, slug, image } = Astro.props as MetaProps;
+
+const ogImage = image || defaultOgImage;
+---
+
+<title>{title}</title>
+
+<meta name="description" content={description} />
+
+<!-- OpenGraph for Social Media -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content=`${process.env.domain}/${slug}` />
+<meta property="og:image" content={ogImage} />
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@drawmeasheep_design" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />

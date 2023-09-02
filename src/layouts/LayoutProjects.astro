@@ -1,15 +1,16 @@
 ---
 // import Gsap from '@components/Gsap.astro';
-import Header from '@components/Header.astro';
-import Logo from '@components/Logo.astro';
-import '@styles/fonts.scss';
-import '@styles/reset.css';
-import '@styles/utilities.scss';
-import '@styles/variables.scss';
-import '@styles/global.scss';
-import '@styles/functions.scss';
-import { Menu, Burger, Footer } from '@components/index';
-import { LogASheep } from '@components/LogASheep';
+import Header from "@components/Header.astro";
+import Logo from "@components/Logo.astro";
+import "@styles/fonts.scss";
+import "@styles/reset.css";
+import "@styles/utilities.scss";
+import "@styles/variables.scss";
+import "@styles/global.scss";
+import "@styles/functions.scss";
+import { Menu, Burger, Footer } from "@components/index";
+import { LogASheep } from "@components/LogASheep";
+import { Meta } from "@components/Meta";
 
 export interface Props {
   title: string;
@@ -27,7 +28,10 @@ const { title, background, urlsPages, urlsImages } = Astro.props as Props;
 <meta name="viewport" content="width=device-width" />
 <link rel="icon" type="image/x-icon" href="/favicon.png" />
 <meta name="generator" content={Astro.generator} />
-<title>{title}</title>
+<Meta
+  title={"Portfolio - Explore Our Creative Studio's Projects"}
+  description="Dive into a world of creativity and innovation. Discover an array of exceptional projects brought to life by our cool studio in all its artistic glory."
+/>
 {
   urlsImages &&
     urlsImages.map((urlImage) => (

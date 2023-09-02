@@ -1,17 +1,17 @@
 ---
-import Canvas from '@features/project/components/Canvas.astro';
-import SectionImagesDecale from '@features/project/components/SectionImagesDecale.astro';
-import { SectionImagesFooter } from '@features/project/components/SectionImagesFooter';
-import SectionNextProject from '@features/project/components/SectionNextProject.astro';
-import { SectionProjectOverview } from '@features/project/components/SectionProjectOverview';
-import { SectionQuotes } from '@features/project/components/SectionQuotes';
-import SectionSingleImage from '@features/project/components/SectionSingleImage.astro';
-import getProjectUrlParams from '@features/project/functions/getProjectUrlParams';
-import { SanityProject, SanityProjects } from '@features/project/interfaces/';
-import { querySanityProjects } from '@features/project/queries/querySanityProjects';
-import fetchSanity from '@helpers/fetchSanity';
-import Layout from '@layouts/Layout.astro';
-import config from 'src/config';
+import Canvas from "@features/project/components/Canvas.astro";
+import { SectionImagesDecale } from "@features/project/components/SectionImagesDecale";
+import { SectionImagesFooter } from "@features/project/components/SectionImagesFooter";
+import SectionNextProject from "@features/project/components/SectionNextProject.astro";
+import { SectionProjectOverview } from "@features/project/components/SectionProjectOverview";
+import { SectionQuotes } from "@features/project/components/SectionQuotes";
+import SectionSingleImage from "@features/project/components/SectionSingleImage.astro";
+import getProjectUrlParams from "@features/project/functions/getProjectUrlParams";
+import { SanityProject, SanityProjects } from "@features/project/interfaces/";
+import { querySanityProjects } from "@features/project/queries/querySanityProjects";
+import fetchSanity from "@helpers/fetchSanity";
+import Layout from "@layouts/Layout.astro";
+import config from "src/config";
 
 export async function getStaticPaths() {
   const sanityProjects = await fetchSanity<SanityProjects>(querySanityProjects);
@@ -41,9 +41,9 @@ const nextProjectUrls = [`/projects/${nextProject.slug.current}`];
 ---
 
 <script define:vars={{ hue, saturation, config }}>
-  const root = document.querySelector(':root');
-  root.style.setProperty('--canva-hue', hue);
-  root.style.setProperty('--canva-saturation', saturation);
+  const root = document.querySelector(":root");
+  root.style.setProperty("--canva-hue", hue);
+  root.style.setProperty("--canva-saturation", saturation);
 </script>
 
 <Layout
