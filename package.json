@@ -10,7 +10,7 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/react": "^2.3.2",
+    "@astrojs/react": "^3.0.0",
     "@typescript-eslint/parser": "^5.34.0",
     "astro": "2.10.9",
     "eslint": "^8.22.0",
