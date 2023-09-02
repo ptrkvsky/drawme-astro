@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@astrojs/image": "^0.3.4",
-    "@astrojs/prefetch": "^0.3.0",
+    "@astrojs/prefetch": "^0.4.0",
     "@portabletext/to-html": "^2.0.3",
     "@sanity/image-url": "^1.0.1",
     "@studio-freight/lenis": "^1.0.16",
