@@ -29,7 +29,7 @@ export function getMenuAnimation(splitLink: SplitText) {
       scaleX: 0,
       stagger: 0.25,
       ease: "power1.inOut",
-      duration: 0.75,
+      duration: 0.5,
     },
     "reveal"
   );
@@ -52,6 +52,7 @@ export function getMenuAnimation(splitLink: SplitText) {
     tlMenu.from(char, {
       scrambleText: emojis[index],
       duration: 0.25,
+      delay: -0.1,
       stagger: 0.25,
     });
   });
