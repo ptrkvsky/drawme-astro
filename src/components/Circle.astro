@@ -16,7 +16,7 @@
       type: `chars`,
     });
 
-    gsap.set(whoamiReSplitted.chars, { yPercent: -103 });
+    gsap.set(whoamiReSplitted.chars, { yPercent: -110, scale: 0.9 });
 
     gsap
       .timeline({
@@ -27,8 +27,11 @@
       })
       .to(whoamiReSplitted.chars, {
         yPercent: 0,
-        duration: 1,
-        ease: "expo.inout",
+        delay: 0.5,
+        duration: 0.75,
+        ease: "expo.out",
+        stagger: 0.02,
+        scale: 1,
       })
       .fromTo(
         `#svg-cercle-line-1`,
@@ -37,16 +40,16 @@
         },
         {
           drawSVG: true,
-          ease: `power3.inOut`,
-          delay: 0,
+          ease: `expo.inOut`,
+          delay: -0.75,
           duration: 1.5,
         }
       );
   });
 </script>
 
-<a href="/who-am-i" class="who-am-i o-hidden" rel="prefetch">
-  <span class="text">Who am i ?</span>
+<a href="/who-am-i" class="who-am-i" rel="prefetch">
+  <span class="text o-hidden split-text">Who am i ?</span>
   <svg
     id="svg-cercle"
     class="circle"
