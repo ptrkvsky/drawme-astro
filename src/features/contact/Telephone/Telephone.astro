@@ -13,15 +13,25 @@
     const delay = delayPreloader + 0.5;
 
     splitTelephone();
-    gsap.set("#telephone div", { yPercent: -103 });
+    splitTelephone();
 
-    gsap.timeline().to("#telephone div", {
-      duration: 0.75,
-      yPercent: 0,
-      stagger: 0.05,
-      ease: "expo.inOut",
-      delay,
-    });
+    gsap
+      .timeline()
+      .to("#telephone div", {
+        duration: 0.75,
+        yPercent: 0,
+        stagger: 0.05,
+        ease: "expo.inOut",
+        delay,
+      })
+      .call(
+        () => {
+          console.log("test");
+          // document.querySelector("#telephone").classList.remove("o-hidden");
+        },
+        [],
+        0.1
+      );
   });
 </script>
 
@@ -32,6 +42,7 @@
 <style lang="scss" is:global>
   .contact___telephone {
     position: relative;
+    padding-left: 1.5rem;
     color: #fff;
     font-size: 0;
     font-family: var(--text-script-bold);
