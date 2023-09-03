@@ -1,7 +1,7 @@
-import React from 'react';
-import { useRef } from 'react';
-import CanvasDraw from 'react-canvas-draw';
-import { useCanvasResize, useSendEmail } from './ReactCanva.hooks';
+import React from "react";
+import { useRef } from "react";
+import CanvasDraw from "react-canvas-draw";
+import { useCanvasResize, useSendEmail } from "./ReactCanva.hooks";
 
 const ReactCanva = () => {
   const refCanvas = useRef<CanvasDraw | null>();
@@ -16,8 +16,8 @@ const ReactCanva = () => {
     <>
       <CanvasDraw
         ref={(canvasDraw) => (refCanvas.current = canvasDraw)}
-        backgroundColor={'#272729'}
-        brushColor={'#00F9DF'}
+        backgroundColor={"#272729"}
+        brushColor={"#00F9DF"}
         canvasHeight={canvasHeight}
         canvasWidth="1920"
         hideInterface={false}
@@ -35,10 +35,14 @@ const ReactCanva = () => {
               type="button"
               disabled={isLoading}
             >
-              {isLoading ? 'Loading...' : 'Send me your artwork >'}
+              {isLoading
+                ? "Your artistry is about to amaze the world"
+                : "Share your artwork with me >"}
             </button>
           ) : (
-            <button className="section-draw-button success">Thank you !</button>
+            <button className="section-draw-button success">
+              Grateful for your artistry!
+            </button>
           )}
         </div>
       </div>
