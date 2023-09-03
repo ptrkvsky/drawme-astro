@@ -11,9 +11,8 @@
   document.addEventListener("DOMContentLoaded", () => {
     const delayPreloader = getPreloaderDelay();
     const delay = delayPreloader + 0.5;
-
     splitTelephone();
-    splitTelephone();
+    gsap.set("#telephone div", { yPercent: -103 });
 
     gsap
       .timeline()
