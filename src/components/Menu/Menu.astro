@@ -27,7 +27,7 @@
       setTimeout(() => {
         const href = element.getAttribute("href");
         window.location.href = href;
-      }, 2750);
+      }, 1950);
     });
   });
 </script>
@@ -40,7 +40,7 @@
           <span class="line"></span>
           <a
             data-txt-origin="Home"
-            class="link menu__item"
+            class="link menu__item split-text"
             data-img="/assets/images/menu-home.png"
             href="/">Home</a
           >
@@ -48,7 +48,7 @@
         <li>
           <span class="line"></span>
           <a
-            class="link menu__item"
+            class="link menu__item split-text"
             data-img="/assets/images/menu-who-am-i.png"
             rel="prefetch"
             href="/who-am-i">Who am i</a
@@ -57,7 +57,7 @@
         <li>
           <span class="line"></span>
           <a
-            class="link menu__item"
+            class="link menu__item split-text"
             data-img="/assets/images/menu-who-am-i.png"
             rel="prefetch"
             href="/projects">Projects</a
@@ -66,7 +66,7 @@
         <li>
           <span class="line"></span>
           <a
-            class="link menu__item"
+            class="link menu__item split-text"
             data-img="/assets/images/menu-contact.png"
             rel="prefetch"
             href="/contact">Contact</a
@@ -122,11 +122,10 @@
           text-align: center;
           justify-content: center;
           mix-blend-mode: difference;
-          margin: clamp(48px, 4.8rem, 4.8rem);
+          margin: clamp(24px, 2.4rem, 2.4rem);
 
           color: white;
           font-size: clamp(50px, 6rem, 6rem);
-          overflow: hidden;
         }
 
         .line {
