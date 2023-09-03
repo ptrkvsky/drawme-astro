@@ -14,23 +14,13 @@
     splitTelephone();
     gsap.set("#telephone div", { yPercent: -103 });
 
-    gsap
-      .timeline()
-      .to("#telephone div", {
-        duration: 0.75,
-        yPercent: 0,
-        stagger: 0.05,
-        ease: "expo.inOut",
-        delay,
-      })
-      .call(
-        () => {
-          console.log("test");
-          // document.querySelector("#telephone").classList.remove("o-hidden");
-        },
-        [],
-        0.1
-      );
+    gsap.timeline().to("#telephone div", {
+      duration: 0.75,
+      yPercent: 0,
+      stagger: 0.05,
+      ease: "expo.inOut",
+      delay,
+    });
   });
 </script>
 
