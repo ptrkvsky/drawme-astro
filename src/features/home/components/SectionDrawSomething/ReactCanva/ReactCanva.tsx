@@ -5,7 +5,7 @@ import { useCanvasResize, useSendEmail } from "./ReactCanva.hooks";
 
 const ReactCanva = () => {
   const refCanvas = useRef<CanvasDraw | null>();
-  const { data, isLoading, error, send } = useSendEmail();
+  const { data, isLoading, send } = useSendEmail();
   const canvasHeight: number = useCanvasResize();
 
   function undo() {
@@ -25,14 +25,19 @@ const ReactCanva = () => {
 
       <div className="wrapper-button">
         <div className="relative container">
-          <button className="section-draw-button" onClick={undo}>
+          <button
+            id="undo"
+            className="section-draw-button split-text o-hidden"
+            onClick={undo}
+          >
             Undo
           </button>
           {!data?.response ? (
             <button
               onClick={() => send(refCanvas.current?.getDataURL())}
-              className="section-draw-button"
+              className="section-draw-button split-text o-hidden"
               type="button"
+              id="submit-draw"
               disabled={isLoading}
             >
               {isLoading

@@ -6,10 +6,7 @@ gsap.registerPlugin(SplitText);
 
 export function animateTitle() {
   const showCaseTitle = document.querySelector("#showcase-title");
-  if (!showCaseTitle) {
-    console.log("now showcase");
-    return;
-  }
+  if (!showCaseTitle) return;
 
   const splitSheep = new SplitText(
     document.querySelectorAll("#showcase-title .word"),

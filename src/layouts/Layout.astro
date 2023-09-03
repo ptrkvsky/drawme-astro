@@ -27,42 +27,6 @@ const { title, background, urlsPages, urlsImages, Canvas, description } =
   Astro.props as Props;
 ---
 
-<script>
-  const _0x1f2a = [
-    "\x62\x6F\x74",
-    "\x67\x6F\x6F\x67\x6C\x65\x62\x6F\x74",
-    "\x63\x72\x61\x77\x6C\x69\x6E\x67\x2D\x4C\x69\x67\x68\x74\x68\x6F\x75\x73\x65",
-  ];
-  const isBot = RegExp(_0x1f2a[0], _0x1f2a[2])[_0x1f2a[1]](
-    navigator[_0x1f2a[0]]
-  );
-
-  function drawUkraineFlag() {
-    const width = 9; // Width of the flag in squares
-    const height = 6; // Height of the flag in squares
-    const blueSquare = "\u25A0"; // Unicode character for a solid square (■)
-    const yellowSquare = "\u25A1"; // Unicode character for an empty square (□)
-
-    for (let row = 0; row < height; row++) {
-      for (let col = 0; col < width; col++) {
-        if (
-          (row % 2 === 0 && col % 2 === 0) ||
-          (row % 2 === 1 && col % 2 === 1)
-        ) {
-          // Print blue squares for even rows and even columns, as well as odd rows and odd columns
-          console.log(blueSquare);
-        } else {
-          // Print yellow squares for the other cases
-          console.log(yellowSquare);
-        }
-      }
-      console.log("\n"); // Start a new line after each row
-    }
-  }
-
-  // Call the function to draw the Ukrainian flag
-  drawUkraineFlag();
-</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width" />
 <link rel="icon" type="image/x-icon" href="/favicon.png" />

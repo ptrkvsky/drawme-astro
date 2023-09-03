@@ -1,12 +1,34 @@
 <script>
-  import gsap from 'gsap';
-  document.addEventListener('DOMContentLoaded', function () {
+  import gsap from "gsap";
+  import { SplitText } from "gsap/SplitText";
+  gsap.registerPlugin(SplitText);
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const whoami = document.querySelector("#section-who-am-i .who-am-i");
+
+    if (!whoami) return;
+
+    const whoamiSplitted = new SplitText(whoami, {
+      type: `chars`,
+    });
+
+    const whoamiReSplitted = new SplitText(whoamiSplitted.chars, {
+      type: `chars`,
+    });
+
+    gsap.set(whoamiReSplitted.chars, { yPercent: -103 });
+
     gsap
       .timeline({
         scrollTrigger: {
-          trigger: '#section-who-am-i',
-          start: 'top 85%', // top of the element, bottom of the viewport
+          trigger: "#section-who-am-i",
+          start: "top 85%", // top of the element, bottom of the viewport
         },
+      })
+      .to(whoamiReSplitted.chars, {
+        yPercent: 0,
+        duration: 1,
+        ease: "expo.inout",
       })
       .fromTo(
         `#svg-cercle-line-1`,
@@ -23,7 +45,7 @@
   });
 </script>
 
-<a href="/who-am-i" class="who-am-i" rel="prefetch">
+<a href="/who-am-i" class="who-am-i o-hidden" rel="prefetch">
   <span class="text">Who am i ?</span>
   <svg
     id="svg-cercle"

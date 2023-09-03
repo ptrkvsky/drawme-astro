@@ -1,12 +1,32 @@
 ---
-import { AnswerNo } from './AnswerNo';
+import { AnswerNo } from "./AnswerNo";
 ---
 
-<section
-  id="section-draw-together"
-  class="section-draw-together overflow-visible"
->
-  <h2 class="title">
+<script>
+  import {
+    revealTitleMobile,
+    revealTitle,
+  } from "./SectionDrawSomething/SectionDrawSomething.animation";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const isDesktop = window.innerWidth > 1024;
+
+    const revealTitleConfig = {
+      target: "#section-draw-together .title",
+      type: "words" as const,
+      trigger: "#section-draw-together",
+    };
+    const revealTitleMobileConfig = {
+      target: revealTitleConfig.target,
+      trigger: revealTitleConfig.trigger,
+    };
+
+    revealTitleMobile(revealTitleMobileConfig);
+  });
+</script>
+
+<section id="section-draw-together" class="section-draw-together">
+  <h2 class="title split-text o-hidden">
     Should we draw together <span class="highlight">?</span>
   </h2>
   <div class="answers">
