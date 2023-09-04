@@ -1,7 +1,7 @@
 ---
 import Gsap from "@components/Gsap.astro";
 import Header from "@components/Header.astro";
-import { Logo } from "@components/Logo";
+import { Preloader } from "@components/Preloader";
 import { Meta } from "@components/Meta";
 
 import { LogASheep } from "@components/LogASheep";
@@ -49,7 +49,7 @@ const { title, background, urlsPages, urlsImages, Canvas, description } =
   <Header />
   <LogASheep />
   <Canvas />
-  <Logo />
+  <Preloader />
   <Gsap>
     <div id="main-content" style={{ opacity: 0 }}>
       <slot name="main-content" />

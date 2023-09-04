@@ -1,7 +1,7 @@
 ---
 // import Gsap from '@components/Gsap.astro';
 import Header from "@components/Header.astro";
-import { Logo } from "@components/Logo";
+import { Preloader } from "@components/Preloader";
 import "@styles/fonts.scss";
 import "@styles/reset.css";
 import "@styles/utilities.scss";
@@ -46,7 +46,7 @@ const { background, urlsPages, urlsImages } = Astro.props as Props;
 
   <Burger />
   <Header />
-  <Logo />
+  <Preloader />
 
   <div id="main-content" style={{ opacity: 0 }}>
     <slot name="main-content" />
@@ -63,4 +63,4 @@ const { background, urlsPages, urlsImages } = Astro.props as Props;
       font-size: calc(100vw / 1920 * 10);
     }
   </style>
-</body>
+</body>@components/Preloader

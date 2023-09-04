@@ -1,6 +1,5 @@
 import gsap from "gsap";
 import config from "src/config";
-import { isBot } from "./Logo.functions";
 
 /**
  * Animates the preloader screen, transitioning to the main content display.
@@ -111,7 +110,7 @@ export function initPage() {
   ).matches;
   const isPreloaderSeen = sessionStorage.getItem("isPreloaderSeen");
 
-  if (!isPreloaderSeen && !isBot() && !isMotionReduced) {
+  if (!isPreloaderSeen && !isMotionReduced) {
     animatePreloader();
   } else {
     animatePageIn();
