@@ -1,22 +1,22 @@
 ---
-import { getImage } from '@astrojs/image';
-import { portableTextComponents } from '@helpers/portableTextComponents';
-import { toHTML } from '@portabletext/to-html';
+import { getImage } from "@astrojs/image";
+import { portableTextComponents } from "@helpers/portableTextComponents";
+import { toHTML } from "@portabletext/to-html";
 
 const { src: illustrationWebsite } = await getImage({
-  src: import('@assets/images/illustration_website.png'),
+  src: import("@assets/images/illustration_website.png"),
 });
 const { src: illustrationPackaging } = await getImage({
-  src: import('@assets/images/illustration_packaging.png'),
+  src: import("@assets/images/illustration_packaging.png"),
 });
 const { src: illustrationSocial } = await getImage({
-  src: import('@assets/images/illustration_social.png'),
+  src: import("@assets/images/illustration_social.png"),
 });
 const { src: illustrationLogo } = await getImage({
-  src: import('@assets/images/illustration_logo.png'),
+  src: import("@assets/images/illustration_logo.png"),
 });
 const { src: illustrationIdentity } = await getImage({
-  src: import('@assets/images/illustration_identity.png'),
+  src: import("@assets/images/illustration_identity.png"),
 });
 
 interface AstroProps {
@@ -32,26 +32,25 @@ const sectionProjectsTitleHTML = toHTML(sectionProjectsTitle, {
 ---
 
 <script>
-  import { createCanvas } from '@helpers/createCanvas';
+  import { createCanvas } from "@helpers/createCanvas";
 
   import {
     setIllustrationsLagAndSpeed,
     setTextsLagAndSpeed,
-  } from './SectionProjects.functions';
-  import {
-    revealTexts,
-    revealIllustrations,
-  } from './SectionProjects.animations';
+  } from "./SectionProjects.functions";
+  import { revealProjects, revealTexts } from "./SectionProjects.animations";
 
   if (window.innerWidth > 1024) {
     createCanvas();
   }
 
-  window.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener("DOMContentLoaded", () => {
     setIllustrationsLagAndSpeed();
     setTextsLagAndSpeed();
     revealTexts();
-    revealIllustrations();
+    revealProjects({
+      triggerSelector: ".wrapper-illustration-title",
+    });
   });
 </script>
 
@@ -81,7 +80,7 @@ const sectionProjectsTitleHTML = toHTML(sectionProjectsTitle, {
   >
     <div class="relative">
       <h3
-        class="sub-title"
+        class="sub-title split-text o-hidden"
         id="subtitle-website"
         class="split-text"
         data-speed="0.97"
@@ -115,7 +114,7 @@ const sectionProjectsTitleHTML = toHTML(sectionProjectsTitle, {
     <div class="relative">
       <h3
         id="subtitle-identity"
-        class="sub-title"
+        class="sub-title split-text o-hidden"
         data-speed="0.97"
         data-lag="0.04"
       >
@@ -145,7 +144,13 @@ const sectionProjectsTitleHTML = toHTML(sectionProjectsTitle, {
     class="wrapper-illustration-title wrapper-canva-image logo"
   >
     <div class="relative">
-      <h3 id="subtitle-infizio" class="sub-title" data-lag="0.04">Logotype</h3>
+      <h3
+        id="subtitle-infizio"
+        class="sub-title split-text o-hidden"
+        data-lag="0.04"
+      >
+        Logotype
+      </h3>
       <div class="illustration" data-speed="1.04" data-lag="0.05">
         <div id="curtain-infizio" class="curtain-illustration">
           <div id="canva-infizio" class="canva-holder"></div>
@@ -172,7 +177,7 @@ const sectionProjectsTitleHTML = toHTML(sectionProjectsTitle, {
     <div class="relative">
       <h3
         id="subtitle-dissidente"
-        class="sub-title"
+        class="sub-title split-text o-hidden"
         data-speed="0.97"
         data-lag="0.04"
       >
@@ -214,7 +219,7 @@ const sectionProjectsTitleHTML = toHTML(sectionProjectsTitle, {
     <div class="relative">
       <h3
         id="subtitle-packaging"
-        class="sub-title"
+        class="sub-title split-text o-hidden"
         data-speed="0.97"
         data-lag="0.04"
       >

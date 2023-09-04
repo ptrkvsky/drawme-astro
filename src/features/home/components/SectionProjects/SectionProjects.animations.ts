@@ -1,21 +1,34 @@
-import gsap from 'gsap';
-import { splitAndReveal, ParamsSplitAndReveal } from '@helpers/gsap';
-import config from 'src/config';
+import gsap from "gsap";
+import config from "src/config";
+import { SplitText } from "gsap/SplitText";
 
+gsap.registerPlugin(SplitText);
+
+/**
+ * @desc reveal title and description
+ */
 export function revealTexts() {
   gsap
     .timeline({
       scrollTrigger: {
         trigger: `#section-projets-title`,
-        start: 'top 85%', // when the top of the trigger hits the bottom of the viewport
+        start: "top 85%", // when the top of the trigger hits the bottom of the viewport
       },
     })
     // Reveal
-    .from('#section-projets-title', {
+    .from("#section-projets-title", {
       opacity: 0,
       scale: 0.995,
       duration: 1,
-      ease: 'power1.inOut',
+      ease: "power1.inOut",
+    })
+
+    // Reveal description
+    .to(`#section-projets-description`, {
+      opacity: 1,
+      delay: -1,
+      duration: 1,
+      ease: "power1.inOut",
     })
     .fromTo(
       `#section-projets-title .path-zigwigwi`,
@@ -27,78 +40,74 @@ export function revealTexts() {
         ease: `power3.inOut`,
         duration: 1,
       }
-    )
-    // Reveal description
-    .to(`#section-projets-description`, {
-      opacity: 1,
-      delay: -1,
-      duration: 1,
-      ease: 'power1.inOut',
-    });
+    );
 }
 
-export function revealIllustrations() {
-  const paramsSplitAndRevealSubtitleIdentity: ParamsSplitAndReveal = {
-    element: '#subtitle-identity',
-    typeSplit: 'chars',
-    trigger: '#subtitle-identity',
-  };
+interface ConfigRevealProject {
+  triggerSelector: string;
+}
 
-  const paramsSplitAndRevealSubtitleLogo: ParamsSplitAndReveal = {
-    element: '#subtitle-logo',
-    typeSplit: 'chars',
-    trigger: '#subtitle-logo',
-  };
-
-  const paramsSplitAndRevealSubtitlePackaging: ParamsSplitAndReveal = {
-    element: '#subtitle-packaging',
-    typeSplit: 'chars',
-    trigger: '#subtitle-packaging',
-  };
-
-  const paramsSplitAndRevealSubtitleSocial: ParamsSplitAndReveal = {
-    element: '#subtitle-social',
-    typeSplit: 'chars',
-    trigger: '#subtitle-social',
-  };
-
-  const paramsSplitAndRevealSubtitleWebsite: ParamsSplitAndReveal = {
-    element: '#subtitle-website',
-    typeSplit: 'chars',
-    trigger: '#subtitle-website',
-  };
-
-  const marker =
-    config.mode === 'development'
+/**
+ * Animate image and titlie projects
+ */
+export function revealProjects({ triggerSelector }: ConfigRevealProject) {
+  const marker: ScrollTrigger.MarkersVars | boolean =
+    config.mode === "development"
       ? {
-          startColor: 'red',
-          endColor: 'pink',
-          fontSize: '16px',
-          fontWeight: 'bold',
-          indent: 20,
+          startColor: "blue",
+          endColor: "hotpink",
+          fontSize: "16px",
+          fontWeight: "bold",
+          indent: 120,
         }
       : false;
 
-  gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: `#section-projets`,
-        markers: marker,
-        start: 'top 85%', // when the top of the trigger hits the bottom of the viewport
-      },
-    })
+  const triggers: NodeListOf<HTMLDivElement> =
+    document.querySelectorAll(triggerSelector);
 
-    .call(() => {
-      splitAndReveal(paramsSplitAndRevealSubtitlePackaging);
-      splitAndReveal(paramsSplitAndRevealSubtitleWebsite);
-      splitAndReveal(paramsSplitAndRevealSubtitleIdentity);
-      splitAndReveal(paramsSplitAndRevealSubtitleLogo);
-      splitAndReveal(paramsSplitAndRevealSubtitleSocial);
-    })
-    .to('.section-projets .illustration', {
-      delay: 1,
-      opacity: 1,
-      duration: 1,
-      stagger: 0.05,
+  if (triggers.length === 0) return;
+
+  triggers.forEach((trigger) => {
+    const title: HTMLHeadingElement | null =
+      trigger.querySelector(".sub-title");
+    const illustration: HTMLHeadingElement | null =
+      trigger.querySelector(".illustration");
+
+    if (!title || !illustration) return;
+
+    const splitTitleOnce = new SplitText(title, {
+      type: `chars`,
     });
+
+    const splitTitleTwice = new SplitText(splitTitleOnce.chars, {
+      type: `chars`,
+    });
+
+    gsap.set(splitTitleTwice.chars, { yPercent: -103 });
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: trigger,
+          endTrigger: "footer",
+          markers: marker,
+          start: "top 75%",
+        },
+      })
+      .to(splitTitleTwice.chars, {
+        duration: 1,
+        yPercent: 0,
+        stagger: 0.04,
+        ease: "expo.inOut",
+      })
+      .call(() => {
+        title.classList.remove("o-hidden");
+        title.classList.remove("split-text");
+      })
+      .to(illustration, {
+        opacity: 1,
+        duration: 0.75,
+        delay: -0.25,
+      });
+  });
 }
