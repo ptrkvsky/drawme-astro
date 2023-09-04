@@ -3,13 +3,35 @@ import { AnswerNo } from "./AnswerNo";
 ---
 
 <script>
-  import {
-    revealTitleMobile,
-    revealTitle,
-  } from "./SectionDrawSomething/SectionDrawSomething.animation";
+  import gsap from "gsap";
+  import { revealTitleMobile } from "./SectionDrawSomething/SectionDrawSomething.animation";
+
+  const callback = () => {
+    gsap
+      .timeline()
+      .to(["#answer-yes, #answer-no"], {
+        opacity: 1,
+        Y: 0,
+        duration: 0.75,
+        ease: "expo.inout",
+        stagger: 0.1,
+      })
+      .to("#section-draw-together__path", {
+        drawSVG: true,
+        ease: `power3.inOut`,
+        duration: 1,
+      });
+  };
 
   document.addEventListener("DOMContentLoaded", () => {
-    const isDesktop = window.innerWidth > 1024;
+    gsap.set(["#answer-yes, #answer-no"], {
+      opacity: 0,
+      y: -10,
+    });
+
+    gsap.set(`#section-draw-together__path`, {
+      drawSVG: false,
+    });
 
     const revealTitleConfig = {
       target: "#section-draw-together .title",
@@ -19,6 +41,7 @@ import { AnswerNo } from "./AnswerNo";
     const revealTitleMobileConfig = {
       target: revealTitleConfig.target,
       trigger: revealTitleConfig.trigger,
+      callback,
     };
 
     revealTitleMobile(revealTitleMobileConfig);

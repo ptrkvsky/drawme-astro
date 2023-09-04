@@ -8,9 +8,10 @@ interface RevealConfig {
   target: string;
   type?: `chars` | `words` | `lines`;
   trigger: string;
+  callback?: () => void;
 }
 
-export function revealTitle({ target, type, trigger }: RevealConfig) {
+export function revealTitle({ target, type, trigger, callback }: RevealConfig) {
   const splitedElement = new SplitText(target, {
     type,
   });
@@ -34,7 +35,8 @@ export function revealTitle({ target, type, trigger }: RevealConfig) {
     });
 }
 
-export function revealTitleMobile({ target, trigger }: RevealConfig) {
+export function revealTitleMobile({ target, trigger, callback }: RevealConfig) {
+  console.log("callback", callback);
   const splitedElement = new SplitText(target, {
     type: "words",
   });
@@ -58,5 +60,10 @@ export function revealTitleMobile({ target, trigger }: RevealConfig) {
       yPercent: 0,
       stagger: 0.04,
       ease: "expo.inOut",
+    })
+    .call(() => {
+      if (callback) {
+        callback();
+      }
     });
 }
