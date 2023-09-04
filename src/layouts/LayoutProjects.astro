@@ -1,7 +1,7 @@
 ---
 // import Gsap from '@components/Gsap.astro';
 import Header from "@components/Header.astro";
-import Logo from "@components/Logo.astro";
+import { Logo } from "@components/Logo";
 import "@styles/fonts.scss";
 import "@styles/reset.css";
 import "@styles/utilities.scss";
@@ -18,10 +18,9 @@ export interface Props {
   isHome: boolean;
   urlsImages?: string[];
   urlsPages?: string[];
-  // Canvas?: (_props: Record<string, any>) => any;
 }
 
-const { title, background, urlsPages, urlsImages } = Astro.props as Props;
+const { background, urlsPages, urlsImages } = Astro.props as Props;
 ---
 
 <meta charset="UTF-8" />
