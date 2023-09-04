@@ -1,26 +1,26 @@
 ---
-import Circle from '@components/Circle.astro';
+import { Circle } from "@components/Circle";
 ---
 
 <script>
-  import { horizontalLoop } from '@helpers/gsap/horizontalLoop';
-  import gsap from 'gsap';
+  import { horizontalLoop } from "@helpers/gsap/horizontalLoop";
+  import gsap from "gsap";
 
-  gsap.utils.toArray('.stripes').forEach((line: any, i) => {
-    const links = line.querySelectorAll('.stripe'),
+  gsap.utils.toArray(".stripes").forEach((line: any, i) => {
+    const links = line.querySelectorAll(".stripe"),
       tl = horizontalLoop(links, {
         repeat: -1,
         speed: 1 + i * 0.5,
         reversed: i ? true : false,
         paddingRight: parseFloat(
-          `${gsap.getProperty(links[0], 'marginRight', 'px')}`
+          `${gsap.getProperty(links[0], "marginRight", "px")}`
         ), // otherwise first element would be right up against the last when it loops. In this layout, the spacing is done with marginRight.
       });
     links.forEach((link) => {
-      link.addEventListener('mouseenter', () =>
+      link.addEventListener("mouseenter", () =>
         gsap.to(tl, { timeScale: 0, overwrite: true })
       );
-      link.addEventListener('mouseleave', () =>
+      link.addEventListener("mouseleave", () =>
         gsap.to(tl, { timeScale: i ? -1 : 1, overwrite: true })
       );
     });

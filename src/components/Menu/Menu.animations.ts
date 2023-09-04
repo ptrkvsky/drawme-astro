@@ -7,7 +7,13 @@ const emojis = emojiString.split(" "); // Splits the sentence into an array of i
 
 gsap.registerPlugin(ScrambleTextPlugin);
 
-export function getMenuAnimation(splitLink: SplitText) {
+/**
+ * Gets the animation for the menu.
+ *
+ * @param splitLink - The SplitText instance for menu text animation.
+ * @returns The menu animation timeline.
+ */
+export function getMenuAnimation(splitLink: SplitText): gsap.core.Timeline {
   // fadein menu
   tlMenu
     .fromTo(
@@ -61,7 +67,12 @@ export function getMenuAnimation(splitLink: SplitText) {
   return tlMenu;
 }
 
-export function getBurgerAnimation() {
+/**
+ * Gets the animation for the burger menu button to open.
+ *
+ * @returns The burger menu button open animation timeline.
+ */
+export function getBurgerAnimation(): gsap.core.Timeline {
   const tlBurger = gsap.timeline();
 
   tlBurger.addLabel("animate-button-open");
@@ -105,6 +116,12 @@ export function getBurgerAnimation() {
   return tlBurger;
 }
 
+/**
+ * Handles the click event on the burger menu button.
+ *
+ * @param tlBurger - The timeline for the burger menu button animation.
+ * @param tlMenu - The timeline for the menu animation.
+ */
 export function handleClickBurger(
   tlBurger: gsap.core.Timeline,
   tlMenu: gsap.core.Timeline
@@ -120,6 +137,10 @@ export function handleClickBurger(
   wrapperMenu.classList.toggle("is-open");
 }
 
+/**
+ * Scrambles and modifies the text content of elements with a "data-txt-origin" attribute.
+ * This function uses GSAP to animate text scrambling and optionally modify the text content.
+ */
 export function scrambleMenu() {
   const elementsWithDataAttribute: NodeListOf<HTMLAnchorElement> =
     document.querySelectorAll("[data-txt-origin]");

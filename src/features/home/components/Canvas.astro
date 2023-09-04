@@ -1,15 +1,16 @@
 <script>
-  import handleCurtainSuccess from '@features/project/functions/handleCurtainSuccess';
-  import { Curtains } from 'curtainsjs';
+  //@ts-ignore
+  import { Curtains } from "curtainsjs";
+  import handleCurtainSuccess from "@features/project/functions/handleCurtainSuccess";
 
-  window.addEventListener('load', () => {
-    if (!document.querySelector('#main-canva')) return;
+  window.addEventListener("DOMContentLoaded", () => {
+    const mainCanva = document.querySelector("#main-canva");
+    if (!mainCanva) return;
     /**
      * BLACK
      */
     const curtainBlack = new Curtains({
-      container: document.getElementById('main-canva'),
-      pixelRatio: Math.min(1.5, window.devicePixelRatio),
+      container: document.getElementById("main-canva"),
     });
 
     const bgBlack = {
@@ -19,14 +20,14 @@
     };
 
     curtainBlack.onSuccess(
-      handleCurtainSuccess(curtainBlack, 'main-canva', 2.23, 2.875, bgBlack)
+      handleCurtainSuccess(curtainBlack, "main-canva", 2.23, 2.875, bgBlack)
     );
 
     /**
      * WHITE
      */
     const curtainWhite = new Curtains({
-      container: 'canva-white',
+      container: "canva-white",
       pixelRatio: Math.min(1.5, window.devicePixelRatio),
     });
 
@@ -37,7 +38,7 @@
     };
 
     curtainWhite.onSuccess(
-      handleCurtainSuccess(curtainWhite, 'canva-white', 2.28, 0.5, bgWhite)
+      handleCurtainSuccess(curtainWhite, "canva-white", 2.28, 0.5, bgWhite)
     );
   });
 </script>

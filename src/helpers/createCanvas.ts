@@ -1,10 +1,11 @@
-import { Curtains, Plane, Vec2 } from 'curtainsjs';
+//@ts-ignore
+import { Curtains, Plane, Vec2 } from "curtainsjs";
 
 // '.wrapper-canva-image', .canva-holder .curtain
 export function createCanvas() {
-  window.addEventListener('load', () => {
+  window.addEventListener("DOMContentLoaded", () => {
     const wrappersIllustration: NodeListOf<HTMLDivElement> =
-      document.querySelectorAll('.wrapper-canva-image');
+      document.querySelectorAll(".wrapper-canva-image");
 
     wrappersIllustration.forEach((wrapperIllustration) => {
       // track the mouse positions to send it to the shaders
@@ -20,11 +21,11 @@ export function createCanvas() {
         const mouse = new Vec2();
 
         // touch event
-        if ('targetTouches' in e && e.targetTouches) {
+        if ("targetTouches" in e && e.targetTouches) {
           mouse.set(e.targetTouches[0].clientX, e.targetTouches[0].clientY);
         }
         // mouse event
-        else if ('clientX' in e) {
+        else if ("clientX" in e) {
           mouse.set(e.clientX, e.clientY);
         }
 
@@ -134,7 +135,7 @@ export function createCanvas() {
       }
       `;
 
-      const curtainId = wrapperIllustration.querySelector('.canva-holder')?.id;
+      const curtainId = wrapperIllustration.querySelector(".canva-holder")?.id;
 
       if (!curtainId) return;
 
@@ -149,7 +150,7 @@ export function createCanvas() {
       curtain
         .onError(() => {
           // we will add a class to the document body to display original images
-          document.body.classList.add('no-curtains');
+          document.body.classList.add("no-curtains");
         })
         .onContextLost(() => {
           // on context lost, try to restore the context
@@ -157,7 +158,7 @@ export function createCanvas() {
         });
 
       // get our plane element
-      const planeElement = wrapperIllustration.querySelector('.curtain');
+      const planeElement = wrapperIllustration.querySelector(".curtain");
       if (!planeElement) return;
       // some basic parameters
       const params = {
@@ -168,26 +169,26 @@ export function createCanvas() {
         uniforms: {
           resolution: {
             // resolution of our plane
-            name: 'uResolution',
-            type: '2f', // notice this is an length 2 array of floats
+            name: "uResolution",
+            type: "2f", // notice this is an length 2 array of floats
             value: [planeElement.clientWidth, planeElement.clientHeight],
           },
           time: {
             // time uniform that will be updated at each draw call
-            name: 'uTime',
-            type: '1f',
+            name: "uTime",
+            type: "1f",
             value: 0,
           },
           mousePosition: {
             // our mouse position
-            name: 'uMousePosition',
-            type: '2f', // again an array of floats
+            name: "uMousePosition",
+            type: "2f", // again an array of floats
             value: mousePosition,
           },
           mouseMoveStrength: {
             // the mouse move strength
-            name: 'uMouseMoveStrength',
-            type: '1f',
+            name: "uMouseMoveStrength",
+            type: "1f",
             value: 0,
           },
         },
@@ -206,12 +207,12 @@ export function createCanvas() {
           deltas.max = 2;
 
           // now that our plane is ready we can listen to mouse move event
-          wrapperIllustration.addEventListener('mousemove', (e) => {
+          wrapperIllustration.addEventListener("mousemove", (e) => {
             handleMovement(e, simplePlane, curtain);
           });
 
           wrapperIllustration.addEventListener(
-            'touchmove',
+            "touchmove",
             (e) => {
               handleMovement(e, simplePlane, curtain);
             },
@@ -240,7 +241,7 @@ export function createCanvas() {
         })
         .onError(() => {
           // we will add a class to the document body to display original images
-          document.body.classList.add('no-curtains');
+          document.body.classList.add("no-curtains");
         });
     });
   });
