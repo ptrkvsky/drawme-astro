@@ -244,5 +244,8 @@ export function createCanvas() {
           document.body.classList.add("no-curtains");
         });
     });
+
+    const eventCanvasComplete = new Event("canvasComplete");
+    document.dispatchEvent(eventCanvasComplete);
   });
 }

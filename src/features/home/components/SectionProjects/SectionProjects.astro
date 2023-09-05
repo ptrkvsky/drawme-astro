@@ -37,6 +37,7 @@ const sectionProjectsTitleHTML = toHTML(sectionProjectsTitle, {
   import {
     setIllustrationsLagAndSpeed,
     setTextsLagAndSpeed,
+    hideImages,
   } from "./SectionProjects.functions";
   import { revealProjects, revealTexts } from "./SectionProjects.animations";
 
@@ -44,13 +45,17 @@ const sectionProjectsTitleHTML = toHTML(sectionProjectsTitle, {
     createCanvas();
   }
 
-  window.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
     setIllustrationsLagAndSpeed();
     setTextsLagAndSpeed();
     revealTexts();
     revealProjects({
       triggerSelector: ".wrapper-illustration-title",
     });
+  });
+
+  document.addEventListener("canvasComplete", () => {
+    hideImages();
   });
 </script>
 
@@ -290,7 +295,7 @@ const sectionProjectsTitleHTML = toHTML(sectionProjectsTitle, {
   }
 
   .illustration .curtain img {
-    visibility: hidden;
+    // visibility: hidden;
 
     @media screen and (max-width: 1024px) {
       visibility: visible;
