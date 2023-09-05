@@ -1,7 +1,7 @@
-import 'splitting/dist/splitting.css';
-import 'splitting/dist/splitting-cells.css';
-import Splitting from 'splitting';
-import randomNumber from './randomNumber';
+import "splitting/dist/splitting.css";
+import "splitting/dist/splitting-cells.css";
+import Splitting from "splitting";
+import randomNumber from "./randomNumber";
 
 /**
  * Class representing one line
@@ -53,7 +53,7 @@ class Cell {
     this.state = this.original;
     this.color = this.originalColor = getComputedStyle(
       document.documentElement
-    ).getPropertyValue('--color-text');
+    ).getPropertyValue("--color-text");
     this.position = position;
     this.previousCellPosition = previousCellPosition;
   }
@@ -79,65 +79,54 @@ export class TypeShuffle {
   lines = [];
   // array of letters and symbols
   lettersAndSymbols = [
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
-    'I',
-    'J',
-    'K',
-    'L',
-    'M',
-    'N',
-    'O',
-    'P',
-    'Q',
-    'R',
-    'S',
-    'T',
-    'U',
-    'V',
-    'W',
-    'X',
-    'Y',
-    'Z',
-    '!',
-    '@',
-    '#',
-    '$',
-    '&',
-    '*',
-    '(',
-    ')',
-    '-',
-    '_',
-    '+',
-    '=',
-    '/',
-    '[',
-    ']',
-    '{',
-    '}',
-    ';',
-    ':',
-    '<',
-    '>',
-    ',',
-    '0',
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
+    "A",
+    "ß",
+    "©",
+    "ↂ",
+    "€",
+    "₣",
+    "₲",
+    "Ⱨ",
+    "ḯ",
+    "ʝ",
+    "₭",
+    "Ⱡ",
+    "₥",
+    "И",
+    "◉",
+    "₱",
+    "Q",
+    "Я",
+    "§",
+    "†",
+    "Ʉ",
+    "V",
+    "₩",
+    "ж",
+    "Σ",
+    "!",
+    "@",
+    "#",
+    "$",
+    "&",
+    "*",
+    "₭",
+    "₦",
+    "-",
+    "_",
+    "+",
+    "=",
+    "/",
+    "[",
+    "]",
+    "{",
+    "}",
+    ";",
+    ":",
+    "⟨",
+    "⟩",
   ];
+
   // effects and respective methods
   effects = {
     fx1: () => this.fx1(),
@@ -158,7 +147,7 @@ export class TypeShuffle {
     // Apply Splitting (two times to have lines, words and chars)
     const results = Splitting({
       target: this.DOM.el,
-      by: 'lines',
+      by: "lines",
     });
     results.forEach((s) => Splitting({ target: s.words }));
 
@@ -171,7 +160,7 @@ export class TypeShuffle {
       // for every word of each line
       for (const word of lineArr) {
         // for every character of each line
-        for (const char of [...word.querySelectorAll('.char')]) {
+        for (const char of [...word.querySelectorAll(".char")]) {
           cells.push(
             new Cell(char, {
               position: charCount,
@@ -195,7 +184,7 @@ export class TypeShuffle {
   clearCells() {
     for (const line of this.lines) {
       for (const cell of line.cells) {
-        cell.set('&nbsp;');
+        cell.set("&nbsp;");
       }
     }
   }
@@ -239,7 +228,7 @@ export class TypeShuffle {
         // show specific characters for the first 9 iterations (looks cooler)
         cell.set(
           iteration < 9
-            ? ['*', '-', '\u0027', '\u0022'][Math.floor(Math.random() * 4)]
+            ? ["*", "-", "\u0027", "\u0022"][Math.floor(Math.random() * 4)]
             : this.getRandomChar()
         );
       }
@@ -250,7 +239,7 @@ export class TypeShuffle {
       }
 
       // doesn't count if it's an empty space
-      if (cell.cache != '&nbsp;') {
+      if (cell.cache != "&nbsp;") {
         ++iteration;
       }
 
@@ -299,7 +288,7 @@ export class TypeShuffle {
     }
   }
   fx3() {
-    const MAX_CELL_ITERATIONS = 10;
+    const MAX_CELL_ITERATIONS = 2;
     let finished = 0;
     this.clearCells();
 
@@ -342,12 +331,12 @@ export class TypeShuffle {
           this.isAnimating = false;
         }
       } else if (cell.position === 0) {
-        cell.set(['*', ':'][Math.floor(Math.random() * 2)]);
+        cell.set(["*", ":"][Math.floor(Math.random() * 2)]);
       } else {
         cell.set(line.cells[cell.previousCellPosition].cache);
       }
 
-      if (cell.cache != '&nbsp;') {
+      if (cell.cache != "&nbsp;") {
         ++iteration;
       }
 
@@ -384,13 +373,13 @@ export class TypeShuffle {
           this.isAnimating = false;
         }
       } else if (cell.position === 0) {
-        cell.color = ['#3e775d', '#61dca3', '#61b3dc'][
+        cell.color = ["#3e775d", "#61dca3", "#61b3dc"][
           Math.floor(Math.random() * 3)
         ];
         cell.DOM.el.style.color = cell.color;
         cell.set(
           iteration < 9
-            ? ['*', '-', '\u0027', '\u0022'][Math.floor(Math.random() * 4)]
+            ? ["*", "-", "\u0027", "\u0022"][Math.floor(Math.random() * 4)]
             : this.getRandomChar()
         );
       } else {
@@ -400,7 +389,7 @@ export class TypeShuffle {
         cell.DOM.el.style.color = cell.color;
       }
 
-      if (cell.cache.state != '&nbsp;') {
+      if (cell.cache.state != "&nbsp;") {
         ++iteration;
       }
 
@@ -435,7 +424,7 @@ export class TypeShuffle {
       } else {
         cell.set(this.getRandomChar());
 
-        cell.color = ['#2b4539', '#61dca3', '#61b3dc'][
+        cell.color = ["#2b4539", "#61dca3", "#61b3dc"][
           Math.floor(Math.random() * 3)
         ];
         cell.DOM.el.style.color = cell.color;
@@ -457,7 +446,7 @@ export class TypeShuffle {
    * call the right effect method (defined in this.effects)
    * @param {string} effect - effect type
    */
-  trigger(effect = 'fx1') {
+  trigger(effect = "fx1") {
     if (!(effect in this.effects) || this.isAnimating) return;
     this.isAnimating = true;
     this.effects[effect]();

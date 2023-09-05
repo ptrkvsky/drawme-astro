@@ -1,9 +1,9 @@
 ---
-import { Image } from '@astrojs/image/components';
-import LogoMark from '@features/home/components/LogoMark.astro';
-import { SanityImage } from '@interfaces/SanityImage';
-import { toHTML } from '@portabletext/to-html';
-import { SanityWhoAmI } from '../../interfaces/SanityWhoAmI';
+import { Image } from "@astrojs/image/components";
+import LogoMark from "@features/home/components/LogoMark.astro";
+import { SanityImage } from "@interfaces/SanityImage";
+import { toHTML } from "@portabletext/to-html";
+import { SanityWhoAmI } from "../../interfaces/SanityWhoAmI";
 
 interface AstroProps {
   textPresentation: any[];
@@ -39,45 +39,45 @@ const textPresentationMobile2HTML = toHTML(textPresentationMobile2, {
 ---
 
 <script>
-  import gsap from 'gsap';
-  import { TypeShuffle } from '@helpers/typeShuffle';
-  import { ParamsSplitAndReveal, splitAndReveal } from '@helpers/gsap';
+  import gsap from "gsap";
+  import { TypeShuffle } from "@helpers/typeShuffle";
+  import { ParamsSplitAndReveal, splitAndReveal } from "@helpers/gsap";
 
   const paramsSplitAndRevealLineWho: ParamsSplitAndReveal = {
-    element: '#line-who',
-    typeSplit: 'chars',
-    trigger: '#section-presentation',
+    element: "#line-who",
+    typeSplit: "chars",
+    trigger: "#section-presentation",
   };
   const paramsSplitAndRevealLineAm: ParamsSplitAndReveal = {
-    element: '#line-am',
-    typeSplit: 'chars',
-    trigger: '#section-presentation',
+    element: "#line-am",
+    typeSplit: "chars",
+    trigger: "#section-presentation",
   };
   const paramsSplitAndRevealLineI: ParamsSplitAndReveal = {
-    element: '#line-i',
-    typeSplit: 'chars',
-    trigger: '#section-presentation',
+    element: "#line-i",
+    typeSplit: "chars",
+    trigger: "#section-presentation",
   };
 
-  gsap.set('.wrapper-mely-melo', {
+  gsap.set(".wrapper-mely-melo", {
     opacity: 0,
   });
 
-  window.addEventListener('load', () => {
+  window.addEventListener("load", () => {
     splitAndReveal(paramsSplitAndRevealLineWho);
     splitAndReveal(paramsSplitAndRevealLineAm);
     splitAndReveal(paramsSplitAndRevealLineI);
 
-    gsap.to('.wrapper-mely-melo', {
+    gsap.to(".wrapper-mely-melo", {
       opacity: 1,
       delay: 1,
       duration: 1,
     });
   });
 
-  const textElement = document.querySelector('.text-presentation');
+  const textElement = document.querySelector(".text-presentation");
   const ts = new TypeShuffle(textElement);
-  ts.trigger('fx3');
+  ts.trigger("fx3");
 </script>
 <section id="section-presentation" class="section-presentation">
   <div class="col col-left">

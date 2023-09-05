@@ -1,29 +1,29 @@
 ---
-import fetchSanity from '@helpers/fetchSanity';
-import { queryWhoAmI } from '@features/who-am-i/queries/queryWhoAmI';
-import { SanityWhoAmI } from '@features/who-am-i/interfaces/SanityWhoAmI';
-import Layout from '@layouts/Layout.astro';
-import { Hero } from '@features/who-am-i/components/Hero';
-import { Presentation } from '@features/who-am-i/components/Presentation';
-import Canvas from '@features/project/components/Canvas.astro';
+import fetchSanity from "@helpers/fetchSanity";
+import { queryWhoAmI } from "@features/who-am-i/queries/queryWhoAmI";
+import { SanityWhoAmI } from "@features/who-am-i/interfaces/SanityWhoAmI";
+import Layout from "@layouts/Layout.astro";
+import { Hero } from "@features/who-am-i/components/Hero";
+import { Presentation } from "@features/who-am-i/components/Presentation";
+import Canvas from "@features/project/components/Canvas.astro";
 
 const whoAmI = await fetchSanity<{ WhoAmI: SanityWhoAmI }>(queryWhoAmI);
 const sanityWhoAmI = whoAmI && whoAmI.WhoAmI;
 ---
 
 <script>
-  import { ParamsSplitAndReveal, splitAndReveal } from '@helpers/gsap';
+  import { ParamsSplitAndReveal, splitAndReveal } from "@helpers/gsap";
 
-  const root = document.querySelector(':root');
+  const root = document.querySelector(":root");
   //@ts-ignore
-  root.style.setProperty('--canva-hue', 2.15);
+  root.style.setProperty("--canva-hue", 2.15);
   //@ts-ignore
-  root.style.setProperty('--canva-saturation', 1);
+  root.style.setProperty("--canva-saturation", 1);
 
   const paramsSplitAndRevealSubtitleWebsite: ParamsSplitAndReveal = {
-    element: '#subtitle-website',
-    typeSplit: 'chars',
-    trigger: '#section-presentation',
+    element: "#subtitle-website",
+    typeSplit: "chars",
+    trigger: "#section-presentation",
   };
 
   splitAndReveal(paramsSplitAndRevealSubtitleWebsite);
