@@ -36,7 +36,6 @@ export function revealTitle({ target, type, trigger, callback }: RevealConfig) {
 }
 
 export function revealTitleMobile({ target, trigger, callback }: RevealConfig) {
-  console.log("callback", callback);
   const splitedElement = new SplitText(target, {
     type: "words",
   });
