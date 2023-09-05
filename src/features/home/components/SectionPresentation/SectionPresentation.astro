@@ -1,12 +1,12 @@
 ---
-import { toHTML } from '@portabletext/to-html';
-import { Image } from '@astrojs/image/components';
-import illustrationBook from '@assets/images/illustration_book.png';
-import illustrationCrayon from '@assets/images/illustration_crayon.png';
-import illustrationFingers from '@assets/images/illustration_fingers.png';
-import illustrationLetters from '@assets/images/illustration_letters.png';
-import { portableTextComponents } from '@helpers/portableTextComponents';
-import LogoMark from '../LogoMark.astro';
+import { toHTML } from "@portabletext/to-html";
+import { Image } from "@astrojs/image/components";
+import illustrationBook from "@assets/images/illustration_book.png";
+import illustrationCrayon from "@assets/images/illustration_crayon.png";
+import illustrationFingers from "@assets/images/illustration_fingers.png";
+import illustrationLetters from "@assets/images/illustration_letters.png";
+import { portableTextComponents } from "@helpers/portableTextComponents";
+import LogoMark from "../LogoMark.astro";
 
 interface AstroProps {
   detail: string;
@@ -24,16 +24,16 @@ const presentationMobileHTML = toHTML(presentationMobile, {
 ---
 
 <script>
-  import { switchCanva, revealText } from './SectionPresentation.animation';
+  import { switchCanva, revealText } from "./SectionPresentation.animation";
 
   switchCanva();
-  window.addEventListener('load', () => {
+  window.addEventListener("load", () => {
     revealText();
   });
 </script>
 <section id="section-presentation" class="section-presentation">
   <div data-speed="1.05" data-lag="0.025" class="wrapper-logo-mark desktop">
-    <LogoMark />
+    <LogoMark context="presentation" />
   </div>
   <div
     class="illustration book wrapper-overflow opacity-0"
@@ -44,7 +44,7 @@ const presentationMobileHTML = toHTML(presentationMobile, {
       width={372}
       height={404}
       format="avif"
-      loading={'eager'}
+      loading={"eager"}
       src={illustrationBook}
       alt="Illustration book"
     />
@@ -56,7 +56,7 @@ const presentationMobileHTML = toHTML(presentationMobile, {
     data-lag="0.03"
   >
     <Image
-      loading={'eager'}
+      loading={"eager"}
       format="avif"
       src={illustrationCrayon}
       alt="Illustration crayon"
@@ -81,7 +81,7 @@ const presentationMobileHTML = toHTML(presentationMobile, {
       >
         <Image
           format="avif"
-          loading={'eager'}
+          loading={"eager"}
           src={illustrationLetters}
           alt="Illustration letters"
         />
@@ -134,7 +134,12 @@ const presentationMobileHTML = toHTML(presentationMobile, {
       z-index: 10;
       width: clamp(102px, 20.7rem, 20.7rem);
       @media screen and (max-width: 768px) {
-        display: none;
+        right: 0;
+        top: 40rem;
+        left: initial;
+        &.desktop {
+          display: none;
+        }
       }
     }
 

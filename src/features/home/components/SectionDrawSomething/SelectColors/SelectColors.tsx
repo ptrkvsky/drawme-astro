@@ -6,7 +6,7 @@ interface SelectColorsProps {
 
 export default function SelectColors({ setColors }) {
   return (
-    <div class="wrapper-select-colors">
+    <div className="wrapper-select-colors">
       <img
         onClick={() => setColors("#07ffb9")}
         src="https://drawme-astro.vercel.app/_image/067639ad75ad9896dfff5bf52cf5e8346e6883bf-121x144-Z2g1d54_121x144.avif"
