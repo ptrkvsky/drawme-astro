@@ -63,6 +63,20 @@ import { ReactCanva } from "./ReactCanva";
       text-align: center;
     }
 
+    .wrapper-select-colors {
+      position: absolute;
+      bottom: clamp(20px, 3.3rem, 3.3rem);
+      left: clamp(20px, 3.3rem, 3.3rem);
+      display: flex;
+      gap: 10px;
+
+      @media screen and (max-width: 768px) {
+        max-width: 55px;
+        max-height: 100%;
+        bottom: 60px;
+      }
+    }
+
     .wrapper-button {
       position: absolute;
       bottom: clamp(20px, 3.3rem, 3.3rem);

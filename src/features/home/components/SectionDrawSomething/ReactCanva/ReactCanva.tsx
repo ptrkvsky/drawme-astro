@@ -1,10 +1,12 @@
 import React from "react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import CanvasDraw from "react-canvas-draw";
 import { useCanvasResize, useSendEmail } from "./ReactCanva.hooks";
+import SelectColors from "../SelectColors/SelectColors";
 
 const ReactCanva = () => {
   const refCanvas = useRef<CanvasDraw | null>();
+  const [brushColor, setBrushColor] = useState("#00F9DF");
   const { data, isLoading, send } = useSendEmail();
   const canvasHeight: number = useCanvasResize();
 
@@ -17,11 +19,13 @@ const ReactCanva = () => {
       <CanvasDraw
         ref={(canvasDraw) => (refCanvas.current = canvasDraw)}
         backgroundColor={"#272729"}
-        brushColor={"#00F9DF"}
+        brushColor={brushColor}
         canvasHeight={canvasHeight}
         canvasWidth="1920"
         hideInterface={false}
       />
+
+      <SelectColors setColors={setBrushColor} />
 
       <div className="wrapper-button">
         <div className="relative container">
