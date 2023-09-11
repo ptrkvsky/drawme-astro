@@ -1,5 +1,4 @@
-import React from "react";
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import CanvasDraw from "react-canvas-draw";
 import { useCanvasResize, useSendEmail } from "./ReactCanva.hooks";
 import SelectColors from "../SelectColors/SelectColors";
@@ -20,6 +19,7 @@ const ReactCanva = () => {
         ref={(canvasDraw) => (refCanvas.current = canvasDraw)}
         backgroundColor={"#272729"}
         brushColor={brushColor}
+        brushRadius={4}
         canvasHeight={canvasHeight}
         canvasWidth="1920"
         hideInterface={false}
