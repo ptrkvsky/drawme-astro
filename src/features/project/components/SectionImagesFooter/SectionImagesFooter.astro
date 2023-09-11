@@ -1,7 +1,7 @@
 ---
-import { Image } from '@astrojs/image/components';
-import { SanityImage } from '@interfaces/SanityImage';
-import { Quote } from '../../interfaces';
+import { Image } from "@astrojs/image/components";
+import { SanityImage } from "@interfaces/SanityImage";
+import { Quote } from "../../interfaces";
 
 interface AstroProps {
   images: SanityImage[];
@@ -11,14 +11,17 @@ const { images } = Astro.props as AstroProps;
 ---
 
 <script>
-  import { animateSectionImagesFooter } from './SectionImagesFooter.animation';
+  import { animateSectionImagesFooter } from "./SectionImagesFooter.animation";
 
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     animateSectionImagesFooter();
   });
 </script>
 
-<section id="section-images-footer" class="conteneur section-images-footer">
+<section
+  id="section-images-footer"
+  class=`conteneur section-images-footer total-${images.length}`
+>
   {
     images.map((image, index) => {
       const {
@@ -30,7 +33,7 @@ const { images } = Astro.props as AstroProps;
       } = image.asset;
 
       return (
-        <div class="wrapper-flexi">
+        <div class={`wrapper-flexi`}>
           <div class={`wrapper-image image-${index}`}>
             {
               <div class="o-hidden">
@@ -118,5 +121,29 @@ const { images } = Astro.props as AstroProps;
     max-width: 163rem;
     margin-right: auto;
     margin-left: auto;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .section-images-footer.total-2 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .image-0,
+      .image-1 {
+        position: relative;
+        top: initial;
+        left: initial;
+        transform: translateX(0);
+        margin: 0;
+      }
+    }
+
+    .section-images-footer.total-2 {
+      .wrapper-flexi:nth-child(2) {
+        position: relative;
+        bottom: 4rem;
+        align-self: flex-end;
+      }
+    }
   }
 </style>
