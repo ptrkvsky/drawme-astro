@@ -16,7 +16,7 @@ Features:
  */
 export function horizontalLoop(items, config) {
   items = gsap.utils.toArray(items);
-  console.log;
+
   config = config || {};
   let tl = gsap.timeline({
       repeat: config.repeat,
