@@ -6,6 +6,8 @@ import { ReactCanva } from "./ReactCanva";
   import {
     revealTitle,
     revealTitleMobile,
+    revealColors,
+    bounceBabyColor,
   } from "./SectionDrawSomething.animation";
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -16,9 +18,21 @@ import { ReactCanva } from "./ReactCanva";
       type: "chars" as const,
       trigger: "#draw-something-title",
     };
+
+    const revealUndo = {
+      target: "#undo-text",
+      type: "chars" as const,
+      trigger: "#section-ds-something",
+    };
+
     const revealTitleMobileConfig = {
       target: revealTitleConfig.target,
       trigger: revealTitleConfig.trigger,
+    };
+
+    const revealColorConfig = {
+      target: ".wrapper-select-colors .color",
+      trigger: ".wrapper-select-colors",
     };
 
     if (isDesktop) {
@@ -26,6 +40,16 @@ import { ReactCanva } from "./ReactCanva";
     } else {
       revealTitleMobile(revealTitleMobileConfig);
     }
+
+    revealColors(revealColorConfig);
+    revealTitle(revealUndo);
+
+    const colors = document.querySelectorAll(".wrapper-select-colors .color");
+    colors?.forEach((color) => {
+      color.addEventListener("click", () => bounceBabyColor(color), {
+        passive: true,
+      });
+    });
   });
 </script>
 

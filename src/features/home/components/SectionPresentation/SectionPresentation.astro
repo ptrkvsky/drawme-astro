@@ -135,7 +135,10 @@ const presentationMobileHTML = toHTML(presentationMobile, {
       width: clamp(102px, 20.7rem, 20.7rem);
       @media screen and (max-width: 768px) {
         right: 0;
-        top: 40rem;
+        top: 17rem;
+        @media screen and (max-width: 550px) {
+          top: 40rem;
+        }
         left: initial;
         &.desktop {
           display: none;
@@ -174,9 +177,9 @@ const presentationMobileHTML = toHTML(presentationMobile, {
     .illustration {
       position: absolute;
 
-      @media screen and (max-width: 550px) {
+      @media screen and (max-width: 768px) {
         display: none;
-      } // TODO
+      }
 
       &.fingers {
         top: 6.8rem;
@@ -213,6 +216,7 @@ const presentationMobileHTML = toHTML(presentationMobile, {
       &.crayon {
         bottom: 0;
         left: 55rem;
+        border-top-right-radius: 7rem;
         img {
           max-width: 25.8rem;
         }
@@ -261,7 +265,11 @@ const presentationMobileHTML = toHTML(presentationMobile, {
         p {
           margin-bottom: 16px;
           &:nth-child(3) {
-            max-width: 210px;
+            max-width: 330px;
+
+            @media screen and (max-width: 550px) {
+              max-width: 210px;
+            }
           }
         }
       }

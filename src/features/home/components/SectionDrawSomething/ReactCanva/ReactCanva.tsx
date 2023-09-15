@@ -34,7 +34,7 @@ const ReactCanva = () => {
             className="section-draw-button split-text o-hidden"
             onClick={undo}
           >
-            Undo
+            <span id="undo-text">Undo</span>
           </button>
           {!data?.response ? (
             <button
