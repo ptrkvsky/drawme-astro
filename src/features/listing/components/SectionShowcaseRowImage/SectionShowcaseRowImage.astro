@@ -24,6 +24,13 @@ const { thumbnail } = Astro.props as SectionShowcaseRowImageProps;
     border-radius: var(--radius-small);
   }
 
+  @media screen and (max-width: 766px) {
+    .row__content-imgwrap:nth-child(2),
+    .row__content-imgwrap:nth-child(4) {
+      display: none;
+    }
+  }
+
   .row__content-img {
     aspect-ratio: 2;
     height: 100px;

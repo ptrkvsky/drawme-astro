@@ -255,6 +255,9 @@ const presentationMobileHTML = toHTML(presentationMobile, {
 
       .wrapper-logo-mark {
         width: clamp(102px, 20.7rem, 20.7rem);
+        @media screen and (max-width: 500px) {
+          right: -15px;
+        }
       }
 
       @media screen and (max-width: 768px) {
