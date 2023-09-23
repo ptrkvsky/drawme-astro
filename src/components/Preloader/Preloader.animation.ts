@@ -95,7 +95,7 @@ export function animatePageIn() {
     })
     .call(() => {
       if (canva) {
-        document.querySelector("#main-canva").classList.add("visible");
+        document.querySelector("#main-canva")?.classList.add("visible");
       }
       sessionStorage.setItem("isPreloaderSeen", "false");
     });
