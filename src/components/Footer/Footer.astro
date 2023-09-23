@@ -1,48 +1,64 @@
 ---
-import { Image } from '@astrojs/image/components';
-import instagram from '@assets/images/instagram.png';
+import { Image } from "@astrojs/image/components";
+import instagram from "@assets/images/instagram.png";
 ---
+
+<script>
+  import { revealGoodbye, revealBlocs } from "./Footer.animation";
+  document.addEventListener("DOMContentLoaded", () => {
+    revealGoodbye();
+    revealBlocs();
+  });
+</script>
 
 <footer>
   <div class="wrapper">
     <div id="trigger-next-project"></div>
-    <div class="infos">
-      <a
-        target="_blank"
-        class="mail"
-        href="mailto:drawmeasheepdesign@gmail.com"
-      >
-        drawmeasheepdesign@gmail.com
-      </a>
-      <p class="baseline">Drawing from Nice, France to all around the world</p>
-      <p class="developer">
-        <span class="highlight">Développement :</span>{' '}
-        <a target="_blank" href="https://developpeur-web.tech/"> Kovsky</a>
-      </p>
-    </div>
-    <div class="socials">
-      <div class="social instagram">
-        <Image
-          width={42}
-          height={42}
-          src={instagram}
-          alt="Instagram Draw me a sheep"
-        />
+    <div class="o-hidden">
+      <div class="infos">
+        <a
+          target="_blank"
+          class="mail js__reveal-line"
+          href="mailto:drawmeasheepdesign@gmail.com"
+        >
+          drawmeasheepdesign@gmail.com
+        </a>
+        <p class="baseline js__reveal-line">
+          Drawing from Nice, France to all around the world
+        </p>
+        <p class="developer js__reveal-line">
+          <span class="highlight">Développement :</span>{" "}
+          <a target="_blank" href="https://developpeur-web.tech/">Kovsky</a>
+        </p>
       </div>
-      <div class="detail">
-        <p>
-          <span class="highlight"> Insta:</span> drawmeasheep
-        </p>
-        <p>
-          <span class="highlight">Mascotte:</span> Sheepoteur
-        </p>
-        <p>
-          <span class="highlight">©drawmeasheep</span>
-        </p>
+    </div>
+    <div class="o-hidden">
+      <div class="socials js__reveal-line">
+        <div class="social instagram">
+          <Image
+            width={42}
+            height={42}
+            src={instagram}
+            alt="Instagram Draw me a sheep"
+          />
+        </div>
+        <div class="detail">
+          <p>
+            <span class="highlight js__reveal-line"> Insta:</span> drawmeasheep
+          </p>
+          <p>
+            <span class="highlight js__reveal-line">Mascotte:</span> Sheepoteur
+          </p>
+          <p>
+            <span class="highlight js__reveal-line">©drawmeasheep</span>
+          </p>
+        </div>
       </div>
     </div>
     <div class="goodbye">
-      <p class="title">Can’t wait to draw with you !</p>
+      <p id="goodbye" class="title o-hidden split-text">
+        Can’t wait to draw with you !
+      </p>
     </div>
   </div>
 </footer>

@@ -1,22 +1,15 @@
 <script>
+  import { splitChars } from "@helpers/splitChars";
   import gsap from "gsap";
   import { SplitText } from "gsap/SplitText";
   gsap.registerPlugin(SplitText);
 
   document.addEventListener("DOMContentLoaded", function () {
-    const whoami = document.querySelector("#section-who-am-i .who-am-i");
+    const splitedWhoAmI = splitChars("#section-who-am-i .who-am-i");
 
-    if (!whoami) return;
+    if (!splitedWhoAmI) return;
 
-    const whoamiSplitted = new SplitText(whoami, {
-      type: `chars`,
-    });
-
-    const whoamiReSplitted = new SplitText(whoamiSplitted.chars, {
-      type: `chars`,
-    });
-
-    gsap.set(whoamiReSplitted.chars, { yPercent: -110, scale: 0.9 });
+    gsap.set(splitedWhoAmI, { yPercent: -110, scale: 0.9 });
 
     gsap
       .timeline({
@@ -25,7 +18,7 @@
           start: "top 85%", // top of the element, bottom of the viewport
         },
       })
-      .to(whoamiReSplitted.chars, {
+      .to(splitedWhoAmI, {
         yPercent: 0,
         delay: 0.5,
         duration: 0.75,
