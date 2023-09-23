@@ -20,18 +20,26 @@ export interface Props {
   urlsImages?: string[];
   urlsPages?: string[];
   description: string;
+  imageSN?: string;
   Canvas?: (_props: Record<string, any>) => any;
 }
 
-const { title, background, urlsPages, urlsImages, Canvas, description } =
-  Astro.props as Props;
+const {
+  title,
+  background,
+  urlsPages,
+  urlsImages,
+  Canvas,
+  description,
+  imageSN,
+} = Astro.props;
 ---
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width" />
 <link rel="icon" type="image/x-icon" href="/favicon.png" />
 <meta name="generator" content={Astro.generator} />
-<Meta title={title} description={description} />
+<Meta title={title} description={description} imageSN={imageSN} />
 
 {
   urlsImages &&
@@ -48,6 +56,7 @@ const { title, background, urlsPages, urlsImages, Canvas, description } =
   <Burger />
   <Header />
   <LogASheep />
+  <!-- @ts-ignore Cant properly type component as Props -->
   <Canvas />
   <Preloader />
   <Gsap>

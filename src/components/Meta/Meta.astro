@@ -10,12 +10,10 @@ interface MetaProps {
   title: string;
   description: string;
   slug?: string;
-  image: string;
+  imageSN: string;
 }
 
-const { title, description, slug, image } = Astro.props as MetaProps;
-
-const ogImage = image || import.meta.env.DOMAIN + defaultOgImage;
+const { title, description, slug, imageSN } = Astro.props as MetaProps;
 
 const slugFinal = slug || "";
 ---
@@ -35,4 +33,4 @@ const slugFinal = slug || "";
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 
-<MetaOgImage />
+<MetaOgImage imageSN={imageSN} />

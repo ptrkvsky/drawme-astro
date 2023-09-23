@@ -5,7 +5,7 @@ import config from "src/config";
  * Animates the preloader screen, transitioning to the main content display.
  */
 function animatePreloader() {
-  const isProd = config.mode === "production";
+  const isProd = config.mode === "development";
   const canva = document.querySelector("#main-canva");
 
   gsap

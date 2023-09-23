@@ -1,30 +1,24 @@
 ---
-import { getImage } from "@astrojs/image";
 import fetchSanity from "@helpers/fetchSanity";
 import { SanityQueryOGImage } from "@components/MetaOgImage/MetaOgImage.interface";
 import { queryOgImage } from "@components/MetaOgImage/MetaOgImage.queries";
 
-const { src: defaultOgImage } = await getImage({
-  src: import("@assets/images/defaultOgImage.webp"),
-});
-
 interface Props {
-  image?: string;
+  imageSN: string;
 }
 
-const { image } = Astro.props;
+const { imageSN } = Astro.props;
 
 let sanityOGImage = "";
 
-if (!image) {
+if (!imageSN) {
   const siteSettingsImage = await fetchSanity<SanityQueryOGImage>(queryOgImage);
   if (siteSettingsImage) {
     sanityOGImage = siteSettingsImage.SiteSettings.imageSN.asset.url;
   }
 }
 
-// const ogImage = image || import.meta.env.DOMAIN + defaultOgImage;
-const ogImage = image || sanityOGImage;
+const ogImage = imageSN || sanityOGImage;
 ---
 
 <!-- OpenGraph Image -->

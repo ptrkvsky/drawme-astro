@@ -3,7 +3,7 @@ import config from "src/config";
 import gsap from "gsap";
 
 const marker: ScrollTrigger.MarkersVars | boolean =
-  config.mode === "production"
+  config.mode === "development"
     ? {
         startColor: "blue",
         endColor: "hotpink",

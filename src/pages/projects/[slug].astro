@@ -20,12 +20,12 @@ export async function getStaticPaths() {
   return params;
 }
 
-interface AstroProps {
+interface Props {
   project: SanityProject;
   nextProject: SanityProject;
 }
 
-const { project, nextProject } = Astro.props as AstroProps;
+const { project, nextProject } = Astro.props;
 const { hue, saturation } = project;
 
 const title = `${project.title} | Draw me a Sheep`;
@@ -38,6 +38,8 @@ const urlsImages = [
 ].filter(Boolean);
 
 const nextProjectUrls = [`/projects/${nextProject.slug.current}`];
+const imageSN = project?.imageSN?.asset?.url;
+console.log(imageSN);
 ---
 
 <script define:vars={{ hue, saturation, config }}>
@@ -54,6 +56,7 @@ const nextProjectUrls = [`/projects/${nextProject.slug.current}`];
   urlsImages={urlsImages}
   urlsPages={nextProjectUrls}
   Canvas={Canvas}
+  imageSN={imageSN}
 >
   <div slot="main-content">
     <div class="wrapper-project">

@@ -6,7 +6,7 @@ interface Props {
   nextProject: SanityProject;
 }
 
-const { nextProject } = Astro.props as Props;
+const { nextProject } = Astro.props;
 ---
 
 <script>
@@ -20,6 +20,7 @@ const { nextProject } = Astro.props as Props;
   window.addEventListener("load", function () {
     const portalDiv = document.getElementById("portal");
     const nextProjectDiv = document.getElementById("next-project");
+    if (!nextProjectDiv || !portalDiv) return;
 
     portalDiv.appendChild(nextProjectDiv);
   });
@@ -43,7 +44,7 @@ const { nextProject } = Astro.props as Props;
           delay: 1.75,
         })
         .call(() => {
-          document.getElementById("next-project").classList.toggle("visible");
+          document.getElementById("next-project")?.classList.toggle("visible");
           splitAndReveal(paramsSplitReveal);
         })
         .to(`#svg-cercle-line-1`, {
@@ -63,7 +64,7 @@ const { nextProject } = Astro.props as Props;
           },
         })
         .call(() => {
-          document.getElementById("next-project").classList.toggle("visible");
+          document.getElementById("next-project")?.classList.toggle("visible");
         })
         .to(`#svg-cercle-line-1`, {
           drawSVG: false,

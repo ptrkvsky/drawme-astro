@@ -35,4 +35,5 @@ export interface SanityProject {
     current: string;
   };
   typographie: SanityImage;
+  imageSN?: SanityImage;
 }

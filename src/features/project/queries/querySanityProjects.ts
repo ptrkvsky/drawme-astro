@@ -168,6 +168,19 @@ export const querySanityProjects = `query ProjectPageQuery {
     categories { 
       title
     }
+    imageSN {
+      asset{
+        url
+        altText
+        metadata {
+          dimensions{
+            height
+            width
+            aspectRatio
+          }
+        }
+      }
+    }
   }
 }
 `;

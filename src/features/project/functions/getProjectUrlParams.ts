@@ -1,5 +1,11 @@
-import { SanityProjects } from '../interfaces/SanityProjects';
+import { SanityProjects } from "../interfaces/SanityProjects";
 
+/**
+ * Extracts URL parameters for each project from a SanityProjects object.
+ *
+ * @param sanityProjects - The SanityProjects, Result of the graphQl query
+ * @returns An array of objects, with the slug, the project, and the nextProject.
+ */
 const getProjectUrlParams = (sanityProjects: SanityProjects) => {
   return sanityProjects.allProject.map((project, i) => {
     let nextProject = null;
