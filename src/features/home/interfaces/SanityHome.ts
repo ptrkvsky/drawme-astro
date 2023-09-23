@@ -1,4 +1,4 @@
-import { SiteSettings } from '@interfaces/SiteSettings';
+import { SiteSettings } from "@interfaces/SiteSettings";
 
 interface Home {
   title: string;
@@ -10,6 +10,6 @@ interface Home {
 }
 
 export interface SanityHome {
-  SiteSettings: SiteSettings[];
+  SiteSettings: SiteSettings;
   Home: Home;
 }

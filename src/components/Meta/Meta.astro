@@ -1,5 +1,6 @@
 ---
 import { getImage } from "@astrojs/image";
+import { MetaOgImage } from "@components/MetaOgImage";
 
 const { src: defaultOgImage } = await getImage({
   src: import("@assets/images/defaultOgImage.webp"),
@@ -27,11 +28,11 @@ const slugFinal = slug || "";
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content=`${import.meta.env.DOMAIN}/${slugFinal}` />
-<meta property="og:image" content={ogImage} />
 
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@drawmeasheep_design" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={ogImage} />
+
+<MetaOgImage />

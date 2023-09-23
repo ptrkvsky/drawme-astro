@@ -16,6 +16,7 @@ import Canvas from "@features/home/components/Canvas.astro";
 const sanityHome = await fetchSanity<SanityHome>(querySanityHome);
 // Section Intro
 const presentation = sanityHome && sanityHome.Home.introPresentationRaw;
+
 const presentationMobile =
   sanityHome && sanityHome.Home.introPresentationMobileRaw;
 const detail = sanityHome && sanityHome.Home.introDetail;

@@ -1,0 +1,32 @@
+---
+import { getImage } from "@astrojs/image";
+import fetchSanity from "@helpers/fetchSanity";
+import { SanityQueryOGImage } from "@components/MetaOgImage/MetaOgImage.interface";
+import { queryOgImage } from "@components/MetaOgImage/MetaOgImage.queries";
+
+const { src: defaultOgImage } = await getImage({
+  src: import("@assets/images/defaultOgImage.webp"),
+});
+
+interface Props {
+  image?: string;
+}
+
+const { image } = Astro.props;
+
+let sanityOGImage = "";
+
+if (!image) {
+  const siteSettingsImage = await fetchSanity<SanityQueryOGImage>(queryOgImage);
+  if (siteSettingsImage) {
+    sanityOGImage = siteSettingsImage.SiteSettings.imageSN.asset.url;
+  }
+}
+
+// const ogImage = image || import.meta.env.DOMAIN + defaultOgImage;
+const ogImage = image || sanityOGImage;
+---
+
+<!-- OpenGraph Image -->
+<meta name="twitter:image" content={ogImage} />
+<meta property="og:image" content={ogImage} />

@@ -3,6 +3,19 @@ export const querySanityHome = `query IndexPageQuery {
     title
     description
     keywords
+    imageSN {
+      asset{
+        url
+        altText
+        metadata {
+          dimensions{
+            height
+            width
+            aspectRatio
+          }
+        }
+      }
+    }
   }
   Home(id: "bd7e9f75-2800-4d97-82cf-0a174ed9a36f"){
     _id
