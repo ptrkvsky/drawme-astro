@@ -194,8 +194,9 @@ const { nextProject } = Astro.props;
     top: 5rem;
 
     width: 100%;
+    max-width: 900px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     gap: clamp(16px, 2.4rem, 2.4rem);
 
     color: var(--color-white-beauty);
@@ -221,6 +222,10 @@ const { nextProject } = Astro.props;
     }
 
     .lets-go {
+      position: relative;
+      left: initial;
+      top: initial;
+      transform: initial;
       &:hover {
         color: var(--color-ice-ice-baby);
       }

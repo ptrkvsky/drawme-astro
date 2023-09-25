@@ -1,6 +1,6 @@
 ---
-import { portableTextComponents } from '@helpers/portableTextComponents';
-import { toHTML } from '@portabletext/to-html';
+import { portableTextComponents } from "@helpers/portableTextComponents";
+import { toHTML } from "@portabletext/to-html";
 
 interface AstroProps {
   projectColor: string;
@@ -13,14 +13,14 @@ const textPresentation = toHTML(text, {
   components: portableTextComponents,
 });
 
-const finalTextColor = textColor || '#000';
+const finalTextColor = textColor || "#000";
 ---
 
 <script defer define:vars={{ textPresentation, projectColor }}>
   // Adjust backkound color and  height of the wrapper
-  document.addEventListener('DOMContentLoaded', () => {
-    const wrapper = document.getElementById('presentation-client');
-    const background = document.getElementById('bg-presentation');
+  document.addEventListener("DOMContentLoaded", () => {
+    const wrapper = document.getElementById("presentation-client");
+    const background = document.getElementById("bg-presentation");
 
     if (!wrapper || !background) {
       return; // Exit early if the elements are not found
@@ -42,11 +42,11 @@ const finalTextColor = textColor || '#000';
     };
 
     setHeight();
-    window.addEventListener('resize', debouncedSetHeight);
+    window.addEventListener("resize", debouncedSetHeight);
   });
 </script>
 <script>
-  import { revealWrapper } from './PresentationClient.animation';
+  import { revealWrapper } from "./PresentationClient.animation";
 
   revealWrapper();
 </script>
@@ -64,7 +64,7 @@ const finalTextColor = textColor || '#000';
 
 <style lang="scss" is:global>
   .presentation-client {
-    padding: 3rem 0 0rem 6rem;
+    padding: 3rem 6rem 0rem 6rem;
     font-size: clamp(15px, 2.1rem, 2.1rem);
     letter-spacing: 1.1px;
     line-height: 1.2;
@@ -84,12 +84,13 @@ const finalTextColor = textColor || '#000';
 
     h2 {
       font-size: clamp(16px, 2.2rem, 2.2rem);
-      font-family: 'MontrealMedium';
+      font-family: "MontrealBold";
+      font-weight: bold;
       margin-bottom: clamp(4px, 0.4rem, 0.4rem);
     }
 
     .background {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       right: 0;
