@@ -12,6 +12,7 @@ import { SanityHome } from "@features/home/interfaces/SanityHome";
 import fetchSanity from "@helpers/fetchSanity";
 import Layout from "@layouts/Layout.astro";
 import Canvas from "@features/home/components/Canvas.astro";
+import { nonNullable } from "@helpers/nonNullable";
 
 const sanityHome = await fetchSanity<SanityHome>(querySanityHome);
 // Section Intro
@@ -48,7 +49,7 @@ const urlImages = [
   illustrationSocial,
   illustrationLogo,
   illustrationIdentity,
-];
+].filter(nonNullable);
 ---
 
 <Layout
