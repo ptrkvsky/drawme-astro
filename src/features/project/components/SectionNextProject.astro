@@ -49,9 +49,9 @@ const { nextProject } = Astro.props;
         })
         .to(`#svg-cercle-line-1`, {
           drawSVG: true,
-          ease: `power3.inOut`,
+          ease: `expo.inOut`,
           delay: 1,
-          duration: 1.5,
+          duration: 1.2,
         });
     }
     if (direction == -1) {
@@ -134,7 +134,7 @@ const { nextProject } = Astro.props;
 
     background-color: black;
     z-index: -1;
-    opacity: 0;
+    opacity: 1;
     transition: all ease-in-out 0.3s;
 
     pointer-events: none;
