@@ -127,6 +127,7 @@ export function handleClickBurger(
   tlMenu: gsap.core.Timeline
 ) {
   const wrapperMenu = document.querySelector("#wrapper-menu");
+  if (!wrapperMenu) return;
   if (wrapperMenu.classList.contains("is-open")) {
     tlBurger.reverse();
     tlMenu.reverse();
@@ -153,7 +154,7 @@ export function scrambleMenu() {
     gsap.to(element, {
       duration: 1,
       scrambleText: {
-        text: originalText,
+        text: originalText ?? "",
         chars: "XO",
         revealDelay: 0.5,
         speed: 0.3,
@@ -162,6 +163,6 @@ export function scrambleMenu() {
 
     // You can also modify the element's text content or perform other actions here.
     // For example, to set the text content to uppercase:
-    element.textContent = originalText.toUpperCase();
+    element.textContent = originalText?.toUpperCase() ?? "";
   });
 }
