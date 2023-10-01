@@ -10,88 +10,24 @@ const { nextProject } = Astro.props;
 ---
 
 <script>
-  import { ParamsSplitAndReveal, splitAndReveal } from "@helpers/gsap";
   import gsap from "gsap";
   import ScrollTrigger from "gsap/ScrollTrigger";
-  import config from "src/config";
+  import {
+    displayNextProject,
+    moveToPortal,
+    getMarker,
+  } from "./SectionNextProject.animations";
 
   gsap.registerPlugin(ScrollTrigger);
 
-  window.addEventListener("load", function () {
-    const portalDiv = document.getElementById("portal");
-    const nextProjectDiv = document.getElementById("next-project");
-    if (!nextProjectDiv || !portalDiv) return;
+  document.addEventListener("DOMContentLoaded", () => {
+    moveToPortal();
 
-    portalDiv.appendChild(nextProjectDiv);
-  });
-
-  function displayNextProject(direction: number) {
-    const paramsSplitReveal: ParamsSplitAndReveal = {
-      element: ".reveal",
-      typeSplit: "chars",
-      trigger: "body",
-      delay: 0.35,
-    };
-
-    if (direction == 1) {
-      // Reveal
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: "#next-project",
-            start: "top 85%", // top of the element, bottom of the viewport
-          },
-          delay: 1.75,
-        })
-        .call(() => {
-          document.getElementById("next-project")?.classList.toggle("visible");
-          splitAndReveal(paramsSplitReveal);
-        })
-        .to(`#svg-cercle-line-1`, {
-          drawSVG: true,
-          ease: `expo.inOut`,
-          delay: 1,
-          duration: 1.2,
-        });
-    }
-    if (direction == -1) {
-      // Hide
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: "#next-project",
-            start: "top 85%", // top of the element, bottom of the viewport
-          },
-        })
-        .call(() => {
-          document.getElementById("next-project")?.classList.toggle("visible");
-        })
-        .to(`#svg-cercle-line-1`, {
-          drawSVG: false,
-          ease: `power3.inOut`,
-          delay: 0,
-          duration: 0.5,
-        })
-        .call(() => {
-          splitAndReveal(paramsSplitReveal);
-        });
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", function () {
     gsap.to(`#svg-cercle-line-1`, {
       drawSVG: false,
     });
 
-    const marker = {
-      startColor: "purple",
-      endColor: "pink",
-      fontSize: "36px",
-      fontWeight: "bold",
-      indent: 20,
-    };
-
-    const markers = config.mode === "development" ? marker : false;
+    const markers = getMarker();
 
     ScrollTrigger.create({
       trigger: "#trigger-next-project",
@@ -108,13 +44,18 @@ const { nextProject } = Astro.props;
 <div id="next-project" class="next-project">
   <div id="wrapper-next" class="wrapper-next-project">
     <p id="see-next" class="see-next">
-      <span class="reveal line1">See</span><span class="highlight reveal line1"
+      <span class="reveal line1">See</span><span
+        style={`color: ${nextProject.mainColor.hex}`}
+        class="highlight reveal line1"
         >nex<span class="glitch reveal line1">t</span>
       </span>
       <span class="line reveal glitch line2">Project ?</span>
     </p>
     <div class="answers">
-      <Circle link={`/projects/${nextProject.slug.current}`} />
+      <Circle
+        color={nextProject.mainColor.hex}
+        link={`/projects/${nextProject.slug.current}`}
+      />
       <button id="no-answer" class="reveal no-answer js-to-top"
         >No thanks</button
       >
