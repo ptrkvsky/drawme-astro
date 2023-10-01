@@ -9,6 +9,31 @@ const { link, color } = Astro.props;
 const svgColor = color ?? "#71F4DF";
 ---
 
+<script define:vars={{ svgColor }}>
+  function setColorOnHover() {
+    const letsGoELements = document.querySelectorAll(".lets-go");
+
+    if (!letsGoELements.length) return;
+
+    letsGoELements.forEach((letsGo) => {
+      // Define the original color and the hover color here
+      const originalColor = letsGo.style.color;
+
+      letsGo.addEventListener("mouseenter", () => {
+        letsGo.querySelector(".text").style.color = svgColor;
+      });
+
+      letsGo.addEventListener("mouseleave", () => {
+        letsGo.querySelector(".text").style.color = originalColor;
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    setColorOnHover();
+  });
+</script>
+
 <a href={link} class="lets-go">
   <span class="text reveal">Let's go !</span>
   <svg

@@ -31,6 +31,7 @@ export function revealImages(): void {
   wrappers.forEach((wrapper) => {
     // Find the image element inside the current wrapper
     const image = wrapper.querySelector(".image-decale");
+    if (!image) return;
 
     // Create a GSAP timeline with ScrollTrigger configuration
     gsap
