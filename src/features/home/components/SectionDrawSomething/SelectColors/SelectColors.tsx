@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React from "react";
 
 interface SelectColorsProps {
   setColors: (value: string) => void;
