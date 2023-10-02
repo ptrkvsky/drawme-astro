@@ -22,6 +22,10 @@ export function displayNextProject(direction: number) {
 
   if (direction == 1) {
     // Reveal
+    gsap.set(`#svg-cercle-line-1`, {
+      drawSVG: false,
+    });
+
     gsap
       .timeline({
         scrollTrigger: {
@@ -43,6 +47,10 @@ export function displayNextProject(direction: number) {
   }
   if (direction == -1) {
     // Hide
+    gsap.set(`#svg-cercle-line-1`, {
+      drawSVG: true,
+    });
+
     gsap
       .timeline({
         scrollTrigger: {
@@ -56,7 +64,6 @@ export function displayNextProject(direction: number) {
       .to(`#svg-cercle-line-1`, {
         drawSVG: false,
         ease: `power3.inOut`,
-        delay: 0,
         duration: 0.5,
       })
       .call(() => {
