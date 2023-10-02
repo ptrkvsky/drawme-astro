@@ -35,7 +35,7 @@ const svgColor = color ?? "#71F4DF";
 </script>
 
 <a href={link} class="lets-go">
-  <span class="text reveal">Let's go !</span>
+  <span class="text reveal lets-go__text">Let's go !</span>
   <svg
     id="svg-cercle"
     class="circle"
@@ -91,5 +91,9 @@ const svgColor = color ?? "#71F4DF";
       top: 0;
       width: 100%;
     }
+  }
+  .lets-go__text {
+    display: block;
+    min-width: 200px;
   }
 </style>

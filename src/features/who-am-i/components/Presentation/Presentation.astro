@@ -90,7 +90,7 @@ const textPresentationMobile2HTML = toHTML(textPresentationMobile2, {
           width={portrait.asset.metadata.dimensions.width}
           height={portrait.asset.metadata.dimensions.height}
           src={portrait.asset.url}
-          format="avif"
+          format="webp"
           aspectRatio={portrait.asset.metadata.dimensions.aspectRatio}
           alt="Instagram Draw me a sheep"
         />
@@ -123,8 +123,7 @@ const textPresentationMobile2HTML = toHTML(textPresentationMobile2, {
           width={portrait.asset.metadata.dimensions.width}
           height={portrait.asset.metadata.dimensions.height}
           src={portrait.asset.url}
-          format="avif"
-          aspectRatio={portrait.asset.metadata.dimensions.aspectRatio}
+          format="webp"
           alt="Instagram Draw me a sheep"
         />
       </div>
@@ -200,7 +199,12 @@ const textPresentationMobile2HTML = toHTML(textPresentationMobile2, {
     position: relative;
     display: inline-block;
     width: clamp(194px, 35.3rem, 353px);
-    min-height: 58.2rem;
+    max-height: clamp(58.2rem, 58.2rem, 582px);
+
+    @media screen and (max-width: 1024px) {
+      min-height: 58.2rem;
+      max-height: 100%;
+    }
 
     img {
       aspect-ratio: attr(width) / attr(height);
@@ -228,7 +232,7 @@ const textPresentationMobile2HTML = toHTML(textPresentationMobile2, {
       &.text-am {
         transform: rotate(270deg);
         right: -17.5rem;
-        bottom: 4rem;
+        bottom: clamp(4rem, 4rem, 40px);
 
         @media screen and (max-width: 1024px) {
           right: -88px;
