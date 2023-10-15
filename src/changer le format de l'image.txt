@@ -1,0 +1,6 @@
+changer le format de l'image 
+faire sauter le sautillement de logotype
+
+Next Projet --> lets go aligner sur la gauche avec le P, et no thanks aligné à droite 
+draw me a layouy, verifier le padding à gauche et couleur du survol 
+verifier graisse sur the customer, the brief....

@@ -109,7 +109,13 @@ const { nextProject } = Astro.props;
       display: block;
     }
     .line1 {
-      font-size: clamp(100px, 35.7rem, 357px);
+      font-size: 357px;
+      @media screen and (max-width: 1240px) {
+        font-size: 250px;
+      }
+      @media screen and (max-width: 768px) {
+        font-size: 100px;
+      }
       &.glitch {
         position: relative;
         // bottom: 1rem;
@@ -126,7 +132,14 @@ const { nextProject } = Astro.props;
     .line2 {
       position: relative;
       bottom: 5rem;
-      font-size: clamp(88px, 31rem, 311px);
+      font-size: 311px;
+      @media screen and (max-width: 1240px) {
+        font-size: 216px;
+      }
+
+      @media screen and (max-width: 766px) {
+        font-size: 88px;
+      }
     }
   }
 
@@ -135,7 +148,7 @@ const { nextProject } = Astro.props;
     top: 5rem;
 
     width: 100%;
-    max-width: clamp(50.7rem, 87.7rem, 900px);
+    max-width: 900px;
     display: flex;
     justify-content: space-between;
     gap: clamp(16px, 2.4rem, 2.4rem);
@@ -149,14 +162,21 @@ const { nextProject } = Astro.props;
       max-width: 100%;
     }
     .no-answer {
+      position: relative;
+      right: 15px;
       text-align: center;
       border: none;
       background-color: transparent;
       color: var(--color-white-beauty);
       font-family: var(--text-body-bold);
-      font-size: clamp(16px, 2.5rem, 2.5rem);
+      font-size: 25px;
       cursor: pointer;
       transition: all 0.3s linear;
+
+      @media screen and (max-width: 768px) {
+        right: 0;
+        font-size: 16px;
+      }
 
       &:hover {
         color: var(--color-ice-ice-baby);
