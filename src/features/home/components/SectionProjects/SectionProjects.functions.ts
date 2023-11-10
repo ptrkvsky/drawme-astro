@@ -1,10 +1,6 @@
-export function setIllustrationsLagAndSpeed() {
-  // Vérifier si l'appareil est un mobile
-  const isMobile =
-    /iPhone|iPad|iPod|Android|webOS|BlackBerry|Windows Phone/i.test(
-      navigator.userAgent
-    );
+import { isMobile } from "@helpers/isMobile";
 
+export function setIllustrationsLagAndSpeed() {
   // Sélectionner l'élément avec la classe "illustration" et l'attribut "data-speed"
   const illustrations: NodeListOf<HTMLDivElement> = document.querySelectorAll(
     ".illustration[data-speed]"
@@ -20,12 +16,6 @@ export function setIllustrationsLagAndSpeed() {
 }
 
 export function setTextsLagAndSpeed() {
-  // Vérifier si l'appareil est un mobile
-  const isMobile =
-    /iPhone|iPad|iPod|Android|webOS|BlackBerry|Windows Phone/i.test(
-      navigator.userAgent
-    );
-
   // Sélectionner l'élément avec la classe "illustration" et l'attribut "data-speed"
   const texts: NodeListOf<HTMLDivElement> = document.querySelectorAll(
     ".sub-title[data-speed]"
