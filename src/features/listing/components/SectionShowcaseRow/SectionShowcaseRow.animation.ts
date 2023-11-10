@@ -1,3 +1,4 @@
+import { splitChars } from "@helpers/splitChars";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import config from "src/config";
@@ -11,31 +12,35 @@ gsap.registerPlugin(SplitText);
  * @param elements - An array of HTMLElements to be split and animated.
  * @returns An array of GSAP animations targeting individual characters after the split.
  */
+export function initSplit(element: HTMLElement) {
+  const splitedChars = splitChars(element);
 
-export function initSplit(elements: HTMLElement[]) {
-  const splitElements = new SplitText(elements, {
-    type: `chars`,
-  });
-
-  gsap.set(splitElements.chars, {
+  if (!splitedChars) return [];
+  gsap.set(splitedChars, {
     yPercent: -103,
   });
 
-  return splitElements.chars;
+  return splitedChars;
 }
 
+/**
+ * Animates the row's content.
+ *
+ * @param row - The row to be animated.
+ */
 export function animateRow(row: HTMLLinkElement) {
-  const selector = gsap.utils.selector(row);
+  const date: HTMLElement | null = row.querySelector(".row__header__date");
+  const name: HTMLElement | null = row.querySelector(".row__header__name");
+  const tagline: HTMLElement | null = row.querySelector(
+    ".row__header__tagline"
+  );
 
-  const date: HTMLElement[] = selector(".row__header__date");
-  const name: HTMLElement[] = selector(".row__header__name");
-  const tagline: HTMLElement[] = selector(".row__header__tagline");
-
+  if (!date || !name || !tagline) return;
   const nameChars = initSplit(name);
   const dateChars = initSplit(date);
   const taglineChars = initSplit(tagline);
 
-  const imagesRow = selector(".row__content-img");
+  const imagesRow = row.querySelector(".row__content-img");
 
   gsap
     .timeline({
