@@ -1,13 +1,20 @@
 ---
 import { TitleShowcase } from "@features/listing/components/TitleShowcase";
 import { SectionShowcaseRow } from "@features/listing/components/SectionShowcaseRow";
-import { SanityProject } from "@features/project/interfaces";
+import { SanityProject, SanityProjects } from "@features/project/interfaces";
+import fetchSanity from "@helpers/fetchSanity";
+import { querySanityProjects } from "@features/project/queries/querySanityProjects";
 
-interface SectionShowcaseProps {
-  projects: SanityProject[];
-}
+const projects = await fetchSanity<SanityProjects>(querySanityProjects);
 
-const { projects } = Astro.props as SectionShowcaseProps;
+// sort projects by date
+const sortedProjects = projects?.allProject.sort(
+  (a: SanityProject, b: SanityProject) => {
+    const dateA = new Date(a.startedAt);
+    const dateB = new Date(b.startedAt);
+    return dateB.getTime() - dateA.getTime();
+  }
+);
 
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
@@ -36,7 +43,7 @@ const currentYear = currentDate.getFullYear();
     <div id="section__header__border" class="section__header__border"></div>
   </header>
   {
-    projects.map((project) => (
+    sortedProjects?.map((project) => (
       <SectionShowcaseRow
         name={project.title}
         date={project.startedAt}

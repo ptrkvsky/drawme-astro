@@ -40,7 +40,7 @@ export function animateRow(row: HTMLLinkElement) {
   const dateChars = initSplit(date);
   const taglineChars = initSplit(tagline);
 
-  const imagesRow = row.querySelector(".row__content-img");
+  const imagesRow = row.querySelectorAll(".row__content-img");
 
   gsap
     .timeline({
