@@ -10,7 +10,7 @@ import gsap from "gsap";
  * @returns {void}
  *
  * @example
- * //zaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa Call the revealImages function to initiate the animations.
+ *
  * revealImages();
  */
 export function revealImages() {
