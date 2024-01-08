@@ -66,11 +66,15 @@ function animatePreloader() {
     .to(["#header", "#burger-button"], {
       opacity: 1,
       delay: 3,
+    })
+    .call(() => {
+      // ajoute la classe preloader-complete au body
     });
 
   setTimeout(() => {
     if (!canva) return;
     canva.classList.add("visible");
+    document.querySelector("body")?.classList.add("preloader-complete");
   }, 6800);
 }
 

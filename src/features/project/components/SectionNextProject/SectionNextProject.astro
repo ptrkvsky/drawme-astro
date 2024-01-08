@@ -81,7 +81,11 @@ const { nextProject } = Astro.props;
   </div>
 </div>
 <style lang="scss" is:global>
+  .preloader-complete #next-project {
+    display: flex;
+  }
   .next-project {
+    display: none;
     position: fixed;
     z-index: 100;
     bottom: 0;
@@ -90,7 +94,6 @@ const { nextProject } = Astro.props;
     height: 100%;
     padding: 5rem;
 
-    display: flex;
     align-items: center;
     justify-content: center;
 
