@@ -37,6 +37,7 @@ function animatePreloader() {
     })
     .call(() => {
       sessionStorage.setItem("isPreloaderSeen", "true");
+      document.querySelector("body")?.classList.add("preloader-complete");
     });
 
   gsap
@@ -66,9 +67,6 @@ function animatePreloader() {
     .to(["#header", "#burger-button"], {
       opacity: 1,
       delay: 3,
-    })
-    .call(() => {
-      // ajoute la classe preloader-complete au body
     });
 
   setTimeout(() => {
@@ -102,6 +100,7 @@ export function animatePageIn() {
         document.querySelector("#main-canva")?.classList.add("visible");
       }
       sessionStorage.setItem("isPreladerSeen", "false");
+      document.querySelector("body")?.classList.add("preloader-complete");
     });
 }
 

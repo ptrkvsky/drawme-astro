@@ -129,6 +129,7 @@ const { nextProject } = Astro.props;
     .line1 {
       font-size: 250px;
       display: flex;
+      justify-content: space-between;
 
       @media only screen and (min-width: 2300px) {
         font-size: 30rem;
@@ -186,6 +187,10 @@ const { nextProject } = Astro.props;
 
     @media screen and (min-width: 2300px) {
       max-width: 824px;
+    }
+
+    @media screen and (max-width: 1920px) {
+      max-width: 64rem;
     }
 
     @media screen and (max-width: 768px) {
