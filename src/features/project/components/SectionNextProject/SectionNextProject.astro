@@ -12,6 +12,8 @@ const { nextProject } = Astro.props;
 <script>
   import gsap from "gsap";
   import ScrollTrigger from "gsap/ScrollTrigger";
+  import { SplitText } from "gsap/SplitText";
+
   import {
     displayNextProject,
     moveToPortal,
@@ -29,6 +31,18 @@ const { nextProject } = Astro.props;
 
     const markers = getMarker();
 
+    // hide
+    // const revealElements = document.querySelectorAll(".reveal");
+    // if (!revealElements.length) return;
+
+    // revealElements.forEach((revealElement) => {
+    //   const splitedReveal = new SplitText(revealElement, {
+    //     type: `chars`,
+    //   });
+
+    //   gsap.set(splitedReveal.chars, { yPercent: -120 });
+    // });
+
     ScrollTrigger.create({
       trigger: "#trigger-next-project",
       start: "140px bottom",
@@ -43,48 +57,46 @@ const { nextProject } = Astro.props;
 
 <div id="next-project" class="next-project">
   <div id="wrapper-next" class="wrapper-next-project">
-    <p id="see-next" class="see-next">
-      <span class="reveal line1">See</span><span
-        style={`color: ${nextProject.mainColor.hex}`}
-        class="highlight reveal line1"
-        >nex<span class="glitch reveal line1">t</span>
-      </span>
-      <span class="line reveal glitch line2">Project ?</span>
-    </p>
+    <div id="see-next" class="see-next">
+      <p class="line1">
+        <span>See</span><span
+          style={`color: ${nextProject.mainColor.hex}`}
+          class="highlight line1"
+          >nex<span class="glitch">t</span>
+        </span>
+      </p>
+
+      <div id="wrapper-hide" class="">
+        <span class="line glitch line2">Project ?</span>
+      </div>
+    </div>
+
     <div class="answers">
       <Circle
         color={nextProject.mainColor.hex}
         link={`/projects/${nextProject.slug.current}`}
       />
-      <button id="no-answer" class="reveal no-answer js-to-top"
-        >No thanks</button
-      >
+      <button id="no-answer" class="no-answer js-to-top">No thanks</button>
     </div>
   </div>
 </div>
 <style lang="scss" is:global>
   .next-project {
     position: fixed;
-    top: 0;
+    z-index: 100;
+    bottom: 0;
     width: 100%;
-    height: calc(100% - clamp(111px, 15rem, 15rem));
+    // height: calc(100% - clamp(111px, 16rem, 16rem));
+    height: 100%;
+    padding: 5rem;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     background-color: black;
-    z-index: -1;
     opacity: 1;
     transition: all ease-in-out 0.3s;
-
-    pointer-events: none;
-
-    &.visible {
-      z-index: 999;
-      opacity: 1;
-      pointer-events: all;
-    }
 
     .line {
       position: relative;
@@ -92,14 +104,17 @@ const { nextProject } = Astro.props;
   }
 
   .wrapper-next-project {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-54%);
+    position: relative;
+    bottom: 7rem;
     width: clamp(80%, 163rem, 163rem);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    @media only screen and (min-width: 2300px) {
+      bottom: 0;
+    }
   }
 
   .see-next {
@@ -109,7 +124,13 @@ const { nextProject } = Astro.props;
       display: block;
     }
     .line1 {
-      font-size: 357px;
+      font-size: 250px;
+      display: flex;
+
+      @media only screen and (min-width: 2300px) {
+        font-size: 30rem;
+      }
+
       @media screen and (max-width: 1240px) {
         font-size: 250px;
       }
@@ -132,7 +153,11 @@ const { nextProject } = Astro.props;
     .line2 {
       position: relative;
       bottom: 5rem;
-      font-size: 311px;
+      font-size: 216px;
+
+      @media only screen and (min-width: 2300px) {
+        font-size: 282px;
+      }
       @media screen and (max-width: 1240px) {
         font-size: 216px;
       }
@@ -145,7 +170,6 @@ const { nextProject } = Astro.props;
 
   .answers {
     position: relative;
-    top: 5rem;
 
     width: 100%;
     max-width: 900px;
@@ -156,6 +180,10 @@ const { nextProject } = Astro.props;
     color: var(--color-white-beauty);
     font-family: var(--text-body-bold);
     font-size: clamp(20px, 4rem, 4rem);
+
+    @media screen and (min-width: 2300px) {
+      max-width: 824px;
+    }
 
     @media screen and (max-width: 768px) {
       flex-direction: column;

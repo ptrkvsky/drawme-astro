@@ -1,6 +1,6 @@
 /// <reference types="@astrojs/image/client" />
 interface ImportMetaEnv {
-  readonly MODE: 'development' | 'production';
+  readonly MODE: "development" | "production";
   readonly PUBLIC_SANITY_PROJECT_ID: string;
   readonly PUBLIC_SANITY_DATASET: string;
   readonly PUBLIC_SANITY_API_VERSION: string;
@@ -17,12 +17,16 @@ interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
 
-declare module '*.css' {
+declare module "*.css" {
   const content: Record<string, string>;
   export default content;
 }
 
-declare module '*.svg' {
+declare module "*.svg" {
   const content: string;
   export default content;
+}
+
+declare module "react-canvas-draw" {
+  export function CanvasDraw(): any;
 }

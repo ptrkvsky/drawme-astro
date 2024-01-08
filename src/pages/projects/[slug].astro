@@ -41,6 +41,12 @@ const nextProjectUrls = [`/projects/${nextProject.slug.current}`];
 const imageSN = project?.imageSN?.asset?.url;
 ---
 
+<script>
+  import { addClassToFooter } from "@features/project/functions/addClassToFooter";
+
+  addClassToFooter("black-footer");
+</script>
+
 <script define:vars={{ hue, saturation, config }}>
   const root = document.querySelector(":root");
   root.style.setProperty("--canva-hue", hue);
@@ -85,7 +91,24 @@ const imageSN = project?.imageSN?.asset?.url;
 </Layout>
 
 <style lang="scss" is:global>
+  #main-content {
+    padding-bottom: 100vh; // space to display next project section
+  }
+  #smooth-wrapper {
+    z-index: 150;
+  }
+
+  #smooth-wrapper.is-not-clickable {
+    pointer-events: none;
+  }
+
   .wrapper-project {
     padding-top: clamp(95px, 9.5rem, 9.5rem);
+    background-color: var(--color-white-beauty);
+  }
+
+  footer {
+    background-color: black;
+    color: var(--color-white-beauty);
   }
 </style>

@@ -8,12 +8,9 @@ export function animateTitle() {
   const showCaseTitle = document.querySelector("#showcase-title");
   if (!showCaseTitle) return;
 
-  const splitSheep = new SplitText(
-    document.querySelectorAll("#showcase-title .word"),
-    {
-      type: `chars`,
-    }
-  );
+  const splitSheep = new SplitText(showCaseTitle.querySelectorAll(".word"), {
+    type: `chars`,
+  });
 
   gsap.set(splitSheep.chars, { yPercent: -103 });
 

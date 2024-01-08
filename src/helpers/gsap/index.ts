@@ -34,7 +34,7 @@ export function revealSplitedTitle(
       },
     })
     .from(splitedTitle[type], {
-      y: 50,
+      y: -50,
       ease: "power1.out",
       skewY: 5,
       stagger: {

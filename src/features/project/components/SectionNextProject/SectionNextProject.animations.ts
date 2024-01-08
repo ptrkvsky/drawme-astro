@@ -1,6 +1,17 @@
 import { ParamsSplitAndReveal, splitAndReveal } from "@helpers/gsap";
+import { SplitText } from "gsap/SplitText";
+
 import gsap from "gsap";
 import config from "src/config";
+
+gsap.registerPlugin(SplitText);
+
+export function toggleClassClickableOnSmoothWrapper() {
+  const smoothWrapper = document.querySelector("#smooth-wrapper");
+  if (!smoothWrapper) return;
+
+  smoothWrapper.classList.toggle("is-not-clickable");
+}
 
 /**
  * Displays or hides the "next-project" element with optional animations based on the given direction.
@@ -26,17 +37,31 @@ export function displayNextProject(direction: number) {
       drawSVG: false,
     });
 
+    // const chars = document.querySelectorAll(".reveal div");
+
     gsap
       .timeline({
         scrollTrigger: {
           trigger: "#next-project",
           start: "top 85%", // top of the element, bottom of the viewport
         },
-        delay: 1.75,
+        delay: 0,
       })
+      // .to(chars, {
+      //   duration: 1,
+      //   yPercent: 0,
+      //   stagger: 0.04,
+      //   ease: "expo.inOut",
+      //   onComplete: () => {
+      //     // document.querySelectorAll(".reveal").forEach((el) => {
+      //     //   el.classList.remove("o-hidden");
+      //     //   el.classList.remove("split-text");
+      //     // });
+      //     document.querySelector("#wrapper-hide")?.classList.remove("o-hidden");
+      //   },
+      // })
       .call(() => {
-        document.getElementById("next-project")?.classList.toggle("visible");
-        splitAndReveal(paramsSplitReveal);
+        toggleClassClickableOnSmoothWrapper();
       })
       .to(`#svg-cercle-line-1`, {
         drawSVG: true,
@@ -55,11 +80,8 @@ export function displayNextProject(direction: number) {
       .timeline({
         scrollTrigger: {
           trigger: "#next-project",
-          start: "top 85%", // top of the element, bottom of the viewport
+          start: "top 75%", // top of the element, bottom of the viewport
         },
-      })
-      .call(() => {
-        document.getElementById("next-project")?.classList.toggle("visible");
       })
       .to(`#svg-cercle-line-1`, {
         drawSVG: false,
@@ -67,7 +89,7 @@ export function displayNextProject(direction: number) {
         duration: 0.5,
       })
       .call(() => {
-        splitAndReveal(paramsSplitReveal);
+        toggleClassClickableOnSmoothWrapper();
       });
   }
 }
