@@ -66,7 +66,8 @@ export function revealBlocs() {
     })
     .call(() => {
       blocs.forEach((bloc) => {
-        bloc.parentElement.classList.remove("o-hidden");
+        bloc?.parentElement?.classList.remove("o-hidden");
       });
+      document.querySelector("#wrapper-infos")?.classList.remove("o-hidden");
     });
 }
