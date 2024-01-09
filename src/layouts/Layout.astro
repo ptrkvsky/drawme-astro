@@ -5,6 +5,7 @@ import { Preloader } from "@components/Preloader";
 import { Meta } from "@components/Meta";
 
 import { LogASheep } from "@components/LogASheep";
+import { GtagManager } from "@components/GtagManager";
 import { Menu, Burger, Footer } from "@components/index";
 import "@styles/fonts.scss";
 import "@styles/reset.css";
@@ -40,7 +41,7 @@ const {
 <link rel="icon" type="image/x-icon" href="/favicon.png" />
 <meta name="generator" content={Astro.generator} />
 <Meta title={title} description={description} imageSN={imageSN} />
-
+<GtagManager />
 {
   urlsImages &&
     urlsImages.map((urlImage) => (

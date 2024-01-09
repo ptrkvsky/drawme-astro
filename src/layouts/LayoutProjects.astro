@@ -9,6 +9,7 @@ import "@styles/variables.scss";
 import "@styles/global.scss";
 import "@styles/functions.scss";
 import { Menu, Burger, Footer } from "@components/index";
+import { GtagManager } from "@components/GtagManager";
 import { LogASheep } from "@components/LogASheep";
 import { Meta } from "@components/Meta";
 
@@ -27,6 +28,7 @@ const { background, urlsPages, urlsImages } = Astro.props;
 <meta name="viewport" content="width=device-width" />
 <link rel="icon" type="image/x-icon" href="/favicon.png" />
 <meta name="generator" content={Astro.generator} />
+<GtagManager />
 <Meta
   title={"Portfolio - Explore Our Creative Studio's Projects"}
   description="Dive into a world of creativity and innovation. Discover an array of exceptional projects brought to life by our cool studio in all its artistic glory."
