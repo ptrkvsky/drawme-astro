@@ -56,8 +56,9 @@ const { images } = Astro.props as AstroProps;
 
 <style lang="scss">
   .section-images-footer {
-    margin-top: 18.3rem;
     display: flex;
+    margin-top: 18.3rem;
+    padding-bottom: clamp(24px, 34rem, 34rem);
 
     @media screen and (max-width: 1024px) {
       flex-direction: column;
@@ -106,7 +107,7 @@ const { images } = Astro.props as AstroProps;
     max-width: clamp(196px, 53.3rem, 53.3rem);
     position: absolute;
     right: 0;
-    bottom: 70px;
+    bottom: clamp(70px, 14rem, 14rem);
 
     @media screen and (max-width: 1024px) {
       position: relative;
