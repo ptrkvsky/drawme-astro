@@ -1,5 +1,5 @@
 ---
-import { Quote } from '../../interfaces';
+import { Quote } from "../../interfaces";
 
 interface AstroProps {
   quote: Quote[];
@@ -10,7 +10,7 @@ const { quote: quotes, projectColor } = Astro.props as AstroProps;
 ---
 
 <script>
-  import { animateQuotes } from './SectionQuotes.animation';
+  import { animateQuotes } from "./SectionQuotes.animation";
 
   animateQuotes();
 </script>
@@ -27,7 +27,7 @@ const { quote: quotes, projectColor } = Astro.props as AstroProps;
           },
         } = quote.image.asset;
 
-        const quoteWithBreakLines = quote.text.replace(/\n/g, '<br>');
+        const quoteWithBreakLines = quote.text.replace(/\n/g, "<br>");
 
         return (
           <div id={`wrapper-quote-${index}`} class="quote">
@@ -82,8 +82,7 @@ const { quote: quotes, projectColor } = Astro.props as AstroProps;
     position: relative;
     display: flex;
     gap: 154px;
-    // margin-bottom: 10.4rem;
-    margin-bottom: clamp(24px, 26.4rem, 26.4rem);
+    padding-bottom: clamp(24px, 26.4rem, 26.4rem);
 
     @media screen and (max-width: 1024px) {
       flex-direction: column;
