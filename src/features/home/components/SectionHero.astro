@@ -18,7 +18,7 @@ import { MiniMenu } from "./MiniMenu";
 
   // Duration of preloader
   const isPreloaderSeen = sessionStorage.getItem("isPreloaderSeen");
-  const envDelay = config.mode === "development" ? 1500 : 8500;
+  const envDelay = config.mode === "development" ? 1500 : 7250;
   const delay = isPreloaderSeen ? 0 : envDelay;
 
   setTimeout(() => {
